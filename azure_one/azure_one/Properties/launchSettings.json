@@ -1,0 +1,9 @@
+﻿{
+  "profiles": {
+    "azure_one": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7071",
+      "launchBrowser": false
+    }
+  }
+}
