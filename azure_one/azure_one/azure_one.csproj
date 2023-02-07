@@ -9,6 +9,10 @@
   <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="etl\Db\" />
+    <None Remove="Etl\Infrastructure\" />
+    <None Remove="Etl\Domain\" />
+    <None Remove="Etl\Application\" />
+    <None Remove="Etl\Infrastructure\Db\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
@@ -20,6 +24,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Etl\Db\" />
+    <Folder Include="Etl\Infrastructure\" />
+    <Folder Include="Etl\Domain\" />
+    <Folder Include="Etl\Application\" />
+    <Folder Include="Etl\Infrastructure\Db\" />
   </ItemGroup>
 </Project>
