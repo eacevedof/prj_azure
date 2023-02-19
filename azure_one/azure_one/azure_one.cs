@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using azure_one.Etl.Application;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
@@ -17,24 +18,13 @@ namespace azure_one
         [FunctionName("azure_one")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
-            ILogger log)
+            ILogger log,
+            CreateUserService createUserService)
         {
             Lg.Pr("empieza azure-one...");
-            Mssql db = new Mssql();
-            string sqlInsert = "INSERT INTO users (user_types_id, tenant_id, user_code, name, email, password) values (1,1,'889910','eaf','eaf@eaf3.com','1234')";
-            bool r = db.Execute(sqlInsert);
-            if (!r)
-            {
-                Lg.Pr("no se ha insertado");
-            }
-            else
-            {
-                Lg.Pr($"id obtenido {db.GetLastInsertId()}");
-            }
-            
-            List<Dictionary<string, string>> users = db.Query("SELECT * FROM users");
-            Lg.PrRows(users);
-
+            createUserService.InsertRandomUser();
+            createUserService.PrintAll();      
+      
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string name = req.Query["name"];
