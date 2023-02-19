@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
+using System.Dynamic;
 
 namespace azure_one.Etl.Infrastructure.Db
 {
@@ -28,10 +29,10 @@ namespace azure_one.Etl.Infrastructure.Db
 		public List<object> Query(string query)
 		{
 			query = query.Trim();
-			List<object> result = new List<object>();
+			List<object> rowsResult = new List<object>();
 			if (query == "")
 			{
-				return result;
+				return rowsResult;
 			}
 
 			SqlCommand sql = new SqlCommand(query, this._connection);
@@ -44,14 +45,20 @@ namespace azure_one.Etl.Infrastructure.Db
 			List<string> columnsNames = this.GetColumnsNames(sqlReader);
 			while (sqlReader.Read())
 			{
+				List<object> objRow = new List<object>();
 				for (int i = 0; i < columnsNames.Count; i++)
 				{
-					
+					dynamic objColumn = new ExpandoObject();
+					objColumn.position = i;
+					objColumn.column = columnsNames[i];
+					objColumn.value = sqlReader.GetString(i);
+					objRow.Add(objColumn);
 				}
+				rowsResult.Add(objRow);
 			}
 			sqlReader.Close();
 			this._connection.Close();
-			return result;
+			return rowsResult;
 		}
 
 		private List<string> GetColumnsNames(SqlDataReader sqlReader)
