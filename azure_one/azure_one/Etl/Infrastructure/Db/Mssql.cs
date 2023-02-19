@@ -49,7 +49,7 @@ namespace azure_one.Etl.Infrastructure.Db
 			return rowsResult;
 		}
 
-		public Boolean Execute(string query)
+		public bool Execute(string query)
 		{
 			query = query.Trim();
 			if (query == "")
@@ -57,21 +57,18 @@ namespace azure_one.Etl.Infrastructure.Db
 				return false;
 			}
 
-			Boolean isInsert = false;
-			if (isInsert = query.Contains("INSERT INTO "))
-				query += ";SELECT SCOPE_IDENTITY();";
+			bool isInsert = query.Contains("INSERT INTO ");
+			if (isInsert) query += ";SELECT SCOPE_IDENTITY();";
 			
 			SqlCommand cmdSql = new SqlCommand(query, this._connection);
-			if (this._connection.State == ConnectionState.Closed)
-			{
-				this.Open();
-			}			
-			//string query = "INSERT INTO MijnTabel (Naam, Leeftijd) VALUES ('" + naam + "', " + leeftijd + ")";
+			if (this._connection.State == ConnectionState.Closed) this.Open();
+			
 			using (cmdSql)
 			{
-				this.rowsAffected = cmdSql.ExecuteNonQuery();
 				if (isInsert)
 					this.lastInsertId = Convert.ToInt64(cmdSql.ExecuteScalar());
+				else
+					this.rowsAffected = cmdSql.ExecuteNonQuery();
 			}
 			return true;
 		}

@@ -21,6 +21,17 @@ namespace azure_one
         {
             Lg.Pr("empieza azure-one...");
             Mssql db = new Mssql();
+            string sqlInsert = "INSERT INTO users (user_types_id, tenant_id, user_code, name, email, password) values (1,1,'889910','eaf','eaf@eaf3.com','1234')";
+            bool r = db.Execute(sqlInsert);
+            if (!r)
+            {
+                Lg.Pr("no se ha insertado");
+            }
+            else
+            {
+                Lg.Pr($"id obtenido {db.GetLastInsertId()}");
+            }
+            
             List<Dictionary<string, string>> users = db.Query("SELECT * FROM users");
             Lg.PrRows(users);
 
