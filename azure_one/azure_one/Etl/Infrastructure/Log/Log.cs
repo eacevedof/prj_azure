@@ -24,15 +24,4 @@ public static class Lg
             }
         }            
     }
-    
-    public static void PrRows(List<object> rows)
-    {
-        foreach (List<object> row in rows)
-        {
-            foreach (dynamic column in row)
-            {
-                Pr($"{column.position}, {column.column}, {column.value}");
-            }
-        }            
-    }
 }
