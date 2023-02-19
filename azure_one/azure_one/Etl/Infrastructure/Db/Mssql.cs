@@ -8,13 +8,13 @@ namespace azure_one.Etl.Infrastructure.Db
 {
 	public class Mssql
 	{
-		private readonly StructDb1 _db1;
+		private readonly StructDb1 _dbConfig1;
 		private readonly SqlConnection _connection;
 		
 		public Mssql()
 		{
-			this._db1 = new StructDb1();
-			this._connection = new SqlConnection(this._db1.GetConnectionString());
+			this._dbConfig1 = new StructDb1();
+			this._connection = new SqlConnection(this._dbConfig1.GetConnectionString());
 		}
 
 		private void Open()
