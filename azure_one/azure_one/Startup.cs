@@ -29,6 +29,8 @@ public class Startup: FunctionsStartup
         builder.Services.AddSingleton<LoadExcelService>(
             s => new LoadExcelService(new ExcelReader())
         );
+        
+        //fix: No data is available for encoding 1252. For information on defining a custom encoding
         System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
     }
 }
