@@ -29,5 +29,6 @@ public class Startup: FunctionsStartup
         builder.Services.AddSingleton<LoadExcelService>(
             s => new LoadExcelService(new ExcelReader())
         );
+        System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
     }
 }
