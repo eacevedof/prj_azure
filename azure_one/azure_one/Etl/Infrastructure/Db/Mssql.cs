@@ -5,7 +5,7 @@ using System.Data;
 
 namespace azure_one.Etl.Infrastructure.Db
 {
-	public class Mssql
+	public sealed class Mssql
 	{
 		private readonly StructDb1 _dbConfig1;
 		private readonly SqlConnection _connection;
