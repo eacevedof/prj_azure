@@ -30,7 +30,7 @@ namespace azure_one
             ILogger log
         ) {
             Lg.Pr("empieza azure-one...");
-            Lg.Pr(Env.Get("DOWNLOADS"));
+            this._loadExcelService.Invoke();
             //this._createUserService.InsertRandomUser();
             //this._createUserService.PrintAll();
             log.LogInformation("C# HTTP trigger function processed a request.");
