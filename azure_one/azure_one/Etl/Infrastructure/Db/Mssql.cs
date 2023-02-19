@@ -17,16 +17,6 @@ namespace azure_one.Etl.Infrastructure.Db
 			this._connection = new SqlConnection(this._dbConfig1.GetConnectionString());
 		}
 
-		private void Open()
-		{
-			this._connection.Open();
-		}
-		
-		private void Close()
-		{
-			this._connection.Close();
-		}
-
 		public List<Dictionary<string, string>> Query(string query)
 		{
 			query = query.Trim();
@@ -57,7 +47,14 @@ namespace azure_one.Etl.Infrastructure.Db
 			this._connection.Close();
 			return rowsResult;
 		}
-
+		private void Open()
+		{
+			this._connection.Open();
+		}
+		private void Close()
+		{
+			this._connection.Close();
+		}
 		private List<string> GetColumnsNames(SqlDataReader sqlReader)
 		{
 			List<string> columnNames = new List<string>();
@@ -67,7 +64,6 @@ namespace azure_one.Etl.Infrastructure.Db
 			}
 			return columnNames;
 		}
-		
 	}
 }
 
