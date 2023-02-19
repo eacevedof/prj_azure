@@ -43,8 +43,6 @@ namespace azure_one
 
             return new OkObjectResult(responseMessage);
         }
-
-
     }
 }
 
