@@ -11,17 +11,23 @@ using azure_one.Etl.Infrastructure.Log;
 
 namespace azure_one
 {
-    public static class azure_one
+    public class azure_one
     {
+        public azure_one()
+        {
+            //TO-DO: dependency injection
+            //ServiceInterface createUserService
+        }
+        
+        //https://youtu.be/QWK_XIn9vT4 Como Arrancar con Azure Function
         [FunctionName("azure_one")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
-            ILogger log,
-            ServiceInterface createUserService
+            ILogger log
         ) {
             Lg.Pr("empieza azure-one...");
-            createUserService.InsertRandomUser();
-            createUserService.PrintAll();      
+            //createUserService.InsertRandomUser();
+            //createUserService.PrintAll();      
       
             log.LogInformation("C# HTTP trigger function processed a request.");
 
