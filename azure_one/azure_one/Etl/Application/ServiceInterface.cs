@@ -2,7 +2,7 @@ namespace azure_one.Etl.Application;
 
 public interface ServiceInterface
 {
-    public void InsertRandomUser();
+    //public void InsertRandomUser();
 
-    public void PrintAll();
+    //public void PrintAll();
 }

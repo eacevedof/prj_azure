@@ -15,10 +15,12 @@ namespace azure_one
     public class azure_one
     {
         private readonly CreateUserService _createUserService;
+        private readonly LoadExcelService _loadExcelService;
 
-        public azure_one(CreateUserService createUserService)
+        public azure_one(CreateUserService createUserService, LoadExcelService loadExcelService)
         {
             _createUserService = createUserService;
+            _loadExcelService = loadExcelService;
         }
         
         //https://youtu.be/QWK_XIn9vT4 Como Arrancar con Azure Function

@@ -11,9 +11,8 @@ namespace azure_one.Etl.Infrastructure.Files;
 
 public sealed class ExcelReader
 {
-    public List<Dictionary<string, object>> GetData()
+    public List<Dictionary<string, object>> GetData(string pathToExcelFile)
     {
-        string pathToExcelFile = "";
         var sheetData = new List<Dictionary<string, object>>();
         
         // Lees het Excel-bestand
