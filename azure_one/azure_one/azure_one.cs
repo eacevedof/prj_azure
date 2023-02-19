@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using azure_one.Etl.Infrastructure.Db;
+using azure_one.Etl.Infrastructure.Log;
 
 namespace azure_one
 {
@@ -18,8 +19,11 @@ namespace azure_one
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
+            Lg.Pr("empieza azure-one...");
             Mssql db = new Mssql();
             List<object> users = db.Query("SELECT * FROM users");
+            azure_one.PrintRows(users);
+
             
             log.LogInformation("C# HTTP trigger function processed a request.");
 
@@ -34,6 +38,17 @@ namespace azure_one
                 : $"Hello, {name}. This HTTP triggered function executed successfully.";
 
             return new OkObjectResult(responseMessage);
+        }
+
+        private static void PrintRows(List<object> rows)
+        {
+            foreach (List<object> row in rows)
+            {
+                foreach (dynamic column in row)
+                {
+                    Lg.Pr($"{column.position}, {column.column}, {column.value}");
+                }
+            }            
         }
     }
 }
