@@ -52,7 +52,7 @@ namespace azure_one.Etl.Infrastructure.Db
 					dynamic objColumn = new ExpandoObject();
 					objColumn.position = i;
 					objColumn.column = columnsNames[i];
-					objColumn.value = sqlReader.GetString(i);
+					objColumn.value = sqlReader.GetValue(i).ToString();
 					objRow.Add(objColumn);
 				}
 				rowsResult.Add(objRow);
