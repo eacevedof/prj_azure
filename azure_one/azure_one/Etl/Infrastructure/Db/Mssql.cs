@@ -40,14 +40,28 @@ namespace azure_one.Etl.Infrastructure.Db
 				this.Open();
 			}
 
-			SqlDataReader reader = sql.ExecuteReader();
-			while (reader.Read())
+			SqlDataReader sqlReader = sql.ExecuteReader();
+			List<string> columnsNames = this.GetColumnsNames(sqlReader);
+			while (sqlReader.Read())
 			{
-				
+				for (int i = 0; i < columnsNames.Count; i++)
+				{
+					
+				}
 			}
-			reader.Close();
+			sqlReader.Close();
 			this._connection.Close();
 			return result;
+		}
+
+		private List<string> GetColumnsNames(SqlDataReader sqlReader)
+		{
+			List<string> columnNames = new List<string>();
+			for (int i = 0; i < sqlReader.FieldCount; i++)
+			{
+				columnNames.Add(sqlReader.GetName(i));
+			}
+			return columnNames;
 		}
 		
 	}
