@@ -1,10 +1,11 @@
-using DocumentFormat.OpenXml.Drawing.Charts;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using azure_one.Etl.Application;
 using azure_one.Etl.Infrastructure.Db;
+using azure_one.Etl.Infrastructure.Files;
 using azure_one.Etl.Infrastructure.Repositories;
-using Microsoft.Extensions.DependencyInjection;
+
 
 [assembly:FunctionsStartup(typeof(azure_one.Startup))]
 namespace azure_one;
@@ -24,6 +25,9 @@ public class Startup: FunctionsStartup
         builder.Services.AddHttpClient();
         builder.Services.AddSingleton<CreateUserService>(
             s => new CreateUserService(new UsersRepository(new Mssql()))
+        );
+        builder.Services.AddSingleton<LoadExcelService>(
+            s => new LoadExcelService(new ExcelReader())
         );
     }
 }
