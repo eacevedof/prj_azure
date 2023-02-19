@@ -13,10 +13,11 @@ namespace azure_one
 {
     public class azure_one
     {
-        public azure_one()
+        private readonly CreateUserService _createUserService;
+
+        public azure_one(CreateUserService createUserService)
         {
-            //TO-DO: dependency injection
-            //ServiceInterface createUserService
+            _createUserService = createUserService;
         }
         
         //https://youtu.be/QWK_XIn9vT4 Como Arrancar con Azure Function
@@ -26,9 +27,8 @@ namespace azure_one
             ILogger log
         ) {
             Lg.Pr("empieza azure-one...");
-            //createUserService.InsertRandomUser();
-            //createUserService.PrintAll();      
-      
+            this._createUserService.InsertRandomUser();
+            this._createUserService.PrintAll();
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string name = req.Query["name"];
