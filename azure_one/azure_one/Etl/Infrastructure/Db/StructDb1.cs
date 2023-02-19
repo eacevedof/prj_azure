@@ -16,6 +16,7 @@ namespace azure_one.Etl.Infrastructure.Db
 
         public string GetConnectionString()
         {
+            //string: verbindingstekenreeks
             string[] connectionParts = new string[]
             {
                 $"Server:tcp:{StructDb1.Server},{StructDb1.Port}",
