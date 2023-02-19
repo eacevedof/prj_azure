@@ -20,7 +20,7 @@ public static class Lg
             Pr("==================================");
             foreach (var column in row)
             {
-                Pr($"{column.Key}:{column.Value}");
+                Pr($"{column.Key} => {column.Value}");
             }
         }            
     }
