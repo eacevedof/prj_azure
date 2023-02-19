@@ -21,10 +21,9 @@ namespace azure_one
         {
             Lg.Pr("empieza azure-one...");
             Mssql db = new Mssql();
-            List<object> users = db.Query("SELECT * FROM users");
-            azure_one.PrintRows(users);
+            List<List<Dictionary<string, string>>> users = db.Query("SELECT * FROM users");
+            Lg.PrRowsDics(users);
 
-            
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string name = req.Query["name"];
@@ -40,16 +39,7 @@ namespace azure_one
             return new OkObjectResult(responseMessage);
         }
 
-        private static void PrintRows(List<object> rows)
-        {
-            foreach (List<object> row in rows)
-            {
-                foreach (dynamic column in row)
-                {
-                    Lg.Pr($"{column.position}, {column.column}, {column.value}");
-                }
-            }            
-        }
+
     }
 }
 

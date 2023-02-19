@@ -27,10 +27,10 @@ namespace azure_one.Etl.Infrastructure.Db
 			this._connection.Close();
 		}
 
-		public List<object> Query(string query)
+		public List<List<Dictionary<string, string>>> Query(string query)
 		{
 			query = query.Trim();
-			List<object> rowsResult = new List<object>();
+			List<List<Dictionary<string, string>>> rowsResult = new List<List<Dictionary<string, string>>>();
 			if (query == "")
 			{
 				return rowsResult;
@@ -46,16 +46,16 @@ namespace azure_one.Etl.Infrastructure.Db
 			List<string> columnsNames = this.GetColumnsNames(sqlReader);
 			while (sqlReader.Read())
 			{
-				List<object> objRow = new List<object>();
+				List<Dictionary<string, string>> dicRow = new List<Dictionary<string, string>>();
 				for (int i = 0; i < columnsNames.Count; i++)
 				{
-					dynamic objColumn = new ExpandoObject();
-					objColumn.position = i;
-					objColumn.column = columnsNames[i];
-					objColumn.value = sqlReader.GetValue(i).ToString();
-					objRow.Add(objColumn);
+					//dynamic objColumn = new ExpandoObject();
+					//objColumn.position = i;
+					//objColumn.column = columnsNames[i];
+					//objColumn.value = sqlReader.GetValue(i).ToString();
+					dicRow.Add(columnsNames[i], sqlReader.GetValue(i).ToString());
 				}
-				rowsResult.Add(objRow);
+				rowsResult.Add(dicRow);
 			}
 			sqlReader.Close();
 			this._connection.Close();
