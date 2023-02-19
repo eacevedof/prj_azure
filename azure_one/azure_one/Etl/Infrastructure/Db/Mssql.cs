@@ -1,8 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
-using System.Dynamic;
 
 namespace azure_one.Etl.Infrastructure.Db
 {
