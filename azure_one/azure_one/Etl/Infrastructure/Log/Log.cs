@@ -13,13 +13,14 @@ public static class Lg
         Console.WriteLine(text);
     }
     
-    public static void PrRowsDics(List<List<Dictionary<string, string>>> rows)
+    public static void PrRowsDics(List<Dictionary<string, string>> rows)
     {
-        foreach (List<Dictionary<string, string>> row in rows)
+        foreach (Dictionary<string, string> row in rows)
         {
-            foreach (Dictionary<string, string> column in row)
+            Pr("==================================");
+            foreach (var column in row)
             {
-                Pr($"{column.}, {column.Value}");
+                Pr($"{column.Key}:{column.Value}");
             }
         }            
     }
