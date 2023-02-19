@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using Microsoft.Extensions.Logging;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
 using System.Dynamic;

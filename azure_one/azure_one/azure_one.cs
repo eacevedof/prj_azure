@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +18,9 @@ namespace azure_one
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
+            Mssql db = new Mssql();
+            List<object> users = db.Query("SELECT * FROM users");
+            
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string name = req.Query["name"];
