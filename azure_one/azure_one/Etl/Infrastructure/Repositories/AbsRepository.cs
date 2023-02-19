@@ -4,10 +4,10 @@ namespace azure_one.Etl.Infrastructure.Repositories;
 
 public abstract class AbsRepository
 {
-    protected Mssql _mssql;
+    protected Mssql _db;
 
-    protected AbsRepository(Mssql mssql)
+    protected AbsRepository(Mssql db)
     {
-        this._mssql = mssql;
+        this._db = db;
     }
 }
