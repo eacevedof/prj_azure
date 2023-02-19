@@ -17,7 +17,7 @@ namespace azure_one
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log,
-            CreateUserService createUserService
+            ServiceInterface createUserService
         ) {
             Lg.Pr("empieza azure-one...");
             createUserService.InsertRandomUser();

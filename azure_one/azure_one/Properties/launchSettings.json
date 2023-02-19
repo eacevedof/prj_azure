@@ -2,7 +2,7 @@
   "profiles": {
     "azure_one": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7071",
+      "commandLineArgs": "--port 5050",
       "launchBrowser": false
     }
   }
