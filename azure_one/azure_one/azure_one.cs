@@ -22,7 +22,7 @@ namespace azure_one
             Lg.Pr("empieza azure-one...");
             Mssql db = new Mssql();
             List<Dictionary<string, string>> users = db.Query("SELECT * FROM users");
-            Lg.PrRowsDics(users);
+            Lg.PrRows(users);
 
             log.LogInformation("C# HTTP trigger function processed a request.");
 

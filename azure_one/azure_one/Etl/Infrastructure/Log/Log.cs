@@ -13,7 +13,7 @@ public static class Lg
         Console.WriteLine(text);
     }
     
-    public static void PrRowsDics(List<Dictionary<string, string>> rows)
+    public static void PrRows(List<Dictionary<string, string>> rows)
     {
         foreach (Dictionary<string, string> row in rows)
         {
