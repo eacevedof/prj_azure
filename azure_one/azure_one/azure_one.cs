@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using azure_one.Etl.Infrastructure.Log;
+using azure_one.Etl.Infrastructure.Env;
 
 namespace azure_one
 {
@@ -27,8 +28,9 @@ namespace azure_one
             ILogger log
         ) {
             Lg.Pr("empieza azure-one...");
-            this._createUserService.InsertRandomUser();
-            this._createUserService.PrintAll();
+            Lg.Pr(Env.Get("DOWNLOADS"));
+            //this._createUserService.InsertRandomUser();
+            //this._createUserService.PrintAll();
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string name = req.Query["name"];
