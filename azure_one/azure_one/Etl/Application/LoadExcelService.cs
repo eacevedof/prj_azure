@@ -15,7 +15,7 @@ public sealed class LoadExcelService
     public LoadExcelService(ExcelReader excelReader)
     {
         _excelReader = excelReader;
-        this.PATH_EXCEL = Env.Get("HOME")+"/Downloads/attributes_v2.xlsx";
+        this.PATH_EXCEL = Env.Get("HOME")+"/Downloads/data-in.xlsx";
     }
 
     public void Invoke()
