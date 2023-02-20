@@ -7,7 +7,6 @@ using azure_one.Etl.Infrastructure.Log;
 
 namespace azure_one.Etl.Application;
 
-
 public sealed class LoadExcelService
 {
     private string PATH_EXCEL = "";
