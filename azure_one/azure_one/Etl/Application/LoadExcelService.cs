@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using azure_one.Etl.Infrastructure.Files;
 using azure_one.Etl.Infrastructure.Env;
-using System.Text.Json;
+using azure_one.Etl.Infrastructure.Db;
 using azure_one.Etl.Infrastructure.Log;
 
 namespace azure_one.Etl.Application;
@@ -41,6 +39,7 @@ public sealed class LoadExcelService
         sql += string.Join(",", insValues);
         sql += ";";
         Lg.Pr(sql);
+        Mssql.GetInstance().Execute(sql);
         //string json = JsonSerializer.Serialize(list);
         //Lg.Pr(json, "result");
     }
@@ -65,11 +64,10 @@ public sealed class LoadExcelService
     {
         List<string> values = new List<string>()
         {
-            $"INSERT INTO [dbo][{table}] (",
+            $"INSERT INTO [local_staging].[dbo].[{table}] (",
             string.Join(",",this.mapping.Values),
             ") VALUES"
         };
-        
         return string.Join("", values);
     }
     

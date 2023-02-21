@@ -18,6 +18,11 @@ namespace azure_one.Etl.Infrastructure.Db
 			this._connection = new SqlConnection(this._dbConfig1.GetConnectionString());
 		}
 
+		public static Mssql GetInstance()
+		{
+			return new Mssql();
+		}
+
 		public List<Dictionary<string, string>> Query(string query)
 		{
 			query = query.Trim();
