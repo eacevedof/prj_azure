@@ -35,7 +35,7 @@ public sealed class ExcelReader
                         // Haal de kolomnaam op
                         var columnName = sheet.Columns[i].ColumnName;
                         // Haal de celwaarde op en voeg deze toe aan de dictionary
-                        rowData.Add(columnName, row[i].ToString());
+                        rowData.Add(columnName, row[i].ToString().Trim());
                     }
                     // Voeg de dictionary toe aan de lijst
                     sheetData.Add(rowData);
