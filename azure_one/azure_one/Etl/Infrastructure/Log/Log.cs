@@ -27,9 +27,6 @@ public static class Lg
     
     public static void PrRows(List<string> rows)
     {
-        foreach (string row in rows)
-        {
-            Pr(row);
-        } 
+        foreach (string row in rows) Pr(row);
     }
 }
