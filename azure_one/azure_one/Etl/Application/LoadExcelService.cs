@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using azure_one.Etl.Infrastructure.Files;
 using azure_one.Etl.Infrastructure.Env;
@@ -12,6 +13,13 @@ public sealed class LoadExcelService
     private string PATH_EXCEL = "";
     private readonly ExcelReader _excelReader;
     
+    private Dictionary<string, string> mapping = new Dictionary<string, string>()
+    {
+        {"Column0","uuid"},
+        {"Column1","val"},
+        {"Column1","codesap"},
+    };
+
     public LoadExcelService(ExcelReader excelReader)
     {
         _excelReader = excelReader;
@@ -20,9 +28,33 @@ public sealed class LoadExcelService
 
     public void Invoke()
     {
-        var r = this._excelReader.GetData(this.PATH_EXCEL, 2, 4);
-        string json = JsonSerializer.Serialize(r);
+        var list = this._excelReader.GetData(this.PATH_EXCEL, 2, 4);
+        List<string> inParenthesis = new List<string>();
+        
+        foreach (var row in list)
+        {
+            string insValues = this.GetValuesBetweenParenthesis(row);
+            inParenthesis.Add(insValues);
+        }
+        string json = JsonSerializer.Serialize(list);
         Lg.Pr(json, "result");
     }
+    
+    private string GetValuesBetweenParenthesis(Dictionary<string, string> row)
+    {
+        List<string> values = new List<string>();
+        foreach (var map in this.mapping)
+        {
+            string column = map.Key;
+            //string field = map.Value;
+            string value = row.GetValueOrDefault(column);
+            value = value.Replace("'", "''");
+            values.Add(value);
+        }
+
+        string result = string.Join("','",values);
+        return $"('{result}')";
+    }
+    
     
 }
