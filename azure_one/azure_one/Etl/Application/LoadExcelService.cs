@@ -20,7 +20,7 @@ public sealed class LoadExcelService
 
     public void Invoke()
     {
-        var r = this._excelReader.GetData(this.PATH_EXCEL);
+        var r = this._excelReader.GetData(this.PATH_EXCEL, 2, 4);
         string json = JsonSerializer.Serialize(r);
         Lg.Pr(json, "result");
     }
