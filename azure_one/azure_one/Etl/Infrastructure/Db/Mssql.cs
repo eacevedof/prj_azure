@@ -9,13 +9,13 @@ namespace azure_one.Etl.Infrastructure.Db
 	{
 		private readonly StructDb1 _dbConfig1;
 		private readonly SqlConnection _connection;
-		private Int64 rowsAffected;
-		private Int64 lastInsertId;
+		private int _rowsAffected;
+		private int _lastInsertId;
 		
 		public Mssql()
 		{
-			this._dbConfig1 = new StructDb1();
-			this._connection = new SqlConnection(this._dbConfig1.GetConnectionString());
+			_dbConfig1 = new StructDb1();
+			_connection = new SqlConnection(_dbConfig1.GetConnectionString());
 		}
 
 		public static Mssql GetInstance()
@@ -27,30 +27,22 @@ namespace azure_one.Etl.Infrastructure.Db
 		{
 			query = query.Trim();
 			List<Dictionary<string, string>> rowsResult = new List<Dictionary<string, string>>();
-			if (query == "")
-			{
-				return rowsResult;
-			}
+			if (query == "") return rowsResult;
 
-			SqlCommand cmdSql = new SqlCommand(query, this._connection);
-			if (this._connection.State == ConnectionState.Closed)
-			{
-				this.Open();
-			}
+			SqlCommand cmdSql = new SqlCommand(query, _connection);
+			if (_connection.State == ConnectionState.Closed) Open();
 
 			SqlDataReader sqlReader = cmdSql.ExecuteReader();
-			List<string> columnsNames = this.GetColumnsNames(sqlReader);
+			List<string> columnsNames = GetColumnsNames(sqlReader);
 			while (sqlReader.Read())
 			{
 				Dictionary<string, string> dicRow = new Dictionary<string, string>();
 				for (int i = 0; i < columnsNames.Count; i++)
-				{
 					dicRow.Add(columnsNames[i], sqlReader.GetValue(i).ToString());
-				}
 				rowsResult.Add(dicRow);
 			}
 			sqlReader.Close();
-			this._connection.Close();
+			_connection.Close();
 			return rowsResult;
 		}
 
@@ -58,43 +50,41 @@ namespace azure_one.Etl.Infrastructure.Db
 		{
 			query = query.Trim();
 			if (query == "")
-			{
 				return false;
-			}
 
 			bool isInsert = query.Contains("INSERT INTO ");
 			if (isInsert) query += ";SELECT SCOPE_IDENTITY();";
 			
-			SqlCommand cmdSql = new SqlCommand(query, this._connection);
-			if (this._connection.State == ConnectionState.Closed) this.Open();
+			SqlCommand cmdSql = new SqlCommand(query, _connection);
+			if (_connection.State == ConnectionState.Closed) Open();
 			
 			using (cmdSql)
 			{
 				if (isInsert)
-					this.lastInsertId = Convert.ToInt64(cmdSql.ExecuteScalar());
+					_lastInsertId = Convert.ToInt16(cmdSql.ExecuteScalar());
 				else
-					this.rowsAffected = cmdSql.ExecuteNonQuery();
+					_rowsAffected = cmdSql.ExecuteNonQuery();
 			}
 			return true;
 		}
 
-		public Int64 GetRowsAffected()
+		public int GetRowsAffected()
 		{
-			return this.rowsAffected;
+			return _rowsAffected;
 		}
 		
-		public Int64 GetLastInsertId()
+		public int GetLastInsertId()
 		{
-			return this.lastInsertId;
+			return _lastInsertId;
 		}
 		
 		private void Open()
 		{
-			this._connection.Open();
+			_connection.Open();
 		}
 		private void Close()
 		{
-			this._connection.Close();
+			_connection.Close();
 		}
 		private List<string> GetColumnsNames(SqlDataReader sqlReader)
 		{
