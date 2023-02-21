@@ -5,6 +5,7 @@ using azure_one.Etl.Application;
 using azure_one.Etl.Infrastructure.Db;
 using azure_one.Etl.Infrastructure.Files;
 using azure_one.Etl.Infrastructure.Repositories;
+using azure_one.Etl.RawLoaders.Application;
 
 
 [assembly:FunctionsStartup(typeof(azure_one.Startup))]
@@ -26,8 +27,8 @@ public class Startup: FunctionsStartup
         builder.Services.AddSingleton<CreateUserService>(
             s => new CreateUserService(new UsersRepository(new Mssql()))
         );
-        builder.Services.AddSingleton<LoadExcelService>(
-            s => new LoadExcelService()
+        builder.Services.AddSingleton<LoadLanguagesRaw>(
+            s => new LoadLanguagesRaw()
         );
         
         //fix: No data is available for encoding 1252. For information on defining a custom encoding

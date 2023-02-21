@@ -5,13 +5,13 @@ using azure_one.Etl.Infrastructure.Db;
 using azure_one.Etl.Infrastructure.Db.QueryBuilders;
 using azure_one.Etl.Infrastructure.Log;
 
-namespace azure_one.Etl.Application;
+namespace azure_one.Etl.RawLoaders.Application;
 
-public sealed class LoadExcelService
+public sealed class LoadLanguagesRaw
 {
     private readonly ExcelReader _excelReader;
 
-    public LoadExcelService()
+    public LoadLanguagesRaw()
     {
         string pathExcel = Env.Get("HOME")+"/Downloads/data-in.xlsx";
         const int sheetNr = 1;
