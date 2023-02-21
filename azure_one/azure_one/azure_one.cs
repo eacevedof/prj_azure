@@ -14,9 +14,9 @@ namespace azure_one
     public class azure_one
     {
         private readonly CreateUserService _createUserService;
-        private readonly LoadLanguagesRaw _loadExcelService;
+        private readonly LoadLanguagesRawService _loadExcelService;
 
-        public azure_one(CreateUserService createUserService, LoadLanguagesRaw loadExcelService)
+        public azure_one(CreateUserService createUserService, LoadLanguagesRawService loadExcelService)
         {
             _createUserService = createUserService;
             _loadExcelService = loadExcelService;

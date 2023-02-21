@@ -8,4 +8,9 @@ public static class Env
     {
         return Environment.GetEnvironmentVariable(key);
     }
+
+    public static string GetConcat(string key, string add)
+    {
+        return Environment.GetEnvironmentVariable(key) + add;
+    }
 }
