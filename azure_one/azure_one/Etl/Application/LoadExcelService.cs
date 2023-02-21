@@ -18,15 +18,15 @@ public sealed class LoadExcelService
         {"Column2","codesap"},
     };
 
-    public LoadExcelService(ExcelReader excelReader)
+    public LoadExcelService()
     {
-        _excelReader = excelReader;
         this.PATH_EXCEL = Env.Get("HOME")+"/Downloads/data-in.xlsx";
+        _excelReader = ExcelReader.FromPrimitives(this.PATH_EXCEL);
     }
 
     public void Invoke()
     {
-        var list = this._excelReader.GetData(this.PATH_EXCEL, 2, 4);
+        var list = this._excelReader.GetData();
         List<string> insValues = new List<string>();
         
         foreach (var row in list)

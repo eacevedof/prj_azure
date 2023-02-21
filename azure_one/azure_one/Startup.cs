@@ -27,7 +27,7 @@ public class Startup: FunctionsStartup
             s => new CreateUserService(new UsersRepository(new Mssql()))
         );
         builder.Services.AddSingleton<LoadExcelService>(
-            s => new LoadExcelService(new ExcelReader())
+            s => new LoadExcelService()
         );
         
         //fix: No data is available for encoding 1252. For information on defining a custom encoding
