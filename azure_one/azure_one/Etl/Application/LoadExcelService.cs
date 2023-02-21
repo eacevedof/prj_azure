@@ -34,10 +34,11 @@ public sealed class LoadExcelService
         foreach (var row in list)
         {
             string insValues = this.GetValuesBetweenParenthesis(row);
+            Lg.Pr(insValues);
             inParenthesis.Add(insValues);
         }
-        string json = JsonSerializer.Serialize(list);
-        Lg.Pr(json, "result");
+        //string json = JsonSerializer.Serialize(list);
+        //Lg.Pr(json, "result");
     }
     
     private string GetValuesBetweenParenthesis(Dictionary<string, string> row)
