@@ -21,7 +21,6 @@ public sealed class LoadExcelService
 
     public void Invoke()
     {
-        List<Dictionary<string, string>> sheetData = this._excelReader.GetData();
         string sql = (
             new BulkInsert(
                 "languages", 
@@ -30,8 +29,9 @@ public sealed class LoadExcelService
                     { "Column1", "val" },
                     { "Column2", "codesap" },
                 }, 
-                sheetData)
-            ).GetBulkInsertQuery();
+                _excelReader.GetData()
+            )
+        ).GetBulkInsertQuery();
         
         Lg.Pr(sql);
         Mssql.GetInstance().Execute(sql);
