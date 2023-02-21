@@ -29,14 +29,16 @@ public sealed class LoadExcelService
     public void Invoke()
     {
         var list = this._excelReader.GetData(this.PATH_EXCEL, 2, 4);
-        List<string> inParenthesis = new List<string>();
-        
+        List<string> inParenthesis = new List<string>()
+        {
+            this.GetInsertIntoHeader("languages")
+        };
         foreach (var row in list)
         {
             string insValues = this.GetValuesBetweenParenthesis(row);
-            Lg.Pr(insValues);
             inParenthesis.Add(insValues);
         }
+        Lg.PrRows(inParenthesis);
         //string json = JsonSerializer.Serialize(list);
         //Lg.Pr(json, "result");
     }
@@ -55,6 +57,18 @@ public sealed class LoadExcelService
 
         string result = string.Join("','",values);
         return $"('{result}')";
+    }
+
+    private string GetInsertIntoHeader(string table)
+    {
+        List<string> values = new List<string>()
+        {
+            $"INSERT INTO [dbo][{table}] (",
+            string.Join(",",this.mapping.Values),
+            ") VALUES"
+        };
+        
+        return string.Join("", values);
     }
     
     
