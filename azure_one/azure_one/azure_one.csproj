@@ -39,7 +39,6 @@
     <Folder Include="Etl\Domain\" />
     <Folder Include="Etl\Application\" />
     <Folder Include="Etl\Infrastructure\Db\" />
-    <Folder Include="Etl\RawLoaders\Domain" />
     <Folder Include="Etl\RawLoaders\Infrastructure" />
   </ItemGroup>
 </Project>

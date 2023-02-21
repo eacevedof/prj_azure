@@ -27,8 +27,8 @@ public class Startup: FunctionsStartup
         builder.Services.AddSingleton<CreateUserService>(
             s => new CreateUserService(new UsersRepository(new Mssql()))
         );
-        builder.Services.AddSingleton<LoadLanguagesRaw>(
-            s => new LoadLanguagesRaw()
+        builder.Services.AddSingleton<LoadLanguagesRawService>(
+            s => new LoadLanguagesRawService()
         );
         
         //fix: No data is available for encoding 1252. For information on defining a custom encoding
