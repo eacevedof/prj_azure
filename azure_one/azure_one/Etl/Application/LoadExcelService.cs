@@ -17,7 +17,7 @@ public sealed class LoadExcelService
     {
         {"Column0","uuid"},
         {"Column1","val"},
-        {"Column1","codesap"},
+        {"Column2","codesap"},
     };
 
     public LoadExcelService(ExcelReader excelReader)
