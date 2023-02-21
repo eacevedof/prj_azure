@@ -6,26 +6,19 @@ using azure_one.Etl.Infrastructure.Db.QueryBuilders;
 using azure_one.Etl.Infrastructure.Log;
 using azure_one.Etl.RawLoaders.Domain.Enums;
 
-
-
 namespace azure_one.Etl.RawLoaders.Application;
 
-public sealed class LoadLanguagesRawService
+public sealed class LoadLanguagesRawService: AbsRawService
 {
-    private readonly ExcelReader _excelReader;
-
-    public LoadLanguagesRawService()
+    public void Invoke()
     {
         string pathExcel = Env.GetConcat("HOME", ExcelSheetsEnum.path_file);
         _excelReader = ExcelReader.FromPrimitives((
-                pathExcel, 
-                ExcelSheetsEnum.languages_sheetnr, 
-                ExcelSheetsEnum.languages_max_col
-            ));
-    }
-
-    public void Invoke()
-    {
+            pathExcel, 
+            ExcelSheetsEnum.languages_sheetnr, 
+            ExcelSheetsEnum.languages_max_col
+        ));
+        
         string sql = (
             new BulkInsert(
                 "languages", 
