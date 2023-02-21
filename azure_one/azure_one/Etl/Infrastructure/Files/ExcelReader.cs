@@ -11,9 +11,9 @@ namespace azure_one.Etl.Infrastructure.Files;
 
 public sealed class ExcelReader
 {
-    public List<Dictionary<string, object>> GetData(string pathToExcelFile)
+    public List<Dictionary<string, string>> GetData(string pathToExcelFile)
     {
-        var sheetData = new List<Dictionary<string, object>>();
+        var sheetData = new List<Dictionary<string, string>>();
         
         // Lees het Excel-bestand
         using (var stream = File.Open(pathToExcelFile, FileMode.Open, FileAccess.Read))
@@ -22,20 +22,20 @@ public sealed class ExcelReader
             {
                 // Haal het eerste werkblad op
                 reader.Read();
-                var sheet = reader.AsDataSet().Tables[0];
+                var sheet = reader.AsDataSet().Tables[1];
 
                 // Loop door de rijen van het werkblad
                 foreach (DataRow row in sheet.Rows)
                 {
                     // Maak een dictionary voor elke rij
-                    var rowData = new Dictionary<string, object>();
+                    var rowData = new Dictionary<string, string>();
                     // Loop door de kolommen van de rij
                     for (int i = 0; i < sheet.Columns.Count; i++)
                     {
                         // Haal de kolomnaam op
                         var columnName = sheet.Columns[i].ColumnName;
                         // Haal de celwaarde op en voeg deze toe aan de dictionary
-                        rowData.Add(columnName, row[i]);
+                        rowData.Add(columnName, row[i].ToString());
                     }
                     // Voeg de dictionary toe aan de lijst
                     sheetData.Add(rowData);
