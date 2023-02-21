@@ -1,23 +1,22 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using azure_one.Etl.Application;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using azure_one.Etl.Infrastructure.Log;
-using azure_one.Etl.Infrastructure.Env;
+using azure_one.Etl.Application;
+using azure_one.Etl.RawLoaders.Application;
 
 namespace azure_one
 {
     public class azure_one
     {
         private readonly CreateUserService _createUserService;
-        private readonly LoadExcelService _loadExcelService;
+        private readonly LoadLanguagesRaw _loadExcelService;
 
-        public azure_one(CreateUserService createUserService, LoadExcelService loadExcelService)
+        public azure_one(CreateUserService createUserService, LoadLanguagesRaw loadExcelService)
         {
             _createUserService = createUserService;
             _loadExcelService = loadExcelService;
@@ -29,10 +28,7 @@ namespace azure_one
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log
         ) {
-            Lg.Pr("empieza azure-one...");
             this._loadExcelService.Invoke();
-            //this._createUserService.InsertRandomUser();
-            //this._createUserService.PrintAll();
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string name = req.Query["name"];
