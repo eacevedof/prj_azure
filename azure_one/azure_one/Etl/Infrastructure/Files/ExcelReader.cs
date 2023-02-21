@@ -11,18 +11,18 @@ namespace azure_one.Etl.Infrastructure.Files;
 
 public sealed class ExcelReader
 {
-    public List<Dictionary<string, string>> GetData(string pathToExcelFile, int iMaxColum=-1)
+    public List<Dictionary<string, string>> GetData(string pathToExcelFile, int iSheetNr=0, int iMaxColum=-1)
     {
         var sheetData = new List<Dictionary<string, string>>();
         
         // Lees het Excel-bestand
         using (var stream = File.Open(pathToExcelFile, FileMode.Open, FileAccess.Read))
         {
-            using (var reader = ExcelReaderFactory.CreateReader(stream))
+            using (var excelDataReader = ExcelReaderFactory.CreateReader(stream))
             {
                 // Haal het eerste werkblad op
-                reader.Read();
-                var sheet = reader.AsDataSet().Tables[1];
+                excelDataReader.Read();
+                var sheet = excelDataReader.AsDataSet().Tables[iSheetNr];
 
                 // Loop door de rijen van het werkblad
                 foreach (DataRow row in sheet.Rows)
@@ -46,4 +46,10 @@ public sealed class ExcelReader
 
         return sheetData;
     }
+
+    public List<Dictionary<string, string>> GetData(string pathToExcelFile, int iSheetNr = 0)
+    {
+        return this.GetData(pathToExcelFile, iSheetNr, -1);
+    }
+ 
 }
