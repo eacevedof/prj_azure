@@ -11,7 +11,7 @@ public sealed class LoadExcelService
     private string PATH_EXCEL = "";
     private readonly ExcelReader _excelReader;
     
-    private Dictionary<string, string> mapping = new Dictionary<string, string>()
+    private readonly Dictionary<string, string> _mapping = new Dictionary<string, string>()
     {
         {"Column0","uuid"},
         {"Column1","val"},
@@ -47,7 +47,7 @@ public sealed class LoadExcelService
     private string GetValuesBetweenParenthesis(Dictionary<string, string> row)
     {
         List<string> values = new List<string>();
-        foreach (var map in this.mapping)
+        foreach (var map in this._mapping)
         {
             string column = map.Key;
             //string field = map.Value;
@@ -65,7 +65,7 @@ public sealed class LoadExcelService
         List<string> values = new List<string>()
         {
             $"INSERT INTO [local_staging].[dbo].[{table}] (",
-            string.Join(",",this.mapping.Values),
+            string.Join(",",this._mapping.Values),
             ") VALUES"
         };
         return string.Join("", values);
