@@ -8,7 +8,6 @@ namespace azure_one.Etl.Application;
 
 public sealed class LoadExcelService
 {
-    private string PATH_EXCEL = "";
     private readonly ExcelReader _excelReader;
     
     private readonly Dictionary<string, string> _mapping = new Dictionary<string, string>()
@@ -20,18 +19,20 @@ public sealed class LoadExcelService
 
     public LoadExcelService()
     {
-        this.PATH_EXCEL = Env.Get("HOME")+"/Downloads/data-in.xlsx";
-        _excelReader = ExcelReader.FromPrimitives(this.PATH_EXCEL);
+        string pathExcel = Env.Get("HOME")+"/Downloads/data-in.xlsx";
+        const int sheetNr = 1;
+        const int maxColumn = 3;
+        _excelReader = ExcelReader.FromPrimitives((pathExcel, sheetNr, maxColumn));
     }
 
     public void Invoke()
     {
-        var list = this._excelReader.GetData();
-        List<string> insValues = new List<string>();
+        List<Dictionary<string, string>> sheetData = this._excelReader.GetData();
         
-        foreach (var row in list)
+        List<string> insValues = new List<string>();
+        foreach (Dictionary<string, string> dicRow in sheetData)
         {
-            string strvalues = this.GetValuesBetweenParenthesis(row);
+            string strvalues = this.GetValuesBetweenParenthesis(dicRow);
             insValues.Add(strvalues);
         }
 
@@ -40,8 +41,6 @@ public sealed class LoadExcelService
         sql += ";";
         Lg.Pr(sql);
         Mssql.GetInstance().Execute(sql);
-        //string json = JsonSerializer.Serialize(list);
-        //Lg.Pr(json, "result");
     }
     
     private string GetValuesBetweenParenthesis(Dictionary<string, string> row)
