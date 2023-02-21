@@ -11,7 +11,7 @@ namespace azure_one.Etl.Infrastructure.Files;
 
 public sealed class ExcelReader
 {
-    public List<Dictionary<string, string>> GetData(string pathToExcelFile)
+    public List<Dictionary<string, string>> GetData(string pathToExcelFile, int iMaxColum=-1)
     {
         var sheetData = new List<Dictionary<string, string>>();
         
@@ -32,6 +32,7 @@ public sealed class ExcelReader
                     // Loop door de kolommen van de rij
                     for (int i = 0; i < sheet.Columns.Count; i++)
                     {
+                        if (iMaxColum>-1 && i>iMaxColum) continue;
                         // Haal de kolomnaam op
                         var columnName = sheet.Columns[i].ColumnName;
                         // Haal de celwaarde op en voeg deze toe aan de dictionary
