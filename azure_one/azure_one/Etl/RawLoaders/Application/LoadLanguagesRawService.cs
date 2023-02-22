@@ -21,7 +21,7 @@ public sealed class LoadLanguagesRawService: AbsRawService
         
         string sql = (
             new BulkInsert(
-                "languages", 
+                ExcelSheetsEnum.languages_table, 
                 new Dictionary<string, string>() {
                     { "Column0", "uuid" },
                     { "Column1", "val" },
