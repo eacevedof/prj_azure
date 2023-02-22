@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
 
-namespace azure_one.Etl.Infrastructure.Db
+namespace azure_one.Etl.Shared.Infrastructure.Db
 {
 	public sealed class Mssql
 	{

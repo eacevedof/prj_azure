@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace azure_one.Etl.Infrastructure.Log;
+namespace azure_one.Etl.Shared.Infrastructure.Log;
 
 public static class Lg
 {

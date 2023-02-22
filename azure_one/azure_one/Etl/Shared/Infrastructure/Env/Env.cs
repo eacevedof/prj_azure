@@ -1,6 +1,6 @@
 using System;
 
-namespace azure_one.Etl.Infrastructure.Env;
+namespace azure_one.Etl.Shared.Infrastructure.Env;
 
 public static class Env
 {

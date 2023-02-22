@@ -1,6 +1,6 @@
-using azure_one.Etl.Infrastructure.Db;
+using azure_one.Etl.Shared.Infrastructure.Db;
 
-namespace azure_one.Etl.Infrastructure.Repositories;
+namespace azure_one.Etl.Shared.Infrastructure.Repositories;
 
 public abstract class AbsRepository
 {

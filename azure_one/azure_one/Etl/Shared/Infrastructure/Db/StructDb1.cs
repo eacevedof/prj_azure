@@ -1,8 +1,8 @@
-﻿using azure_one.Etl.Infrastructure.Log;
+﻿using azure_one.Etl.Shared.Infrastructure.Log;
 using System.Data.SqlClient;
 
 
-namespace azure_one.Etl.Infrastructure.Db
+namespace azure_one.Etl.Shared.Infrastructure.Db
 {
     public struct StructDb1
     {
