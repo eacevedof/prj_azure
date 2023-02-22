@@ -1,19 +1,19 @@
 using System.Collections.Generic;
 using azure_one.Etl.Infrastructure.Files;
 using azure_one.Etl.Infrastructure.Env;
+using azure_one.Etl.Infrastructure.Log;
 using azure_one.Etl.Infrastructure.Db;
 using azure_one.Etl.Infrastructure.Db.QueryBuilders;
-using azure_one.Etl.Infrastructure.Log;
 using azure_one.Etl.RawLoaders.Domain.Enums;
 
 namespace azure_one.Etl.RawLoaders.Application;
 
 public sealed class LoadLanguagesRawService: AbsRawService
 {
-    public void Invoke()
+    public override void Invoke()
     {
         string pathExcel = Env.GetConcat("HOME", ExcelSheetsEnum.path_file);
-        _excelReader = ExcelReader.FromPrimitives((
+        ExcelReader excelReader = ExcelReader.FromPrimitives((
             pathExcel, 
             ExcelSheetsEnum.languages_sheetnr, 
             ExcelSheetsEnum.languages_max_col
@@ -27,7 +27,7 @@ public sealed class LoadLanguagesRawService: AbsRawService
                     { "Column1", "val" },
                     { "Column2", "codesap" },
                 }, 
-                _excelReader.GetData()
+                excelReader.GetData()
             )
         ).GetBulkInsertQuery();
         Lg.Pr(sql);
