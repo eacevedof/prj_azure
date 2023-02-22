@@ -6,21 +6,22 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 {
     public struct StructDb1
     {
-        private const string Server = "localhost";
-        private const string Port = "1433";
-        private const string Database = "local_laciahub";
-        private const string Username = "sa";
-        private const string Password = "EafEaf1234";
+        private const string _server = "localhost";
+        private const string _port = "1433";
+        private const string _database = "local_laciahub";
+        private const string _username = "sa";
+        private const string _password = "EafEaf1234";
+        
         public string GetConnectionString()
         {
             //string: verbindingstekenreeks
-            // "Data Source=myServerAddress;Initial Catalog=myDatabase;User Id=myUsername;Password=myPassword;";
+            // "Data Source=myServerAddress;Initial Catalog=myDatabase;User Id=myUsername;_password=myPassword;";
             string[] connectionParts = new string[]
             {
-                $"Server:tcp:{StructDb1.Server},{StructDb1.Port}",
-                $"Initial Catalog={StructDb1.Database}",
-                $"Persist Security Info=False;User ID={StructDb1.Username}",
-                $"Password={StructDb1.Password}",
+                $"_server:tcp:{StructDb1._server},{StructDb1._port}",
+                $"Initial Catalog={StructDb1._database}",
+                $"Persist Security Info=False;User ID={StructDb1._username}",
+                $"_password={StructDb1._password}",
                 "MultipleActiveResultSets=False",
                 "Encrypt=True",
                 "TrustServerCertificate=False",
@@ -29,7 +30,7 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 
             //log.LogInformation("C# HTTP trigger function processed a request.");
             string connectionString = string.Join(";", connectionParts);
-            Lg.pr(connectionString, "connectionString");
+            //Lg.pr(connectionString, "connectionString");
             connectionString = this.GetConnectionStringBuilder().ConnectionString;
             Lg.pr(connectionString, "connectionString 2");
             return connectionString;
@@ -38,10 +39,10 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
         private SqlConnectionStringBuilder GetConnectionStringBuilder()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = StructDb1.Server;
-            builder.InitialCatalog = StructDb1.Database;
-            builder.UserID = StructDb1.Username;
-            builder.Password = StructDb1.Password;
+            builder.DataSource = _server;
+            builder.InitialCatalog = _database;
+            builder.UserID = _username;
+            builder.Password = _password;
             return builder;
         }
     }
