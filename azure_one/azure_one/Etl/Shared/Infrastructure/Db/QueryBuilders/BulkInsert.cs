@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
@@ -39,7 +40,7 @@ public sealed class BulkInsert
         foreach (KeyValuePair<string,string> columnMap in this._columnMapping)
         {
             string column = columnMap.Key;
-            string value = row.GetValueOrDefault(column);
+            string value = row.GetValueOrDefault(column) ?? "";
             value = value.Replace("'", "''");
             values.Add(value);
         }
