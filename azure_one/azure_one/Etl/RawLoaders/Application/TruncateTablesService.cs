@@ -1,17 +1,23 @@
 using System.Collections.Generic;
-using azure_one.Etl.Shared.Infrastructure.Files;
-using azure_one.Etl.Shared.Infrastructure.Env;
-using azure_one.Etl.Shared.Infrastructure.Log;
-using azure_one.Etl.Shared.Infrastructure.Db;
-using azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
-using azure_one.Etl.RawLoaders.Domain.Enums;
+using azure_one.Etl.Shared.Infrastructure.Repositories;
 
 namespace azure_one.Etl.RawLoaders.Application;
 
 public sealed class TruncateTableService: AbsRawService
 {
+    private readonly TruncateRepository _truncateRepository;
+    private readonly List<string> _tables = new (){ "languages", "countries"};
+    
+    public TruncateTableService(TruncateRepository truncateRepository)
+    {
+        _truncateRepository = truncateRepository;
+    }
+    
     public override void Invoke()
     {
-
+        foreach (string table in _tables)
+        {
+            _truncateRepository.TruncateTable(table);    
+        }
     }
 }

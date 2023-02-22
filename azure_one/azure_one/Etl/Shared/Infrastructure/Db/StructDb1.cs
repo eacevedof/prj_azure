@@ -29,9 +29,9 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 
             //log.LogInformation("C# HTTP trigger function processed a request.");
             string connectionString = string.Join(";", connectionParts);
-            Lg.Pr(connectionString, "connectionString");
+            Lg.pr(connectionString, "connectionString");
             connectionString = this.GetConnectionStringBuilder().ConnectionString;
-            Lg.Pr(connectionString, "connectionString 2");
+            Lg.pr(connectionString, "connectionString 2");
             return connectionString;
         }
 

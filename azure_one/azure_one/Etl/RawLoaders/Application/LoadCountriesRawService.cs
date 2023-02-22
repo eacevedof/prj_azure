@@ -39,7 +39,7 @@ public sealed class LoadCountriesRawServices: AbsRawService
                 excelReader.GetData()
             )
         ).GetBulkInsertQuery();
-        Lg.Pr(sql);
+        Lg.pr(sql);
         Mssql.GetInstance().Execute(sql);
     }
 }

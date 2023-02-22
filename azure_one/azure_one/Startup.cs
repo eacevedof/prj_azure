@@ -23,8 +23,15 @@ public class Startup: FunctionsStartup
     {
         //aqui se configura la inyeccion de dependecias
         builder.Services.AddHttpClient();
+        
+        //repost
         builder.Services.AddSingleton<TruncateRepository>(
             s => new TruncateRepository(new Mssql())
+        );
+        
+        //services
+        builder.Services.AddSingleton<TruncateTableService>(
+            s => new TruncateTableService(new TruncateRepository(new Mssql()))
         );
         builder.Services.AddSingleton<LoadLanguagesRawService>(
             s => new LoadLanguagesRawService()
@@ -32,8 +39,14 @@ public class Startup: FunctionsStartup
         builder.Services.AddSingleton<LoadCountriesRawServices>(
             s => new LoadCountriesRawServices()
         );
+        
+        //controlleres
         builder.Services.AddSingleton<RawLoadersController>(
-            s => new RawLoadersController(new LoadLanguagesRawService(), new LoadCountriesRawServices())
+            s => new RawLoadersController(
+                    new TruncateTableService(new TruncateRepository(new Mssql())),
+                    new LoadLanguagesRawService(), 
+                    new LoadCountriesRawServices()
+                )
         );
             
         //fix: No data is available for encoding 1252. For information on defining a custom encoding
