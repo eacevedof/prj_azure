@@ -39,5 +39,6 @@
     <Folder Include="Etl\Shared" />
     <Folder Include="Etl\Shared\Domain" />
     <Folder Include="Etl\Transformers" />
+    <Folder Include="Etl\Transformers\Application" />
   </ItemGroup>
 </Project>

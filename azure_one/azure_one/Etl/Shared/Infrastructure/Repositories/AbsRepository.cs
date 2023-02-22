@@ -8,6 +8,6 @@ public abstract class AbsRepository
 
     protected AbsRepository(Mssql db)
     {
-        this._db = db;
+        _db = db;
     }
 }

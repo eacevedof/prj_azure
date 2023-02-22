@@ -2,9 +2,9 @@ using azure_one.Etl.Shared.Infrastructure.Db;
 
 namespace azure_one.Etl.Shared.Infrastructure.Repositories;
 
-public sealed class ExcelFilesRepository: AbsRepository
+public sealed class TruncateRepository: AbsRepository
 {
-    public ExcelFilesRepository(Mssql db) : base(db)
+    public TruncateRepository(Mssql db) : base(db)
     {
     }
     
