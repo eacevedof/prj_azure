@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace azure_one.Etl.Infrastructure.Db.QueryBuilders;
+namespace azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
 
 public sealed class BulkInsert
 {

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using azure_one.Etl.Infrastructure.Files;
+using azure_one.Etl.Shared.Infrastructure.Files;
 
 namespace azure_one.Etl.RawLoaders.Application;
 

@@ -1,9 +1,9 @@
-using azure_one.Etl.Infrastructure.Db;
-using azure_one.Etl.Infrastructure.Log;
-using azure_one.Etl.Infrastructure.Generators;
+using azure_one.Etl.Shared.Infrastructure.Db;
+using azure_one.Etl.Shared.Infrastructure.Log;
+using azure_one.Etl.Shared.Infrastructure.Generators;
 using System.Collections.Generic;
 
-namespace azure_one.Etl.Infrastructure.Repositories;
+namespace azure_one.Etl.Shared.Infrastructure.Repositories;
 
 public sealed class UsersRepository: AbsRepository
 {

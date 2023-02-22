@@ -3,7 +3,7 @@ using ExcelDataReader;
 using System.Data;
 using System.IO;
 
-namespace azure_one.Etl.Infrastructure.Files;
+namespace azure_one.Etl.Shared.Infrastructure.Files;
 
 public sealed class ExcelReader
 {

@@ -1,4 +1,4 @@
-using azure_one.Etl.Infrastructure.Repositories;
+using azure_one.Etl.Shared.Infrastructure.Repositories;
 
 namespace azure_one.Etl.Application;
 

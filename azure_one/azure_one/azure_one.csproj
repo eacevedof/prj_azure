@@ -36,8 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Etl\FinalLoaders" />
-    <Folder Include="Etl\RawLoaders\Infrastructure" />
     <Folder Include="Etl\Shared" />
+    <Folder Include="Etl\Shared\Domain" />
     <Folder Include="Etl\Transformers" />
   </ItemGroup>
 </Project>

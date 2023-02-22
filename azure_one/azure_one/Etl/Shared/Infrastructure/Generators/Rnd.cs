@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace azure_one.Etl.Infrastructure.Generators;
+namespace azure_one.Etl.Shared.Infrastructure.Generators;
 
 public static class Rnd
 {

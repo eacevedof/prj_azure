@@ -2,9 +2,9 @@ using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using azure_one.Etl.Application;
-using azure_one.Etl.Infrastructure.Db;
-using azure_one.Etl.Infrastructure.Files;
-using azure_one.Etl.Infrastructure.Repositories;
+using azure_one.Etl.Shared.Infrastructure.Db;
+using azure_one.Etl.Shared.Infrastructure.Files;
+using azure_one.Etl.Shared.Infrastructure.Repositories;
 using azure_one.Etl.RawLoaders.Application;
 
 
