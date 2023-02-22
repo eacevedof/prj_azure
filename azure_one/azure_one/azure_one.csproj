@@ -35,10 +35,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Etl\Infrastructure\" />
-    <Folder Include="Etl\Domain\" />
-    <Folder Include="Etl\Application\" />
-    <Folder Include="Etl\Infrastructure\Db\" />
+    <Folder Include="Etl\FinalLoaders" />
     <Folder Include="Etl\RawLoaders\Infrastructure" />
+    <Folder Include="Etl\Shared" />
+    <Folder Include="Etl\Transformers" />
   </ItemGroup>
 </Project>
