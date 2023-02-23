@@ -17,7 +17,7 @@ namespace azure_one
     {
         private readonly RawLoadersController _rawLoadersController;
         private readonly FirstLevelController _firstLevelController;
-        //private readonly ExecutionContext _context;
+        private readonly ExecutionContext _context;
         
         public azure_one(
             RawLoadersController rawLoadersController,
@@ -26,7 +26,7 @@ namespace azure_one
         )
         {
             _rawLoadersController = rawLoadersController;
-            //_firstLevelController = firstLevelController;
+            _firstLevelController = firstLevelController;
             //_context = context;
         }
         
@@ -34,14 +34,15 @@ namespace azure_one
         [FunctionName("azure_one")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
-            ILogger log
+            ILogger log,
+            ExecutionContext context
         )
         {
             try
             {
-                //FileHelper.Context = _context;
+                FileHelper.Context = _context;
                 _rawLoadersController.Invoke();
-                //_firstLevelController.Invoke();
+                _firstLevelController.Invoke();
                 log.LogInformation("C# HTTP trigger function processed a request.");
 
                 string name = req.Query["tenant_slug"];
