@@ -41,4 +41,9 @@ public sealed class FileHelper
         return File.ReadAllText($@"{pathFile}");
     }
 
+    public static string GetSqlFilesFolder()
+    {
+        return Path.Combine(Directory.GetCurrentDirectory(), "sql_files");
+    }
+
 }
