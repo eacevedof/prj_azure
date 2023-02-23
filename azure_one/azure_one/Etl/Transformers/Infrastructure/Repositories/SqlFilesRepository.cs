@@ -11,12 +11,13 @@ public class SqlFilesRepository
 
     public SqlFilesRepository(Mssql db)
     {
-        _pathFilesFolder = FileHelper.GetFilePath("/Etl/Transformers/Infrastructure/Files");
-        _db = db;
+        _db = db;        
+        //_pathFilesFolder = FileHelper.GetFilePath("/Etl/Transformers/Infrastructure/Files");
     }
     
     public void RunFileDemo()
     {
+        return;
         string pathFile = _pathFilesFolder + "/demo.sql";
         Lg.pr(pathFile,"path-file");
         string sql = FileHelper.GetFileContent(pathFile);

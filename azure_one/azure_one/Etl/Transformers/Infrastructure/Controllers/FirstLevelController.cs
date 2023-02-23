@@ -6,10 +6,10 @@ public sealed class FirstLevelController
 {
     private readonly TransformDemoService _transformDemoService;
     
-    //public FirstLevelController(TransformDemoService transformDemoService)
-    public FirstLevelController()
+    public FirstLevelController(TransformDemoService transformDemoService)
+    //public FirstLevelController()
     {
-        //_transformDemoService = transformDemoService;
+        _transformDemoService = transformDemoService;
     }
 
     public void Invoke()
