@@ -9,4 +9,9 @@ public sealed class FileHelper
         string filePath = Path.Combine(Directory.GetCurrentDirectory(), "");
         return filePath;
     }
+
+    public static string GetFileContent(string pathFile)
+    {
+        return File.ReadAllText($@"{pathFile}");
+    }
 }
