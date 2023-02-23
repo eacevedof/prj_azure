@@ -1,5 +1,10 @@
 SELECT * FROM countries
-GO
+;
          
 SELECT * FROM languages
-GO
+;
+         
+UPDATE [local_staging].[dbo].[languages] 
+SET codesap='xxx'
+WHERE 1=1
+;
