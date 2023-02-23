@@ -44,7 +44,8 @@ public class Startup: FunctionsStartup
                 )
         ); 
         builder.Services.AddSingleton<FirstLevelController>(
-            s => new FirstLevelController(new TransformDemoService(new SqlFilesRepository(new Mssql())))
+            //s => new FirstLevelController(new TransformDemoService(new SqlFilesRepository(new Mssql())))
+            s => new FirstLevelController()
         );
             
         //fix: No data is available for encoding 1252. For information on defining a custom encoding
