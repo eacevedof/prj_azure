@@ -4,15 +4,16 @@ namespace azure_one.Etl.Transformers.Infrastructure.Controllers;
 
 public sealed class FirstLevelController
 {
-    private static TransformDemoService _transformDemoService;
+    private readonly TransformDemoService _transformDemoService;
     
-    public FirstLevelController(TransformDemoService transformDemoService)
+    //public FirstLevelController(TransformDemoService transformDemoService)
+    public FirstLevelController()
     {
-        _transformDemoService = transformDemoService;
+        //_transformDemoService = transformDemoService;
     }
 
     public void Invoke()
     {
-        _transformDemoService.Invoke();
+        //_transformDemoService.Invoke();
     }
 }
