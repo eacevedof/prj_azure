@@ -40,7 +40,7 @@ namespace azure_one
         {
             try
             {
-                FileHelper.Context = context;
+                //FileHelper.Context = context;
                 _rawLoadersController.Invoke();
                 _firstLevelController.Invoke();
                 log.LogInformation("C# HTTP trigger function processed a request.");

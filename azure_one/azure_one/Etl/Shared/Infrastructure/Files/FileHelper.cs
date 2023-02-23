@@ -7,15 +7,32 @@ namespace azure_one.Etl.Shared.Infrastructure.Files;
 
 public sealed class FileHelper
 {
-    public static ExecutionContext Context;
-    public static string GetFilePath(string pathFile)
-    {
-        return GetAppDir(Context) + pathFile;
-    }
+    private ExecutionContext _context;
 
-    public static string GetAppDir(ExecutionContext context)
+    public FileHelper(ExecutionContext context)
     {
-        string CarpetaEquiposUbicaciones = Path.Combine(context.FunctionAppDirectory, "sql_files");
+        _context = context;
+    }
+    
+    public FileHelper() {}
+    
+    public static FileHelper GetInstance()
+    {
+        return new FileHelper();
+    }
+    public static FileHelper GetInstance(ExecutionContext context)
+    {
+        return new FileHelper(context);
+    }
+    
+    public string GetFilePath(string pathFile)
+    {
+        return GetAppDir() + pathFile;
+    }
+    
+    public string GetAppDir()
+    {
+        string CarpetaEquiposUbicaciones = Path.Combine(_context.FunctionAppDirectory, "sql_files");
         return CarpetaEquiposUbicaciones;
         //return Environment.CurrentDirectory;
         //return Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
