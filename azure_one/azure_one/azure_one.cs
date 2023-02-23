@@ -17,7 +17,7 @@ namespace azure_one
     {
         private readonly RawLoadersController _rawLoadersController;
         private readonly FirstLevelController _firstLevelController;
-        private readonly ExecutionContext _context;
+        //private readonly ExecutionContext _context;
         
         public azure_one(
             RawLoadersController rawLoadersController,
@@ -40,7 +40,7 @@ namespace azure_one
         {
             try
             {
-                FileHelper.Context = _context;
+                FileHelper.Context = context;
                 _rawLoadersController.Invoke();
                 _firstLevelController.Invoke();
                 log.LogInformation("C# HTTP trigger function processed a request.");
