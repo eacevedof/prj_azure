@@ -22,16 +22,8 @@ public sealed class RawLoadersController
 
     public void Invoke()
     {
-        try
-        {
-            _truncateTableService.Invoke();
-            _loadLanguagesRawService.Invoke();
-            _loadCountriesRawServices.Invoke();
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+        _truncateTableService.Invoke();
+        _loadLanguagesRawService.Invoke();
+        _loadCountriesRawServices.Invoke();
     }
 }
