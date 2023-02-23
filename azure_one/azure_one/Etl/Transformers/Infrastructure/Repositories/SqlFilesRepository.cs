@@ -16,15 +16,15 @@ public class SqlFilesRepository
     {
         _db = db;        
         //_pathFilesFolder = FileHelper.GetInstance().GetFilePath("/demo.sql");
-        _pathFilesFolder = Assembly.GetEntryAssembly().Location;
+        //_pathFilesFolder = Assembly.GetEntryAssembly().Location;
         _pathFilesFolder = Path.Combine(Directory.GetCurrentDirectory(), "sql_files/demo.sql");
+        _pathFilesFolder = FileHelper.GetSqlFilesFolder();
         bool r = File.Exists(_pathFilesFolder);
         string x = "";
     }
     
     public void RunFileDemo()
     {
-        return;
         string pathFile = _pathFilesFolder + "/demo.sql";
         Lg.pr(pathFile,"path-file");
         string sql = FileHelper.GetFileContent(pathFile);

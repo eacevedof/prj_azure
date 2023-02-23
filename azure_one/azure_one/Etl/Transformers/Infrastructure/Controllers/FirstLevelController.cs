@@ -14,6 +14,6 @@ public sealed class FirstLevelController
 
     public void Invoke()
     {
-        //_transformDemoService.Invoke();
+        _transformDemoService.Invoke();
     }
 }
