@@ -17,30 +17,25 @@ namespace azure_one
     {
         private readonly RawLoadersController _rawLoadersController;
         private readonly FirstLevelController _firstLevelController;
-        //private readonly ExecutionContext _context;
         
         public azure_one(
             RawLoadersController rawLoadersController,
             FirstLevelController firstLevelController
-            //ExecutionContext context
         )
         {
             _rawLoadersController = rawLoadersController;
             _firstLevelController = firstLevelController;
-            //_context = context;
         }
         
         //https://youtu.be/QWK_XIn9vT4 Como Arrancar con Azure Function
         [FunctionName("azure_one")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
-            ILogger log,
-            ExecutionContext context
+            ILogger log
         )
         {
             try
             {
-                //FileHelper.Context = context;
                 _rawLoadersController.Invoke();
                 _firstLevelController.Invoke();
                 log.LogInformation("C# HTTP trigger function processed a request.");
