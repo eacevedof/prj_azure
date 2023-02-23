@@ -6,7 +6,11 @@ namespace azure_one.Etl.RawLoaders.Application;
 public sealed class TruncateTableService: AbsRawService
 {
     private readonly TruncateRepository _truncateRepository;
-    private readonly List<string> _tables = new (){ "languages", "countries"};
+    private readonly List<string> _tables = new ()
+    {
+        "imp_languages", 
+        "imp_countries"
+    };
     
     public TruncateTableService(TruncateRepository truncateRepository)
     {
