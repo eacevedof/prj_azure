@@ -18,6 +18,9 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="sql_files\" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="etl\Db\" />
     <None Remove="Etl\Infrastructure\" />
@@ -26,6 +29,11 @@
     <None Remove="Etl\Infrastructure\Db\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Etl\FinalLoaders" />
+    <Folder Include="Etl\Shared" />
+    <Folder Include="Etl\Shared\Domain" />
+  </ItemGroup>  
+  <ItemGroup>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -33,10 +41,5 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Etl\FinalLoaders" />
-    <Folder Include="Etl\Shared" />
-    <Folder Include="Etl\Shared\Domain" />
   </ItemGroup>
 </Project>
