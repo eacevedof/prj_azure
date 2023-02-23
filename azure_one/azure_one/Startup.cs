@@ -34,7 +34,6 @@ public class Startup: FunctionsStartup
         builder.Services.AddSingleton<LoadLanguagesRawService>(s => new LoadLanguagesRawService());
         builder.Services.AddSingleton<LoadCountriesRawServices>(s => new LoadCountriesRawServices());
         
-        
         //controlleres
         builder.Services.AddSingleton<RawLoadersController>(
             s => new RawLoadersController(
