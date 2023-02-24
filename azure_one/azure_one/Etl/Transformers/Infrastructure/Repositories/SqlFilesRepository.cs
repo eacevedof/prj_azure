@@ -17,7 +17,7 @@ public class SqlFilesRepository
         _db = db;        
         //_pathFilesFolder = FileHelper.GetInstance().GetFilePath("/demo.sql");
         //_pathFilesFolder = Assembly.GetEntryAssembly().Location;
-        _pathFilesFolder = Path.Combine(Directory.GetCurrentDirectory(), "sql_files/demo.sql");
+        //_pathFilesFolder = Path.Combine(Directory.GetCurrentDirectory(), "sql_files/demo.sql");
         _pathFilesFolder = FileHelper.GetSqlFilesFolder();
     }
     
