@@ -22,7 +22,7 @@ public sealed class RawLoadersController
 
     public void Invoke()
     {
-        _truncateTableService.Invoke();
+        //_truncateTableService.Invoke();
         _loadLanguagesRawService.Invoke();
         _loadCountriesRawServices.Invoke();
     }
