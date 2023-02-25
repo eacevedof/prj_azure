@@ -10,6 +10,7 @@ namespace azure_one.Etl.RawLoaders.Application;
 
 public sealed class LoadXlsLanguagesService: AbsRawService
 {
+    
     public override void Invoke()
     {
         string pathExcel = Env.GetConcat("HOME", ExcelToStagingConfigEnum.path_file);

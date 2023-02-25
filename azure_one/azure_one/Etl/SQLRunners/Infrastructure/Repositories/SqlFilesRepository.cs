@@ -1,11 +1,11 @@
 using System;
-using Microsoft.VisualBasic;
-using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
 using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Files;
 using azure_one.Etl.Shared.Infrastructure.Log;
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
+using Microsoft.VisualBasic;
 
-namespace azure_one.Etl.Transformers.Infrastructure.Repositories;
+namespace azure_one.Etl.SQLRunners.Infrastructure.Repositories;
 
 public class SqlFilesRepository
 {

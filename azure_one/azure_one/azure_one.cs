@@ -6,7 +6,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using azure_one.Etl.RawLoaders.Infrastructure;
-using azure_one.Etl.Transformers.Infrastructure.Controllers;
+using azure_one.Etl.SQLRunners.Infrastructure.Controllers;
 
 //test c# online
 //https://techiedelight.com/compiler/
