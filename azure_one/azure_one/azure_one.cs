@@ -15,15 +15,15 @@ namespace azure_one
     public class azure_one
     {
         private readonly LoadStagingDbController _loadStagingDbController;
-        private readonly FirstLevelController _firstLevelController;
+        private readonly RunSqlFilesController _runSqlFilesController;
         
         public azure_one(
             LoadStagingDbController loadStagingDbController,
-            FirstLevelController firstLevelController
+            RunSqlFilesController runSqlFilesController
         )
         {
             _loadStagingDbController = loadStagingDbController;
-            _firstLevelController = firstLevelController;
+            _runSqlFilesController = runSqlFilesController;
         }
         
         [FunctionName("azure_one")]
@@ -35,7 +35,7 @@ namespace azure_one
             try
             {
                 _loadStagingDbController.Invoke();
-                _firstLevelController.Invoke();
+                _runSqlFilesController.Invoke();
                 log.LogInformation("C# HTTP trigger function processed a request.");
 
                 string name = req.Query["tenant_slug"];

@@ -42,9 +42,9 @@ public class Startup: FunctionsStartup
                     new LoadXlsCountriesServices()
                 )
         ); 
-        builder.Services.AddSingleton<FirstLevelController>(
-            s => new FirstLevelController(new RunSqlFilesService(new SqlFilesRepository(new Mssql())))
-            //s => new FirstLevelController()
+        builder.Services.AddSingleton<RunSqlFilesController>(
+            s => new RunSqlFilesController(new RunSqlFilesService(new SqlFilesRepository(new Mssql())))
+            //s => new RunSqlFilesController()
         );
             
         //fix: No data is available for encoding 1252. For information on defining a custom encoding
