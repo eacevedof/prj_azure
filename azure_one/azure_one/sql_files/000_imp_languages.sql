@@ -1,4 +1,7 @@
 -- carga inicial
+DELETE FROM [local_laciahub].[dbo].[languages] WHERE uuid=uuid
+;
+
 UPDATE mt
 SET
     mt.language_name = CONVERT(VARCHAR(250), imp.val),
@@ -7,7 +10,6 @@ SET
 INNER JOIN [local_staging].[dbo].[imp_languages] imp
 ON mt.locale = imp.uuid
 ;
-
 
 -- token no permite nulls
 INSERT INTO [local_laciahub].[dbo].[languages]
