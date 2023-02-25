@@ -9,10 +9,11 @@ ON mt.locale = imp.uuid
 ;
 
 
+-- token no permite nulls
 INSERT INTO [local_laciahub].[dbo].[languages]
-(locale, language_name, created_at)
+(token,locale, language_name, created_at)
 
-SELECT imp.uuid, imp.language_name, GETDATE() 
+SELECT '',imp.uuid, imp.val, GETDATE() 
 FROM [local_staging].[dbo].[imp_languages] imp
 LEFT JOIN [local_laciahub].[dbo].[languages] mt
 ON mt.locale = imp.uuid
