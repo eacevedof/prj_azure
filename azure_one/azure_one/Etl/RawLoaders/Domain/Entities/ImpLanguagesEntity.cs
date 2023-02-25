@@ -3,7 +3,7 @@ using azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
 
 namespace azure_one.Etl.RawLoaders.Domain.Entities;
 
-public sealed class ImpLanguagesEntity: EntityInterface
+public sealed class ImpLanguagesEntity: AbstractEntity
 {
     public readonly string PathXls = "/Downloads/data-in.xlsx";
     

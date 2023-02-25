@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace azure_one.Etl.RawLoaders.Domain.Entities;
 
-public sealed class ImpCountriesEntity : EntityInterface
+public sealed class ImpCountriesEntity : AbstractEntity
 {
     public readonly string PathXls = "/Downloads/data-in.xlsx";
     public readonly string Table = "imp_countries";
@@ -25,6 +25,8 @@ public sealed class ImpCountriesEntity : EntityInterface
         { "Column11", "tr_9" },
     };
 
+    
+    
     public static ImpCountriesEntity GetInstance()
     {
         return new ImpCountriesEntity();
