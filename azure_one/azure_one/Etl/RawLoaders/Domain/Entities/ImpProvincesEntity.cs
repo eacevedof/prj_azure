@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace azure_one.Etl.RawLoaders.Domain.Entities;
 
-public sealed class ImpProvinces: EntityInterface
+public sealed class ImpProvinces: AbstractEntity
 {
     public readonly string PathXls = "/Downloads/data-in.xlsx";
     
