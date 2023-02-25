@@ -23,4 +23,9 @@ public sealed class ImpErrorsRepository: AbsRepository, ImpErrorsRepositoryInter
         ";
         _db.Execute(sql);
     }
+
+    public static void add(string title, string error)
+    {
+        GetInstance().save(title, error);
+    }
 }
