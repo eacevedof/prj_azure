@@ -7,7 +7,7 @@ public sealed class Paginator
 {
     public static List<Tuple<int, int>> GetPages(int numItems, int pageSize)
     {
-        if (numItems <= 0) return new List<Tuple<int, int>>{new(0,0)};
+        if (numItems <= 0) return null;
         if (pageSize <= 0)
             return new List<Tuple<int, int>>
             {
