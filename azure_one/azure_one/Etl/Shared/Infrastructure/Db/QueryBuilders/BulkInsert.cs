@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using azure_one.Etl.Shared.Infrastructure.Db;
 
 namespace azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
@@ -45,19 +47,21 @@ public sealed class BulkInsert
     
     public List<List<string>> Get1000Splitted(List<string> insValues)
     {
+        int perPage = 1000;
+        int numInserts = insValues.Count;
+        
+        List<Tuple<int, int>> pages = Paginator.GetPages(numInserts, perPage);
+        
         List<List<string>> in1000 = new();
-        int count = 0;
-        List<string> tmp = new();
-        foreach (string value in insValues)
+        if (pages == null)
+            return in1000;
+
+        foreach (Tuple<int, int> range in pages)
         {
-            tmp.Add(value);
-            if ((count % 1000) == 0)
-            {
-                in1000.Add(tmp);
-                count = 0;
-                tmp = new();
-            }
-            count++;
+            int from = range.Item1;
+            int to = range.Item2;
+            List<string> batch = insValues.Skip(from).Take(perPage).ToList();
+            in1000.Add(batch);
         }
         return in1000;
     }
