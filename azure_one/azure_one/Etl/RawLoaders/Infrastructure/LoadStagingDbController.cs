@@ -32,10 +32,10 @@ public sealed class LoadStagingDbController
     public void Invoke()
     {
         _truncateImpTablesService.Invoke();
-        //_loadXlsLanguagesService.Invoke();
-        //_loadXlsCountriesServices.Invoke();
-        //_loadXlsProvincesService.Invoke();
+        _loadXlsLanguagesService.Invoke();
+        _loadXlsCountriesServices.Invoke();
+        _loadXlsProvincesService.Invoke();
         _loadXlsCitiesService.Invoke();
-        //_loadXlsCompaniesService.Invoke();
+        _loadXlsCompaniesService.Invoke();
     }
 }
