@@ -31,8 +31,8 @@ public class Startup: FunctionsStartup
         
         //services
         builder.Services.AddSingleton<TruncateImpTablesService>(s => new TruncateImpTablesService(new TruncateRepository(new Mssql())));
-        builder.Services.AddSingleton<LoadXlsLanguagesService>(s => new LoadXlsLanguagesService());
-        builder.Services.AddSingleton<LoadXlsCountriesServices>(s => new LoadXlsCountriesServices());
+        //builder.Services.AddSingleton<LoadXlsLanguagesService>(s => new LoadXlsLanguagesService());
+        //builder.Services.AddSingleton<LoadXlsCountriesServices>(s => new LoadXlsCountriesServices());
         
         //controlleres
         builder.Services.AddSingleton<LoadStagingDbController>(
@@ -40,7 +40,9 @@ public class Startup: FunctionsStartup
                     new TruncateImpTablesService(new TruncateRepository(new Mssql())),
                     new LoadXlsLanguagesService(), 
                     new LoadXlsCountriesServices(),
-                    new LoadXlsProvincesService()
+                    new LoadXlsProvincesService(),
+                    new LoadXlsCitiesService(),
+                    new LoadXlsCompaniesService()
                 )
         ); 
         builder.Services.AddSingleton<RunSqlFilesController>(
