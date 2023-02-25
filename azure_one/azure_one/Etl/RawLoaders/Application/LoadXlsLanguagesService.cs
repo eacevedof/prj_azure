@@ -8,33 +8,24 @@ using azure_one.Etl.RawLoaders.Domain.Enums;
 
 namespace azure_one.Etl.RawLoaders.Application;
 
-public sealed class LoadCountriesRawServices: AbsRawService
+public sealed class LoadXlsLanguagesService: AbsRawService
 {
     public override void Invoke()
     {
         string pathExcel = Env.GetConcat("HOME", ExcelToStagingConfigEnum.path_file);
         ExcelReader excelReader = ExcelReader.FromPrimitives((
             pathExcel, 
-            ExcelToStagingConfigEnum.countries_sheetnr, 
-            ExcelToStagingConfigEnum.countries_max_col
+            ExcelToStagingConfigEnum.languages_sheetnr, 
+            ExcelToStagingConfigEnum.languages_max_col
         ));
         
         string sql = (
             new BulkInsert(
-                ExcelToStagingConfigEnum.countries_table, 
+                ExcelToStagingConfigEnum.languages_table, 
                 new Dictionary<string, string>() {
                     { "Column0", "uuid" },
                     { "Column1", "val" },
                     { "Column2", "codesap" },
-                    { "Column3", "tr_1" },
-                    { "Column4", "tr_2" },
-                    { "Column5", "tr_3" },
-                    { "Column6", "tr_4" },
-                    { "Column7", "tr_5" },
-                    { "Column8", "tr_6" },
-                    { "Column9", "tr_7" },
-                    { "Column10", "tr_8" },
-                    { "Column11", "tr_9" },
                 }, 
                 excelReader.GetData()
             )

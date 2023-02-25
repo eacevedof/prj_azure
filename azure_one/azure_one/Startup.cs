@@ -31,15 +31,15 @@ public class Startup: FunctionsStartup
         
         //services
         builder.Services.AddSingleton<TruncateImpTablesService>(s => new TruncateImpTablesService(new TruncateRepository(new Mssql())));
-        builder.Services.AddSingleton<LoadLanguagesRawService>(s => new LoadLanguagesRawService());
-        builder.Services.AddSingleton<LoadCountriesRawServices>(s => new LoadCountriesRawServices());
+        builder.Services.AddSingleton<LoadXlsLanguagesService>(s => new LoadXlsLanguagesService());
+        builder.Services.AddSingleton<LoadXlsCountriesServices>(s => new LoadXlsCountriesServices());
         
         //controlleres
-        builder.Services.AddSingleton<ToStagingLoaderController>(
-            s => new ToStagingLoaderController(
+        builder.Services.AddSingleton<LoadStagingDbController>(
+            s => new LoadStagingDbController(
                     new TruncateImpTablesService(new TruncateRepository(new Mssql())),
-                    new LoadLanguagesRawService(), 
-                    new LoadCountriesRawServices()
+                    new LoadXlsLanguagesService(), 
+                    new LoadXlsCountriesServices()
                 )
         ); 
         builder.Services.AddSingleton<FirstLevelController>(
