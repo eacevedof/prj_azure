@@ -4,13 +4,13 @@ namespace azure_one.Etl.RawLoaders.Domain.Entities;
 
 public abstract class AbstractEntity
 {
-    public readonly string PathXls = "/Downloads/data-in.xlsx";
+    public string PathXls;
     
-    public readonly string Table = "";
-    public readonly int SheetNr = 0;
-    public readonly int SheetMaxColumn = 2;
+    public string Table;
+    public int SheetNr;
+    public int SheetMaxColumn;
 
-    public readonly Dictionary<string, string> ColumnMapping;
+    public Dictionary<string, string> ColumnMapping;
     
     //public static EntityInterface GetInstance();
 }
