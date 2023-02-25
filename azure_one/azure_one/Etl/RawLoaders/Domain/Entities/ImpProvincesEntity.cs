@@ -6,23 +6,25 @@ public sealed class ImpProvincesEntity: AbstractEntity
     {
         PathXls = "/Downloads/data-in.xlsx";
         Table = "imp_provinces";
-        SheetNr = 1;
+        SheetNr = 3;
         SheetMaxColumn = 3;
 
         ColumnMapping = new()
         {
-            { "Column0", "uuid" },
-            { "Column1", "val" },
-            { "Column2", "codesap" },
-            { "Column3", "tr_1" },
-            { "Column4", "tr_2" },
-            { "Column5", "tr_3" },
-            { "Column6", "tr_4" },
-            { "Column7", "tr_5" },
-            { "Column8", "tr_6" },
-            { "Column9", "tr_7" },
-            { "Column10", "tr_8" },
-            { "Column11", "tr_9" },
+            { "Column0", "countries_uuid" },
+            { "Column1", "uuid" },
+            { "Column2", "val" },
+            { "Column3", "codesap" },
+            
+            { "Column4", "tr_1" },
+            { "Column5", "tr_2" },
+            { "Column6", "tr_3" },
+            { "Column7", "tr_4" },
+            { "Column8", "tr_5" },
+            { "Column9", "tr_6" },
+            { "Column10", "tr_7" },
+            { "Column11", "tr_8" },
+            { "Column12", "tr_9" },
         };     
     }
     
