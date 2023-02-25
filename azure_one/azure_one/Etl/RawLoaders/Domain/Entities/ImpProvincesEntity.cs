@@ -1,8 +1,8 @@
 namespace azure_one.Etl.RawLoaders.Domain.Entities;
 
-public sealed class ImpProvinces: AbstractEntity
+public sealed class ImpProvincesEntity: AbstractEntity
 {
-    private ImpProvinces()
+    private ImpProvincesEntity()
     {
         PathXls = "/Downloads/data-in.xlsx";
         Table = "imp_provinces";
@@ -26,8 +26,8 @@ public sealed class ImpProvinces: AbstractEntity
         };     
     }
     
-    public static ImpProvinces GetInstance()
+    public static ImpProvincesEntity GetInstance()
     {
-        return new ImpProvinces();
+        return new ImpProvincesEntity();
     }     
 }

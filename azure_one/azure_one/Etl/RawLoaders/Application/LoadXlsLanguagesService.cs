@@ -11,19 +11,17 @@ public sealed class LoadXlsLanguagesService: AbsRawService
 {
     public override void Invoke()
     {
-        ImpLanguagesEntity language = ImpLanguagesEntity.GetInstance();
-        string pathExcel = Env.GetConcat("HOME", language.PathXls);
-        
+        ImpLanguagesEntity languageEntity = ImpLanguagesEntity.GetInstance();
         ExcelReader excelReader = ExcelReader.FromPrimitives((
-            pathExcel, 
-            language.SheetNr, 
-            language.SheetMaxColumn
+            Env.GetConcat("HOME", languageEntity.PathXls),
+            languageEntity.SheetNr, 
+            languageEntity.SheetMaxColumn
         ));
         
         string sql = (
             new BulkInsert(
-                language.Table,
-                language.ColumnMapping,
+                languageEntity.Table,
+                languageEntity.ColumnMapping,
                 excelReader.GetData()
             )
         ).GetBulkInsertQuery();
