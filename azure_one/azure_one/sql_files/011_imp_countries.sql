@@ -20,11 +20,12 @@ ON mt.id = CONVERT(INT,imp.uuid)
 INSERT INTO [local_laciahub].[dbo].[countries]
 (
  name, 
- -- iso2, iso3, phone_code,
+ iso2, iso3, phone_code,
  created_at
 )
 SELECT 
-    CONVERT(VARCHAR(255),imp.val),
+    CONVERT(VARCHAR(255),imp.val) name,
+    imp.uuid iso2, imp.uuid iso3, imp.uuid phone_code,
     -- CONVERT(VARCHAR(255),imp.iso2),
     -- CONVERT(VARCHAR(255),imp.iso3),
     -- CONVERT(VARCHAR(255),imp.phone_code),
