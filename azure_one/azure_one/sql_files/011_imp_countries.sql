@@ -1,5 +1,7 @@
 DELETE FROM [local_staging].[dbo].[imp_countries] WHERE uuid='uuid'
 ;
+DELETE FROM [local_staging].[dbo].[imp_countries] WHERE uuid IS NULL
+;
 
 UPDATE mt
 SET
@@ -29,7 +31,7 @@ SELECT
     GETDATE() 
 FROM [local_staging].[dbo].[imp_countries] imp
 LEFT JOIN [local_laciahub].[dbo].[countries] mt
-ON mt.id = CONVERT(INT,imp.uuid)
+ON mt.id = CONVERT(INT, imp.uuid)
 WHERE 1=1
 AND mt.id IS NULL
 ;

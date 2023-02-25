@@ -68,6 +68,18 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 			return true;
 		}
 
+		public void ExecuteRaw(string query)
+		{
+			query = query.Trim();
+			if (query == "")
+				return;
+			
+			SqlCommand cmdSql = new SqlCommand(query, _connection);
+			if (_connection.State == ConnectionState.Closed) Open();
+			
+			using (cmdSql) cmdSql.ExecuteScalar();
+		}
+
 		public int GetRowsAffected()
 		{
 			return _rowsAffected;
