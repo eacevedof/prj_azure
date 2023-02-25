@@ -6,7 +6,7 @@ public sealed class ImpCountriesEntity : EntityInterface
 {
     public readonly string PathXls = "/Downloads/data-in.xlsx";
     public readonly string Table = "imp_countries";
-    public readonly int SheetNr = 2;
+    public readonly int SheetNr = 3;
     public readonly int SheetMaxColumn = 3;
 
     public readonly Dictionary<string, string> ColumnMapping = new()

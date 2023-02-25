@@ -8,8 +8,8 @@ public sealed class ImpLanguagesEntity: EntityInterface
     public readonly string PathXls = "/Downloads/data-in.xlsx";
     
     public readonly string Table = "imp_languages";
-    public readonly int SheetNr = 0;
-    public readonly int SheetMaxColumn = 2;
+    public readonly int SheetNr = 1;
+    public readonly int SheetMaxColumn = 3;
     
     public readonly Dictionary<string, string> ColumnMapping = new()
     {
