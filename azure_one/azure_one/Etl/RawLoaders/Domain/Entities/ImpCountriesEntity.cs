@@ -4,8 +4,9 @@ public sealed class ImpCountriesEntity : AbstractEntity
 {
     private ImpCountriesEntity()
     {
-        PathXls = "/Downloads/data-in.xlsx";
         Table = "imp_countries";
+     
+        PathXls = "/Downloads/data-in.xlsx";
         SheetNr = 2;
         SheetMaxColumn = 3;
 
