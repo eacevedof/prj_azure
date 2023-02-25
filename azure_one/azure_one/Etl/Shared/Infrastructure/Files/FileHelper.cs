@@ -31,5 +31,4 @@ public sealed class FileHelper
         string [] fileEntries = Directory.GetFiles(pathDir, search);
         return fileEntries;
     }
-    
 }

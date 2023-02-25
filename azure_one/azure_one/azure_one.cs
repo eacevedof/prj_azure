@@ -13,15 +13,15 @@ namespace azure_one
 {
     public class azure_one
     {
-        private readonly ToStagingLoaderController _toStagingLoaderController;
+        private readonly LoadStagingDbController _loadStagingDbController;
         private readonly FirstLevelController _firstLevelController;
         
         public azure_one(
-            ToStagingLoaderController toStagingLoaderController,
+            LoadStagingDbController loadStagingDbController,
             FirstLevelController firstLevelController
         )
         {
-            _toStagingLoaderController = toStagingLoaderController;
+            _loadStagingDbController = loadStagingDbController;
             _firstLevelController = firstLevelController;
         }
         
@@ -34,7 +34,7 @@ namespace azure_one
         {
             try
             {
-                _toStagingLoaderController.Invoke();
+                _loadStagingDbController.Invoke();
                 _firstLevelController.Invoke();
                 log.LogInformation("C# HTTP trigger function processed a request.");
 
