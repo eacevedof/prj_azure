@@ -29,7 +29,6 @@
     <None Remove="Etl\Infrastructure\Db\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Etl\FinalLoaders" />
     <Folder Include="Etl\Shared" />
     <Folder Include="Etl\Shared\Domain" />
   </ItemGroup>  
@@ -37,7 +36,7 @@
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\demo.sql">
+    <None Update="sql_files\*.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>    
     <None Update="local.settings.json">

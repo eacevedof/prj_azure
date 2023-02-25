@@ -3,26 +3,26 @@ using azure_one.Etl.RawLoaders.Application;
 
 namespace azure_one.Etl.RawLoaders.Infrastructure;
 
-public sealed class RawLoadersController
+public sealed class ToStagingLoaderController
 {
-    private readonly TruncateTableService _truncateTableService;
+    private readonly TruncateImpTablesService _truncateImpTablesService;
     private readonly LoadLanguagesRawService _loadLanguagesRawService;
     private readonly LoadCountriesRawServices _loadCountriesRawServices;
     
-    public RawLoadersController(
-        TruncateTableService truncateTableService,
+    public ToStagingLoaderController(
+        TruncateImpTablesService truncateImpTablesService,
         LoadLanguagesRawService loadLanguagesRawService,
         LoadCountriesRawServices loadCountriesRawServices
     )
     {
         _loadLanguagesRawService = loadLanguagesRawService;
         _loadCountriesRawServices = loadCountriesRawServices;
-        _truncateTableService = truncateTableService;
+        _truncateImpTablesService = truncateImpTablesService;
     }
 
     public void Invoke()
     {
-        //_truncateTableService.Invoke();
+        _truncateImpTablesService.Invoke();
         _loadLanguagesRawService.Invoke();
         _loadCountriesRawServices.Invoke();
     }

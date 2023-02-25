@@ -12,16 +12,16 @@ public sealed class LoadLanguagesRawService: AbsRawService
 {
     public override void Invoke()
     {
-        string pathExcel = Env.GetConcat("HOME", ExcelSheetsEnum.path_file);
+        string pathExcel = Env.GetConcat("HOME", ExcelToStagingConfigEnum.path_file);
         ExcelReader excelReader = ExcelReader.FromPrimitives((
             pathExcel, 
-            ExcelSheetsEnum.languages_sheetnr, 
-            ExcelSheetsEnum.languages_max_col
+            ExcelToStagingConfigEnum.languages_sheetnr, 
+            ExcelToStagingConfigEnum.languages_max_col
         ));
         
         string sql = (
             new BulkInsert(
-                ExcelSheetsEnum.languages_table, 
+                ExcelToStagingConfigEnum.languages_table, 
                 new Dictionary<string, string>() {
                     { "Column0", "uuid" },
                     { "Column1", "val" },

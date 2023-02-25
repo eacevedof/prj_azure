@@ -12,16 +12,16 @@ public sealed class LoadCountriesRawServices: AbsRawService
 {
     public override void Invoke()
     {
-        string pathExcel = Env.GetConcat("HOME", ExcelSheetsEnum.path_file);
+        string pathExcel = Env.GetConcat("HOME", ExcelToStagingConfigEnum.path_file);
         ExcelReader excelReader = ExcelReader.FromPrimitives((
             pathExcel, 
-            ExcelSheetsEnum.countries_sheetnr, 
-            ExcelSheetsEnum.countries_max_col
+            ExcelToStagingConfigEnum.countries_sheetnr, 
+            ExcelToStagingConfigEnum.countries_max_col
         ));
         
         string sql = (
             new BulkInsert(
-                ExcelSheetsEnum.countries_table, 
+                ExcelToStagingConfigEnum.countries_table, 
                 new Dictionary<string, string>() {
                     { "Column0", "uuid" },
                     { "Column1", "val" },
