@@ -6,7 +6,9 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using azure_one.Etl.RawLoaders.Infrastructure;
+using azure_one.Etl.Shared.Infrastructure.Repositories;
 using azure_one.Etl.SqlRunners.Infrastructure.Controllers;
+
 
 //test c# online
 //https://techiedelight.com/compiler/
@@ -48,6 +50,7 @@ namespace azure_one
             }
             catch (Exception e)
             {
+                ImpErrorsRepository.GetInstance().save("azure_one.task",e.ToString());
                 log.LogInformation(e.ToString());
                 return new OkObjectResult("wrong");
             }

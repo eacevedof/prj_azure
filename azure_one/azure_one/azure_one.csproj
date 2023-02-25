@@ -19,6 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Etl\RawLoaders\Domain\Enums" />
+    <Folder Include="Etl\RawLoaders\Domain\Repositories" />
     <Folder Include="sql_files\" />
   </ItemGroup>
   <ItemGroup>
@@ -34,7 +35,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Etl\Shared" />
-    <Folder Include="Etl\Shared\Domain" />
   </ItemGroup>  
   <ItemGroup>
     <None Update="host.json">
