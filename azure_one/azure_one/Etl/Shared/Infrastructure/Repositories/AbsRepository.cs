@@ -10,4 +10,9 @@ public abstract class AbsRepository
     {
         _db = db;
     }
+
+    protected string GetMssqlSanitized(string value)
+    {
+        return value.Replace("'", "''");
+    }
 }

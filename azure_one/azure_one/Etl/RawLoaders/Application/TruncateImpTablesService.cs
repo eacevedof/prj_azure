@@ -8,6 +8,7 @@ public sealed class TruncateImpTablesService: AbsRawService
     private readonly TruncateRepository _truncateRepository;
     private readonly List<string> _tables = new ()
     {
+        "imp_errors",
         "imp_languages", 
         "imp_countries",
         "imp_provinces",
