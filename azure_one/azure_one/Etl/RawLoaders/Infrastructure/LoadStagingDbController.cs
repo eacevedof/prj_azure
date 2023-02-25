@@ -35,5 +35,7 @@ public sealed class LoadStagingDbController
         _loadXlsLanguagesService.Invoke();
         _loadXlsCountriesServices.Invoke();
         _loadXlsProvincesService.Invoke();
+        _loadXlsCitiesService.Invoke();
+        _loadXlsCompaniesService.Invoke();
     }
 }
