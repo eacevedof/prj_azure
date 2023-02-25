@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 
 using azure_one.Etl.RawLoaders.Infrastructure;
+using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.Shared.Infrastructure.Repositories;
 using azure_one.Etl.SqlRunners.Infrastructure.Controllers;
 
@@ -36,23 +37,29 @@ namespace azure_one
         {
             try
             {
+                Lg.pr("ETL azure_one started...");
                 _loadStagingDbController.Invoke();
+                Lg.pr("ETL staging db loaded!");
                 _runSqlFilesController.Invoke();
-                log.LogInformation("C# HTTP trigger function processed a request.");
+                Lg.pr("ETL sql files executed");
 
                 string name = req.Query["tenant_slug"];
 
                 string responseMessage = string.IsNullOrEmpty(name)
-                    ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
+                    ? "ETL AzureOne has finished successfully!."
                     : $"Hello, {name}. This HTTP triggered function executed successfully.";
 
                 return new OkObjectResult(responseMessage);
             }
             catch (Exception e)
             {
-                ImpErrorsRepository.add("azure_one.task",e.ToString());
                 log.LogInformation(e.ToString());
-                return new OkObjectResult("wrong");
+                ImpErrorsRepository.add("azure_one.task",e.ToString());
+                
+                return new OkObjectResult("Sorry the ETL process failed. Check logs for more information please")
+                {
+                    StatusCode = 500
+                };
             }
         } //Task
         
