@@ -20,7 +20,7 @@ public class SqlFilesRepository
     
     public void Invoke()
     {
-        Lg.pr("Run demo :)");
+        Lg.pr("SQL files execution started!");
         string[] sqlFiles = FileHelper.GetFileNamesInDir(_pathFilesFolder, "*.sql");
         if (sqlFiles.IsEmpty())
         {
