@@ -1,6 +1,6 @@
-using azure_one.Etl.Transformers.Application;
+using azure_one.Etl.SQLRunners.Application;
 
-namespace azure_one.Etl.Transformers.Infrastructure.Controllers;
+namespace azure_one.Etl.SQLRunners.Infrastructure.Controllers;
 
 public sealed class FirstLevelController
 {

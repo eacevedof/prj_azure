@@ -1,6 +1,6 @@
-using azure_one.Etl.Transformers.Infrastructure.Repositories;
+using azure_one.Etl.SQLRunners.Infrastructure.Repositories;
 
-namespace azure_one.Etl.Transformers.Application;
+namespace azure_one.Etl.SQLRunners.Application;
 
 public sealed class TransformDemoService
 {
