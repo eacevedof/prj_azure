@@ -4,16 +4,16 @@ namespace azure_one.Etl.SQLRunners.Infrastructure.Controllers;
 
 public sealed class FirstLevelController
 {
-    private readonly TransformDemoService _transformDemoService;
+    private readonly RunSqlFilesService _runSqlFilesService;
     
-    public FirstLevelController(TransformDemoService transformDemoService)
+    public FirstLevelController(RunSqlFilesService runSqlFilesService)
     //public FirstLevelController()
     {
-        _transformDemoService = transformDemoService;
+        _runSqlFilesService = runSqlFilesService;
     }
 
     public void Invoke()
     {
-        _transformDemoService.Invoke();
+        _runSqlFilesService.Invoke();
     }
 }

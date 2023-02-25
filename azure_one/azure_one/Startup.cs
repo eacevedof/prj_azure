@@ -43,7 +43,7 @@ public class Startup: FunctionsStartup
                 )
         ); 
         builder.Services.AddSingleton<FirstLevelController>(
-            s => new FirstLevelController(new TransformDemoService(new SqlFilesRepository(new Mssql())))
+            s => new FirstLevelController(new RunSqlFilesService(new SqlFilesRepository(new Mssql())))
             //s => new FirstLevelController()
         );
             
