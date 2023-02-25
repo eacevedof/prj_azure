@@ -56,10 +56,12 @@ namespace azure_one
                 log.LogInformation(e.ToString());
                 ImpErrorsRepository.add("azure_one.task",e.ToString());
                 
-                return new OkObjectResult("Sorry the ETL process failed. Check logs for more information please")
-                {
-                    StatusCode = 500
-                };
+                return new OkObjectResult(
+                    "Sorry the ETL process failed. Check logs for more information please"
+                    )
+                    {
+                        StatusCode = 500
+                    };
             }
         } //Task
         
