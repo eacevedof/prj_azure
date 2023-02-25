@@ -10,18 +10,23 @@ public sealed class LoadStagingDbController
     private readonly LoadXlsProvincesService _loadXlsProvincesService;
     
     private readonly LoadXlsCitiesService _loadXlsCitiesService;
+    private readonly LoadXlsCompaniesService _loadXlsCompaniesService;
     
     public LoadStagingDbController(
         TruncateImpTablesService truncateImpTablesService,
         LoadXlsLanguagesService loadXlsLanguagesService,
         LoadXlsCountriesServices loadXlsCountriesServices,
-        LoadXlsProvincesService loadXlsProvincesService
+        LoadXlsProvincesService loadXlsProvincesService,
+        LoadXlsCitiesService loadXlsCitiesService,
+        LoadXlsCompaniesService loadXlsCompaniesService
     )
     {
         _loadXlsLanguagesService = loadXlsLanguagesService;
         _loadXlsCountriesServices = loadXlsCountriesServices;
         _truncateImpTablesService = truncateImpTablesService;
         _loadXlsProvincesService = loadXlsProvincesService;
+        _loadXlsCitiesService = loadXlsCitiesService;
+        _loadXlsCompaniesService = loadXlsCompaniesService;
     }
 
     public void Invoke()
