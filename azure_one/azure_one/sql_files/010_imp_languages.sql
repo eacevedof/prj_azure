@@ -1,5 +1,8 @@
 DELETE FROM [local_staging].[dbo].[imp_languages] WHERE uuid='uuid'
 ;
+DELETE FROM [local_staging].[dbo].[imp_languages] WHERE uuid IS NULL
+;
+
 
 UPDATE mt
 SET
@@ -14,7 +17,7 @@ ON mt.locale = imp.uuid
 -- token no permite nulls
 -- todo codesap
 INSERT INTO [local_laciahub].[dbo].[languages]
-(token,locale, language_name, created_at)
+(token, locale, language_name, created_at)
 
 SELECT '',imp.uuid, imp.val, GETDATE() 
 FROM [local_staging].[dbo].[imp_languages] imp

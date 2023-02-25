@@ -40,7 +40,7 @@ public class SqlFilesRepository
                 continue;
             }
             Lg.pr(sql);
-            _db.Execute(sql);
+            _db.ExecuteRaw(sql);
         }
     }
 }
