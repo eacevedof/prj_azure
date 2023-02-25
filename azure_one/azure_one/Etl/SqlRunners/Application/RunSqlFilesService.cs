@@ -1,6 +1,6 @@
-using azure_one.Etl.SQLRunners.Infrastructure.Repositories;
+using azure_one.Etl.SqlRunners.Infrastructure.Repositories;
 
-namespace azure_one.Etl.SQLRunners.Application;
+namespace azure_one.Etl.SqlRunners.Application;
 
 public sealed class RunSqlFilesService
 {
