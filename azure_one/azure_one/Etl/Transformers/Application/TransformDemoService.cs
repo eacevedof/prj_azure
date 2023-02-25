@@ -12,6 +12,6 @@ public sealed class TransformDemoService
 
     public void Invoke()
     {
-        _sqlFilesRepository.RunDemo();
+        _sqlFilesRepository.Invoke();
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Files;
 using azure_one.Etl.Shared.Infrastructure.Log;
@@ -5,6 +6,7 @@ using System.Reflection;
 using Microsoft.Extensions.Logging;
 using System.IO;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
+using Microsoft.VisualBasic;
 
 namespace azure_one.Etl.Transformers.Infrastructure.Repositories;
 
@@ -22,19 +24,30 @@ public class SqlFilesRepository
         _pathFilesFolder = FileHelper.GetSqlFilesFolder();
     }
     
-    public void RunDemo()
+    public void Invoke()
     {
-        string[] sqlFiles = FileHelper.GetFileNamesInDir(_pathFilesFolder, ".sql");
+        Lg.pr("Run demo :)");
+        string[] sqlFiles = FileHelper.GetFileNamesInDir(_pathFilesFolder, "*.sql");
         if (sqlFiles.IsEmpty())
         {
-            Lg.pr("no files found");
+            Lg.pr($"no files found in {_pathFilesFolder}");
             return;
         }
         
-        string pathFile = _pathFilesFolder + "/000_imp_tables.sql";
-        Lg.pr(pathFile,"path-file");
-        string sql = FileHelper.GetFileContent(pathFile);
-        Lg.pr(sql);
-        _db.Execute(sql);
+        Array.Sort(sqlFiles);
+        foreach (string pathFile in sqlFiles)
+        {
+            Lg.pr($"handling file: {pathFile}");
+            //string pathFile = $"{_pathFilesFolder}/{sqlFileName}";
+            string sql = FileHelper.GetFileContent(pathFile);
+            sql = Strings.Trim(sql);
+            if (sql.IsEmpty())
+            {
+                Lg.pr($"empty file {pathFile} skipping...");
+                continue;
+            }
+            Lg.pr(sql);
+            _db.Execute(sql);
+        }
     }
 }
