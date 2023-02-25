@@ -7,24 +7,27 @@ using azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
 
 namespace azure_one.Etl.RawLoaders.Application;
 
-public sealed class LoadXlsCountriesServices: AbsRawService
+public sealed class LoadXlsProvincesService: AbsRawService
 {
     public override void Invoke()
     {
-        ImpCountriesEntity countriesEntity = ImpCountriesEntity.GetInstance();
+        ImpProvincesEntity provincesEntity = ImpProvincesEntity.GetInstance();
+        string pathExcel = Env.GetConcat("HOME", provincesEntity.PathXls);
+        
         ExcelReader excelReader = ExcelReader.FromPrimitives((
-            Env.GetConcat("HOME", countriesEntity.PathXls), 
-            countriesEntity.SheetNr, 
-            countriesEntity.SheetMaxColumn
+            pathExcel, 
+            provincesEntity.SheetNr, 
+            provincesEntity.SheetMaxColumn
         ));
         
         string sql = (
             new BulkInsert(
-                countriesEntity.Table, 
-                countriesEntity.ColumnMapping, 
+                provincesEntity.Table,
+                provincesEntity.ColumnMapping,
                 excelReader.GetData()
             )
         ).GetBulkInsertQuery();
+        
         Lg.pr(sql);
         Mssql.GetInstance().Execute(sql);
     }
