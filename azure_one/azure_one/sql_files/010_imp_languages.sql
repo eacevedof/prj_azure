@@ -1,4 +1,3 @@
--- carga inicial
 DELETE FROM [local_staging].[dbo].[imp_languages] WHERE uuid='uuid'
 ;
 
