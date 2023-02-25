@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
 
+
 namespace azure_one.Etl.Shared.Infrastructure.Db
 {
 	public sealed class Mssql
@@ -22,7 +23,7 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 		{
 			return new Mssql();
 		}
-
+		
 		public List<Dictionary<string, string>> Query(string query)
 		{
 			query = query.Trim();
@@ -77,7 +78,7 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 			SqlCommand cmdSql = new SqlCommand(query, _connection);
 			if (_connection.State == ConnectionState.Closed) Open();
 			
-			using (cmdSql) cmdSql.ExecuteScalar();
+			using (cmdSql) cmdSql.ExecuteNonQuery();
 		}
 
 		public int GetRowsAffected()
