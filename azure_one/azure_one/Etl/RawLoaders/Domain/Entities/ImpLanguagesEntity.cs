@@ -6,8 +6,9 @@ public sealed class ImpLanguagesEntity: AbstractEntity
 {
     private ImpLanguagesEntity()
     {
-        PathXls = "/Downloads/data-in.xlsx";
         Table = "imp_languages";
+        
+        PathXls = "/Downloads/data-in.xlsx";
         SheetNr = 1;
         SheetMaxColumn = 3;
 
