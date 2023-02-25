@@ -1,0 +1,2 @@
+- [c# sandbox](https://techiedelight.com/compiler/)
+- [Como Arrancar con Azure Function](https://youtu.be/QWK_XIn9vT4) 

@@ -8,7 +8,8 @@ using Microsoft.Extensions.Logging;
 using azure_one.Etl.RawLoaders.Infrastructure;
 using azure_one.Etl.Transformers.Infrastructure.Controllers;
 
-
+//test c# online
+//https://techiedelight.com/compiler/
 namespace azure_one
 {
     public class azure_one
@@ -25,7 +26,6 @@ namespace azure_one
             _firstLevelController = firstLevelController;
         }
         
-        //https://youtu.be/QWK_XIn9vT4 Como Arrancar con Azure Function
         [FunctionName("azure_one")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
