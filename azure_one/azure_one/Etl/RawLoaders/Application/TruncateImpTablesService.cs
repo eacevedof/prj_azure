@@ -9,7 +9,8 @@ public sealed class TruncateImpTablesService: AbsRawService
     private readonly List<string> _tables = new ()
     {
         "imp_languages", 
-        "imp_countries"
+        "imp_countries",
+        "imp_provinces",
     };
     
     public TruncateImpTablesService(TruncateRepository truncateRepository)
@@ -20,8 +21,6 @@ public sealed class TruncateImpTablesService: AbsRawService
     public override void Invoke()
     {
         foreach (string table in _tables)
-        {
             _truncateRepository.TruncateTable(table);    
-        }
     }
 }

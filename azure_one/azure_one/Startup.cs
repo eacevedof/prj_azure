@@ -39,7 +39,8 @@ public class Startup: FunctionsStartup
             s => new LoadStagingDbController(
                     new TruncateImpTablesService(new TruncateRepository(new Mssql())),
                     new LoadXlsLanguagesService(), 
-                    new LoadXlsCountriesServices()
+                    new LoadXlsCountriesServices(),
+                    new LoadXlsProvincesService()
                 )
         ); 
         builder.Services.AddSingleton<RunSqlFilesController>(
