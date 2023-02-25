@@ -26,7 +26,8 @@ public sealed class LoadXlsLanguagesService: AbsRawService
                     { "Column0", "uuid" },
                     { "Column1", "val" },
                     { "Column2", "codesap" },
-                    { $"{BulkInsert.TAG_CONSTANT}:hola", "imp_uuid"}
+                    { $"{BulkInsert.TAG_CONSTANT}:hola", "imp_uuid"},
+                    { $"{BulkInsert.TAG_CONSTANT}:finix", "tenant_slug"}
                 },
                 excelReader.GetData()
             )
