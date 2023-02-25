@@ -1,4 +1,3 @@
-using System;
 using azure_one.Etl.RawLoaders.Application;
 
 namespace azure_one.Etl.RawLoaders.Infrastructure;
