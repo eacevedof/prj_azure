@@ -27,5 +27,5 @@ AND mt.id IS NULL
 UPDATE [local_laciahub].[dbo].[languages]
     SET token = 'LNG'+RIGHT('00000' + CONVERT(VARCHAR(10), id), 6)
 WHERE 1=1
-AND COALESCE(TRIM(token),'') = ''
+AND TRIM(COALESCE(token,'')) = ''
 ;
