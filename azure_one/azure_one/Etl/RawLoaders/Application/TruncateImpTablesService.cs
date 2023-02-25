@@ -12,6 +12,7 @@ public sealed class TruncateImpTablesService: AbsRawService
         "imp_languages", 
         "imp_countries",
         "imp_provinces",
+        "imp_cities",
     };
     
     public TruncateImpTablesService(TruncateRepository truncateRepository)
