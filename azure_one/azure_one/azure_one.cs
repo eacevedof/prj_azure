@@ -50,7 +50,7 @@ namespace azure_one
             }
             catch (Exception e)
             {
-                ImpErrorsRepository.GetInstance().save("azure_one.task",e.ToString());
+                ImpErrorsRepository.add("azure_one.task",e.ToString());
                 log.LogInformation(e.ToString());
                 return new OkObjectResult("wrong");
             }
