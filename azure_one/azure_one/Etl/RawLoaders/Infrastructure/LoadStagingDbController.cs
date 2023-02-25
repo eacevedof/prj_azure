@@ -9,6 +9,8 @@ public sealed class LoadStagingDbController
     private readonly LoadXlsCountriesServices _loadXlsCountriesServices;
     private readonly LoadXlsProvincesService _loadXlsProvincesService;
     
+    private readonly LoadXlsCitiesService _loadXlsCitiesService;
+    
     public LoadStagingDbController(
         TruncateImpTablesService truncateImpTablesService,
         LoadXlsLanguagesService loadXlsLanguagesService,

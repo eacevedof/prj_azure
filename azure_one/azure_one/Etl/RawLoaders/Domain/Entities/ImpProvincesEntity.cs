@@ -4,10 +4,11 @@ public sealed class ImpProvincesEntity: AbstractEntity
 {
     private ImpProvincesEntity()
     {
-        PathXls = "/Downloads/data-in.xlsx";
         Table = "imp_provinces";
+        
+        PathXls = "/Downloads/data-in.xlsx";
         SheetNr = 3;
-        SheetMaxColumn = 3;
+        SheetMaxColumn = 12;
 
         ColumnMapping = new()
         {
