@@ -7,7 +7,6 @@ public sealed class FirstLevelController
     private readonly RunSqlFilesService _runSqlFilesService;
     
     public FirstLevelController(RunSqlFilesService runSqlFilesService)
-    //public FirstLevelController()
     {
         _runSqlFilesService = runSqlFilesService;
     }

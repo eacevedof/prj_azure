@@ -5,6 +5,7 @@ namespace azure_one.Etl.SqlRunners.Application;
 public sealed class RunSqlFilesService
 {
     private readonly SqlFilesRepository _sqlFilesRepository;
+    
     public RunSqlFilesService(SqlFilesRepository sqlFilesRepository)
     {
         _sqlFilesRepository = sqlFilesRepository;
