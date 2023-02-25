@@ -30,14 +30,14 @@ public class Startup: FunctionsStartup
         builder.Services.AddSingleton<TruncateRepository>(s => new TruncateRepository(new Mssql()));
         
         //services
-        builder.Services.AddSingleton<TruncateTableService>(s => new TruncateTableService(new TruncateRepository(new Mssql())));
+        builder.Services.AddSingleton<TruncateImpTablesService>(s => new TruncateImpTablesService(new TruncateRepository(new Mssql())));
         builder.Services.AddSingleton<LoadLanguagesRawService>(s => new LoadLanguagesRawService());
         builder.Services.AddSingleton<LoadCountriesRawServices>(s => new LoadCountriesRawServices());
         
         //controlleres
-        builder.Services.AddSingleton<RawLoadersController>(
-            s => new RawLoadersController(
-                    new TruncateTableService(new TruncateRepository(new Mssql())),
+        builder.Services.AddSingleton<ToStagingLoaderController>(
+            s => new ToStagingLoaderController(
+                    new TruncateImpTablesService(new TruncateRepository(new Mssql())),
                     new LoadLanguagesRawService(), 
                     new LoadCountriesRawServices()
                 )

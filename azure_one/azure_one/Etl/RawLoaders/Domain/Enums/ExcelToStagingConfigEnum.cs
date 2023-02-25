@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace azure_one.Etl.RawLoaders.Domain.Enums;
 
-public abstract class ExcelSheetsEnum
+public abstract class ExcelToStagingConfigEnum
 {
     public const string path_file = "/Downloads/data-in.xlsx";
     

@@ -3,7 +3,7 @@ using azure_one.Etl.Shared.Infrastructure.Repositories;
 
 namespace azure_one.Etl.RawLoaders.Application;
 
-public sealed class TruncateTableService: AbsRawService
+public sealed class TruncateImpTablesService: AbsRawService
 {
     private readonly TruncateRepository _truncateRepository;
     private readonly List<string> _tables = new ()
@@ -12,7 +12,7 @@ public sealed class TruncateTableService: AbsRawService
         "imp_countries"
     };
     
-    public TruncateTableService(TruncateRepository truncateRepository)
+    public TruncateImpTablesService(TruncateRepository truncateRepository)
     {
         _truncateRepository = truncateRepository;
     }
