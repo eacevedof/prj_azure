@@ -2,11 +2,11 @@ using azure_one.Etl.SqlRunners.Application;
 
 namespace azure_one.Etl.SqlRunners.Infrastructure.Controllers;
 
-public sealed class FirstLevelController
+public sealed class RunSqlFilesController
 {
     private readonly RunSqlFilesService _runSqlFilesService;
     
-    public FirstLevelController(RunSqlFilesService runSqlFilesService)
+    public RunSqlFilesController(RunSqlFilesService runSqlFilesService)
     {
         _runSqlFilesService = runSqlFilesService;
     }
