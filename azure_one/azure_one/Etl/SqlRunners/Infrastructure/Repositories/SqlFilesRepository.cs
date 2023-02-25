@@ -5,7 +5,7 @@ using azure_one.Etl.Shared.Infrastructure.Log;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
 using Microsoft.VisualBasic;
 
-namespace azure_one.Etl.SQLRunners.Infrastructure.Repositories;
+namespace azure_one.Etl.SqlRunners.Infrastructure.Repositories;
 
 public class SqlFilesRepository
 {
