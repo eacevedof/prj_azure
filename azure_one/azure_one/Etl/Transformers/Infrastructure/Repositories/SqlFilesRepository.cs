@@ -1,12 +1,9 @@
 using System;
+using Microsoft.VisualBasic;
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
 using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Files;
 using azure_one.Etl.Shared.Infrastructure.Log;
-using System.Reflection;
-using Microsoft.Extensions.Logging;
-using System.IO;
-using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
-using Microsoft.VisualBasic;
 
 namespace azure_one.Etl.Transformers.Infrastructure.Repositories;
 
@@ -18,9 +15,6 @@ public class SqlFilesRepository
     public SqlFilesRepository(Mssql db)
     {
         _db = db;        
-        //_pathFilesFolder = FileHelper.GetInstance().GetFilePath("/000_imp_tables.sql");
-        //_pathFilesFolder = Assembly.GetEntryAssembly().Location;
-        //_pathFilesFolder = Path.Combine(Directory.GetCurrentDirectory(), "sql_files/000_imp_tables.sql");
         _pathFilesFolder = FileHelper.GetSqlFilesFolder();
     }
     
@@ -38,7 +32,6 @@ public class SqlFilesRepository
         foreach (string pathFile in sqlFiles)
         {
             Lg.pr($"handling file: {pathFile}");
-            //string pathFile = $"{_pathFilesFolder}/{sqlFileName}";
             string sql = FileHelper.GetFileContent(pathFile);
             sql = Strings.Trim(sql);
             if (sql.IsEmpty())
