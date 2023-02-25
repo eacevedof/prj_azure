@@ -37,19 +37,17 @@ namespace azure_one
         {
             try
             {
+                string tenant_slug = req.Query["tenant_slug"];
+                string transaction_id = req.Query["transaction_id"];
+                
                 Lg.pr("ETL azure_one started...");
                 _loadStagingDbController.Invoke();
                 Lg.pr("ETL staging db loaded!");
                 _runSqlFilesController.Invoke();
                 Lg.pr("ETL sql files executed");
 
-                string name = req.Query["tenant_slug"];
-
-                string responseMessage = string.IsNullOrEmpty(name)
-                    ? "ETL AzureOne has finished successfully!."
-                    : $"Hello, {name}. This HTTP triggered function executed successfully.";
-
-                return new OkObjectResult(responseMessage);
+                string successMessage = $"ETL AzureOne ({tenant_slug},{transaction_id}) has finished successfully!.";
+                return new OkObjectResult(successMessage);
             }
             catch (Exception e)
             {
