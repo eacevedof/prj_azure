@@ -90,3 +90,26 @@ INNER JOIN [local_laciahub].[dbo].[languages] mt2
 ON mt.languages_id = mt2.id
 WHERE 1=1
 AND mt2.locale = 'en'
+
+UPDATE mt
+SET mt.deleted_at = GETDATE()
+FROM [local_laciahub].[dbo].[languages] mt
+INNER JOIN [local_laciahub].[dbo].[languages_company_custom] mt2
+ON mt.id = mt2.languages_id
+WHERE 1=1
+AND mt.deleted_at IS  NULL
+;
+
+UPDATE mt
+SET mt.deleted_at = null, mt.updated_at=GETDATE()
+FROM [local_laciahub].[dbo].[languages] mt
+INNER JOIN [local_laciahub].[dbo].[languages_company_custom] mt2
+ON mt.id = mt2.languages_id
+WHERE 1=1
+AND mt.deleted_at IS NOT NULL
+;
+
+
+
+
+
