@@ -43,7 +43,8 @@ INNER JOIN [local_staging].[dbo].[imp_languages] imp
 ON mt.locale = imp.uuid
 WHERE 1=1
 AND imp.nok IS NULL
-AND imp.languages_id IS NULL;
+AND imp.languages_id IS NULL
+;
 
 UPDATE [local_laciahub].[dbo].[languages]
     SET token = 'LNG'+RIGHT('00000' + CONVERT(VARCHAR(10), id), 6)
