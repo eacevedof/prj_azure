@@ -49,7 +49,7 @@
     <None Update="sql_files\post_load\0075_imp_provinces_tr.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\post_load\0081_im_cities.sql">
+    <None Update="sql_files\post_load\0081_imp_cities.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
