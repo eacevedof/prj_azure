@@ -13,7 +13,8 @@ public sealed class LoadStagingDbController
     private readonly LoadXlsLanguagesCompanyCustomService _loadXlsLanguagesCompanyCustomService;
     private readonly LoadXlsUserTypesService _loadXlsUserTypesService;
     private readonly LoadXlsStatusEmployeesService _loadXlsStatusEmployeesService;
-
+    private readonly LoadXlsEmployeesPositionsService _loadXlsEmployeesPositionsService;
+    
     public LoadStagingDbController(
         LoadXlsLanguagesService loadXlsLanguagesService,
         LoadXlsCountriesServices loadXlsCountriesServices,
@@ -22,7 +23,8 @@ public sealed class LoadStagingDbController
         LoadXlsCompaniesService loadXlsCompaniesService,
         LoadXlsLanguagesCompanyCustomService loadXlsLanguagesCompanyCustomService,
         LoadXlsUserTypesService loadXlsUserTypesService,
-        LoadXlsStatusEmployeesService loadXlsStatusEmployeesService
+        LoadXlsStatusEmployeesService loadXlsStatusEmployeesService,
+        LoadXlsEmployeesPositionsService loadXlsEmployeesPositionsService
     )
     {
         _loadXlsLanguagesService = loadXlsLanguagesService;
@@ -33,6 +35,7 @@ public sealed class LoadStagingDbController
         _loadXlsLanguagesCompanyCustomService = loadXlsLanguagesCompanyCustomService;
         _loadXlsUserTypesService = loadXlsUserTypesService;
         _loadXlsStatusEmployeesService = loadXlsStatusEmployeesService;
+        _loadXlsEmployeesPositionsService = loadXlsEmployeesPositionsService;
     }
 
     public void Invoke()

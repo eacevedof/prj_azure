@@ -44,7 +44,8 @@ public class Startup: FunctionsStartup
                     new LoadXlsCompaniesService(),
                     new LoadXlsLanguagesCompanyCustomService(),
                     new LoadXlsUserTypesService(),
-                    new LoadXlsStatusEmployeesService()
+                    new LoadXlsStatusEmployeesService(),
+                    new LoadXlsEmployeesPositionsService()
                 )
         ); 
         builder.Services.AddSingleton<RunPreLoadFilesController>(
