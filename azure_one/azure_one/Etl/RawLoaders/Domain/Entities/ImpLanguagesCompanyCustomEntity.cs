@@ -2,11 +2,11 @@ using azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
 
 namespace azure_one.Etl.RawLoaders.Domain.Entities;
 
-public sealed class ImpLanguagesCompanyEntity: AbstractEntity
+public sealed class ImpLanguagesCompanyCustomEntity: AbstractEntity
 {
-    private ImpLanguagesCompanyEntity()
+    private ImpLanguagesCompanyCustomEntity()
     {
-        Table = "imp_languages_company";
+        Table = "languages_company_custom";
         
         PathXls = "/Downloads/data-in.xlsx";
         SheetNr = 6;
@@ -24,8 +24,8 @@ public sealed class ImpLanguagesCompanyEntity: AbstractEntity
         };        
     }
     
-    public static ImpLanguagesCompanyEntity GetInstance()
+    public static ImpLanguagesCompanyCustomEntity GetInstance()
     {
-        return new ImpLanguagesCompanyEntity();
+        return new ImpLanguagesCompanyCustomEntity();
     }    
 }

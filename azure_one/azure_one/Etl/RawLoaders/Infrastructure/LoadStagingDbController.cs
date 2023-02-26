@@ -10,7 +10,7 @@ public sealed class LoadStagingDbController
     
     private readonly LoadXlsCitiesService _loadXlsCitiesService;
     private readonly LoadXlsCompaniesService _loadXlsCompaniesService;
-    private readonly LoadXlsLanguagesCompanyService _loadXlsLanguagesCompanyService;
+    private readonly LoadXlsLanguagesCompanyCustomService _loadXlsLanguagesCompanyCustomService;
     
     public LoadStagingDbController(
         LoadXlsLanguagesService loadXlsLanguagesService,
@@ -18,7 +18,7 @@ public sealed class LoadStagingDbController
         LoadXlsProvincesService loadXlsProvincesService,
         LoadXlsCitiesService loadXlsCitiesService,
         LoadXlsCompaniesService loadXlsCompaniesService,
-        LoadXlsLanguagesCompanyService loadXlsLanguagesCompanyService
+        LoadXlsLanguagesCompanyCustomService loadXlsLanguagesCompanyCustomService
     )
     {
         _loadXlsLanguagesService = loadXlsLanguagesService;
@@ -26,7 +26,7 @@ public sealed class LoadStagingDbController
         _loadXlsProvincesService = loadXlsProvincesService;
         _loadXlsCitiesService = loadXlsCitiesService;
         _loadXlsCompaniesService = loadXlsCompaniesService;
-        _loadXlsLanguagesCompanyService = loadXlsLanguagesCompanyService;
+        _loadXlsLanguagesCompanyCustomService = loadXlsLanguagesCompanyCustomService;
     }
 
     public void Invoke()
@@ -36,6 +36,6 @@ public sealed class LoadStagingDbController
         _loadXlsProvincesService.Invoke();
         _loadXlsCitiesService.Invoke();
         _loadXlsCompaniesService.Invoke();
-        _loadXlsLanguagesCompanyService.Invoke();
+        _loadXlsLanguagesCompanyCustomService.Invoke();
     }
 }

@@ -55,7 +55,7 @@
     <None Update="sql_files\post_load\0090_imp_companies.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\post_load\0100_imp_languages_company.sql">
+    <None Update="sql_files\post_load\0100_imp_languages_company_custom.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
