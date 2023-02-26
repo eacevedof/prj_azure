@@ -6,7 +6,7 @@ public sealed class ImpLanguagesCompanyCustomEntity: AbstractEntity
 {
     private ImpLanguagesCompanyCustomEntity()
     {
-        Table = "languages_company_custom";
+        Table = "imp_languages_company_custom";
         
         PathXls = "/Downloads/data-in.xlsx";
         SheetNr = 6;
