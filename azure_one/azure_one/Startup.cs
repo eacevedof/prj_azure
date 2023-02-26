@@ -45,9 +45,9 @@ public class Startup: FunctionsStartup
                     new LoadXlsCompaniesService()
                 )
         ); 
-        builder.Services.AddSingleton<RunSqlFilesController>(
-            s => new RunSqlFilesController(new RunSqlFilesService(new SqlFilesRepository(new Mssql())))
-            //s => new RunSqlFilesController()
+        builder.Services.AddSingleton<RunPostLoadFilesController>(
+            s => new RunPostLoadFilesController(new PostLoadImpTablesService(new PostLoadRepository(new Mssql())))
+            //s => new RunPostLoadFilesController()
         );
             
         //fix: No data is available for encoding 1252. For information on defining a custom encoding
