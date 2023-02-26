@@ -19,3 +19,6 @@ DELETE FROM [local_staging].[dbo].[imp_languages_company_custom] WHERE TRIM(COAL
 
 DELETE FROM [local_staging].[dbo].[imp_user_types] WHERE uuid='uuid';
 DELETE FROM [local_staging].[dbo].[imp_user_types] WHERE TRIM(COALESCE(uuid,''))='';
+
+DELETE FROM [local_staging].[dbo].[imp_status_employees] WHERE uuid='uuid';
+DELETE FROM [local_staging].[dbo].[imp_status_employees] WHERE TRIM(COALESCE(uuid,''))='';

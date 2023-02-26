@@ -7,3 +7,4 @@ TRUNCATE TABLE [local_staging].[dbo].[imp_cities];
 TRUNCATE TABLE [local_staging].[dbo].[imp_companies];
 TRUNCATE TABLE [local_staging].[dbo].[imp_languages_company_custom];
 TRUNCATE TABLE [local_staging].[dbo].[imp_user_types];
+TRUNCATE TABLE [local_staging].[dbo].[imp_status_employees];
