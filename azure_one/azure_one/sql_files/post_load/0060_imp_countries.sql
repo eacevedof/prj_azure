@@ -46,7 +46,7 @@ AND mt.id IS NULL
 
 -- actualizo los ids de los nuevos insertados
 UPDATE imp
-SET countries_id = mt.id
+SET imp.countries_id = mt.id
 FROM [local_laciahub].[dbo].[countries]  mt
 INNER JOIN [local_staging].[dbo].[imp_countries] imp
 -- esto hay que cambiarlo a por uuid

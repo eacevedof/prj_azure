@@ -1,13 +1,33 @@
+UPDATE mt
+SET
+    mt.name = CONVERT(VARCHAR(255), imp.tr),
+    mt.updated_at = GETDATE()
+FROM [local_laciahub].[dbo].[countries_tr]  mt
+INNER JOIN (
+    SELECT DISTINCT
+    vc_tr.mt_id as countries_id, 
+    vli.lang_from as locale,
+    CONVERT(VARCHAR(255),vc_tr.tr_i) as tr
+    FROM view_countries_tr [vc_tr]
+    INNER JOIN view_languages_index [vli]
+    ON [vc_tr].[tr_num] = [vli].[tr_num]
+) imp
+ON mt.id = imp.countries_id
+AND mt.locale = imp.locale
+;
+
+
 -- antes de ejecutar las trads debo cargar todas las maestras
 INSERT INTO [local_laciahub].[dbo].[countries_tr]
 (countries_id, locale, name, created_at)
 
 SELECT * 
 FROM (
-    SELECT 
+    -- error: paises repetidos por nombre. Por eso necesito uuid
+    SELECT DISTINCT
         vc_tr.mt_id as countries_id, 
         vli.lang_from as locale, 
-        vc_tr.tr_i as tr, 
+        CONVERT(VARCHAR(255),vc_tr.tr_i) as tr, 
         GETDATE() created_at 
     FROM view_countries_tr [vc_tr]
     INNER JOIN view_languages_index [vli]
