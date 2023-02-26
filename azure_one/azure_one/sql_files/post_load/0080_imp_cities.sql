@@ -1,3 +1,5 @@
+
+
 UPDATE [local_staging].[dbo].[imp_cities] SET cities_id=NULL;
 
 UPDATE imp
