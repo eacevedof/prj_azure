@@ -1,17 +1,18 @@
-esto va en 002_views_tr.sql
-
+```sql
+DROP VIEW [dbo].[view_languages_index];
 CREATE VIEW [dbo].[view_languages_index]
 AS
 SELECT
 DISTINCT imp.lang_from, imp.tr_num
 FROM [local_staging].[dbo].[imp_languages_company] imp
 WHERE 1=1
-AND imp.tr_num IS NOT NULL
+AND COALESCE(imp.tr_num,'')!=''
 ;
 
+DROP VIEW [dbo].[view_countries_tr];
 CREATE VIEW [dbo].[view_countries_tr]
 AS
-SELECT 1 tr_num, imp.tr_1
+SELECT 1 tr_num, imp.tr_1 as tr_i
 FROM [local_staging].[dbo].[imp_countries] imp
 UNION
 SELECT 2 tr_num, imp.tr_2
@@ -37,3 +38,4 @@ FROM [local_staging].[dbo].[imp_countries] imp
 UNION
 SELECT 9 tr_num, imp.tr_8
 FROM [local_staging].[dbo].[imp_countries] imp
+```
