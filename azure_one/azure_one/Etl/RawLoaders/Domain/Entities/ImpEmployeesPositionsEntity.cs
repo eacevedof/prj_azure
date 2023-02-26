@@ -8,7 +8,7 @@ public sealed class ImpEmployeesPositionsEntity : AbstractEntity
      
         PathXls = "/Downloads/data-in.xlsx";
         SheetNr = 9;
-        SheetMaxColumn = 12;
+        SheetMaxColumn = 11;
 
         ColumnMapping = new()
         {
