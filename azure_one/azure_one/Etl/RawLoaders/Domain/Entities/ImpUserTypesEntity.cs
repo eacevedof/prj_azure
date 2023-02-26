@@ -4,7 +4,7 @@ public sealed class ImpUserTypesEntity : AbstractEntity
 {
     private ImpUserTypesEntity()
     {
-        Table = "imp_countries";
+        Table = "imp_user_types";
      
         PathXls = "/Downloads/data-in.xlsx";
         SheetNr = 7;
