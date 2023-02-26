@@ -1,26 +1,33 @@
 using System;
-using azure_one.Etl.Shared.Infrastructure.Db;
-using azure_one.Etl.Shared.Infrastructure.Files;
-using azure_one.Etl.Shared.Infrastructure.Log;
-using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
 using Microsoft.VisualBasic;
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
 
-namespace azure_one.Etl.SqlRunners.Infrastructure.Repositories;
+using azure_one.Etl.Shared.Infrastructure.Files;
+using azure_one.Etl.Shared.Infrastructure.Db;
+using azure_one.Etl.Shared.Infrastructure.Log;
 
-public class SqlFilesRepository
+namespace azure_one.Etl.Shared.Infrastructure.Repositories;
+
+public sealed class PreloadRepository: AbsRepository
 {
     private readonly string _pathFilesFolder;
-    private readonly Mssql _db;
 
-    public SqlFilesRepository(Mssql db)
+    public PreloadRepository(Mssql db) : base(db)
     {
-        _db = db;        
         _pathFilesFolder = FileHelper.GetSqlFilesFolder();
+        _pathFilesFolder += "/pre_load";
+    }
+
+    public void TruncateTable(string tableName)
+    {
+        string sql = $"TRUNCATE TABLE [local_staging].[dbo].[{tableName}]";
+        Lg.pr(sql);
+        _db.Execute(sql);
     }
     
     public void Invoke()
     {
-        Lg.pr("SQL files execution started!");
+        Lg.pr("Preload SQL files execution started!");
         string[] sqlFiles = FileHelper.GetFileNamesInDir(_pathFilesFolder, "*.sql");
         if (sqlFiles.IsEmpty())
         {
@@ -43,5 +50,5 @@ public class SqlFilesRepository
             Lg.pr(sql);
             _db.ExecuteRaw(sql);
         }
-    }
+    }    
 }
