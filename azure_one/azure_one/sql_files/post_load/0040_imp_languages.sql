@@ -1,3 +1,13 @@
+UPDATE [local_staging].[dbo].[imp_languages] SET languages_id=NULL;
+
+UPDATE imp
+SET countries_id = mt.id
+FROM [local_laciahub].[dbo].[countries]  mt
+INNER JOIN [local_staging].[dbo].[imp_countries] imp
+ON mt.name = imp.val
+;
+
+
 UPDATE mt
 SET
     mt.language_name = CONVERT(VARCHAR(250), imp.val),
