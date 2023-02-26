@@ -22,7 +22,7 @@ UNION
 SELECT imp.uuid, 2 tr_num, imp.tr_2
 FROM [local_staging].[dbo].[imp_countries] imp
 WHERE 1=1
-AND COALESCE(imp.tr_2,'')!=''    
+AND COALESCE(imp.tr_2,'')!=''
 
 UNION
 

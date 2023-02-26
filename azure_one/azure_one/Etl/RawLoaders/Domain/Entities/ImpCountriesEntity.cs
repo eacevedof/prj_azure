@@ -8,7 +8,7 @@ public sealed class ImpCountriesEntity : AbstractEntity
      
         PathXls = "/Downloads/data-in.xlsx";
         SheetNr = 2;
-        SheetMaxColumn = 3;
+        SheetMaxColumn = 11;
 
         ColumnMapping = new()
         {
