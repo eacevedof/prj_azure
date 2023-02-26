@@ -4,14 +4,14 @@ UPDATE imp
 SET provinces_id = mt.id
 FROM [local_laciahub].[dbo].[provinces]  mt
 INNER JOIN [local_staging].[dbo].[imp_provinces] imp
-ON mt.name = imp.val
+ON mt.province_name = imp.val
 WHERE 1=1
 AND imp.nok IS NULL
 ;
 
 UPDATE mt
 SET
-    mt.name = CONVERT(VARCHAR(255), imp.val),
+    mt.province_name = CONVERT(VARCHAR(255), imp.val),
     mt.updated_at = GETDATE()
 FROM [local_laciahub].[dbo].[provinces]  mt
 INNER JOIN [local_staging].[dbo].[imp_provinces] imp
@@ -22,13 +22,15 @@ AND imp.nok IS NULL
 
 INSERT INTO [local_laciahub].[dbo].[provinces]
 (
- name, 
- iso2, iso3, phone_code,
- created_at
+countries_id,
+province_name, 
+province_code,
+created_at
 )
 SELECT
-    CONVERT(VARCHAR(255),imp.val) name,
-    imp.uuid iso2, imp.uuid iso3, imp.uuid phone_code,
+    imp.countries_id,
+    CONVERT(VARCHAR(255),imp.val) province_name,
+    imp.uuid province_code,
     GETDATE()
 FROM [local_staging].[dbo].[imp_provinces] imp
 LEFT JOIN [local_laciahub].[dbo].[provinces] mt
@@ -43,7 +45,7 @@ UPDATE imp
 SET imp.provinces_id = mt.id
 FROM [local_laciahub].[dbo].[provinces]  mt
 INNER JOIN [local_staging].[dbo].[imp_provinces] imp
-ON mt.name = imp.val
+ON mt.province_name = imp.val
 WHERE 1=1
 AND imp.nok IS NULL
 AND imp.provinces_id IS NULL;
