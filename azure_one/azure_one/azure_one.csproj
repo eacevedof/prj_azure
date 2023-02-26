@@ -58,6 +58,9 @@
     <None Update="sql_files\post_load\0100_imp_languages_company_custom.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="sql_files\post_load\0120_imp_user_types.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Etl\Shared" />
