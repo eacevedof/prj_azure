@@ -1,3 +1,11 @@
+UPDATE imp
+SET countries_id = mt.id
+FROM [local_laciahub].[dbo].[countries]  mt
+INNER JOIN [local_staging].[dbo].[imp_countries] imp
+-- esto hay que cambiarlo a por uuid
+ON mt.name = imp.val
+;
+
 UPDATE mt
 SET
     mt.name = CONVERT(VARCHAR(255), imp.val),
@@ -9,7 +17,7 @@ SET
 FROM [local_laciahub].[dbo].[countries]  mt
 INNER JOIN [local_staging].[dbo].[imp_countries] imp
 -- todo
-ON mt.id = CONVERT(INT,imp.uuid)
+ON mt.id = imp.countries_id
 ;
 
 INSERT INTO [local_laciahub].[dbo].[countries]
@@ -26,9 +34,10 @@ SELECT
     -- CONVERT(VARCHAR(255),imp.phone_code),
     GETDATE()
 FROM [local_staging].[dbo].[imp_countries] imp
-    LEFT JOIN [local_laciahub].[dbo].[countries] mt
+LEFT JOIN [local_laciahub].[dbo].[countries] mt
 -- ON CONVERT(INT, imp.uuid) = mt.id 
-ON imp.val = mt.name
+-- ON imp.val = mt.name
+ON mt.id = imp.countries_id
 WHERE 1=1
-  AND mt.id IS NULL
+AND mt.id IS NULL
 ;
