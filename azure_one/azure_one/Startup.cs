@@ -37,8 +37,7 @@ public class Startup: FunctionsStartup
         //controlleres
         builder.Services.AddSingleton<LoadStagingDbController>(
             s => new LoadStagingDbController(
-                    new PreLoadImpTablesService(new PreloadRepository(new Mssql())),
-                    new LoadXlsLanguagesService(), 
+                new LoadXlsLanguagesService(), 
                     new LoadXlsCountriesServices(),
                     new LoadXlsProvincesService(),
                     new LoadXlsCitiesService(),
