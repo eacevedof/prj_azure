@@ -27,10 +27,10 @@ public class Startup: FunctionsStartup
         builder.Services.AddHttpClient();
         
         //repositories
-        builder.Services.AddSingleton<PreloadRepository>(s => new PreloadRepository(new Mssql()));
+        builder.Services.AddSingleton<PreLoadRepository>(s => new PreLoadRepository(new Mssql()));
         
         //services
-        builder.Services.AddSingleton<PreLoadImpTablesService>(s => new PreLoadImpTablesService(new PreloadRepository(new Mssql())));
+        builder.Services.AddSingleton<PreLoadImpTablesService>(s => new PreLoadImpTablesService(new PreLoadRepository(new Mssql())));
         //builder.Services.AddSingleton<LoadXlsLanguagesService>(s => new LoadXlsLanguagesService());
         //builder.Services.AddSingleton<LoadXlsCountriesServices>(s => new LoadXlsCountriesServices());
         
@@ -45,7 +45,7 @@ public class Startup: FunctionsStartup
                 )
         ); 
         builder.Services.AddSingleton<RunPreLoadFilesController>(
-            s => new RunPreLoadFilesController(new PreLoadImpTablesService(new PreloadRepository(new Mssql())))
+            s => new RunPreLoadFilesController(new PreLoadImpTablesService(new PreLoadRepository(new Mssql())))
         );        
         builder.Services.AddSingleton<RunPostLoadFilesController>(
             s => new RunPostLoadFilesController(new PostLoadImpTablesService(new PostLoadRepository(new Mssql())))

@@ -1,18 +1,19 @@
 using azure_one.Etl.Shared.Infrastructure.Repositories;
+using azure_one.Etl.SqlRunners.Infrastructure.Repositories;
 
 namespace azure_one.Etl.SqlRunners.Application;
 
 public sealed class PreLoadImpTablesService
 {
-    private readonly PreloadRepository _preloadRepository;
+    private readonly PreLoadRepository _preLoadRepository;
    
-    public PreLoadImpTablesService(PreloadRepository preloadRepository)
+    public PreLoadImpTablesService(PreLoadRepository preLoadRepository)
     {
-        _preloadRepository = preloadRepository;
+        _preLoadRepository = preLoadRepository;
     }
     
     public void Invoke()
     {
-       _preloadRepository.Invoke(); 
+       _preLoadRepository.Invoke(); 
     }
 }
