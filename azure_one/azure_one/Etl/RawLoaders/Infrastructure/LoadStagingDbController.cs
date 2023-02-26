@@ -4,7 +4,7 @@ namespace azure_one.Etl.RawLoaders.Infrastructure;
 
 public sealed class LoadStagingDbController
 {
-    private readonly TruncateImpTablesService _truncateImpTablesService;
+    private readonly PreloadImpTablesService _preloadImpTablesService;
     private readonly LoadXlsLanguagesService _loadXlsLanguagesService;
     private readonly LoadXlsCountriesServices _loadXlsCountriesServices;
     private readonly LoadXlsProvincesService _loadXlsProvincesService;
@@ -13,7 +13,7 @@ public sealed class LoadStagingDbController
     private readonly LoadXlsCompaniesService _loadXlsCompaniesService;
     
     public LoadStagingDbController(
-        TruncateImpTablesService truncateImpTablesService,
+        PreloadImpTablesService preloadImpTablesService,
         LoadXlsLanguagesService loadXlsLanguagesService,
         LoadXlsCountriesServices loadXlsCountriesServices,
         LoadXlsProvincesService loadXlsProvincesService,
@@ -23,7 +23,7 @@ public sealed class LoadStagingDbController
     {
         _loadXlsLanguagesService = loadXlsLanguagesService;
         _loadXlsCountriesServices = loadXlsCountriesServices;
-        _truncateImpTablesService = truncateImpTablesService;
+        _preloadImpTablesService = preloadImpTablesService;
         _loadXlsProvincesService = loadXlsProvincesService;
         _loadXlsCitiesService = loadXlsCitiesService;
         _loadXlsCompaniesService = loadXlsCompaniesService;
@@ -31,7 +31,7 @@ public sealed class LoadStagingDbController
 
     public void Invoke()
     {
-        _truncateImpTablesService.Invoke();
+        _preloadImpTablesService.Invoke();
         _loadXlsLanguagesService.Invoke();
         _loadXlsCountriesServices.Invoke();
         _loadXlsProvincesService.Invoke();

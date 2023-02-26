@@ -27,17 +27,17 @@ public class Startup: FunctionsStartup
         builder.Services.AddHttpClient();
         
         //repositories
-        builder.Services.AddSingleton<TruncateRepository>(s => new TruncateRepository(new Mssql()));
+        builder.Services.AddSingleton<PreloadRepository>(s => new PreloadRepository(new Mssql()));
         
         //services
-        builder.Services.AddSingleton<TruncateImpTablesService>(s => new TruncateImpTablesService(new TruncateRepository(new Mssql())));
+        builder.Services.AddSingleton<PreloadImpTablesService>(s => new PreloadImpTablesService(new PreloadRepository(new Mssql())));
         //builder.Services.AddSingleton<LoadXlsLanguagesService>(s => new LoadXlsLanguagesService());
         //builder.Services.AddSingleton<LoadXlsCountriesServices>(s => new LoadXlsCountriesServices());
         
         //controlleres
         builder.Services.AddSingleton<LoadStagingDbController>(
             s => new LoadStagingDbController(
-                    new TruncateImpTablesService(new TruncateRepository(new Mssql())),
+                    new PreloadImpTablesService(new PreloadRepository(new Mssql())),
                     new LoadXlsLanguagesService(), 
                     new LoadXlsCountriesServices(),
                     new LoadXlsProvincesService(),
