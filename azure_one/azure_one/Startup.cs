@@ -41,7 +41,8 @@ public class Startup: FunctionsStartup
                     new LoadXlsCountriesServices(),
                     new LoadXlsProvincesService(),
                     new LoadXlsCitiesService(),
-                    new LoadXlsCompaniesService()
+                    new LoadXlsCompaniesService(),
+                    new LoadXlsLanguagesCompanyService()
                 )
         ); 
         builder.Services.AddSingleton<RunPreLoadFilesController>(
