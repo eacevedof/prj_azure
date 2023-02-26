@@ -40,6 +40,9 @@
     <None Update="sql_files\post_load\0060_imp_countries.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="sql_files\post_load\0010_clean_headers.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Etl\Shared" />
