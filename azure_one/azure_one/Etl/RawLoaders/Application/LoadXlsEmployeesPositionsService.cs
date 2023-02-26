@@ -11,17 +11,17 @@ public sealed class LoadXlsEmployeesPositionsService: AbsRawService
 {
     public override void Invoke()
     {
-        ImpUserTypesEntity ImpUserTypesEntity = ImpUserTypesEntity.GetInstance();
+        ImpEmployeesPositionsEntity ImpEmployeesPositionsEntity = ImpEmployeesPositionsEntity.GetInstance();
         ExcelReader excelReader = ExcelReader.FromPrimitives((
-            Env.GetConcat("HOME", ImpUserTypesEntity.PathXls), 
-            ImpUserTypesEntity.SheetNr, 
-            ImpUserTypesEntity.SheetMaxColumn
+            Env.GetConcat("HOME", ImpEmployeesPositionsEntity.PathXls), 
+            ImpEmployeesPositionsEntity.SheetNr, 
+            ImpEmployeesPositionsEntity.SheetMaxColumn
         ));
         
         string sql = (
             new BulkInsert(
-                ImpUserTypesEntity.Table, 
-                ImpUserTypesEntity.ColumnMapping, 
+                ImpEmployeesPositionsEntity.Table, 
+                ImpEmployeesPositionsEntity.ColumnMapping, 
                 excelReader.GetData()
             )
         ).GetBulkInsertQuery();
