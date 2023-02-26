@@ -1,18 +1,18 @@
 using System;
-using Microsoft.VisualBasic;
-using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
-
-using azure_one.Etl.Shared.Infrastructure.Files;
 using azure_one.Etl.Shared.Infrastructure.Db;
+using azure_one.Etl.Shared.Infrastructure.Files;
 using azure_one.Etl.Shared.Infrastructure.Log;
+using azure_one.Etl.Shared.Infrastructure.Repositories;
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
+using Microsoft.VisualBasic;
 
-namespace azure_one.Etl.Shared.Infrastructure.Repositories;
+namespace azure_one.Etl.SqlRunners.Infrastructure.Repositories;
 
-public sealed class PreloadRepository: AbsRepository
+public sealed class PreLoadRepository: AbsRepository
 {
     private readonly string _pathFilesFolder;
 
-    public PreloadRepository(Mssql db) : base(db)
+    public PreLoadRepository(Mssql db) : base(db)
     {
         _pathFilesFolder = FileHelper.GetSqlFilesFolder();
         _pathFilesFolder += "/pre_load";
