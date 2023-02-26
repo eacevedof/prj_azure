@@ -1,3 +1,5 @@
+UPDATE [local_staging].[dbo].[imp_countries] SET countries_id=NULL;
+
 UPDATE imp
 SET countries_id = mt.id
 FROM [local_laciahub].[dbo].[countries]  mt
@@ -40,4 +42,15 @@ LEFT JOIN [local_laciahub].[dbo].[countries] mt
 ON mt.id = imp.countries_id
 WHERE 1=1
 AND mt.id IS NULL
+;
+
+-- actualizo los ids de los nuevos insertados
+UPDATE imp
+SET countries_id = mt.id
+FROM [local_laciahub].[dbo].[countries]  mt
+INNER JOIN [local_staging].[dbo].[imp_countries] imp
+-- esto hay que cambiarlo a por uuid
+ON mt.name = imp.val
+WHERE 1=1
+AND imp.countries_id IS NULL;
 ;
