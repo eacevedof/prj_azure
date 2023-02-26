@@ -1,8 +1,8 @@
 using azure_one.Etl.Shared.Infrastructure.Repositories;
 
-namespace azure_one.Etl.RawLoaders.Application;
+namespace azure_one.Etl.SqlRunners.Application;
 
-public sealed class PreLoadImpTablesService: AbsRawService
+public sealed class PreLoadImpTablesService
 {
     private readonly PreloadRepository _preloadRepository;
    
@@ -11,7 +11,7 @@ public sealed class PreLoadImpTablesService: AbsRawService
         _preloadRepository = preloadRepository;
     }
     
-    public override void Invoke()
+    public void Invoke()
     {
        _preloadRepository.Invoke(); 
     }

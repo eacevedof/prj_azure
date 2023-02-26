@@ -17,14 +17,17 @@ namespace azure_one
 {
     public class azure_one
     {
+        private readonly RunPreLoadFilesController _runPreLoadFilesController;
         private readonly LoadStagingDbController _loadStagingDbController;
         private readonly RunPostLoadFilesController _runPostLoadFilesController;
         
         public azure_one(
+            RunPreLoadFilesController runPreLoadFilesController,
             LoadStagingDbController loadStagingDbController,
             RunPostLoadFilesController runPostLoadFilesController
         )
         {
+            _runPreLoadFilesController = runPreLoadFilesController;
             _loadStagingDbController = loadStagingDbController;
             _runPostLoadFilesController = runPostLoadFilesController;
         }
@@ -41,9 +44,14 @@ namespace azure_one
                 string transaction_id = req.Query["transaction_id"];
                 
                 Lg.pr("ETL azure_one started...");
+                _runPreLoadFilesController.Invoke();
+                
+                Lg.pr("ETL azure_one started...");
                 _loadStagingDbController.Invoke();
+                
                 Lg.pr("ETL staging db loaded!");
                 _runPostLoadFilesController.Invoke();
+                
                 Lg.pr("ETL sql files executed");
 
                 string successMessage = $"ETL AzureOne ({tenant_slug},{transaction_id}) has finished successfully!.";
