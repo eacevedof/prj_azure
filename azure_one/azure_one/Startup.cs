@@ -44,6 +44,10 @@ public class Startup: FunctionsStartup
                     new LoadXlsCompaniesService()
                 )
         ); 
+        builder.Services.AddSingleton<RunPreLoadFilesController>(
+            s => new RunPreLoadFilesController(new PreLoadImpTablesService(new PreloadRepository(new Mssql())))
+            //s => new RunPostLoadFilesController()
+        );        
         builder.Services.AddSingleton<RunPostLoadFilesController>(
             s => new RunPostLoadFilesController(new PostLoadImpTablesService(new PostLoadRepository(new Mssql())))
             //s => new RunPostLoadFilesController()
