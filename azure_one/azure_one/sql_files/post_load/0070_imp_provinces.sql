@@ -25,7 +25,7 @@ UPDATE [local_staging].[dbo].[imp_provinces] SET nok = 1 WHERE countries_id IS N
 
 UPDATE mt
 SET
-mt.province_name = CONVERT(VARCHAR(255), imp.val),
+mt.province_name = CONVERT(VARCHAR(50), imp.val),
 mt.updated_at = GETDATE()
 FROM [local_laciahub].[dbo].[provinces]  mt
 INNER JOIN [local_staging].[dbo].[imp_provinces] imp
@@ -38,13 +38,14 @@ INSERT INTO [local_laciahub].[dbo].[provinces]
 (
 countries_id,
 province_name, 
-province_code,
+-- province_code, no es obligatorio
 created_at
 )
 SELECT
     imp.countries_id,
-    CONVERT(VARCHAR(255),imp.val) province_name,
-    imp.uuid province_code,
+    CONVERT(VARCHAR(50),imp.val) province_name,
+    -- imp.uuid province_code,
+    -- 'n. p.' province_code,
     GETDATE()
 FROM [local_staging].[dbo].[imp_provinces] imp
 LEFT JOIN [local_laciahub].[dbo].[provinces] mt
