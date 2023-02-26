@@ -73,6 +73,9 @@
     <None Update="sql_files\post_load\0130_imp_status_employees.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="sql_files\post_load\0145_imp_employees_positions_tr.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Etl\Shared" />
