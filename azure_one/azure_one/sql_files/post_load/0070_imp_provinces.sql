@@ -1,3 +1,4 @@
+
 UPDATE [local_staging].[dbo].[imp_provinces] SET provinces_id=NULL;
 
 -- actualizacion de provinces_id

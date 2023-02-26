@@ -1,3 +1,4 @@
+
 UPDATE mt
 SET
     mt.province_name = CONVERT(VARCHAR(50), imp.tr),
