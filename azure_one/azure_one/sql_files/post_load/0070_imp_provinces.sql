@@ -58,7 +58,7 @@ AND mt.id IS NULL
 -- actualizo los ids de los nuevos insertados
 UPDATE imp
 SET imp.provinces_id = mt.id
-FROM [local_laciahub].[dbo].[provinces]  mt
+FROM [local_laciahub].[dbo].[provinces] mt
 INNER JOIN [local_staging].[dbo].[imp_provinces] imp
 ON mt.province_name = imp.val
 WHERE 1=1
