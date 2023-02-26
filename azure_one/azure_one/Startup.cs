@@ -46,11 +46,9 @@ public class Startup: FunctionsStartup
         ); 
         builder.Services.AddSingleton<RunPreLoadFilesController>(
             s => new RunPreLoadFilesController(new PreLoadImpTablesService(new PreloadRepository(new Mssql())))
-            //s => new RunPostLoadFilesController()
         );        
         builder.Services.AddSingleton<RunPostLoadFilesController>(
             s => new RunPostLoadFilesController(new PostLoadImpTablesService(new PostLoadRepository(new Mssql())))
-            //s => new RunPostLoadFilesController()
         );
             
         //fix: No data is available for encoding 1252. For information on defining a custom encoding
