@@ -14,6 +14,8 @@ INNER JOIN (
 ) imp
 ON mt.id = imp.countries_id
 AND mt.locale = imp.locale
+WHERE 1=1
+-- AND imp.nok IS NULL
 ;
 
 

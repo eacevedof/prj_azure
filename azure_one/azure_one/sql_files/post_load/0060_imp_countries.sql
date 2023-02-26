@@ -6,6 +6,8 @@ FROM [local_laciahub].[dbo].[countries]  mt
 INNER JOIN [local_staging].[dbo].[imp_countries] imp
 -- esto hay que cambiarlo a por uuid
 ON mt.name = imp.val
+WHERE 1=1
+AND imp.nok IS NULL
 ;
 
 UPDATE mt
@@ -18,8 +20,9 @@ SET
     mt.updated_at = GETDATE()
 FROM [local_laciahub].[dbo].[countries]  mt
 INNER JOIN [local_staging].[dbo].[imp_countries] imp
--- todo
 ON mt.id = imp.countries_id
+WHERE 1=1
+AND imp.nok IS NULL
 ;
 
 INSERT INTO [local_laciahub].[dbo].[countries]
@@ -37,10 +40,9 @@ SELECT
     GETDATE()
 FROM [local_staging].[dbo].[imp_countries] imp
 LEFT JOIN [local_laciahub].[dbo].[countries] mt
--- ON CONVERT(INT, imp.uuid) = mt.id 
--- ON imp.val = mt.name
 ON mt.id = imp.countries_id
 WHERE 1=1
+AND imp.nok IS NULL
 AND mt.id IS NULL
 ;
 
@@ -52,5 +54,6 @@ INNER JOIN [local_staging].[dbo].[imp_countries] imp
 -- esto hay que cambiarlo a por uuid
 ON mt.name = imp.val
 WHERE 1=1
+AND imp.nok IS NULL
 AND imp.countries_id IS NULL;
 ;
