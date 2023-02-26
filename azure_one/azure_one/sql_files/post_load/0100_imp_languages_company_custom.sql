@@ -13,7 +13,7 @@ AND imp.nok IS NULL
 -- el lang-id por locale
 UPDATE imp
 SET 
-  imp.languages_company_id = mt.id
+  imp.languages_id = mt.id
 FROM [local_laciahub].[dbo].[languages] mt
 INNER JOIN [local_staging].[dbo].[imp_languages_company_custom] imp
 ON mt.locale = imp.lang_from
@@ -40,7 +40,7 @@ UPDATE mt
 SET
 -- mt.languages_id = imp.languages_id,
 -- mt.companies_id = imp.companies_id,
-mt.language_name = CONVERT(VARCHAR(250),imp.language_name),
+mt.language_name = CONVERT(VARCHAR(250),imp.value_tr),
 -- mt.languages_target_id = imp.languages_target_id
 mt.updated_at = GETDATE()
 FROM [local_laciahub].[dbo].[languages_company_custom] mt
@@ -61,7 +61,7 @@ created_at
 SELECT
     imp.languages_id,
     imp.companies_id,
-    CONVERT(VARCHAR(250),imp.language_name) language_name,
+    CONVERT(VARCHAR(250),imp.value_tr) language_name,
     CONVERT(VARCHAR(250),imp.languages_target_id) languages_target_id,
     -- 0 by_default,
     GETDATE() created_at
@@ -87,6 +87,6 @@ UPDATE mt
 SET mt.by_default = 1
 FROM [local_laciahub].[dbo].[languages_company_custom] mt
 INNER JOIN [local_laciahub].[dbo].[languages] mt2
-ON mt.languages_id = mt2
+ON mt.languages_id = mt2.id
 WHERE 1=1
 AND mt2.locale = 'en'
