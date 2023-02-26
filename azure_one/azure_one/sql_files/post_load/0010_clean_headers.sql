@@ -1,3 +1,4 @@
+-- cleaning first line
 DELETE FROM [local_staging].[dbo].[imp_languages] WHERE uuid='uuid';
 DELETE FROM [local_staging].[dbo].[imp_languages] WHERE TRIM(COALESCE(uuid,''))='';
 
@@ -16,5 +17,5 @@ DELETE FROM [local_staging].[dbo].[imp_companies] WHERE TRIM(COALESCE(uuid,''))=
 DELETE FROM [local_staging].[dbo].[imp_languages_company_custom] WHERE companies_uuid='companies_uuid';
 DELETE FROM [local_staging].[dbo].[imp_languages_company_custom] WHERE TRIM(COALESCE(companies_uuid,''))='';
 
-DELETE FROM [local_staging].[dbo].[imp_languages_company_custom] WHERE uuid='uuid';
-DELETE FROM [local_staging].[dbo].[imp_languages_company_custom] WHERE TRIM(COALESCE(uuid,''))='';
+DELETE FROM [local_staging].[dbo].[imp_user_types] WHERE uuid='uuid';
+DELETE FROM [local_staging].[dbo].[imp_user_types] WHERE TRIM(COALESCE(uuid,''))='';
