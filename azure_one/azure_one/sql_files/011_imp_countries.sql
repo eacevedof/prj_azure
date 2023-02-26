@@ -32,51 +32,17 @@ INSERT INTO [local_laciahub].[dbo].[countries]
  iso2, iso3, phone_code,
  created_at
 )
-SELECT 
+SELECT
     CONVERT(VARCHAR(255),imp.val) name,
     imp.uuid iso2, imp.uuid iso3, imp.uuid phone_code,
     -- CONVERT(VARCHAR(255),imp.iso2),
     -- CONVERT(VARCHAR(255),imp.iso3),
     -- CONVERT(VARCHAR(255),imp.phone_code),
-    GETDATE() 
+    GETDATE()
 FROM [local_staging].[dbo].[imp_countries] imp
-LEFT JOIN [local_laciahub].[dbo].[countries] mt
-ON mt.id = CONVERT(INT, imp.uuid)
+    LEFT JOIN [local_laciahub].[dbo].[countries] mt
+-- ON CONVERT(INT, imp.uuid) = mt.id 
+ON imp.val = mt.name
 WHERE 1=1
-AND mt.id IS NULL
+  AND mt.id IS NULL
 ;
-
--- case when 
-SELECT 
-    DISTINCT lang_from, tr_num 
-FROM [local_staging].[dbo].[imp_languages_company]
-ORDER BY tr_num
-
-CREATE VIEW IF NOT EXISTS [local_staging].[dbo].[view_countries_tr]
-AS
-    SELECT 1 tr_num, imp.tr_1
-    FROM [local_staging].[dbo].[imp_countries]
-        UNION
-    SELECT 2 tr_num, imp.tr_2
-    FROM [local_staging].[dbo].[imp_countries]
-        UNION
-    SELECT 3 tr_num, imp.tr_3
-    FROM [local_staging].[dbo].[imp_countries]
-        UNION
-    SELECT 4 tr_num, imp.tr_4
-    FROM [local_staging].[dbo].[imp_countries]
-        UNION
-    SELECT 5 tr_num, imp.tr_5
-    FROM [local_staging].[dbo].[imp_countries]
-        UNION
-    SELECT 6 tr_num, imp.tr_6
-    FROM [local_staging].[dbo].[imp_countries]
-        UNION
-    SELECT 7 tr_num, imp.tr_7
-    FROM [local_staging].[dbo].[imp_countries]
-        UNION
-    SELECT 8 tr_num, imp.tr_8
-    FROM [local_staging].[dbo].[imp_countries]
-        UNION
-    SELECT 9 tr_num, imp.tr_8
-    FROM [local_staging].[dbo].[imp_countries]

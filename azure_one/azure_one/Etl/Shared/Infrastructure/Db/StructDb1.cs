@@ -8,7 +8,7 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
     {
         private const string _server = "localhost";
         private const string _port = "1433";
-        private const string _database = "local_laciahub";
+        private const string _database = "local_staging";
         private const string _username = "sa";
         private const string _password = "EafEaf1234";
         
@@ -31,7 +31,9 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
             //log.LogInformation("C# HTTP trigger function processed a request.");
             string connectionString = string.Join(";", connectionParts);
             //Lg.pr(connectionString, "connectionString");
-            connectionString = this.GetConnectionStringBuilder().ConnectionString;
+            
+            //Server=localhost; Initial Catalog={0}; Integrated Security=true; pooling=false;";
+            connectionString = GetConnectionStringBuilder().ConnectionString;
             Lg.pr(connectionString, "connectionString 2");
             return connectionString;
         }
@@ -43,6 +45,10 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
             builder.InitialCatalog = _database;
             builder.UserID = _username;
             builder.Password = _password;
+            builder.IntegratedSecurity = false;
+            builder.Pooling = false;
+            builder.Encrypt = false;
+            builder.TrustServerCertificate = true;
             return builder;
         }
     }

@@ -29,6 +29,7 @@ public class SqlFilesRepository
         }
         
         Array.Sort(sqlFiles);
+        Lg.pr(string.Join("\n", sqlFiles));
         foreach (string pathFile in sqlFiles)
         {
             Lg.pr($"handling file: {pathFile}");
@@ -41,6 +42,7 @@ public class SqlFilesRepository
             }
             Lg.pr(sql);
             _db.ExecuteRaw(sql);
+            //_db.Execute2(sql);
         }
     }
 }
