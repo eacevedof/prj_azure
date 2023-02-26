@@ -48,5 +48,6 @@ public sealed class LoadStagingDbController
         _loadXlsLanguagesCompanyCustomService.Invoke();
         _loadXlsUserTypesService.Invoke();
         _loadXlsStatusEmployeesService.Invoke();
+        _loadXlsEmployeesPositionsService.Invoke();
     }
 }
