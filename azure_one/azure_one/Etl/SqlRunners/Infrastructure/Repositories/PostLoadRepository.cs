@@ -7,15 +7,16 @@ using Microsoft.VisualBasic;
 
 namespace azure_one.Etl.SqlRunners.Infrastructure.Repositories;
 
-public class SqlFilesRepository
+public class PostLoadRepository
 {
     private readonly string _pathFilesFolder;
     private readonly Mssql _db;
 
-    public SqlFilesRepository(Mssql db)
+    public PostLoadRepository(Mssql db)
     {
         _db = db;        
         _pathFilesFolder = FileHelper.GetSqlFilesFolder();
+        _pathFilesFolder += "/post_load";
     }
     
     public void Invoke()
