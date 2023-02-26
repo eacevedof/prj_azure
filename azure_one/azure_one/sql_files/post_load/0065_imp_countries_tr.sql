@@ -5,7 +5,7 @@ INSERT INTO [local_laciahub].[dbo].[countries_tr]
 SELECT * 
 FROM (
     SELECT 
-        vc_tr.countries_id as countries_id, 
+        vc_tr.mt_id as countries_id, 
         vli.lang_from as locale, 
         vc_tr.tr_i as tr, 
         GETDATE() created_at 
@@ -14,7 +14,6 @@ FROM (
     ON [vc_tr].[tr_num] = [vli].[tr_num]
 ) AS imp
 WHERE 1=1
-
 AND NOT EXISTS 
 (
     SELECT id
