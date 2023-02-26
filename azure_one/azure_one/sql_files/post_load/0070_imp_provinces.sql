@@ -1,5 +1,6 @@
 UPDATE [local_staging].[dbo].[imp_provinces] SET provinces_id=NULL;
 
+-- actualizacion de provinces_id
 UPDATE imp
 SET imp.provinces_id = mt.id
 FROM [local_laciahub].[dbo].[provinces]  mt
@@ -10,6 +11,7 @@ WHERE 1=1
 AND imp.nok IS NULL
 ;
 
+-- actualizacion de countries_id
 UPDATE imp
 SET imp.countries_id = mt.id
 FROM [local_laciahub].[dbo].[countries]  mt
