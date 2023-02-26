@@ -2,9 +2,9 @@
 
 UPDATE imp
 SET 
-  imp.companies_id = mt.id
-FROM [local_laciahub].[dbo].[companies] mt
-INNER JOIN [local_staging].[dbo].[imp_companies] imp
+  imp.languages_company_custom_id = mt.id
+FROM [local_laciahub].[dbo].[languages_company_custom] mt
+INNER JOIN [local_staging].[dbo].[imp_languages_company_custom] imp
 -- ON mt.name = imp.val
 ON mt.id = imp.uuid
 WHERE 1=1
@@ -14,7 +14,7 @@ AND imp.nok IS NULL
 UPDATE imp
 SET imp.city_id = mt.id
 FROM [local_laciahub].[dbo].[cities] mt
-INNER JOIN [local_staging].[dbo].[imp_companies] imp
+INNER JOIN [local_staging].[dbo].[imp_languages_company_custom] imp
 ON mt.id = imp.city_uuid
 WHERE 1=1
 AND imp.nok IS NULL
@@ -25,15 +25,15 @@ SET imp.country_id = mt.countries_id
 FROM [local_laciahub].[dbo].[cities] mt1
 INNER JOIN [local_laciahub].[dbo].[provinces] mt
 ON mt1.provinces_id = mt.id
-INNER JOIN [local_staging].[dbo].[imp_companies] imp
+INNER JOIN [local_staging].[dbo].[imp_languages_company_custom] imp
 ON mt1.id = imp.city_uuid
 WHERE 1=1
 AND imp.nok IS NULL
 ;
 
-UPDATE [local_staging].[dbo].[imp_companies] SET nok = 1 WHERE city_id IS NULL;
-UPDATE [local_staging].[dbo].[imp_companies] SET nok = 1 WHERE country_id IS NULL;
-UPDATE [local_staging].[dbo].[imp_companies] SET nok = 1 WHERE company_type NOT IN ('owner','client','provider');
+UPDATE [local_staging].[dbo].[imp_languages_company_custom] SET nok = 1 WHERE city_id IS NULL;
+UPDATE [local_staging].[dbo].[imp_languages_company_custom] SET nok = 1 WHERE country_id IS NULL;
+UPDATE [local_staging].[dbo].[imp_languages_company_custom] SET nok = 1 WHERE company_type NOT IN ('owner','client','provider');
 
 
 /*
@@ -58,27 +58,27 @@ mt.company_contact_email = CONVERT(VARCHAR(45),imp.company_contact_email),
 -- mt.company_active = 1
 -- mt.link_expiration_days = 10
 mt.updated_at = GETDATE()
-FROM [local_laciahub].[dbo].[companies] mt
-INNER JOIN [local_staging].[dbo].[imp_companies] imp
-ON mt.id = imp.companies_id
+FROM [local_laciahub].[dbo].[languages_company_custom] mt
+INNER JOIN [local_staging].[dbo].[imp_languages_company_custom] imp
+ON mt.id = imp.languages_company_custom_id
 WHERE 1=1
 AND imp.nok IS NULL
 ;
 
-UPDATE [local_staging].[dbo].[imp_companies]
+UPDATE [local_staging].[dbo].[imp_languages_company_custom]
 SET 
 company_token = (SELECT UPPER(CONVERT(VARCHAR(25), REPLACE(NEWID(), '-',''))) ),
 company_cod_int = CONVERT(VARCHAR(9),(SELECT CONVERT(VARCHAR,id)+CONVERT(VARCHAR(45),CONVERT(INT,RAND()*1000000000)))),
 company_active = 1,
 link_expiration_days = 10
 WHERE 1=1
-AND companies_id IS NULL
+AND languages_company_custom_id IS NULL
 AND nok IS NULL
 ;
 
 
 
-INSERT INTO [local_laciahub].[dbo].[companies]
+INSERT INTO [local_laciahub].[dbo].[languages_company_custom]
 (
 city_id, country_id, company_token, company_type, company_cod_int, company_name, company_address1,
 company_address2, company_cp, company_contact_person, company_contact_phone, company_contact_email,
@@ -100,9 +100,9 @@ SELECT
     imp.company_active,
     imp.link_expiration_days,
     GETDATE() created_at
-FROM [local_staging].[dbo].[imp_companies] imp
-LEFT JOIN [local_laciahub].[dbo].[companies] mt
-ON mt.id = imp.companies_id
+FROM [local_staging].[dbo].[imp_languages_company_custom] imp
+LEFT JOIN [local_laciahub].[dbo].[languages_company_custom] mt
+ON mt.id = imp.languages_company_custom_id
 WHERE 1=1
 AND imp.nok IS NULL
 AND mt.id IS NULL
@@ -111,12 +111,12 @@ AND mt.id IS NULL
 -- actualizo los ids de los nuevos insertados
 UPDATE imp
 SET 
-  imp.companies_id = mt.id,
+  imp.languages_company_custom_id = mt.id,
   imp.updated_at = GETDATE()
-FROM [local_laciahub].[dbo].[companies] mt
-INNER JOIN [local_staging].[dbo].[imp_companies] imp
+FROM [local_laciahub].[dbo].[languages_company_custom] mt
+INNER JOIN [local_staging].[dbo].[imp_languages_company_custom] imp
 ON mt.company_token = imp.company_token
 WHERE 1=1
 AND imp.nok IS NULL
-AND imp.companies_id IS NULL;
+AND imp.languages_company_custom_id IS NULL;
 ;
