@@ -12,7 +12,7 @@ INNER JOIN (
     INNER JOIN view_languages_index [vli]
     ON [vc_tr].[tr_num] = [vli].[tr_num]
 ) imp
-ON mt.id = imp.user_types_id
+ON mt.user_types_id = imp.user_types_id
 AND mt.locale = imp.locale
 WHERE 1=1
 ;

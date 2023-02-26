@@ -13,7 +13,7 @@ INNER JOIN (
     INNER JOIN view_languages_index [vli]
     ON [vc_tr].[tr_num] = [vli].[tr_num]
 ) imp
-ON mt.id = imp.provinces_id
+ON mt.provinces_id = imp.provinces_id
 AND mt.locale = imp.locale
 WHERE 1=1
 ;
