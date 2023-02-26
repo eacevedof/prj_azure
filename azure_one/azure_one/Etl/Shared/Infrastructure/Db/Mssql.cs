@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
+//using Sql2 = Microsoft.Data.SqlClient ;
 
 
 namespace azure_one.Etl.Shared.Infrastructure.Db
@@ -10,6 +11,7 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 	{
 		private readonly StructDb1 _dbConfig1;
 		private readonly SqlConnection _connection;
+		//private readonly Sql2.SqlConnection _sql2connection;
 		private int _rowsAffected;
 		private int _lastInsertId;
 		
@@ -17,6 +19,7 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 		{
 			_dbConfig1 = new StructDb1();
 			_connection = new SqlConnection(_dbConfig1.GetConnectionString());
+			//_sql2connection = new Sql2.SqlConnection(_dbConfig1.GetConnectionString());
 		}
 
 		public static Mssql GetInstance()
@@ -79,6 +82,18 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 			if (_connection.State == ConnectionState.Closed) Open();
 			
 			using (cmdSql) cmdSql.ExecuteNonQuery();
+		}
+
+		private void Execute2(string query)
+		{/*
+			if (_sql2connection.State == ConnectionState.Closed)
+				_sql2connection.Open();
+			
+			Sql2.SqlCommand cmd = _sql2connection.CreateCommand();
+			cmd.CommandText = query;
+			cmd.ExecuteNonQuery();
+			_sql2connection.Close();
+			*/
 		}
 
 		public int GetRowsAffected()
