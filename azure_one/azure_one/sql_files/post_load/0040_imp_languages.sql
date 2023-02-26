@@ -1,12 +1,11 @@
 UPDATE [local_staging].[dbo].[imp_languages] SET languages_id=NULL;
 
 UPDATE imp
-SET countries_id = mt.id
-FROM [local_laciahub].[dbo].[countries]  mt
-INNER JOIN [local_staging].[dbo].[imp_countries] imp
-ON mt.name = imp.val
+SET languages_id = mt.id
+FROM [local_laciahub].[dbo].[languages]  mt
+INNER JOIN [local_staging].[dbo].[imp_languages] imp
+ON mt.language_name = imp.val
 ;
-
 
 UPDATE mt
 SET
@@ -15,7 +14,7 @@ SET
     mt.updated_at = GETDATE()
 FROM [local_laciahub].[dbo].[languages]  mt
 INNER JOIN [local_staging].[dbo].[imp_languages] imp
-ON mt.locale = imp.uuid
+ON mt.id = imp.languages_id
 ;
 
 -- token no permite nulls
@@ -28,7 +27,7 @@ FROM [local_staging].[dbo].[imp_languages] imp
 LEFT JOIN [local_laciahub].[dbo].[languages] mt
 ON mt.locale = imp.uuid
 WHERE 1=1
-AND mt.id IS NULL
+AND imp.languages_id IS NULL
 ;
 
 UPDATE [local_laciahub].[dbo].[languages]
