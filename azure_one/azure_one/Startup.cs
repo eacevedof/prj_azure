@@ -30,14 +30,14 @@ public class Startup: FunctionsStartup
         builder.Services.AddSingleton<PreloadRepository>(s => new PreloadRepository(new Mssql()));
         
         //services
-        builder.Services.AddSingleton<PreloadImpTablesService>(s => new PreloadImpTablesService(new PreloadRepository(new Mssql())));
+        builder.Services.AddSingleton<PreLoadImpTablesService>(s => new PreLoadImpTablesService(new PreloadRepository(new Mssql())));
         //builder.Services.AddSingleton<LoadXlsLanguagesService>(s => new LoadXlsLanguagesService());
         //builder.Services.AddSingleton<LoadXlsCountriesServices>(s => new LoadXlsCountriesServices());
         
         //controlleres
         builder.Services.AddSingleton<LoadStagingDbController>(
             s => new LoadStagingDbController(
-                    new PreloadImpTablesService(new PreloadRepository(new Mssql())),
+                    new PreLoadImpTablesService(new PreloadRepository(new Mssql())),
                     new LoadXlsLanguagesService(), 
                     new LoadXlsCountriesServices(),
                     new LoadXlsProvincesService(),
