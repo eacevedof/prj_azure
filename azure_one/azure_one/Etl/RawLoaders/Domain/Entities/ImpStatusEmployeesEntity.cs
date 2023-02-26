@@ -7,7 +7,7 @@ public sealed class ImpStatusEmployeesEntity : AbstractEntity
         Table = "imp_status_employees";
      
         PathXls = "/Downloads/data-in.xlsx";
-        SheetNr = 7;
+        SheetNr = 8;
         SheetMaxColumn = 11;
 
         ColumnMapping = new()
