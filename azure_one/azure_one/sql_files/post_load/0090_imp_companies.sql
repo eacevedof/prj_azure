@@ -1,7 +1,5 @@
 
 
-UPDATE [local_staging].[dbo].[imp_companies] SET companies_id=NULL;
-
 UPDATE imp
 SET imp.companies_id = mt.id
 FROM [local_laciahub].[dbo].[companies] mt
@@ -23,15 +21,17 @@ AND imp.nok IS NULL
 
 UPDATE imp
 SET imp.country_id = mt.countries_id
-FROM [local_laciahub].[dbo].[cities] mt
+FROM [local_laciahub].[dbo].[cities] mt1
+INNER JOIN [local_laciahub].[dbo].[provinces] mt
+ON mt1.provinces_id = mt.id
 INNER JOIN [local_staging].[dbo].[imp_companies] imp
-ON mt.id = imp.city_uuid
+ON mt1.id = imp.city_uuid
 WHERE 1=1
 AND imp.nok IS NULL
 ;
 
 UPDATE [local_staging].[dbo].[imp_companies] SET nok = 1 WHERE city_id IS NULL;
-UPDATE [local_staging].[dbo].[imp_companies] SET nok = 1 WHERE countries_id IS NULL;
+UPDATE [local_staging].[dbo].[imp_companies] SET nok = 1 WHERE country_id IS NULL;
 
 UPDATE mt
 SET
