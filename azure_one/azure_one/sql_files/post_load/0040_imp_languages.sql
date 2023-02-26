@@ -1,9 +1,3 @@
-DELETE FROM [local_staging].[dbo].[imp_languages] WHERE uuid='uuid'
-;
-DELETE FROM [local_staging].[dbo].[imp_languages] WHERE uuid IS NULL
-;
-
-
 UPDATE mt
 SET
     mt.language_name = CONVERT(VARCHAR(250), imp.val),

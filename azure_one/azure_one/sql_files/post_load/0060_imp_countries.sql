@@ -1,17 +1,3 @@
-DELETE FROM [local_staging].[dbo].[imp_countries] WHERE uuid='uuid'
-;
-DELETE FROM [local_staging].[dbo].[imp_countries] WHERE uuid IS NULL
-;
-
-UPDATE [local_staging].[dbo].[imp_countries] SET tr_1 = NULL WHERE tr_1 ='';
-UPDATE [local_staging].[dbo].[imp_countries] SET tr_2 = NULL WHERE tr_2 ='';
-UPDATE [local_staging].[dbo].[imp_countries] SET tr_3 = NULL WHERE tr_3 ='';
-UPDATE [local_staging].[dbo].[imp_countries] SET tr_4 = NULL WHERE tr_4 ='';
-UPDATE [local_staging].[dbo].[imp_countries] SET tr_5 = NULL WHERE tr_5 ='';
-UPDATE [local_staging].[dbo].[imp_countries] SET tr_6 = NULL WHERE tr_6 ='';
-UPDATE [local_staging].[dbo].[imp_countries] SET tr_7 = NULL WHERE tr_7 ='';
-UPDATE [local_staging].[dbo].[imp_countries] SET tr_8 = NULL WHERE tr_8 ='';
-
 UPDATE mt
 SET
     mt.name = CONVERT(VARCHAR(255), imp.val),
