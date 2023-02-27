@@ -29,4 +29,7 @@ DELETE FROM [local_staging].[dbo].[imp_employees_departments] WHERE TRIM(COALESC
 DELETE FROM [local_staging].[dbo].[imp_employees_positions] WHERE uuid='uuid';
 DELETE FROM [local_staging].[dbo].[imp_employees_positions] WHERE TRIM(COALESCE(uuid,''))='';
 
+DELETE FROM [local_staging].[dbo].[imp_roles] WHERE uuid='uuid';
+DELETE FROM [local_staging].[dbo].[imp_roles] WHERE TRIM(COALESCE(uuid,''))='';
+
 

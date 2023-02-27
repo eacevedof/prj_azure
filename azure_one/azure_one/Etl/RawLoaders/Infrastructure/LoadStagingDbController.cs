@@ -7,7 +7,6 @@ public sealed class LoadStagingDbController
     private readonly LoadXlsLanguagesService _loadXlsLanguagesService;
     private readonly LoadXlsCountriesServices _loadXlsCountriesServices;
     private readonly LoadXlsProvincesService _loadXlsProvincesService;
-    
     private readonly LoadXlsCitiesService _loadXlsCitiesService;
     private readonly LoadXlsCompaniesService _loadXlsCompaniesService;
     private readonly LoadXlsLanguagesCompanyCustomService _loadXlsLanguagesCompanyCustomService;
@@ -15,6 +14,7 @@ public sealed class LoadStagingDbController
     private readonly LoadXlsStatusEmployeesService _loadXlsStatusEmployeesService;
     private readonly LoadXlsEmployeesPositionsService _loadXlsEmployeesPositionsService;
     private readonly LoadXlsEmployeesDepartmentsService _loadXlsEmployeesDepartmentsService;
+    private readonly LoadXlsRolesService _loadXlsRolesService;
     
     public LoadStagingDbController(
         LoadXlsLanguagesService loadXlsLanguagesService,
@@ -26,7 +26,8 @@ public sealed class LoadStagingDbController
         LoadXlsUserTypesService loadXlsUserTypesService,
         LoadXlsStatusEmployeesService loadXlsStatusEmployeesService,
         LoadXlsEmployeesPositionsService loadXlsEmployeesPositionsService,
-        LoadXlsEmployeesDepartmentsService loadXlsEmployeesDepartmentsService
+        LoadXlsEmployeesDepartmentsService loadXlsEmployeesDepartmentsService,
+        LoadXlsRolesService loadXlsRolesService
     )
     {
         _loadXlsLanguagesService = loadXlsLanguagesService;
@@ -39,6 +40,7 @@ public sealed class LoadStagingDbController
         _loadXlsStatusEmployeesService = loadXlsStatusEmployeesService;
         _loadXlsEmployeesPositionsService = loadXlsEmployeesPositionsService;
         _loadXlsEmployeesDepartmentsService = loadXlsEmployeesDepartmentsService;
+        _loadXlsRolesService = loadXlsRolesService;
     }
 
     public void Invoke()
@@ -53,5 +55,6 @@ public sealed class LoadStagingDbController
         _loadXlsStatusEmployeesService.Invoke();
         _loadXlsEmployeesPositionsService.Invoke();
         _loadXlsEmployeesDepartmentsService.Invoke();
+        _loadXlsRolesService.Invoke();
     }
 }
