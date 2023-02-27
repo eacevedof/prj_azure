@@ -1,4 +1,4 @@
--- SELET * FROM view_user_types_tr
+-- SELECT * FROM view_user_types_tr
 DROP VIEW [dbo].[view_user_types_tr]
 GO
 

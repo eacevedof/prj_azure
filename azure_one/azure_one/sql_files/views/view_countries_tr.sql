@@ -1,4 +1,4 @@
--- SELET * FROM view_countries_tr
+-- SELECT * FROM view_countries_tr
 DROP VIEW [dbo].[view_countries_tr]
 GO
 

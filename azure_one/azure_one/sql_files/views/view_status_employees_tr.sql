@@ -1,4 +1,4 @@
--- SELET * FROM view_status_employees_tr
+-- SELECT * FROM view_status_employees_tr
 DROP VIEW [dbo].[view_status_employees_tr]
 GO
 
