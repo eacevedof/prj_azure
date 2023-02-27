@@ -23,5 +23,10 @@ DELETE FROM [local_staging].[dbo].[imp_user_types] WHERE TRIM(COALESCE(uuid,''))
 DELETE FROM [local_staging].[dbo].[imp_status_employees] WHERE uuid='uuid';
 DELETE FROM [local_staging].[dbo].[imp_status_employees] WHERE TRIM(COALESCE(uuid,''))='';
 
+DELETE FROM [local_staging].[dbo].[imp_employees_departments] WHERE uuid='uuid';
+DELETE FROM [local_staging].[dbo].[imp_employees_departments] WHERE TRIM(COALESCE(uuid,''))='';
+
 DELETE FROM [local_staging].[dbo].[imp_employees_positions] WHERE uuid='uuid';
 DELETE FROM [local_staging].[dbo].[imp_employees_positions] WHERE TRIM(COALESCE(uuid,''))='';
+
+

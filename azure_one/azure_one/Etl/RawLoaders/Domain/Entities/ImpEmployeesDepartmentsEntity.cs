@@ -1,13 +1,13 @@
 namespace azure_one.Etl.RawLoaders.Domain.Entities;
 
-public sealed class ImpEmployeesPositionsEntity : AbstractEntity
+public sealed class ImpEmployeesDepartmentsEntity : AbstractEntity
 {
-    private ImpEmployeesPositionsEntity()
+    private ImpEmployeesDepartmentsEntity()
     {
-        Table = "imp_employees_positions";
+        Table = "imp_employees_departments";
      
         PathXls = "/Downloads/data-in.xlsx";
-        SheetNr = 10;
+        SheetNr = 9;
         SheetMaxColumn = 11;
 
         ColumnMapping = new()
@@ -27,8 +27,8 @@ public sealed class ImpEmployeesPositionsEntity : AbstractEntity
         };     
     }
     
-    public static ImpEmployeesPositionsEntity GetInstance()
+    public static ImpEmployeesDepartmentsEntity GetInstance()
     {
-        return new ImpEmployeesPositionsEntity();
+        return new ImpEmployeesDepartmentsEntity();
     }
 }
