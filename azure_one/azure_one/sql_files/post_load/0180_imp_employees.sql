@@ -7,7 +7,7 @@ SET
     mt.updated_at = GETDATE()
 FROM [local_laciahub].[dbo].[employees]  mt
 INNER JOIN [local_staging].[dbo].[imp_employees] imp
-ON mt.email = imp.employee_email
+ON mt.employee_email = imp.employee_email
 WHERE 1=1
 AND imp.nok IS NULL
 ;
@@ -48,7 +48,7 @@ SET imp.employees_id = mt.id,
 imp.updated_at = GETDATE()
 FROM [local_laciahub].[dbo].[employees]  mt
 INNER JOIN [local_staging].[dbo].[imp_employees] imp
-ON mt.email = imp.employee_email
+ON mt.employee_email = imp.employee_email
 WHERE 1=1
 AND imp.nok IS NULL
 AND imp.employees_id IS NULL;
