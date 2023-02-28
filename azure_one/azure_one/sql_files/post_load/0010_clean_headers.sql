@@ -32,4 +32,6 @@ DELETE FROM [local_staging].[dbo].[imp_employees_positions] WHERE TRIM(COALESCE(
 DELETE FROM [local_staging].[dbo].[imp_roles] WHERE uuid='uuid';
 DELETE FROM [local_staging].[dbo].[imp_roles] WHERE TRIM(COALESCE(uuid,''))='';
 
+UPDATE [local_staging].[dbo].[imp_employees] SET nok=1 WHERE uuid='uuid';
+UPDATE [local_staging].[dbo].[imp_employees] SET nok=1 WHERE TRIM(COALESCE(uuid,''))='';
 
