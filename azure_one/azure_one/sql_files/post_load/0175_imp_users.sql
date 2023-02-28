@@ -13,17 +13,17 @@ AND imp.nok IS NULL
 INSERT INTO [local_laciahub].[dbo].[users]
 (
     user_types_id, tenant_id, user_code, name, email, password, password_expire_in, remember_token,
-    user_active, user_blocked, max_attempts, language, multisession_allowed, 
+    user_active, user_blocked, max_attempts, language, multi_session_allowed, 
     created_at
 )
 SELECT
-    user_types_id, company_id, 
+    imp.user_types_id, imp.company_id, 
     
-    CONVERT(VARCHAR(9),(SELECT CONVERT(VARCHAR,id)+CONVERT(VARCHAR(45),CONVERT(INT,RAND()*1000000000)))) user_code,
-    CONVERT(VARCHAR(45), employee_surname_1) name, 
-    CONVERT(VARCHAR(45), employee_email) email,
+    CONVERT(VARCHAR(9),(SELECT CONVERT(VARCHAR,imp.id)+CONVERT(VARCHAR(45),CONVERT(INT,RAND()*1000000000)))) user_code,
+    CONVERT(VARCHAR(45), imp.employee_surname_1) name, 
+    CONVERT(VARCHAR(45), imp.employee_email) email,
     '$2y$10$0H1h9ZbDLulNhSLMX2SpkOSQwv44U7vADYWBRM6QTgDfOXl/pFMiG' password, NULL password_expire_in, 
-    NULL remember_token, 1 user_active, 1 user_blocked, 3 max_attempts, language_uuid language, 0 multisession_allowed,
+    NULL remember_token, 1 user_active, 1 user_blocked, 3 max_attempts, imp.language_uuid language, 0 multi_session_allowed,
     GETDATE() created_at
 FROM [local_staging].[dbo].[imp_employees] imp
 LEFT JOIN [local_laciahub].[dbo].[users] mt
