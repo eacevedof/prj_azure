@@ -1,52 +1,52 @@
-UPDATE [local_staging].[dbo].[imp_employees] SET employees_id=NULL;
-
-UPDATE imp
-SET employees_id = mt.id
-FROM [local_laciahub].[dbo].[employees]  mt
-INNER JOIN [local_staging].[dbo].[imp_employees] imp
-ON mt.id = imp.uuid
-WHERE 1=1
-AND imp.nok IS NULL
-;
-
 UPDATE mt
 SET
-    mt.name = CONVERT(VARCHAR(255), imp.val),
+    mt.employee_name = CONVERT(VARCHAR(45), imp.employee_name),
+    mt.employee_surname_1 = CONVERT(VARCHAR(45), imp.employee_surname_1),
+    mt.employee_surname_2 = CONVERT(VARCHAR(45), imp.employee_surname_2),
+    -- mt.employee_phone = CONVERT(VARCHAR(255), imp.employee_phone),
     mt.updated_at = GETDATE()
 FROM [local_laciahub].[dbo].[employees]  mt
 INNER JOIN [local_staging].[dbo].[imp_employees] imp
-ON mt.id = imp.employees_id
+ON mt.email = imp.employee_email
 WHERE 1=1
 AND imp.nok IS NULL
 ;
 
--- [name][guard_name][description]
+-- crear empleados
 INSERT INTO [local_laciahub].[dbo].[employees]
 (
- name,
- guard_name,
- -- description, varchar(max)
- created_at
+    users_id, companies_id, employee_token, employee_code, employee_photo, name, email, password, password_expire_in, remember_token,
+    user_active, user_blocked, max_attempts, language, multisession_allowed, 
+    created_at
 )
 SELECT
-    CONVERT(VARCHAR(255),imp.val) name,
-    'Api' guard_name,
-    GETDATE()
+    users_id, company_id, 
+    (SELECT UPPER(CONVERT(VARCHAR(25), REPLACE(NEWID(), '-','')))) employee_token,
+    CONVERT(VARCHAR(9),(SELECT CONVERT(VARCHAR,id)+CONVERT(VARCHAR(45),CONVERT(INT,SELECT()*1000000000)))) employee_code,
+    NULL employee_photo,
+    CONVERT(VARCHAR(45), employee_name) employee_name, 
+    CONVERT(VARCHAR(45), employee_surname_1) employee_surname_1, 
+    CONVERT(VARCHAR(45), employee_surname_2) employee_surname_2,
+    -- CONVERT(VARCHAR(45), employee_phone) employee_phone,
+    CONVERT(VARCHAR(45), employee_email) employee_email,
+    1 employee_status,
+    1 email_notification
+    GETDATE() created_at
 FROM [local_staging].[dbo].[imp_employees] imp
 LEFT JOIN [local_laciahub].[dbo].[employees] mt
-ON mt.id = imp.employees_id
+ON mt.email = imp.employee_email
 WHERE 1=1
 AND imp.nok IS NULL
 AND mt.id IS NULL
 ;
 
--- actualizo los ids de los nuevos insertados
+
 UPDATE imp
 SET imp.employees_id = mt.id,
 imp.updated_at = GETDATE()
 FROM [local_laciahub].[dbo].[employees]  mt
 INNER JOIN [local_staging].[dbo].[imp_employees] imp
-ON mt.name = imp.val
+ON mt.email = imp.employee_email
 WHERE 1=1
 AND imp.nok IS NULL
 AND imp.employees_id IS NULL;

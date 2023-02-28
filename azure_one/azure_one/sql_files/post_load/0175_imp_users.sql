@@ -1,89 +1,45 @@
-UPDATE [local_staging].[dbo].[imp_employees] SET employees_id=NULL;
-
-UPDATE imp
-SET imp.employees_id = mt.id
-FROM [local_laciahub].[dbo].[users]  mt
-INNER JOIN [local_staging].[dbo].[imp_employees] imp
-ON mt.id = imp.uuid
-WHERE 1=1
-AND imp.nok IS NULL
-;
-
-UPDATE imp
-SET imp.user_types_id = mt.id
-FROM [local_laciahub].[dbo].[user_types]  mt
-INNER JOIN [local_staging].[dbo].[imp_employees] imp
-ON mt.id = imp.user_types_uuid
-WHERE 1=1
-AND imp.nok IS NULL
-;
-
-UPDATE imp
-SET imp.employees_departments_id = mt.id
-FROM [local_laciahub].[dbo].[employees_departments]  mt
-INNER JOIN [local_staging].[dbo].[imp_employees] imp
-ON mt.id = imp.department_uuid
-WHERE 1=1
-AND imp.nok IS NULL
-;
-
-
-UPDATE imp
-SET imp.employees_positions_id = mt.id
-FROM [local_laciahub].[dbo].[employees_positions]  mt
-INNER JOIN [local_staging].[dbo].[imp_employees] imp
-ON mt.id = imp.position_uuid
-WHERE 1=1
-AND imp.nok IS NULL
-;
-
-UPDATE imp
-SET imp.employees_positions_id = mt.id
-FROM [local_laciahub].[dbo].[employees_positions]  mt
-INNER JOIN [local_staging].[dbo].[imp_employees] imp
-ON mt.id = imp.position_uuid
-WHERE 1=1
-AND imp.nok IS NULL
-;
-
 UPDATE mt
 SET
-    mt.name = CONVERT(VARCHAR(255), imp.val),
+    mt.name = CONVERT(VARCHAR(255), imp.employee_surname_1),
     mt.updated_at = GETDATE()
 FROM [local_laciahub].[dbo].[users]  mt
 INNER JOIN [local_staging].[dbo].[imp_employees] imp
-ON mt.id = imp.employees_id
+ON mt.email = imp.employee_email
 WHERE 1=1
 AND imp.nok IS NULL
 ;
 
--- [name][guard_name][description]
+-- crear usuarios
 INSERT INTO [local_laciahub].[dbo].[users]
 (
- name,
- guard_name,
- -- description, varchar(max)
- created_at
+    user_types_id, tenant_id, user_code, name, email, password, password_expire_in, remember_token,
+    user_active, user_blocked, max_attempts, language, multisession_allowed, 
+    created_at
 )
 SELECT
-    CONVERT(VARCHAR(255),imp.val) name,
-    'Api' guard_name,
-    GETDATE()
+    user_types_id, company_id, 
+    
+    CONVERT(VARCHAR(9),(SELECT CONVERT(VARCHAR,id)+CONVERT(VARCHAR(45),CONVERT(INT,RAND()*1000000000)))) user_code,
+    CONVERT(VARCHAR(45), employee_surname_1) name, 
+    CONVERT(VARCHAR(45), employee_email) email,
+    '$2y$10$0H1h9ZbDLulNhSLMX2SpkOSQwv44U7vADYWBRM6QTgDfOXl/pFMiG' password, NULL password_expire_in, 
+    NULL remember_token, 1 user_active, 1 user_blocked, 3 max_attempts, language_uuid language, 0 multisession_allowed,
+    GETDATE() created_at
 FROM [local_staging].[dbo].[imp_employees] imp
 LEFT JOIN [local_laciahub].[dbo].[users] mt
-ON mt.id = imp.employees_id
+ON mt.email = imp.employee_email
 WHERE 1=1
 AND imp.nok IS NULL
 AND mt.id IS NULL
 ;
 
--- actualizo los ids de los nuevos insertados
+
 UPDATE imp
-SET imp.employees_id = mt.id,
+SET imp.users_id = mt.id,
 imp.updated_at = GETDATE()
 FROM [local_laciahub].[dbo].[users]  mt
 INNER JOIN [local_staging].[dbo].[imp_employees] imp
-ON mt.name = imp.val
+ON mt.email = imp.employee_email
 WHERE 1=1
 AND imp.nok IS NULL
 AND imp.employees_id IS NULL;
