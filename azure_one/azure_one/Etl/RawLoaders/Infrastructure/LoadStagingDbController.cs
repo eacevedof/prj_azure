@@ -15,6 +15,7 @@ public sealed class LoadStagingDbController
     private readonly LoadXlsEmployeesPositionsService _loadXlsEmployeesPositionsService;
     private readonly LoadXlsEmployeesDepartmentsService _loadXlsEmployeesDepartmentsService;
     private readonly LoadXlsRolesService _loadXlsRolesService;
+    private readonly LoadXlsEmployeesService _loadXlsEmployeesService;
     
     public LoadStagingDbController(
         LoadXlsLanguagesService loadXlsLanguagesService,
@@ -27,7 +28,8 @@ public sealed class LoadStagingDbController
         LoadXlsStatusEmployeesService loadXlsStatusEmployeesService,
         LoadXlsEmployeesPositionsService loadXlsEmployeesPositionsService,
         LoadXlsEmployeesDepartmentsService loadXlsEmployeesDepartmentsService,
-        LoadXlsRolesService loadXlsRolesService
+        LoadXlsRolesService loadXlsRolesService,
+        LoadXlsEmployeesService loadXlsEmployeesService
     )
     {
         _loadXlsLanguagesService = loadXlsLanguagesService;
@@ -41,10 +43,12 @@ public sealed class LoadStagingDbController
         _loadXlsEmployeesPositionsService = loadXlsEmployeesPositionsService;
         _loadXlsEmployeesDepartmentsService = loadXlsEmployeesDepartmentsService;
         _loadXlsRolesService = loadXlsRolesService;
+        _loadXlsEmployeesService = loadXlsEmployeesService;
     }
 
     public void Invoke()
     {
+/*        
         _loadXlsLanguagesService.Invoke();
         _loadXlsCountriesServices.Invoke();
         _loadXlsProvincesService.Invoke();
@@ -56,5 +60,7 @@ public sealed class LoadStagingDbController
         _loadXlsEmployeesPositionsService.Invoke();
         _loadXlsEmployeesDepartmentsService.Invoke();
         _loadXlsRolesService.Invoke();
+        */
+        _loadXlsEmployeesService.Invoke();
     }
 }
