@@ -22,7 +22,7 @@ public sealed class ImpEmployeesEntity : AbstractEntity
             { "Column7", "language_uuid" },
             { "Column8", "department_uuid" },
             { "Column9", "position_uuid" },
-            { "Column10", "rol_uuid" },
+            { "Column10", "role_uuid" },
             { "Column11", "codesap" },
         };     
     }
