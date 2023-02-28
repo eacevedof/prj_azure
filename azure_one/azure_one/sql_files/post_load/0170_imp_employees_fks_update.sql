@@ -19,6 +19,15 @@ AND imp.nok IS NULL
 ;
 
 UPDATE imp
+SET imp.company_id = mt.id
+FROM [local_laciahub].[dbo].[companies]  mt
+INNER JOIN [local_staging].[dbo].[imp_employees] imp
+ON mt.id = imp.company_uuid
+WHERE 1=1
+AND imp.nok IS NULL
+;
+
+UPDATE imp
 SET imp.employees_departments_id = mt.id
 FROM [local_laciahub].[dbo].[employees_departments]  mt
 INNER JOIN [local_staging].[dbo].[imp_employees] imp
