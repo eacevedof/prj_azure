@@ -76,7 +76,7 @@
     <None Update="sql_files\post_load\0155_imp_employees_positions_tr.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\post_load\0140_imp_employees_dpartments.sql">
+    <None Update="sql_files\post_load\0140_imp_employees_departments.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="sql_files\post_load\0145_imp_employees_departments_tr.sql">
@@ -88,7 +88,13 @@
     <None Update="sql_files\post_load\0165_imp_roles_tr.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\post_load\0170_imp_employees.sql">
+    <None Update="sql_files\post_load\0180_imp_employees.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="sql_files\post_load\0175_imp_users.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="sql_files\post_load\0170_imp_employees_fks_update.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
