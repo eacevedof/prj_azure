@@ -55,3 +55,13 @@ WHERE 1=1
 AND imp.nok IS NULL
 ;
 
+UPDATE imp
+SET imp.users_id = mt.id
+FROM [local_laciahub].[dbo].[users]  mt
+INNER JOIN [local_staging].[dbo].[imp_employees] imp
+ON mt.email = imp.employee_email
+WHERE 1=1
+AND imp.nok IS NULL
+;
+
+
