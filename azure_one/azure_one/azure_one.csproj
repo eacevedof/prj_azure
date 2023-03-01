@@ -100,10 +100,10 @@
     <None Update="sql_files\post_load\0185_imp_employees_settings.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\post_load\0210_imp_employees_has_positions.sql">
+    <None Update="sql_files\post_load\0310_imp_employees_has_positions.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\post_load\0200_imp_departments_has_employees.sql">
+    <None Update="sql_files\post_load\0300_imp_departments_has_employees.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
