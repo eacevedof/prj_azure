@@ -5,6 +5,7 @@ AND NOT EXISTS (
     SELECT imp.employees_id, imp.employees_departments_id
     FROM [local_staging].[dbo].[imp_employees] imp
     WHERE 1=1
+    AND imp.nok IS NULL
     AND [local_laciahub].[dbo].[departments_has_employees].departments_id = imp.employees_departments_id
     AND [local_laciahub].[dbo].[departments_has_employees].employees_id = imp.employees_id
 )
