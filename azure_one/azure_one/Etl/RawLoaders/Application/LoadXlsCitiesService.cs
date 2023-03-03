@@ -11,8 +11,11 @@ public sealed class LoadXlsCitiesService: AbsRawService
 {
     public override void Invoke()
     {
+        dynamic config = MappingReader.JsonDecode("cities");
         ImpCitiesEntity citiesEntity = ImpCitiesEntity.GetInstance();
-        string pathExcel = Env.GetConcat("HOME", citiesEntity.PathXls);
+        //string pathExcel = Env.GetConcat("HOME", citiesEntity.PathXls);
+        
+        string pathExcel = config.source.path.Replace("%in_folder%",);
         
         ExcelReader excelReader = ExcelReader.FromPrimitives((
             pathExcel, 

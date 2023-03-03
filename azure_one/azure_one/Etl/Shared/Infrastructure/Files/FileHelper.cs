@@ -15,6 +15,11 @@ public sealed class FileHelper
     {
         return Path.Combine(Directory.GetCurrentDirectory(), "sql_files");
     }
+    
+    public static string GetMappingFolder()
+    {
+        return Path.Combine(Directory.GetCurrentDirectory(), "xls_mapping");
+    }
 
     public static bool isFile(string pathFile)
     {
