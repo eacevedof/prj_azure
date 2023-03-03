@@ -1,0 +1,24 @@
+{
+  
+  "source": {
+    "path": "%in_folder%/data-in.xlsx",
+    "sheet_nr": 1,
+    "sheet_name": "",
+    "sheet_max_col": 3
+  },
+  
+  "target": {
+    "table": "imp_cities"
+  },
+  
+  "mapping": {
+    "by_name": false,
+    "columns": [
+      { "Column0": "provinces_uuid" },
+      { "Column1": "uuid" },
+      { "Column2": "val" },
+      { "Column3": "codesap" }
+    ]
+  }
+  
+}

@@ -19,6 +19,9 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="xls_mapping\" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="sql_files\" />
   </ItemGroup>
   <ItemGroup>
@@ -114,9 +117,12 @@
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\*.sql">
+    <None Update="sql_files\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>    
+    </None>
+    <None Update="xls_mapping\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="local.settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
