@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace azure_one.Etl.Shared.Infrastructure.Files;
 
@@ -17,5 +19,13 @@ public sealed class MappingReader
 
         return null;
     }
-    
+
+    public static Dictionary<string, string> GetMappingFromObject(dynamic objList)
+    {
+        Dictionary<string, string> mapping = new();
+        foreach (JObject row in objList)
+            foreach (KeyValuePair<string, JToken> prop in row)
+                mapping.Add(prop.Key, prop.Value.ToString());
+        return mapping;
+    }
 }
