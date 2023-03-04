@@ -18,17 +18,17 @@ namespace azure_one
     public class azure_one
     {
         private readonly RunPreLoadFilesController _runPreLoadFilesController;
-        private readonly LoadStagingDbController _loadStagingDbController;
+        private readonly LoadImpTablesController _loadImpTablesController;
         private readonly RunPostLoadFilesController _runPostLoadFilesController;
         
         public azure_one(
             RunPreLoadFilesController runPreLoadFilesController,
-            LoadStagingDbController loadStagingDbController,
+            LoadImpTablesController loadImpTablesController,
             RunPostLoadFilesController runPostLoadFilesController
         )
         {
             _runPreLoadFilesController = runPreLoadFilesController;
-            _loadStagingDbController = loadStagingDbController;
+            _loadImpTablesController = loadImpTablesController;
             _runPostLoadFilesController = runPostLoadFilesController;
         }
         
@@ -47,7 +47,7 @@ namespace azure_one
                 _runPreLoadFilesController.Invoke();
                 
                 Lg.pr("ETL azure_one started...");
-                _loadStagingDbController.Invoke();
+                _loadImpTablesController.Invoke();
                 
                 Lg.pr("ETL staging db loaded!");
                 _runPostLoadFilesController.Invoke();

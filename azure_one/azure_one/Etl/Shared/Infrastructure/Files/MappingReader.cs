@@ -4,10 +4,10 @@ namespace azure_one.Etl.Shared.Infrastructure.Files;
 
 public sealed class MappingReader
 {
-    public static dynamic JsonDecodeFromRawFolder(string fileName)
+    public static dynamic JsonDecodeImpTables(string fileName)
     {
         string pathFolder = FileHelper.GetMappingFolder();
-        string pathFile = $"{pathFolder}/raw/{fileName}.json";
+        string pathFile = $"{pathFolder}/imp_tables/{fileName}.json";
 
         if (FileHelper.isFile(pathFile))
         {
