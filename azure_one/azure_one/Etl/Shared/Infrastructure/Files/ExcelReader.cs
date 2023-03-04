@@ -92,6 +92,53 @@ public sealed class ExcelReader
 
         return sheetData;
     }
+    
+       public List<Dictionary<string, string>> GetData(Dictionary<string, string> mapping)
+    {
+        var sheetData = new List<Dictionary<string, string>>();
+        
+        // Lees het Excel-bestand
+        using (var stream = File.Open(_pathToFile, FileMode.Open, FileAccess.Read))
+        {
+            using (var excelDataReader = ExcelReaderFactory.CreateReader(stream))
+            {
+                // Haal het eerste werkblad op
+                excelDataReader.Read();
+                var dataSet = excelDataReader.AsDataSet();
+                var sheets = dataSet.Tables;
+                
+                var sheet = dataSet.Tables[_sheetNr];
+                if (!_sheetName.Trim().IsEmpty())
+                    sheet = GetSheetObjectByName(sheets, _sheetName);
+
+                if (sheet == null)
+                    throw new SheetNotFoundException($"sheet {_sheetName} was not found!");
+
+                DataRowCollection sheetRows = sheet.Rows;
+                if (sheetRows.Count == 0)
+                    return sheetData;
+
+                DataRow titleRow = sheetRows[0];
+                string title0 = titleRow[0].ToString().Trim();
+                string title1 = titleRow[1].ToString().Trim();
+                
+                foreach (DataRow row in sheetRows)
+                {
+                    var rowData = new Dictionary<string, string>();
+                    for (int i = 0; i < sheet.Columns.Count; i++)
+                    {
+                        if (_maxColumn>-1 && i>_maxColumn) continue;
+                        string columnName = sheet.Columns[i].ColumnName;
+                        rowData.Add(columnName, row[i].ToString().Trim());
+                    }
+                    sheetData.Add(rowData);
+                }
+
+            }// using.createReader
+        }// using file.open
+        return sheetData;
+    }
+    
 
     private Dictionary<string, int> GetColumnNames(DataRow titleRow)
     {
