@@ -11,7 +11,7 @@ public sealed class LoadXlsCitiesService: AbsRawService
 {
     public override void Invoke()
     {
-        ExcelMapper excelMapper = ExcelMapper.GetInstance("cities");
+        ExcelMapper excelMapper = ExcelMapper.GetInstance("000400_cities");
         ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
             excelMapper.Source["path"],
             excelMapper.Source["sheet_name"], 

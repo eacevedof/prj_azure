@@ -11,7 +11,7 @@ public sealed class LoadXlsUserTypesService: AbsRawService
 {
     public override void Invoke()
     {
-        ExcelMapper excelMapper = ExcelMapper.GetInstance("user_types");
+        ExcelMapper excelMapper = ExcelMapper.GetInstance("000700_user_types");
         ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
             excelMapper.Source["path"],
             excelMapper.Source["sheet_name"], 

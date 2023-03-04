@@ -11,7 +11,7 @@ public sealed class LoadXlsLanguagesCompanyCustomService: AbsRawService
 {
     public override void Invoke()
     {
-        ExcelMapper excelMapper = ExcelMapper.GetInstance("languages_company_custom");
+        ExcelMapper excelMapper = ExcelMapper.GetInstance("000600_languages_company_custom");
         ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
             excelMapper.Source["path"],
             excelMapper.Source["sheet_name"], 
