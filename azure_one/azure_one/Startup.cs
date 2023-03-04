@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Repositories;
 using azure_one.Etl.RawLoaders.Application;
+using azure_one.Etl.RawLoaders.Application.ImpTables;
 using azure_one.Etl.RawLoaders.Infrastructure;
 using azure_one.Etl.SqlRunners.Application;
 using azure_one.Etl.SqlRunners.Infrastructure.Controllers;

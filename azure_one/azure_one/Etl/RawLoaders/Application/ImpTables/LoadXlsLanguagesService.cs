@@ -1,17 +1,17 @@
 using System;
 using azure_one.Etl.RawLoaders.Domain.Entities;
-using azure_one.Etl.Shared.Infrastructure.Files;
-using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
+using azure_one.Etl.Shared.Infrastructure.Files;
+using azure_one.Etl.Shared.Infrastructure.Log;
 
-namespace azure_one.Etl.RawLoaders.Application;
+namespace azure_one.Etl.RawLoaders.Application.ImpTables;
 
-public sealed class LoadXlsEmployeesDepartmentsService: AbsRawService
+public sealed class LoadXlsLanguagesService: AbsRawService
 {
     public override void Invoke()
     {
-        ExcelMapper excelMapper = ExcelMapper.GetInstance("001000_employees_departments");
+        ExcelMapper excelMapper = ExcelMapper.GetInstance("000100_languages");
         ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
             excelMapper.Source["path"],
             excelMapper.Source["sheet_name"], 

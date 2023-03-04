@@ -1,4 +1,5 @@
 using azure_one.Etl.RawLoaders.Application;
+using azure_one.Etl.RawLoaders.Application.ImpTables;
 
 namespace azure_one.Etl.RawLoaders.Infrastructure;
 

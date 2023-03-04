@@ -1,16 +1,17 @@
 using System;
 using azure_one.Etl.RawLoaders.Domain.Entities;
-using azure_one.Etl.Shared.Infrastructure.Files;
-using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
-namespace azure_one.Etl.RawLoaders.Application;
+using azure_one.Etl.Shared.Infrastructure.Files;
+using azure_one.Etl.Shared.Infrastructure.Log;
 
-public sealed class LoadXlsEmployeesPositionsService: AbsRawService
+namespace azure_one.Etl.RawLoaders.Application.ImpTables;
+
+public sealed class LoadXlsEmployeesDepartmentsService: AbsRawService
 {
     public override void Invoke()
     {
-        ExcelMapper excelMapper = ExcelMapper.GetInstance("000900_employees_positions");
+        ExcelMapper excelMapper = ExcelMapper.GetInstance("001000_employees_departments");
         ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
             excelMapper.Source["path"],
             excelMapper.Source["sheet_name"], 
