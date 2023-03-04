@@ -1,3 +1,4 @@
+using azure_one.Etl.RawLoaders.Application.Force;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,7 +49,14 @@ public class Startup: FunctionsStartup
                     new LoadXlsRolesService(),
                     new LoadXlsEmployeesService()
                 )
-        ); 
+        );
+
+        builder.Services.AddSingleton<LoadForceTableController>(
+            s => new LoadForceTableController(
+                new LoadXlsForceService()
+            )
+        );
+        
         builder.Services.AddSingleton<RunPreLoadFilesController>(
             s => new RunPreLoadFilesController(new PreLoadImpTablesService(new PreLoadRepository(new Mssql())))
         );        
