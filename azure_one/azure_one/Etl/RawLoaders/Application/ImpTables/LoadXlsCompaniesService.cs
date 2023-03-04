@@ -1,11 +1,11 @@
 using System;
 using azure_one.Etl.RawLoaders.Domain.Entities;
-using azure_one.Etl.Shared.Infrastructure.Files;
-using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
+using azure_one.Etl.Shared.Infrastructure.Files;
+using azure_one.Etl.Shared.Infrastructure.Log;
 
-namespace azure_one.Etl.RawLoaders.Application;
+namespace azure_one.Etl.RawLoaders.Application.ImpTables;
 
 public sealed class LoadXlsCompaniesService: AbsRawService
 {
