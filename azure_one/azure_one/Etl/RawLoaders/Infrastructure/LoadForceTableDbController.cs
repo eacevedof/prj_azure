@@ -1,9 +1,8 @@
-using azure_one.Etl.RawLoaders.Application;
 using azure_one.Etl.RawLoaders.Application.ImpTables;
 
 namespace azure_one.Etl.RawLoaders.Infrastructure;
 
-public sealed class LoadForceStagingDbController
+public sealed class LoadForceTableController
 {
     private readonly LoadXlsLanguagesService _loadXlsLanguagesService;
     private readonly LoadXlsCountriesServices _loadXlsCountriesServices;
@@ -18,7 +17,7 @@ public sealed class LoadForceStagingDbController
     private readonly LoadXlsRolesService _loadXlsRolesService;
     private readonly LoadXlsEmployeesService _loadXlsEmployeesService;
     
-    public LoadForceStagingDbController(
+    public LoadForceTableController(
         LoadXlsLanguagesService loadXlsLanguagesService,
         LoadXlsCountriesServices loadXlsCountriesServices,
         LoadXlsProvincesService loadXlsProvincesService,

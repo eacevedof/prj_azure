@@ -1,9 +1,8 @@
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 using azure_one.Etl.Shared.Infrastructure.Db;
-using azure_one.Etl.Shared.Infrastructure.Repositories;
-using azure_one.Etl.RawLoaders.Application;
 using azure_one.Etl.RawLoaders.Application.ImpTables;
 using azure_one.Etl.RawLoaders.Infrastructure;
 using azure_one.Etl.SqlRunners.Application;
@@ -32,12 +31,10 @@ public class Startup: FunctionsStartup
         
         //services
         builder.Services.AddSingleton<PreLoadImpTablesService>(s => new PreLoadImpTablesService(new PreLoadRepository(new Mssql())));
-        //builder.Services.AddSingleton<LoadXlsLanguagesService>(s => new LoadXlsLanguagesService());
-        //builder.Services.AddSingleton<LoadXlsCountriesServices>(s => new LoadXlsCountriesServices());
-        
+       
         //controlleres
-        builder.Services.AddSingleton<LoadStagingDbController>(
-            s => new LoadStagingDbController(
+        builder.Services.AddSingleton<LoadImpTablesController>(
+            s => new LoadImpTablesController(
                 new LoadXlsLanguagesService(), 
                     new LoadXlsCountriesServices(),
                     new LoadXlsProvincesService(),

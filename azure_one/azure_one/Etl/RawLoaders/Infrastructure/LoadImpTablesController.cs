@@ -3,7 +3,7 @@ using azure_one.Etl.RawLoaders.Application.ImpTables;
 
 namespace azure_one.Etl.RawLoaders.Infrastructure;
 
-public sealed class LoadStagingDbController
+public sealed class LoadImpTablesController
 {
     private readonly LoadXlsLanguagesService _loadXlsLanguagesService;
     private readonly LoadXlsCountriesServices _loadXlsCountriesServices;
@@ -18,7 +18,7 @@ public sealed class LoadStagingDbController
     private readonly LoadXlsRolesService _loadXlsRolesService;
     private readonly LoadXlsEmployeesService _loadXlsEmployeesService;
     
-    public LoadStagingDbController(
+    public LoadImpTablesController(
         LoadXlsLanguagesService loadXlsLanguagesService,
         LoadXlsCountriesServices loadXlsCountriesServices,
         LoadXlsProvincesService loadXlsProvincesService,
