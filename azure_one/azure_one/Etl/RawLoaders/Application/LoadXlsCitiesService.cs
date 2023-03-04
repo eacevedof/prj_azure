@@ -24,15 +24,8 @@ public sealed class LoadXlsCitiesService: AbsRawService
 
         string sheetName = config.source.sheet_name ?? "";
         int maxColPosition = config.source.sheet_max_col ?? 5;
-        string table = "imp_cities";
-        Dictionary<string, string> mapping = new();
-        foreach (JObject row in config.mapping)
-        {
-            foreach (KeyValuePair<string, JToken> prop in row)
-            {
-                mapping.Add(prop.Key, prop.Value.ToString());
-            }
-        }
+        string table = config.target.table;
+        Dictionary<string, string> mapping = MappingReader.GetMappingFromObject(config.mapping);
 
         ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
             pathExcel, 
