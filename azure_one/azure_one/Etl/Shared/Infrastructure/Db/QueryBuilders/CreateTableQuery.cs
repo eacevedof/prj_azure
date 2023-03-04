@@ -26,7 +26,7 @@ public sealed class CreateTableQuery
         foreach (string field in _fields)
             fields.Add($"[{field}] NVARCHAR(MAX) NULL");
         
-        string strfields = string.Join(",", fields);
+        string strfields = string.Join(",\n", fields);
         createList.Add(strfields);
         createList.Add(");");
         return string.Join("\n", createList);
