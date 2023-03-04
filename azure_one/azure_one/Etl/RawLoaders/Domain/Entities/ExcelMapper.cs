@@ -86,10 +86,7 @@ public sealed class ExcelMapper
     
     private bool HasProperty(dynamic obj, string name)
     {
-        Type objType = obj.GetType();
-        if (objType == typeof(ExpandoObject))
-            return ((IDictionary<string, object>)obj).ContainsKey(name);
-        return objType.GetProperty(name) != null;
+        return obj.ContainsKey(name);
     }
 
     public Dictionary<string, string> Source

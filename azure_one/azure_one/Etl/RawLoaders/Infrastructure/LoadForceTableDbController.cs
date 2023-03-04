@@ -4,15 +4,15 @@ namespace azure_one.Etl.RawLoaders.Infrastructure;
 
 public sealed class LoadForceTableController
 {
-    private readonly LoadXlsForceService _loadXlsForService;
+    private readonly LoadXlsForceService _loadXlsForceService;
 
-    public LoadForceTableController(LoadXlsForceService loadXlsForService)
+    public LoadForceTableController(LoadXlsForceService loadXlsForceService)
     {
-        _loadXlsForService = loadXlsForService;
+        _loadXlsForceService = loadXlsForceService;
     }
 
     public void Invoke()
     {
-        _loadXlsForService.Invoke();
+        _loadXlsForceService.Invoke();
     }
 }
