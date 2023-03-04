@@ -14,7 +14,7 @@ public sealed class ExcelMapper
 
     private ExcelMapper(string jsonFileName)
     {
-        dynamic fromJson = MappingReader.JsonDecode(jsonFileName);
+        dynamic fromJson = MappingReader.JsonDecodeFromRawFolder(jsonFileName);
         if (fromJson is null) throw new JsonFileNotFoundException($"json file {jsonFileName}.json not found");
         _target = GetMappingFromObject(fromJson.target);
         _mapping = GetMappingFromObjectList(fromJson.mapping);
