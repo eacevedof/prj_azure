@@ -2,15 +2,16 @@
 
   "source": {
     "path": "%folder_in%/data-in.xlsx",
-    "sheet_name": "countries",
-    "sheet_max_col": 11
+    "sheet_name": "provinces",
+    "sheet_max_col": 12
   },
 
   "target": {
-    "table": "imp_countries"
+    "table": "imp_provinces"
   },
 
   "mapping": [
+    { "countries_uuid": "countries_uuid" },
     { "uuid": "uuid" },
     { "val": "val" },
     { "codesap": "codesap" },
