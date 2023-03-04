@@ -11,7 +11,7 @@ public sealed class LoadXlsCountriesServices: AbsRawService
 {
     public override void Invoke()
     {
-        ExcelMapper excelMapper = ExcelMapper.GetInstance("countries");
+        ExcelMapper excelMapper = ExcelMapper.GetInstance("000200_countries");
         ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
             excelMapper.Source["path"],
             excelMapper.Source["sheet_name"], 

@@ -11,7 +11,7 @@ public sealed class LoadXlsEmployeesDepartmentsService: AbsRawService
 {
     public override void Invoke()
     {
-        ExcelMapper excelMapper = ExcelMapper.GetInstance("employees_departments");
+        ExcelMapper excelMapper = ExcelMapper.GetInstance("001000_employees_departments");
         ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
             excelMapper.Source["path"],
             excelMapper.Source["sheet_name"], 
