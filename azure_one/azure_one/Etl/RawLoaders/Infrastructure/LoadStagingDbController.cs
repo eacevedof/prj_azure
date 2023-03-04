@@ -48,8 +48,6 @@ public sealed class LoadStagingDbController
 
     public void Invoke()
     {
-        _loadXlsCitiesService.Invoke();
-/*        
         _loadXlsLanguagesService.Invoke();
         _loadXlsCountriesServices.Invoke();
         _loadXlsProvincesService.Invoke();
@@ -61,7 +59,6 @@ public sealed class LoadStagingDbController
         _loadXlsEmployeesPositionsService.Invoke();
         _loadXlsEmployeesDepartmentsService.Invoke();
         _loadXlsRolesService.Invoke();
-        */
-        //_loadXlsEmployeesService.Invoke();
+        _loadXlsEmployeesService.Invoke();
     }
 }

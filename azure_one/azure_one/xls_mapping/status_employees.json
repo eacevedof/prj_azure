@@ -7,7 +7,7 @@
   },
 
   "target": {
-    "table": "status_employees"
+    "table": "imp_status_employees"
   },
 
   "mapping": [
