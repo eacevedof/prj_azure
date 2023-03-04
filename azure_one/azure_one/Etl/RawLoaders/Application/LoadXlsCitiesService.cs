@@ -13,8 +13,6 @@ public sealed class LoadXlsCitiesService: AbsRawService
 {
     public override void Invoke()
     {
-        ImpCitiesEntity citiesEntity = ImpCitiesEntity.GetInstance();
-
         string pathHome = Env.Get("HOME");
         dynamic config = MappingReader.JsonDecode("cities");
         string pathExcel = config.source.path;
