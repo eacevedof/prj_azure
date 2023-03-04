@@ -1,0 +1,20 @@
+{
+
+  "source": {
+    "path": "%folder_in%/data-in.xlsx",
+    "sheet_name": "languages",
+    "sheet_max_col": 3
+  },
+
+  "target": {
+    "table": "imp_languages"
+  },
+
+  "mapping": [
+    { "uuid": "uuid" },
+    { "val": "val" },
+    { "codesap": "codesap" },
+    { "%TAG_CONSTANT%": "imp_uuid"},
+    { "%TAG_CONSTANT%": "tenant_slug"}
+  ]
+}
