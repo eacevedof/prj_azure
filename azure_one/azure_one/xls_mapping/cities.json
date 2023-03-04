@@ -14,10 +14,10 @@
   "mapping": {
     "by_name": false,
     "columns": [
-      { "Column0": "provinces_uuid" },
-      { "Column1": "uuid" },
-      { "Column2": "val" },
-      { "Column3": "codesap" }
+      { "provincies_uuid": "provinces_uuid" },
+      { "uuid": "uuid" },
+      { "val": "val" },
+      { "codesap": "codesap" }
     ]
   }
   
