@@ -1,0 +1,27 @@
+{
+
+  "source": {
+    "path": "%folder_in%/data-in.xlsx",
+    "sheet_name": "user_types",
+    "sheet_max_col": 11
+  },
+
+  "target": {
+    "table": "imp_user_types"
+  },
+
+  "mapping": [
+    { "uuid": "uuid" },
+    { "val": "val" },
+
+    { "tr_1": "tr_1" },
+    { "tr_2": "tr_2" },
+    { "tr_3": "tr_3" },
+    { "tr_4": "tr_4" },
+    { "tr_5": "tr_5" },
+    { "tr_6": "tr_6" },
+    { "tr_7": "tr_7" },
+    { "tr_8": "tr_8" },
+    { "tr_9": "tr_9" }
+  ]
+}
