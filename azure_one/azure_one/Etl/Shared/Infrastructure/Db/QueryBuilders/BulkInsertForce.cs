@@ -43,17 +43,21 @@ public sealed class BulkInsertForce
             insValues.Add(strvalues);
         }
 
-        string sql = $"DROP TABLE IF EXISTS {_targetTable};";
-        sql += GetCreateTableDQL();
-        
-        List<List<string>> splitted = Get1000Splitted(insValues);
-        foreach (List<string> batchInsVals in splitted)
+        List<string> queries = new()
         {
-            sql += GetInsertIntoHeader();
-            sql += string.Join(",", batchInsVals);
-            sql += ";";
+            $"DROP TABLE IF EXISTS {_targetTable};",
+            GetCreateTableDQL(),
+        };
+        
+        List<List<string>> insertPages = Get1000Splitted(insValues);
+        foreach (List<string> insertPage in insertPages)
+        {
+            string insertSql1000 = GetInsertIntoHeader();
+            insertSql1000 += string.Join(",", insertPage);
+            insertSql1000 += ";";
+            queries.Add(insertSql1000);
         }
-        return sql;
+        return string.Join("\n\n", queries);
     }
 
     private string GetCreateTableDQL()
