@@ -13,26 +13,18 @@ public sealed class LoadXlsCitiesService: AbsRawService
 {
     public override void Invoke()
     {
-        string pathHome = Env.Get("HOME");
-
         ExcelMapper excelMapper = ExcelMapper.GetInstance("cities");
-
-        string sheetName = excelMapper.Source["sheet_name"];
-        int maxColPosition = Int32.Parse(excelMapper.Source["sheet_max_col"]);
-        string table = excelMapper.Target["table"];
-        Dictionary<string, string> mapping = excelMapper.Mapping;
-
         ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
             excelMapper.Source["path"],
-            sheetName, 
-            maxColPosition
+            excelMapper.Source["sheet_name"], 
+            Int32.Parse(excelMapper.Source["sheet_max_col"])
         ));
         
         string sql = (
             new BulkInsert(
-                table,
-                mapping,
-                excelReader.GetData(mapping)
+                excelMapper.Target["table"],
+                excelMapper.Mapping,
+                excelReader.GetData(excelMapper.Mapping)
             )
         ).GetBulkInsertQuery();
         
