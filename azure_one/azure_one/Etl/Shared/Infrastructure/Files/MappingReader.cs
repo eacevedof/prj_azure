@@ -10,7 +10,12 @@ public sealed class MappingReader
         string pathFile = $"{pathFolder}/{fileName}.json";
 
         if (FileHelper.isFile(pathFile))
-            return JsonConvert.DeserializeObject(pathFile);
+        {
+            string strJson = FileHelper.GetFileContent(pathFile);
+            return JsonConvert.DeserializeObject(strJson);
+        }
+
         return null;
     }
+    
 }

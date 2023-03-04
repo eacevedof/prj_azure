@@ -1,7 +1,7 @@
 {
   
   "source": {
-    "path": "%in_folder%/data-in.xlsx",
+    "path": "%folder_in%/data-in.xlsx",
     "sheet_nr": 1,
     "sheet_name": "",
     "sheet_max_col": 3
