@@ -11,18 +11,23 @@ public sealed class LoadXlsCitiesService: AbsRawService
 {
     public override void Invoke()
     {
-        dynamic config = MappingReader.JsonDecode("cities");
         ImpCitiesEntity citiesEntity = ImpCitiesEntity.GetInstance();
-        //string pathExcel = Env.GetConcat("HOME", citiesEntity.PathXls);
 
         string pathHome = Env.Get("HOME");
-        string pathExcel = config.source.path.Replace("%in_folder%","/Downloads");
-        pathExcel = $"{pathHome}/{pathExcel}";
         
-        ExcelReader excelReader = ExcelReader.FromPrimitives((
+        dynamic config = MappingReader.JsonDecode("cities");
+        string pathExcel = config.source.path;
+        
+        pathExcel = pathExcel.Replace("%folder_in%", "Downloads");
+        pathExcel = $"{pathHome}/{pathExcel}";
+
+        string sheetName = config.source.sheet_name ?? "";
+        int maxColPosition = config.source.sheet_max_col ?? 5;
+        
+        ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
             pathExcel, 
-            config.source.sheet_nr, 
-            config.sheet_max_col
+            sheetName, 
+            maxColPosition
         ));
         
         string sql = (
