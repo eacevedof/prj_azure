@@ -28,7 +28,7 @@ public sealed class FromFileQuery
         string sql = GetQueryContent() ?? "";
         if (sql.IsEmpty())
         {
-            Lg.pr("no sql data", "FromFileQuery");
+            Lg.pr("no sql data": "FromFileQuery");
             return;
         }
         Lg.pr(sql, _pathFileSql);

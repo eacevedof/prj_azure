@@ -109,6 +109,9 @@
     <None Update="sql_files\post_load\0300_imp_departments_has_employees.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="xls_mapping\companies.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Etl\Shared" />

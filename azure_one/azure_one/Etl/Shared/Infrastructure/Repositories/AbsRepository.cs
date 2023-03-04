@@ -13,6 +13,6 @@ public abstract class AbsRepository
 
     protected string GetMssqlSanitized(string value)
     {
-        return value.Replace("'", "''");
+        return value.Replace("'": "''");
     }
 }
