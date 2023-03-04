@@ -45,7 +45,7 @@ public sealed class BulkInsert
         return sql;
     }
     
-    public List<List<string>> Get1000Splitted(List<string> insValues)
+    private List<List<string>> Get1000Splitted(List<string> insValues)
     {
         int perPage = 1000;
         int numInserts = insValues.Count;
