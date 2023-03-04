@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using azure_one.Etl.RawLoaders.Domain.Exceptions;
 using Newtonsoft.Json.Linq;
 using azure_one.Etl.Shared.Infrastructure.Files;
@@ -16,10 +18,14 @@ public sealed class ExcelMapper
     {
         dynamic fromJson = MappingReader.JsonDecodeImpTables(jsonFileName);
         if (fromJson is null) throw new JsonFileNotFoundException($"json file {jsonFileName}.json not found");
-        _target = GetMappingFromObject(fromJson.target);
-        _mapping = GetMappingFromObjectList(fromJson.mapping);
-        _source = GetMappingFromObject(fromJson.source);
         
+        if (HasProperty(fromJson, "target"))
+            _target = GetMappingFromObject(fromJson.target);
+        
+        if (HasProperty(fromJson, "mapping"))
+            _mapping = GetMappingFromObjectList(fromJson.mapping);
+        
+        _source = GetMappingFromObject(fromJson.source);
         string pathHome = Env.Get("HOME");
         string pathExcel = _source["path"];
         pathExcel = pathExcel.Replace("%folder_in%", "Downloads");
@@ -54,6 +60,14 @@ public sealed class ExcelMapper
                 mapping.Add(prop.Key, prop.Value.ToString());
             }
         return mapping;
+    }
+    
+    private bool HasProperty(dynamic obj, string name)
+    {
+        Type objType = obj.GetType();
+        if (objType == typeof(ExpandoObject))
+            return ((IDictionary<string, object>)obj).ContainsKey(name);
+        return objType.GetProperty(name) != null;
     }
 
     public Dictionary<string, string> Source
