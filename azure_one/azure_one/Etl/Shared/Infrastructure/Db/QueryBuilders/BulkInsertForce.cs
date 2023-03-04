@@ -22,6 +22,7 @@ public sealed class BulkInsertForce
     {
         _targetTable = targetTable;
         _dataRows = dataRows;
+        _columnMapping = new();
     }
 
     private void LoadColumnMapping()
