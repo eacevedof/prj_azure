@@ -3,7 +3,7 @@
   "source": {
     "path": "%folder_in%/data-in.xlsx",
     "sheet_nr": 1,
-    "sheet_name": "",
+    "sheet_name": "cities",
     "sheet_max_col": 3
   },
   
