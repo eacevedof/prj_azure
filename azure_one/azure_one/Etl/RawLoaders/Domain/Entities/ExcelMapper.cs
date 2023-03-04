@@ -22,7 +22,7 @@ public sealed class ExcelMapper
         
         string pathHome = Env.Get("HOME");
         string pathExcel = _source["path"];
-        pathExcel = pathExcel.Replace("%folder_in%": "Downloads");
+        pathExcel = pathExcel.Replace("%folder_in%", "Downloads");
         _source["path"] = $"{pathHome}/{pathExcel}";
     }
 
