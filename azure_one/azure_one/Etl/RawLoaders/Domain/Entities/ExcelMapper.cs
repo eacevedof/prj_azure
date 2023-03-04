@@ -1,19 +1,34 @@
 using System.Collections.Generic;
+using azure_one.Etl.RawLoaders.Domain.Exceptions;
 using Newtonsoft.Json.Linq;
+using azure_one.Etl.Shared.Infrastructure.Files;
+using azure_one.Etl.Shared.Infrastructure.Env;
 
 namespace azure_one.Etl.RawLoaders.Domain.Entities;
 
-public sealed class GenericMapper
+public sealed class ExcelMapper
 {
     private readonly Dictionary<string, string> _source;
     private readonly Dictionary<string, string> _target;
     private readonly Dictionary<string, string> _mapping;
 
-    public GenericMapper(dynamic fromJson)
+    private ExcelMapper(string jsonFileName)
     {
-        _source = GetMappingFromObject(fromJson.source);
+        dynamic fromJson = MappingReader.JsonDecode(jsonFileName);
+        if (fromJson is null) throw new JsonFileNotFoundException($"json file {jsonFileName}.json not found");
         _target = GetMappingFromObject(fromJson.target);
         _mapping = GetMappingFromObjectList(fromJson.mapping);
+        _source = GetMappingFromObject(fromJson.source);
+        
+        string pathHome = Env.Get("HOME");
+        string pathExcel = _source["path"];
+        pathExcel = pathExcel.Replace("%folder_in%", "Downloads");
+        _source["path"] = $"{pathHome}/{pathExcel}";        
+    }
+
+    public static ExcelMapper GetInstance(string jsonFileName)
+    {
+        return new ExcelMapper(jsonFileName);
     }
  
     private Dictionary<string, string> GetMappingFromObject(dynamic simpleObj)
@@ -52,5 +67,6 @@ public sealed class GenericMapper
     public Dictionary<string, string> Mapping
     {
         get { return _mapping;}
-    }        
+    }
+    
 }
