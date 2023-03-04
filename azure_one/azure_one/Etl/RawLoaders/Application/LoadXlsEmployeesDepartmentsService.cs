@@ -1,6 +1,6 @@
+using System;
 using azure_one.Etl.RawLoaders.Domain.Entities;
 using azure_one.Etl.Shared.Infrastructure.Files;
-using azure_one.Etl.Shared.Infrastructure.Env;
 using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
@@ -11,20 +11,21 @@ public sealed class LoadXlsEmployeesDepartmentsService: AbsRawService
 {
     public override void Invoke()
     {
-        ImpEmployeesDepartmentsEntity employeesDepartmentsEntity = ImpEmployeesDepartmentsEntity.GetInstance();
-        ExcelReader excelReader = ExcelReader.FromPrimitives((
-            Env.GetConcat("HOME", employeesDepartmentsEntity.PathXls), 
-            employeesDepartmentsEntity.SheetNr, 
-            employeesDepartmentsEntity.SheetMaxColumn
+        ExcelMapper excelMapper = ExcelMapper.GetInstance("employees_departments");
+        ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
+            excelMapper.Source["path"],
+            excelMapper.Source["sheet_name"], 
+            Int32.Parse(excelMapper.Source["sheet_max_col"])
         ));
         
         string sql = (
             new BulkInsert(
-                employeesDepartmentsEntity.Table, 
-                employeesDepartmentsEntity.ColumnMapping, 
-                excelReader.GetData()
+                excelMapper.Target["table"],
+                excelMapper.Mapping,
+                excelReader.GetData(excelMapper.Mapping)
             )
         ).GetBulkInsertQuery();
+        
         Lg.pr(sql);
         Mssql.GetInstance().Execute(sql);
     }

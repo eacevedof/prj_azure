@@ -1,6 +1,6 @@
+using System;
 using azure_one.Etl.RawLoaders.Domain.Entities;
 using azure_one.Etl.Shared.Infrastructure.Files;
-using azure_one.Etl.Shared.Infrastructure.Env;
 using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
@@ -11,18 +11,18 @@ public sealed class LoadXlsLanguagesCompanyCustomService: AbsRawService
 {
     public override void Invoke()
     {
-        ImpLanguagesCompanyCustomEntity languageCompanyCustomEntity = ImpLanguagesCompanyCustomEntity.GetInstance();
-        ExcelReader excelReader = ExcelReader.FromPrimitives((
-            Env.GetConcat("HOME", languageCompanyCustomEntity.PathXls),
-            languageCompanyCustomEntity.SheetNr, 
-            languageCompanyCustomEntity.SheetMaxColumn
+        ExcelMapper excelMapper = ExcelMapper.GetInstance("languages_company_custom");
+        ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
+            excelMapper.Source["path"],
+            excelMapper.Source["sheet_name"], 
+            Int32.Parse(excelMapper.Source["sheet_max_col"])
         ));
         
         string sql = (
             new BulkInsert(
-                languageCompanyCustomEntity.Table,
-                languageCompanyCustomEntity.ColumnMapping,
-                excelReader.GetData()
+                excelMapper.Target["table"],
+                excelMapper.Mapping,
+                excelReader.GetData(excelMapper.Mapping)
             )
         ).GetBulkInsertQuery();
         
