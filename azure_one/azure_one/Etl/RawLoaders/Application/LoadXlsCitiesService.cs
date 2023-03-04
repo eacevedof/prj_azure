@@ -5,6 +5,7 @@ using azure_one.Etl.Shared.Infrastructure.Env;
 using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
+using Newtonsoft.Json.Linq;
 
 namespace azure_one.Etl.RawLoaders.Application;
 
@@ -24,12 +25,14 @@ public sealed class LoadXlsCitiesService: AbsRawService
         string sheetName = config.source.sheet_name ?? "";
         int maxColPosition = config.source.sheet_max_col ?? 5;
         string table = "imp_cities";
-        Dictionary<string, string> mapping = new() {
-            { "provinces_uuid", "provinces_uuid" },
-            { "uuid", "uuid" },
-            { "val", "val" },
-            { "codesap", "codesap" },
-        }; 
+        Dictionary<string, string> mapping = new();
+        foreach (JObject row in config.mapping)
+        {
+            foreach (KeyValuePair<string, JToken> prop in row)
+            {
+                mapping.Add(prop.Key, prop.Value.ToString());
+            }
+        }
 
         ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
             pathExcel, 
