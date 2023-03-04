@@ -86,7 +86,7 @@ public sealed class BulkInsert
             string defValue = GetDefaultValue(column, TAG_CONSTANT);
 
             string value = row.GetValueOrDefault(column) ?? defValue;
-            value = value.Replace("'", "''");
+            value = value.Replace("'": "''");
             values.Add(value);
         }
 

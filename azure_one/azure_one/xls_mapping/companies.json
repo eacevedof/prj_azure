@@ -1,0 +1,27 @@
+{
+
+  "source": {
+    "path": "%folder_in%/data-in.xlsx",
+    "sheet_name": "companies",
+    "sheet_max_col": 10
+  },
+
+  "target": {
+    "table": "imp_companies"
+  },
+
+  "mapping": [
+    { "cities_uuid": "city_uuid" },
+    { "uuid": "uuid" },
+    { "company_type": "company_type" },
+    { "company_name": "company_name" },
+
+    { "company_address1": "company_address1" },
+    { "company_address2": "company_address2" },
+    { "company_cp": "company_cp" },
+    { "company_contact_person": "company_contact_person" },
+    { "company_contact_phone": "company_contact_phone" },
+    { "company_contact_email": "company_contact_email" },
+    { "codesap": "codesap" }
+  ]
+}
