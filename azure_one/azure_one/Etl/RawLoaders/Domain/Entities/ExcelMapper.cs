@@ -32,9 +32,31 @@ public sealed class ExcelMapper
         _source["path"] = $"{pathHome}/{pathExcel}";
     }
 
+    private ExcelMapper(dynamic objDynamic)
+    {
+        if (objDynamic is null) throw new JsonFileNotFoundException($"Empty json object not allowed");
+        if (HasProperty(objDynamic, "target"))
+            _target = GetMappingFromObject(objDynamic.target);
+        
+        if (HasProperty(objDynamic, "mapping"))
+            _mapping = GetMappingFromObjectList(objDynamic.mapping);
+        
+        _source = GetMappingFromObject(objDynamic.source);
+        string pathHome = Env.Get("HOME");
+        string pathExcel = _source["path"];
+        pathExcel = pathExcel.Replace("%folder_in%", "Downloads");
+        _source["path"] = $"{pathHome}/{pathExcel}";        
+    }
+    
     public static ExcelMapper GetInstance(string jsonFileName)
     {
         return new ExcelMapper(jsonFileName);
+    }
+    
+    public static ExcelMapper GetForceInstance(string jsonFileName)
+    {
+        dynamic objDynamic = MappingReader.JsonDecodeFromForceFolder(jsonFileName);
+        return new ExcelMapper(objDynamic);
     }
  
     private Dictionary<string, string> GetMappingFromObject(dynamic simpleObj)
