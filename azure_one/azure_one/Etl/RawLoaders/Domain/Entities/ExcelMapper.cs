@@ -34,10 +34,12 @@ public sealed class ExcelMapper
     private Dictionary<string, string> GetMappingFromObject(dynamic simpleObj)
     {
         Dictionary<string, string> result = new();
-        foreach (KeyValuePair<string, JToken> prop in simpleObj)
+        foreach (JProperty prop in simpleObj)
         {
-            if (result.ContainsKey(prop.Key)) continue;
-            result.Add(prop.Key, prop.Value.ToString());
+            string key = prop.First.ToString();
+            if (result.ContainsKey(key)) continue;
+            string value = prop.Last.ToString();
+            result.Add(key, value);
         }
         return result;
     }
