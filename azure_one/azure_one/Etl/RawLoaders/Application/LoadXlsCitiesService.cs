@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using azure_one.Etl.RawLoaders.Domain.Entities;
 using azure_one.Etl.Shared.Infrastructure.Files;
 using azure_one.Etl.Shared.Infrastructure.Env;
@@ -14,7 +15,6 @@ public sealed class LoadXlsCitiesService: AbsRawService
         ImpCitiesEntity citiesEntity = ImpCitiesEntity.GetInstance();
 
         string pathHome = Env.Get("HOME");
-        
         dynamic config = MappingReader.JsonDecode("cities");
         string pathExcel = config.source.path;
         
@@ -23,7 +23,14 @@ public sealed class LoadXlsCitiesService: AbsRawService
 
         string sheetName = config.source.sheet_name ?? "";
         int maxColPosition = config.source.sheet_max_col ?? 5;
-        
+        string table = "imp_cities";
+        Dictionary<string, string> mapping = new() {
+            { "provinces_uuid", "provinces_uuid" },
+            { "uuid", "uuid" },
+            { "val", "val" },
+            { "codesap", "codesap" },
+        }; 
+
         ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
             pathExcel, 
             sheetName, 
@@ -32,9 +39,9 @@ public sealed class LoadXlsCitiesService: AbsRawService
         
         string sql = (
             new BulkInsert(
-                citiesEntity.Table,
-                citiesEntity.ColumnMapping,
-                excelReader.GetData()
+                table,
+                mapping,
+                excelReader.GetData(mapping)
             )
         ).GetBulkInsertQuery();
         

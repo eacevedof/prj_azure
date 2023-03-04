@@ -56,7 +56,7 @@ public sealed class ExcelReader
                 if (!_sheetName.Trim().IsEmpty())
                     sheet = GetSheetObjectByName(sheets, _sheetName);
 
-                if (sheet == null)
+                if (sheet is null)
                     throw new SheetNotFoundException($"sheet {_sheetName} was not found!");
 
                 DataRowCollection sheetRows = sheet.Rows;
@@ -101,7 +101,7 @@ public sealed class ExcelReader
                 if (!_sheetName.Trim().IsEmpty())
                     sheet = GetSheetObjectByName(sheets, _sheetName);
 
-                if (sheet == null)
+                if (sheet is null)
                     throw new SheetNotFoundException($"sheet {_sheetName} was not found!");
 
                 DataRowCollection sheetRows = sheet.Rows;
@@ -136,7 +136,12 @@ public sealed class ExcelReader
         Dictionary<string, int> colNames = new();
         int numCols = titleRow.Table.Columns.Count;
         for (int i = 0; i < numCols; i++)
-            colNames.Add(titleRow[i].ToString().Trim(), i);
+        {
+            if (i>_maxColumn) continue;
+            string colName = titleRow[i].ToString().Trim();
+            if (colNames.ContainsKey(colName)) continue;
+            colNames.Add(colName, i);
+        }
         return colNames;
     }
 
