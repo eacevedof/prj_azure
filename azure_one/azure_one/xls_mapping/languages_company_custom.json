@@ -1,0 +1,20 @@
+{
+
+  "source": {
+    "path": "%folder_in%/data-in.xlsx",
+    "sheet_name": "lang_company",
+    "sheet_max_col": 4
+  },
+
+  "target": {
+    "table": "imp_languages_company_custom"
+  },
+
+  "mapping": [
+    { "companies_uuid": "companies_uuid" },
+    { "lang_from": "lang_from" },
+    { "lang_tr": "lang_tr" },
+    { "value_tr": "value_tr" },
+    { "tr_num": "tr_num" }
+  ]
+}
