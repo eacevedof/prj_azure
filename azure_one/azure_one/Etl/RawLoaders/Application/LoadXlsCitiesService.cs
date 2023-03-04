@@ -18,9 +18,9 @@ public sealed class LoadXlsCitiesService: AbsRawService
         ExcelMapper excelMapper = ExcelMapper.GetInstance("cities");
 
         string sheetName = excelMapper.Source["sheet_name"];
-        int maxColPosition = Int32.Parse(excelMapper.Source["max_column"]);
+        int maxColPosition = Int32.Parse(excelMapper.Source["sheet_max_col"]);
         string table = excelMapper.Target["table"];
-        Dictionary<string, string> mapping = MappingReader.GetMappingFromObject(excelMapper.Mapping);
+        Dictionary<string, string> mapping = excelMapper.Mapping;
 
         ExcelReader excelReader = ExcelReader.FromPrimitivesSheetName((
             excelMapper.Source["path"],
