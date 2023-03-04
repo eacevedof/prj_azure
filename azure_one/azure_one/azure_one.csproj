@@ -109,37 +109,37 @@
     <None Update="sql_files\post_load\0300_imp_departments_has_employees.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="xls_mapping\companies.json">
+    <None Update="xls_mapping\000500_companies.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="xls_mapping\countries.json">
+    <None Update="xls_mapping\000200_countries.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="xls_mapping\employees_departments.json">
+    <None Update="xls_mapping\001000_employees_departments.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="xls_mapping\employees.json">
+    <None Update="xls_mapping\001200_employees.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="xls_mapping\employees_positions.json">
+    <None Update="xls_mapping\000900_employees_positions.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="xls_mapping\languages_company_custom.json">
+    <None Update="xls_mapping\000600_languages_company_custom.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="xls_mapping\languages.json">
+    <None Update="xls_mapping\000100_languages.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="xls_mapping\provinces.json">
+    <None Update="xls_mapping\000300_provinces.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="xls_mapping\roles.json">
+    <None Update="xls_mapping\001100_roles.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="xls_mapping\status_employees.json">
+    <None Update="xls_mapping\000800_status_employees.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="xls_mapping\user_types.json">
+    <None Update="xls_mapping\000700_user_types.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
