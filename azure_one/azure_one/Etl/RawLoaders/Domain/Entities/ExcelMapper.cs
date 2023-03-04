@@ -23,7 +23,7 @@ public sealed class ExcelMapper
         string pathHome = Env.Get("HOME");
         string pathExcel = _source["path"];
         pathExcel = pathExcel.Replace("%folder_in%", "Downloads");
-        _source["path"] = $"{pathHome}/{pathExcel}";        
+        _source["path"] = $"{pathHome}/{pathExcel}";
     }
 
     public static ExcelMapper GetInstance(string jsonFileName)
@@ -36,9 +36,9 @@ public sealed class ExcelMapper
         Dictionary<string, string> result = new();
         foreach (JProperty prop in simpleObj)
         {
-            string key = prop.First.ToString();
+            string key = prop.Name;
             if (result.ContainsKey(key)) continue;
-            string value = prop.Last.ToString();
+            string value = prop.Value.ToString();
             result.Add(key, value);
         }
         return result;
