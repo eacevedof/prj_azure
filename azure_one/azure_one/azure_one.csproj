@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="xls_mapping\" />
-    <Folder Include="xls_mapping\force" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="sql_files\" />
@@ -108,6 +107,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="sql_files\post_load\0300_imp_departments_has_employees.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="xls_mapping\force\000100_force.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
