@@ -14,13 +14,15 @@ public sealed class LoadXlsCitiesService: AbsRawService
         dynamic config = MappingReader.JsonDecode("cities");
         ImpCitiesEntity citiesEntity = ImpCitiesEntity.GetInstance();
         //string pathExcel = Env.GetConcat("HOME", citiesEntity.PathXls);
-        
-        string pathExcel = config.source.path.Replace("%in_folder%",);
+
+        string pathHome = Env.Get("HOME");
+        string pathExcel = config.source.path.Replace("%in_folder%","/Downloads");
+        pathExcel = $"{pathHome}/{pathExcel}";
         
         ExcelReader excelReader = ExcelReader.FromPrimitives((
             pathExcel, 
-            citiesEntity.SheetNr, 
-            citiesEntity.SheetMaxColumn
+            config.source.sheet_nr, 
+            config.sheet_max_col
         ));
         
         string sql = (
