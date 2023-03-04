@@ -10,15 +10,11 @@
   "target": {
     "table": "imp_cities"
   },
-  
-  "mapping": {
-    "by_name": false,
-    "columns": [
-      { "provincies_uuid": "provinces_uuid" },
-      { "uuid": "uuid" },
-      { "val": "val" },
-      { "codesap": "codesap" }
-    ]
-  }
-  
+
+  "mapping": [
+    { "provincies_uuid": "provinces_uuid" },
+    { "uuid": "uuid" },
+    { "val": "val" },
+    { "codesap": "codesap" }
+  ]
 }
