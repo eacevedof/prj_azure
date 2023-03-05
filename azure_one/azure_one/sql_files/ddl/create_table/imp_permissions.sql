@@ -1,5 +1,3 @@
--- select slug, ' NVARCHAR(110) NULL,' c from permissions order by slug
-
 DROP TABLE [local_staging].[dbo].[imp_permissions];
 
 CREATE TABLE [local_staging].[dbo].[imp_permissions] (
@@ -9,69 +7,21 @@ CREATE TABLE [local_staging].[dbo].[imp_permissions] (
     [roles_uuid]               NVARCHAR (50)  NULL,
     [roles_id]                 NVARCHAR (50)  NULL,
     [roles_name]               NVARCHAR (250) NULL,
-    
-    [access_to_all_tactical_requests]	 NVARCHAR(110) NULL,
-    [access_to_assets]	 NVARCHAR(110) NULL,
-    [access_to_billing]	 NVARCHAR(110) NULL,
-    [access_to_dashboard]	 NVARCHAR(110) NULL,
-    [access_to_departments]	 NVARCHAR(110) NULL,
-    [access_to_own_tactical_requests]	 NVARCHAR(110) NULL,
-    [access_to_positions]	 NVARCHAR(110) NULL,
-    [access_to_tactical_digital_library]	 NVARCHAR(110) NULL,
-    [access_to_ticketing]	 NVARCHAR(110) NULL,
-    [access_to_users]	 NVARCHAR(110) NULL,
-    [assets_audit]	 NVARCHAR(110) NULL,
-    [assets_creation]	 NVARCHAR(110) NULL,
-    [assets_deleting]	 NVARCHAR(110) NULL,
-    [assets_exporting]	 NVARCHAR(110) NULL,
-    [assets_file_deleting]	 NVARCHAR(110) NULL,
-    [assets_file_download]	 NVARCHAR(110) NULL,
-    [assets_file_inspection]	 NVARCHAR(110) NULL,
-    [assets_file_renaming]	 NVARCHAR(110) NULL,
-    [assets_file_updating]	 NVARCHAR(110) NULL,
-    [assets_relationship_edition]	 NVARCHAR(110) NULL,
-    [assets_updating]	 NVARCHAR(110) NULL,
-    [assets_versions_review]	 NVARCHAR(110) NULL,
-    [billing_audit]	 NVARCHAR(110) NULL,
-    [billing_exporting]	 NVARCHAR(110) NULL,
-    [billing_updating]	 NVARCHAR(110) NULL,
-    [dashboard_assets]	 NVARCHAR(110) NULL,
-    [dashboard_billing]	 NVARCHAR(110) NULL,
-    [dashboard_company_owner]	 NVARCHAR(110) NULL,
-    [dashboard_tactical_digital_library]	 NVARCHAR(110) NULL,
-    [dashboard_tactical_requests]	 NVARCHAR(110) NULL,
-    [dashboard_tasks]	 NVARCHAR(110) NULL,
-    [dashboard_users]	 NVARCHAR(110) NULL,
-    [departments_audit]	 NVARCHAR(110) NULL,
-    [departments_creation]	 NVARCHAR(110) NULL,
-    [departments_deleting]	 NVARCHAR(110) NULL,
-    [departments_exporting]	 NVARCHAR(110) NULL,
-    [departments_updating]	 NVARCHAR(110) NULL,
-    [positions_audit]	 NVARCHAR(110) NULL,
-    [positions_creation]	 NVARCHAR(110) NULL,
-    [positions_deleting]	 NVARCHAR(110) NULL,
-    [positions_exporting]	 NVARCHAR(110) NULL,
-    [positions_updating]	 NVARCHAR(110) NULL,
-    [tactical_digital_library_audit]	 NVARCHAR(110) NULL,
-    [tactical_digital_library_exporting]	 NVARCHAR(110) NULL,
-    [tactical_digital_library_file_download]	 NVARCHAR(110) NULL,
-    [tactical_digital_library_file_opening]	 NVARCHAR(110) NULL,
-    [tactical_digital_library_link_generation]	 NVARCHAR(110) NULL,
-    [tactical_requests__tasks_requests_audit]	 NVARCHAR(110) NULL,
-    [tactical_requests__tasks_requests_exporting]	 NVARCHAR(110) NULL,
-    [tactical_requests__tasks_requests_updating]	 NVARCHAR(110) NULL,
-    [tactical_requests_cancelation]	 NVARCHAR(110) NULL,
-    [tactical_requests_creation]	 NVARCHAR(110) NULL,
-    [tasks_requests_middle_permissions]	 NVARCHAR(110) NULL,
-    [users_audit]	 NVARCHAR(110) NULL,
-    [users_creation]	 NVARCHAR(110) NULL,
-    [users_deleting]	 NVARCHAR(110) NULL,
-    [users_exporting]	 NVARCHAR(110) NULL,
-    [users_updating]	 NVARCHAR(110) NULL,
-  
+    [permission_id]            NVARCHAR (50)  NULL,
+    [permission_slug]          NVARCHAR (250)  NULL,
+
     [nok]                      INT            NULL,
     [created_at]               DATETIME       CONSTRAINT [DEFAULT_imp_permissions_created_at] DEFAULT (getdate()) NULL,
     [updated_at]               DATETIME       NULL,
     [imp_uuid]                 NVARCHAR (50)  NULL,
     CONSTRAINT [PK_imp_permissions] PRIMARY KEY CLUSTERED ([id] ASC)
 );
+
+/*
+select '['+slug+']' f, ' NVARCHAR(10) NULL,' c from permissions order by slug
+
+SELECT r.id roles_uuid, r.name roles_name, p.slug permission_slug
+FROM roles r
+CROSS JOIN permissions p
+ORDER BY 2, 3
+*/
