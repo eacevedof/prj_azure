@@ -1,5 +1,4 @@
 {
-
   "source": {
     "path": "%folder_in%/data-in.xlsx",
     "sheet_name": "permissions",
@@ -12,50 +11,7 @@
 
   "mapping": [
     {"roles_uuid": "roles_uuid"},
-    {"Roles": "roles_name" },
-    {"Access to All Tactical Requests":"access_to_all_tactical_requests"},
-    {"Access to Billing":"access_to_billing"},
-    {"Access to Dashboard":"access_to_dashboard"},
-    {"Access to Departments":"access_to_departments"},
-    {"Access to Own Tactical Requests":"access_to_own_tactical_requests"},
-    {"Access to Positions":"access_to_positions"},
-    {"Access to Tactical Digital Library":"access_to_tactical_digital_library"},
-    {"Access to Ticketing":"access_to_ticketing"},
-    {"Access to Users":"access_to_users"},
-    {"Assets: Audit":"assets_audit"},
-    {"Billing: Audit":"billing_audit"},
-    {"Billing: Exporting":"billing_exporting"},
-    {"Billing: Updating":"billing_updating"},
-    {"Dashboard: Assets":"dashboard_assets"},
-    {"Dashboard: Billing":"dashboard_billing"},
-    {"Dashboard: Company Owner":"dashboard_company_owner"},
-    {"Dashboard: Tactical Digital Library":"dashboard_tactical_digital_library"},
-    {"Dashboard: Tactical Requests":"dashboard_tactical_requests"},
-    {"Dashboard: Tasks":"dashboard_tasks"},
-    {"Dashboard: Users":"dashboard_users"},
-    {"Departments: Audit":"departments_audit"},
-    {"Departments: Creation":"departments_creation"},
-    {"Departments:Deletion":"departments_deleting"},
-    {"Departments: Exporting":"departments_exporting"},
-    {"Departments: Updating":"departments_updating"},
-    {"Positions: Audit":"positions_audit"},
-    {"Positions: Creation":"positions_creation"},
-    {"Positions:Deletion":"positions_deleting"},
-    {"Positions: Exporting":"positions_exporting"},
-    {"Positions: Updating":"positions_updating"},
-    {"Tactical Digital Library: Audit":"tactical_digital_library_audit"},
-    {"Tactical Digital Library:Exporting":"tactical_digital_library_exporting"},
-    {"Tactical Digital Library: File Download":"tactical_digital_library_file_download"},
-    {"Tactical Digital Library: Link Generation":"tactical_digital_library_link_generation"},
-    {"Tactical & Tasks Requests: Audit":"tactical_requests__tasks_requests_audit"},
-    {"Tactical & Tasks Requests: Exporting":"tactical_requests__tasks_requests_exporting"},
-    {"Tactical & Tasks Requests: Updating":"tactical_requests__tasks_requests_updating"},
-    {"Tactical Requests: Cancellation":"tactical_requests_cancelation"},
-    {"Tactical Requests: Creation":"tactical_requests_creation"},
-    {"Users: Audit":"users_audit"},
-    {"Users: Creation":"users_creation"},
-    {"Users: Deletion":"users_deleting"},
-    {"Users: Exporting":"users_exporting"},
-    {"Users: Updating":"users_updating"}
+    {"roles_name": "roles_name" },
+    {"permission_slug":"permission_slug"}
   ]
 }
