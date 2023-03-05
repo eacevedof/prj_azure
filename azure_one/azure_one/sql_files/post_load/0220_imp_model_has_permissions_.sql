@@ -1,0 +1,14 @@
+/*
+access_to_assets
+assets_creation
+assets_deleting
+assets_exporting
+assets_file_deleting
+assets_file_download
+assets_file_inspection
+assets_file_renaming
+assets_file_updating
+assets_relationship_edition
+assets_updating
+assets_versions_review
+*/

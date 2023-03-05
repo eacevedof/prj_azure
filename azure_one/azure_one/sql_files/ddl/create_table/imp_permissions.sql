@@ -21,8 +21,30 @@ CREATE TABLE [local_staging].[dbo].[imp_permissions] (
 /*
 select '['+slug+']' f, ' NVARCHAR(10) NULL,' c from permissions order by slug
 
-SELECT r.id roles_uuid, r.name roles_name, p.slug permission_slug
-FROM roles r
-CROSS JOIN permissions p
-ORDER BY 2, 3
+-- role_has_permissions
+SELECT *
+FROM 
+(
+    SELECT r.id entity_uuid, r.name entity_name, p.slug permission_slug, 'by-role' permission_type
+    FROM roles r
+    LEFT JOIN role_has_permissions rhp
+    ON r.id = rhp.role_id
+    LEFT JOIN permissions p
+    ON rhp.permission_id = p.id
+    WHERE 1=1
+    -- AND p.id NOT IN (select permission_id from model_has_permissions)
+    -- ORDER BY 2, 3
+    UNION
+
+
+    SELECT atp.id asset_type_uuid, atp.asset_type_name asset_type_name, p.slug permission_slug, 'by-asset-type' permission_type
+    FROM assets_types atp
+    LEFT JOIN model_has_permissions mhp
+    ON atp.id = mhp.model_id
+    LEFT JOIN permissions p
+    ON mhp.permission_id = p.id
+    WHERE 1=1
+    -- AND p.id IN ( select permission_id from model_has_permissions)
+) t
+ORDER BY 4 DESC, 2, 3
 */

@@ -119,6 +119,12 @@
     <None Update="sql_files\post_load\0200_imp_permissions.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="sql_files\post_load\0210_imp_role_has_permissions_.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="sql_files\post_load\0220_imp_model_has_permissions_.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Etl\Shared" />
