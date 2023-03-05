@@ -1,8 +1,8 @@
 {
   "source": {
     "path": "%folder_in%/data-in.xlsx",
-    "sheet_name": "cities",
-    "sheet_max_col": 3
+    "sheet_name": "users_emp",
+    "sheet_max_col": 11
   },
   "target": {
     "table": "[local_staging].[dbo].[imp_demo]"
