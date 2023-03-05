@@ -12,3 +12,4 @@ TRUNCATE TABLE [local_staging].[dbo].[imp_employees_departments];
 TRUNCATE TABLE [local_staging].[dbo].[imp_employees_positions];
 TRUNCATE TABLE [local_staging].[dbo].[imp_roles];
 TRUNCATE TABLE [local_staging].[dbo].[imp_employees];
+TRUNCATE TABLE [local_staging].[dbo].[imp_permissions];
