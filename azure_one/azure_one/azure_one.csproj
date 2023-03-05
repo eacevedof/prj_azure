@@ -19,6 +19,7 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="sql_files\ddl\create_table" />
     <Folder Include="xls_mapping\" />
   </ItemGroup>
   <ItemGroup>
