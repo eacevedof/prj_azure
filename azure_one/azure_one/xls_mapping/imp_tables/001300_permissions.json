@@ -12,7 +12,7 @@
 
   "mapping": [
     {"roles_uuid": "roles_uuid"},
-    {"Role": "roles_name" },
+    {"Roles": "roles_name" },
     {"Access to All Tactical Requests":"access_to_all_tactical_requests"},
     {"Access to Billing":"access_to_billing"},
     {"Access to Dashboard":"access_to_dashboard"},
