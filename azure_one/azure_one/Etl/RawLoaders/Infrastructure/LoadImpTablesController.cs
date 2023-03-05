@@ -17,6 +17,7 @@ public sealed class LoadImpTablesController
     private readonly LoadXlsEmployeesDepartmentsService _loadXlsEmployeesDepartmentsService;
     private readonly LoadXlsRolesService _loadXlsRolesService;
     private readonly LoadXlsEmployeesService _loadXlsEmployeesService;
+    private readonly LoadXlsPermissionsService _loadXlsPermissionsService;
     
     public LoadImpTablesController(
         LoadXlsLanguagesService loadXlsLanguagesService,
@@ -30,7 +31,8 @@ public sealed class LoadImpTablesController
         LoadXlsEmployeesPositionsService loadXlsEmployeesPositionsService,
         LoadXlsEmployeesDepartmentsService loadXlsEmployeesDepartmentsService,
         LoadXlsRolesService loadXlsRolesService,
-        LoadXlsEmployeesService loadXlsEmployeesService
+        LoadXlsEmployeesService loadXlsEmployeesService,
+        LoadXlsPermissionsService loadXlsPermissionsService
     )
     {
         _loadXlsLanguagesService = loadXlsLanguagesService;
@@ -45,10 +47,12 @@ public sealed class LoadImpTablesController
         _loadXlsEmployeesDepartmentsService = loadXlsEmployeesDepartmentsService;
         _loadXlsRolesService = loadXlsRolesService;
         _loadXlsEmployeesService = loadXlsEmployeesService;
+        _loadXlsPermissionsService = loadXlsPermissionsService;
     }
 
     public void Invoke()
     {
+        /*
         _loadXlsLanguagesService.Invoke();
         _loadXlsCountriesServices.Invoke();
         _loadXlsProvincesService.Invoke();
@@ -61,5 +65,7 @@ public sealed class LoadImpTablesController
         _loadXlsEmployeesDepartmentsService.Invoke();
         _loadXlsRolesService.Invoke();
         _loadXlsEmployeesService.Invoke();
+        */
+        _loadXlsPermissionsService.Invoke();
     }
 }
