@@ -116,6 +116,9 @@
     <None Update="xls_mapping\imp_tables\001300_permissions.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="sql_files\post_load\0200_imp_permissions.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Etl\Shared" />
