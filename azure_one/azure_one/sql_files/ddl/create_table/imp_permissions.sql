@@ -1,12 +1,15 @@
 -- select slug, ' NVARCHAR(10) NULL,' c from permissions order by slug
 
-CREATE TABLE [dbo].[imp_permissions] (
+DROP TABLE [local_staging].[dbo].[imp_permissions];
+
+CREATE TABLE [local_staging].[dbo].[imp_permissions] (
     [id]                       BIGINT         IDENTITY (1, 1) NOT NULL,
     [tenant_slug]              NVARCHAR (50)  NULL,
     [uuid]                     NVARCHAR (50)  NULL,
     [role_uuid]                NVARCHAR (50)   NULL,
     [roles_id]                 NVARCHAR (50)   NULL,
     [role]                     NVARCHAR (250)  NULL,
+    
     [access_to_all_tactical_requests]	 NVARCHAR(10) NULL,
     [access_to_assets]	 NVARCHAR(10) NULL,
     [access_to_billing]	 NVARCHAR(10) NULL,

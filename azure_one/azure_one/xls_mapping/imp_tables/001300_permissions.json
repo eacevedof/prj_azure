@@ -1,0 +1,27 @@
+{
+
+  "source": {
+    "path": "%folder_in%/data-in.xlsx",
+    "sheet_name": "permissions",
+    "sheet_max_col": 12
+  },
+
+  "target": {
+    "table": "imp_employees"
+  },
+
+  "mapping": [
+    { "uuid": "uuid" },
+    { "employee_name": "employee_name" },
+    { "employee_surname_1": "employee_surname_1" },
+    { "employee_surname_2": "employee_surname_2" },
+    { "user_types_uuid": "user_types_uuid" },
+    { "company_uuid": "company_uuid" },
+    { "employee_email": "employee_email" },
+    { "language_uuid": "language_uuid" },
+    { "department_uuid": "department_uuid" },
+    { "position_uuid": "position_uuid" },
+    { "role_uuid": "role_uuid" },
+    { "codesap": "codesap" }
+  ]
+}
