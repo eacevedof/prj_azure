@@ -67,9 +67,8 @@ CREATE TABLE [dbo].[imp_permissions] (
     [users_updating]	 NVARCHAR(10) NULL,
   
     [nok]                      INT            NULL,
-    [created_at]               DATETIME       CONSTRAINT [DEFAULT_imp_employees_created_at] DEFAULT (getdate()) NULL,
+    [created_at]               DATETIME       CONSTRAINT [DEFAULT_imp_permissions_created_at] DEFAULT (getdate()) NULL,
     [updated_at]               DATETIME       NULL,
     [imp_uuid]                 NVARCHAR (50)  NULL,
-    CONSTRAINT [PK_imp_employees] PRIMARY KEY CLUSTERED ([id] ASC)
+    CONSTRAINT [PK_imp_permissions] PRIMARY KEY CLUSTERED ([id] ASC)
 );
-
