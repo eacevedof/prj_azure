@@ -9,6 +9,7 @@ CREATE TABLE [local_staging].[dbo].[imp_permissions] (
     [roles_name]               NVARCHAR (250) NULL,
     [permission_id]            NVARCHAR (50)  NULL,
     [permission_slug]          NVARCHAR (250)  NULL,
+    [permission_type]          NVARCHAR (50)  DEFAULT 'by-role' NULL,
 
     [nok]                      INT            NULL,
     [created_at]               DATETIME       CONSTRAINT [DEFAULT_imp_permissions_created_at] DEFAULT (getdate()) NULL,
