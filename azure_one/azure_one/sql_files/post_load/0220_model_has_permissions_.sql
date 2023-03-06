@@ -1,4 +1,5 @@
 /*
+-- permisos por assets
 access_to_assets
 assets_creation
 assets_deleting
