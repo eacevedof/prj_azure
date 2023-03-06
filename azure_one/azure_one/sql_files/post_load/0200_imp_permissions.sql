@@ -1,5 +1,5 @@
 UPDATE [local_staging].[dbo].[imp_permissions] SET permissions_id=NULL;
-UPDATE [local_staging].[dbo].[imp_permissions] SET roles_id=NULL;
+UPDATE [local_staging].[dbo].[imp_permissions] SET entity_id=NULL;
 
 UPDATE imp
 SET imp.permissions_id = mt.id
@@ -13,12 +13,12 @@ AND imp.nok IS NULL
 UPDATE [local_staging].[dbo].[imp_permissions] SET nok=1 WHERE permissions_id IS NULL;
 
 UPDATE imp
-SET imp.roles_id = mt.id
-FROM [local_laciahub].[dbo].[roles]  mt
+SET imp.entity_id = mt.id
+FROM [local_laciahub].[dbo].[entity]  mt
 INNER JOIN [local_staging].[dbo].[imp_permissions] imp
-ON mt.id = imp.roles_uuid
+ON mt.id = imp.entity_uuid
 WHERE 1=1
 AND imp.nok IS NULL
 ;
 
-UPDATE [local_staging].[dbo].[imp_permissions] SET nok=1 WHERE roles_id IS NULL;
+UPDATE [local_staging].[dbo].[imp_permissions] SET nok=1 WHERE entity_id IS NULL;
