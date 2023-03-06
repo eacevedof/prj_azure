@@ -10,8 +10,9 @@
   },
 
   "mapping": [
-    {"roles_uuid": "roles_uuid"},
-    {"roles_name": "roles_name" },
-    {"permission_slug":"permission_slug"}
+    {"entity_uuid": "entity_uuid"},
+    {"entity_name": "entity_name" },
+    {"permission_slug":"permission_slug"},
+    {"permission_type":"permission_type"}
   ]
 }
