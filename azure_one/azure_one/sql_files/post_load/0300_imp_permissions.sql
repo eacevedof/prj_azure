@@ -10,15 +10,28 @@ WHERE 1=1
 AND imp.nok IS NULL
 ;
 
-UPDATE [local_staging].[dbo].[imp_permissions] SET nok=1 WHERE permissions_id IS NULL;
+UPDATE [local_staging].[dbo].[imp_permissions] SET nok=1 WHERE permissions_id IS NULL
+;
 
 UPDATE imp
 SET imp.entity_id = mt.id
-FROM [local_laciahub].[dbo].[entity]  mt
+FROM [local_laciahub].[dbo].[roles]  mt
 INNER JOIN [local_staging].[dbo].[imp_permissions] imp
 ON mt.id = imp.entity_uuid
 WHERE 1=1
 AND imp.nok IS NULL
+AND imp.permission_type = 'by-role'
 ;
 
-UPDATE [local_staging].[dbo].[imp_permissions] SET nok=1 WHERE entity_id IS NULL;
+UPDATE imp
+SET imp.entity_id = mt.id
+FROM [local_laciahub].[dbo].[assets_type]  mt
+INNER JOIN [local_staging].[dbo].[imp_permissions] imp
+ON mt.id = imp.entity_uuid
+WHERE 1=1
+AND imp.nok IS NULL
+AND imp.permission_type = 'by-asset-type'
+;
+
+UPDATE [local_staging].[dbo].[imp_permissions] SET nok=1 WHERE entity_id IS NULL
+;
