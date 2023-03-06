@@ -116,13 +116,13 @@
     <None Update="xls_mapping\imp_tables\001300_permissions.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\post_load\0200_imp_permissions.sql">
+    <None Update="sql_files\post_load\0300_imp_permissions.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\post_load\0210_role_has_permissions_.sql">
+    <None Update="sql_files\post_load\0310_role_has_permissions_.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\post_load\0220_model_has_permissions_.sql">
+    <None Update="sql_files\post_load\0320_model_has_permissions_.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="sql_files\post_load\0195_model_has_roles.sql">
