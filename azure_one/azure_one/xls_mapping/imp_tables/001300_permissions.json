@@ -12,7 +12,7 @@
   "mapping": [
     {"entity_uuid": "entity_uuid"},
     {"entity_name": "entity_name" },
-    {"permission_slug":"permission_slug"},
-    {"permission_type":"permission_type"}
+    {"permission_slug":"permissions_slug"},
+    {"permission_type":"permissions_type"}
   ]
 }
