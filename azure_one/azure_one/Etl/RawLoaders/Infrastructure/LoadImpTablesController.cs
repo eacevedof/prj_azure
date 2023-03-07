@@ -18,6 +18,7 @@ public sealed class LoadImpTablesController
     private readonly LoadXlsRolesService _loadXlsRolesService;
     private readonly LoadXlsEmployeesService _loadXlsEmployeesService;
     private readonly LoadXlsPermissionsService _loadXlsPermissionsService;
+    private readonly LoadXlsAssetsTypesService _loadXlsAssetsTypesService;
     
     public LoadImpTablesController(
         LoadXlsLanguagesService loadXlsLanguagesService,
@@ -32,7 +33,8 @@ public sealed class LoadImpTablesController
         LoadXlsEmployeesDepartmentsService loadXlsEmployeesDepartmentsService,
         LoadXlsRolesService loadXlsRolesService,
         LoadXlsEmployeesService loadXlsEmployeesService,
-        LoadXlsPermissionsService loadXlsPermissionsService
+        LoadXlsPermissionsService loadXlsPermissionsService,
+        LoadXlsAssetsTypesService loadXlsAssetsTypesService
     )
     {
         _loadXlsLanguagesService = loadXlsLanguagesService;
@@ -48,6 +50,7 @@ public sealed class LoadImpTablesController
         _loadXlsRolesService = loadXlsRolesService;
         _loadXlsEmployeesService = loadXlsEmployeesService;
         _loadXlsPermissionsService = loadXlsPermissionsService;
+        _loadXlsAssetsTypesService = loadXlsAssetsTypesService;
     }
 
     public void Invoke()
@@ -67,5 +70,6 @@ public sealed class LoadImpTablesController
         _loadXlsEmployeesService.Invoke();
         */
         _loadXlsPermissionsService.Invoke();
+        _loadXlsAssetsTypesService.Invoke();
     }
 }

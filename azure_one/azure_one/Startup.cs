@@ -48,7 +48,8 @@ public class Startup: FunctionsStartup
                     new LoadXlsEmployeesDepartmentsService(),
                     new LoadXlsRolesService(),
                     new LoadXlsEmployeesService(),
-                    new LoadXlsPermissionsService()
+                    new LoadXlsPermissionsService(),
+                    new LoadXlsAssetsTypesService()
                 )
         );
 
