@@ -19,7 +19,7 @@ AND NOT EXISTS
 
 -- actualizo los ids de los thumbnails
 UPDATE imp
-SET imp.assets_files_thumbnails_id = mt.id;
+SET imp.assets_files_thumbnails_id = mt.id
 FROM [local_staging].[dbo].[imp_assets_types] imp
 INNER JOIN [local_laciahub].[dbo].[assets_files_thumbnails] mt
 ON imp.path_thumbnail = mt.path
