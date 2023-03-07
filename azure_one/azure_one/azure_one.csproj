@@ -121,7 +121,7 @@
     <None Update="sql_files\post_load\0310_role_has_permissions.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\post_load\0320_model_has_permissions.sql">
+    <None Update="sql_files\post_load\0330_model_has_permissions.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="sql_files\post_load\0195_model_has_roles.sql">
