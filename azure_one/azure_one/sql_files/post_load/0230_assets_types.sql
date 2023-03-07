@@ -17,6 +17,8 @@ WHERE 1=1
 AND imp.nok IS NULL
 ;
 
+SET IDENTITY_INSERT [local_laciahub].[dbo].[assets_types] ON;
+
 INSERT INTO [local_laciahub].[dbo].[assets_types]
 (
     id, companies_id, assets_files_thumbnails_id, asset_type_name, asset_type_description,
@@ -34,6 +36,8 @@ WHERE 1=1
 AND imp.nok IS NULL
 AND mt.id IS NULL
 ;
+
+SET IDENTITY_INSERT [local_laciahub].[dbo].[assets_types] OFF;
 
 -- actualizo los ids de los nuevos insertados
 UPDATE imp
