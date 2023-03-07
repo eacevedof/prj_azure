@@ -3,7 +3,7 @@ CREATE MASTER KEY
 ;
 
 CREATE DATABASE SCOPED CREDENTIAL credential_dev_oqo
-WITH IDENTITY = 'xxx', SECRET='yyy'
+WITH IDENTITY = 'username-yyy', SECRET='password-xxx'
 ;
 
 CREATE EXTERNAL DATA SOURCE source_dev_oqo WITH
