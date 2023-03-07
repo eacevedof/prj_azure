@@ -23,7 +23,7 @@ INSERT INTO [local_laciahub].[dbo].[assets_types]
     created_at
 )
 SELECT
-    imp.uuid, company_id, assets_files_thumbnails_id, 
+    imp.uuid, imp.company_id, imp.assets_files_thumbnails_id, 
     CONVERT(VARCHAR(255), imp.val) asset_type_name,
     CONVERT(VARCHAR(255), imp.description) description,
     GETDATE() created_at
