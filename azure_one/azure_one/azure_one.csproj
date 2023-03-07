@@ -127,6 +127,15 @@
     <None Update="sql_files\post_load\0195_model_has_roles.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="sql_files\post_load\0210_imp_assets_types.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="sql_files\post_load\0220_assets_files_thumbnails.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="sql_files\post_load\0230_assets_types.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="xls_mapping\imp_tables\001400_assets_types.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
