@@ -1,6 +1,6 @@
 UPDATE mt
 SET
-    mt.name = CONVERT(VARCHAR(255), imp.tr),
+    mt.asset_type_name = CONVERT(VARCHAR(255), imp.tr),
     mt.updated_at = GETDATE()
 FROM [local_laciahub].[dbo].[assets_types_tr]  mt
 INNER JOIN (
@@ -20,7 +20,7 @@ WHERE 1=1
 
 -- antes de ejecutar las trads debo cargar todas las maestras
 INSERT INTO [local_laciahub].[dbo].[assets_types_tr]
-(assets_types_id, locale, name, created_at)
+(assets_types_id, locale, asset_type_name, created_at)
 
 SELECT * 
 FROM (
