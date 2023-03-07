@@ -16,6 +16,7 @@ AND NOT EXISTS
     WHERE 1=1
     AND imp.path_thumbnail = mt.path
 )
+;
 
 -- actualizo los ids de los thumbnails
 UPDATE imp
