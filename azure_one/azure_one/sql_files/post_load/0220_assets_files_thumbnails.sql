@@ -9,6 +9,7 @@ SELECT
     1 owner_id, path_thumbnail path, 1, GETDATE()
 FROM [local_staging].[dbo].[imp_assets_types] imp
 WHERE 1=1
+AND imp.nok IS NULL
 AND NOT EXISTS
 (
     SELECT path 
@@ -24,4 +25,6 @@ SET imp.assets_files_thumbnails_id = mt.id
 FROM [local_staging].[dbo].[imp_assets_types] imp
 INNER JOIN [local_laciahub].[dbo].[assets_files_thumbnails] mt
 ON imp.path_thumbnail = mt.path
+WHERE 1=1
+AND imp.nok IS NULL
 ;
