@@ -1,0 +1,31 @@
+{
+  "source": {
+    "path": "%folder_in%/data-in.xlsx",
+    "sheet_name": "assets_types",
+    "sheet_max_col": 45
+  },
+
+  "target": {
+    "table": "imp_assets_types"
+  },
+
+  "mapping": [
+    {"uuid": "uuid"},
+    {"company_uuid": "company_uuid" },
+    {"val":"val"},
+    {"description":"description"},
+    {"tag_thumbnail":"tag_thumbnail"},
+    {"path_thumbnail":"path_thumbnail"},
+    {"color":"color"},
+    {"codesap":"codesap"},
+    { "tr_1": "tr_1" },
+    { "tr_2": "tr_2" },
+    { "tr_3": "tr_3" },
+    { "tr_4": "tr_4" },
+    { "tr_5": "tr_5" },
+    { "tr_6": "tr_6" },
+    { "tr_7": "tr_7" },
+    { "tr_8": "tr_8" },
+    { "tr_9": "tr_9" }
+  ]
+}
