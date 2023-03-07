@@ -28,7 +28,7 @@ AND imp.permissions_type = 'by-role'
 
 UPDATE imp
 SET imp.entity_id = mt.id
-FROM [local_laciahub].[dbo].[assets_type]  mt
+FROM [local_laciahub].[dbo].[assets_types]  mt
 INNER JOIN [local_staging].[dbo].[imp_permissions] imp
 ON mt.id = imp.entity_uuid
 WHERE 1=1
