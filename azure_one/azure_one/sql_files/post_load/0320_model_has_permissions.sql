@@ -29,5 +29,5 @@ AND NOT EXISTS (
   WHERE 1=1
   AND mt.model_type = 'Modules\Asset\Models\Type'
   AND mt.model_id = imp.entity_id
-  AND mt.permission_id = imp.permissionss_id
+  AND mt.permission_id = imp.permissions_id
 )
