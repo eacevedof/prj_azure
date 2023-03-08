@@ -37,6 +37,8 @@ CREATE TABLE [dbo].[imp_assets_types] (
     [tr_7]                       NVARCHAR (500) NULL,
     [tr_8]                       NVARCHAR (500) NULL,
     [tr_9]                       NVARCHAR (500) NULL,
+
+    [remove]         NVARCHAR (50)  NULL,
     [nok]                        INT            NULL,
     [created_at]                 DATETIME       CONSTRAINT [DEFAULT_imp_assets_types_created_at] DEFAULT (getdate()) NULL,
     [updated_at]                 DATETIME       NULL,
@@ -54,6 +56,8 @@ CREATE TABLE [dbo].[imp_cities] (
     [cities_id]      NVARCHAR (50)  NULL,
     [val]            NVARCHAR (500) NULL,
     [codesap]        NVARCHAR (50)  NULL,
+
+    [remove]         NVARCHAR (50)  NULL,
     [nok]            INT            NULL,
     [created_at]     DATETIME       CONSTRAINT [DEFAULT_cities_created_at] DEFAULT (getdate()) NULL,
     [updated_at]     DATETIME       NULL,
@@ -85,6 +89,8 @@ CREATE TABLE [dbo].[imp_companies] (
     [company_cod_int]        NVARCHAR (100) NULL,
     [company_active]         NVARCHAR (50)  NULL,
     [link_expiration_days]   NVARCHAR (50)  NULL,
+
+    [remove]         NVARCHAR (50)  NULL,
     [nok]                    INT            NULL,
     [created_at]             DATETIME       CONSTRAINT [DEFAULT_companies_created_at] DEFAULT (getdate()) NULL,
     [updated_at]             DATETIME       NULL,
@@ -108,6 +114,8 @@ CREATE TABLE [dbo].[imp_countries] (
     [tr_7]         NVARCHAR (500) NULL,
     [tr_8]         NVARCHAR (500) NULL,
     [tr_9]         NVARCHAR (500) NULL,
+
+    [remove]         NVARCHAR (50)  NULL,
     [nok]          INT            NULL,
     [created_at]   DATETIME       CONSTRAINT [DEFAULT_countries_created_at] DEFAULT (getdate()) NULL,
     [updated_at]   DATETIME       NULL,
@@ -137,6 +145,8 @@ CREATE TABLE [dbo].[imp_employees] (
     [roles_id]                 NVARCHAR (50)  NULL,
     [users_id]                 NVARCHAR (50)  NULL,
     [codesap]                  NVARCHAR (50)  NULL,
+
+    [remove]         NVARCHAR (50)  NULL,
     [nok]                      INT            NULL,
     [created_at]               DATETIME       CONSTRAINT [DEFAULT_imp_employees_created_at] DEFAULT (getdate()) NULL,
     [updated_at]               DATETIME       NULL,
@@ -185,6 +195,8 @@ CREATE TABLE [dbo].[imp_employees_positions] (
     [tr_7]                   NVARCHAR (500) NULL,
     [tr_8]                   NVARCHAR (500) NULL,
     [tr_9]                   NVARCHAR (500) NULL,
+
+    [remove]         NVARCHAR (50)  NULL,
     [nok]                    INT            NULL,
     [created_at]             DATETIME       CONSTRAINT [DEFAULT_employees_positions_created_at] DEFAULT (getdate()) NULL,
     [updated_at]             DATETIME       NULL,
@@ -209,6 +221,8 @@ CREATE TABLE [dbo].[imp_languages] (
     [languages_id] NVARCHAR (50)  NULL,
     [val]          NVARCHAR (500) NULL,
     [codesap]      NVARCHAR (50)  NULL,
+
+    [remove]         NVARCHAR (50)  NULL,
     [nok]          INT            NULL,
     [created_at]   DATETIME       CONSTRAINT [DEFAULT_imp_languages_created_at] DEFAULT (getdate()) NULL,
     [update_at]    DATETIME       NULL,
@@ -244,6 +258,8 @@ CREATE TABLE [dbo].[imp_permissions] (
     [permissions_id]   NVARCHAR (50)  NULL,
     [permissions_slug] NVARCHAR (250) NULL,
     [permissions_type] NVARCHAR (50)  DEFAULT ('by-role') NULL,
+
+    [remove]         NVARCHAR (50)  NULL,
     [nok]              INT            NULL,
     [created_at]       DATETIME       CONSTRAINT [DEFAULT_imp_permissions_created_at] DEFAULT (getdate()) NULL,
     [updated_at]       DATETIME       NULL,
@@ -269,6 +285,8 @@ CREATE TABLE [dbo].[imp_provinces] (
     [tr_7]           NVARCHAR (500) NULL,
     [tr_8]           NVARCHAR (500) NULL,
     [tr_9]           NVARCHAR (500) NULL,
+
+    [remove]         NVARCHAR (50)  NULL,
     [nok]            INT            NULL,
     [created_at]     DATETIME       CONSTRAINT [DEFAULT_imp_provincies_created_at] DEFAULT (getdate()) NULL,
     [update_at]      DATETIME       NULL,
@@ -292,6 +310,8 @@ CREATE TABLE [dbo].[imp_roles] (
     [tr_7]        NVARCHAR (500) NULL,
     [tr_8]        NVARCHAR (500) NULL,
     [tr_9]        NVARCHAR (500) NULL,
+
+    [remove]         NVARCHAR (50)  NULL,
     [nok]         INT            NULL,
     [created_at]  DATETIME       CONSTRAINT [DEFAULT_imp_roles_created_at] DEFAULT (getdate()) NULL,
     [updated_at]  DATETIME       NULL,
@@ -315,6 +335,8 @@ CREATE TABLE [dbo].[imp_status_employees] (
     [tr_7]                NVARCHAR (500) NULL,
     [tr_8]                NVARCHAR (500) NULL,
     [tr_9]                NVARCHAR (500) NULL,
+
+    [remove]         NVARCHAR (50)  NULL,
     [nok]                 INT            NULL,
     [created_at]          DATETIME       NULL,
     [updated_at]          DATETIME       NULL,
@@ -338,6 +360,8 @@ CREATE TABLE [dbo].[imp_user_types] (
     [tr_7]          NVARCHAR (500) NULL,
     [tr_8]          NVARCHAR (500) NULL,
     [tr_9]          NVARCHAR (500) NULL,
+
+    [remove]         NVARCHAR (50)  NULL,
     [nok]           INT            NULL,
     [created_at]    DATETIME       CONSTRAINT [DEFAULT_imp_user_types_created_at] DEFAULT (getdate()) NULL,
     [updated_at]    DATETIME       NULL,
@@ -345,6 +369,52 @@ CREATE TABLE [dbo].[imp_user_types] (
     CONSTRAINT [PK_user_types] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
+CREATE TABLE [dbo].[imp_keys_and_values] (
+    [id]                BIGINT         IDENTITY (1, 1) NOT NULL,
+    [tenant_slug]       NVARCHAR (50)  NULL,
+    [uuid]              NVARCHAR (50)  NULL,
+    [entity_id]         NVARCHAR (50)  NULL,
+    [codesap]          NVARCHAR (50)  NULL,
+    
+    [val_1]            NVARCHAR (1500) NULL,
+    [tr_v1_1]          NVARCHAR (1500) NULL,
+    [tr_v1_2]          NVARCHAR (1500) NULL,
+    [tr_v1_3]          NVARCHAR (1500) NULL,
+    [tr_v1_4]          NVARCHAR (1500) NULL,
+    [tr_v1_5]          NVARCHAR (1500) NULL,
+    [tr_v1_6]          NVARCHAR (1500) NULL,
+    [tr_v1_7]          NVARCHAR (1500) NULL,
+    [tr_v1_8]          NVARCHAR (1500) NULL,
+    [tr_v1_9]          NVARCHAR (1500) NULL,
 
+    [val_2]            NVARCHAR (1500) NULL,
+    [tr_v2_1]          NVARCHAR (1500) NULL,
+    [tr_v2_2]          NVARCHAR (1500) NULL,
+    [tr_v2_3]          NVARCHAR (1500) NULL,
+    [tr_v2_4]          NVARCHAR (1500) NULL,
+    [tr_v2_5]          NVARCHAR (1500) NULL,
+    [tr_v2_6]          NVARCHAR (1500) NULL,
+    [tr_v2_7]          NVARCHAR (1500) NULL,
+    [tr_v2_8]          NVARCHAR (1500) NULL,
+    [tr_v2_9]          NVARCHAR (1500) NULL,
+
+    [val_3]            NVARCHAR (1500) NULL,
+    [tr_v3_1]          NVARCHAR (1500) NULL,
+    [tr_v3_2]          NVARCHAR (1500) NULL,
+    [tr_v3_3]          NVARCHAR (1500) NULL,
+    [tr_v3_4]          NVARCHAR (1500) NULL,
+    [tr_v3_5]          NVARCHAR (1500) NULL,
+    [tr_v3_6]          NVARCHAR (1500) NULL,
+    [tr_v3_7]          NVARCHAR (1500) NULL,
+    [tr_v3_8]          NVARCHAR (1500) NULL,
+    [tr_v3_9]          NVARCHAR (1500) NULL,
+
+    [remove]           NVARCHAR (50) NULL,
+    [nok]           INT            NULL,
+    [created_at]    DATETIME       CONSTRAINT [DEFAULT_imp_keys_and_values_created_at] DEFAULT (getdate()) NULL,
+    [updated_at]    DATETIME       NULL,
+    [imp_uuid]      NVARCHAR (50)  NULL,
+    CONSTRAINT [PK_keys_and_values] PRIMARY KEY CLUSTERED ([id] ASC)
+);
 
 
