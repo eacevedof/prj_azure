@@ -369,9 +369,12 @@ CREATE TABLE [dbo].[imp_user_types] (
     CONSTRAINT [PK_user_types] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
+DROP TABLE [dbo].[imp_keys_and_values]
+;
 CREATE TABLE [dbo].[imp_keys_and_values] (
     [id]                BIGINT         IDENTITY (1, 1) NOT NULL,
     [tenant_slug]       NVARCHAR (50)  NULL,
+    [entity_type]      NVARCHAR (100) NULL, 
     [uuid]              NVARCHAR (50)  NULL,
     [entity_id]         NVARCHAR (50)  NULL,
     [codesap]          NVARCHAR (50)  NULL,
