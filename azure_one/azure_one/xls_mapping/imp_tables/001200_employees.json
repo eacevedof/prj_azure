@@ -22,6 +22,7 @@
     { "department_uuid": "department_uuid" },
     { "position_uuid": "position_uuid" },
     { "role_uuid": "role_uuid" },
-    { "codesap": "codesap" }
+    { "codesap": "codesap" },
+    { "remove": "remove" }
   ]
 }

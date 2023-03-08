@@ -22,6 +22,7 @@
     { "company_contact_person": "company_contact_person" },
     { "company_contact_phone": "company_contact_phone" },
     { "company_contact_email": "company_contact_email" },
-    { "codesap": "codesap" }
+    { "codesap": "codesap" },
+    { "remove": "remove" }
   ]
 }

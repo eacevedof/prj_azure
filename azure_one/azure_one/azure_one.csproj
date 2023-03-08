@@ -142,6 +142,9 @@
     <None Update="sql_files\post_load\0235_imp_assets_types_tr.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="xls_mapping\imp_tables\001500_assets_types_groups.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Etl\Shared" />
