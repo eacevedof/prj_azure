@@ -375,6 +375,8 @@ CREATE TABLE [dbo].[imp_keys_and_values] (
     [id]                BIGINT         IDENTITY (1, 1) NOT NULL,
     [tenant_slug]       NVARCHAR (50)  NULL,
     [entity_type]      NVARCHAR (100) NULL, 
+    [fk1_uuid]          NVARCHAR (50)  NULL,
+    [fk1_entity_id]     NVARCHAR (50)  NULL,    
     [uuid]              NVARCHAR (50)  NULL,
     [entity_id]         NVARCHAR (50)  NULL,
     [codesap]          NVARCHAR (50)  NULL,
