@@ -1,6 +1,10 @@
 USE [master]
 ;
 
+
+-- ALTER DATABASE [local_staging] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+;
+
 DROP DATABASE IF EXISTS [local_staging]
 ;
 
@@ -230,7 +234,116 @@ CREATE TABLE [dbo].[imp_languages_company_custom] (
     CONSTRAINT [PK_languages_company] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
+CREATE TABLE [dbo].[imp_permissions] (
+    [id]               BIGINT         IDENTITY (1, 1) NOT NULL,
+    [tenant_slug]      NVARCHAR (50)  NULL,
+    [uuid]             NVARCHAR (50)  NULL,
+    [entity_uuid]      NVARCHAR (50)  NULL,
+    [entity_id]        NVARCHAR (50)  NULL,
+    [entity_name]      NVARCHAR (250) NULL,
+    [permissions_id]   NVARCHAR (50)  NULL,
+    [permissions_slug] NVARCHAR (250) NULL,
+    [permissions_type] NVARCHAR (50)  DEFAULT ('by-role') NULL,
+    [nok]              INT            NULL,
+    [created_at]       DATETIME       CONSTRAINT [DEFAULT_imp_permissions_created_at] DEFAULT (getdate()) NULL,
+    [updated_at]       DATETIME       NULL,
+    [imp_uuid]         NVARCHAR (50)  NULL,
+    CONSTRAINT [PK_imp_permissions] PRIMARY KEY CLUSTERED ([id] ASC)
+);
 
+CREATE TABLE [dbo].[imp_provinces] (
+    [id]             BIGINT         IDENTITY (1, 1) NOT NULL,
+    [tenant_slug]    NVARCHAR (50)  NULL,
+    [countries_uuid] NVARCHAR (50)  NULL,
+    [countries_id]   NVARCHAR (50)  NULL,
+    [uuid]           NVARCHAR (50)  NULL,
+    [provinces_id]   NVARCHAR (50)  NULL,
+    [val]            NVARCHAR (500) NULL,
+    [codesap]        NVARCHAR (50)  NULL,
+    [tr_1]           NVARCHAR (500) NULL,
+    [tr_2]           NVARCHAR (500) NULL,
+    [tr_3]           NVARCHAR (500) NULL,
+    [tr_4]           NVARCHAR (500) NULL,
+    [tr_5]           NVARCHAR (500) NULL,
+    [tr_6]           NVARCHAR (500) NULL,
+    [tr_7]           NVARCHAR (500) NULL,
+    [tr_8]           NVARCHAR (500) NULL,
+    [tr_9]           NVARCHAR (500) NULL,
+    [nok]            INT            NULL,
+    [created_at]     DATETIME       CONSTRAINT [DEFAULT_imp_provincies_created_at] DEFAULT (getdate()) NULL,
+    [update_at]      DATETIME       NULL,
+    [imp_uuid]       NVARCHAR (50)  NULL,
+    CONSTRAINT [PK_provincies] PRIMARY KEY CLUSTERED ([id] ASC)
+);
+
+CREATE TABLE [dbo].[imp_roles] (
+    [id]          BIGINT         IDENTITY (1, 1) NOT NULL,
+    [tenant_slug] NVARCHAR (50)  NULL,
+    [uuid]        NVARCHAR (50)  NULL,
+    [roles_id]    NVARCHAR (50)  NULL,
+    [val]         NVARCHAR (500) NULL,
+    [codesap]     NVARCHAR (50)  NULL,
+    [tr_1]        NVARCHAR (500) NULL,
+    [tr_2]        NVARCHAR (500) NULL,
+    [tr_3]        NVARCHAR (500) NULL,
+    [tr_4]        NVARCHAR (500) NULL,
+    [tr_5]        NVARCHAR (500) NULL,
+    [tr_6]        NVARCHAR (500) NULL,
+    [tr_7]        NVARCHAR (500) NULL,
+    [tr_8]        NVARCHAR (500) NULL,
+    [tr_9]        NVARCHAR (500) NULL,
+    [nok]         INT            NULL,
+    [created_at]  DATETIME       CONSTRAINT [DEFAULT_imp_roles_created_at] DEFAULT (getdate()) NULL,
+    [updated_at]  DATETIME       NULL,
+    [imp_uuid]    NVARCHAR (50)  NULL,
+    CONSTRAINT [PK_imp_roles] PRIMARY KEY CLUSTERED ([id] ASC)
+);
+
+CREATE TABLE [dbo].[imp_status_employees] (
+    [id]                  BIGINT         IDENTITY (1, 1) NOT NULL,
+    [tenant_slug]         NVARCHAR (50)  NULL,
+    [uuid]                NVARCHAR (50)  NULL,
+    [status_employees_id] NVARCHAR (50)  NULL,
+    [val]                 NVARCHAR (255) NULL,
+    [codesap]             NVARCHAR (50)  NULL,
+    [tr_1]                NVARCHAR (500) NULL,
+    [tr_2]                NVARCHAR (500) NULL,
+    [tr_3]                NVARCHAR (500) NULL,
+    [tr_4]                NVARCHAR (500) NULL,
+    [tr_5]                NVARCHAR (500) NULL,
+    [tr_6]                NVARCHAR (500) NULL,
+    [tr_7]                NVARCHAR (500) NULL,
+    [tr_8]                NVARCHAR (500) NULL,
+    [tr_9]                NVARCHAR (500) NULL,
+    [nok]                 INT            NULL,
+    [created_at]          DATETIME       NULL,
+    [updated_at]          DATETIME       NULL,
+    [imp_uuid]            NVARCHAR (50)  NULL,
+    CONSTRAINT [PK_imp_status_employees] PRIMARY KEY CLUSTERED ([id] ASC)
+);
+
+CREATE TABLE [dbo].[imp_user_types] (
+    [id]            BIGINT         IDENTITY (1, 1) NOT NULL,
+    [tenant_slug]   NVARCHAR (50)  NULL,
+    [uuid]          NVARCHAR (50)  NULL,
+    [user_types_id] NVARCHAR (50)  NULL,
+    [val]           NVARCHAR (255) NULL,
+    [codesap]       NVARCHAR (50)  NULL,
+    [tr_1]          NVARCHAR (500) NULL,
+    [tr_2]          NVARCHAR (500) NULL,
+    [tr_3]          NVARCHAR (500) NULL,
+    [tr_4]          NVARCHAR (500) NULL,
+    [tr_5]          NVARCHAR (500) NULL,
+    [tr_6]          NVARCHAR (500) NULL,
+    [tr_7]          NVARCHAR (500) NULL,
+    [tr_8]          NVARCHAR (500) NULL,
+    [tr_9]          NVARCHAR (500) NULL,
+    [nok]           INT            NULL,
+    [created_at]    DATETIME       CONSTRAINT [DEFAULT_imp_user_types_created_at] DEFAULT (getdate()) NULL,
+    [updated_at]    DATETIME       NULL,
+    [imp_uuid]      NVARCHAR (50)  NULL,
+    CONSTRAINT [PK_user_types] PRIMARY KEY CLUSTERED ([id] ASC)
+);
 
 
 
