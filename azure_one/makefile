@@ -22,3 +22,7 @@ db-backup: ## t= path-where-you/want/to-copy/to
 	docker exec -it cont-mssql /opt/mssql-tools/bin/sqlcmd -b -V16 -S localhost -U SA -Q "BACKUP DATABASE [local_staging] TO DISK = N'/var/opt/mssql/data/local_staging.bak' with NOFORMAT, NOINIT, NAME = 'local_staging-full', SKIP, NOREWIND, NOUNLOAD, STATS = 10"
 	docker cp cont-mssql:/var/opt/mssql/data/local_staging.bak $(HOME)/projects/temper/sql/cargas
 	cd $(HOME)/projects/temper/sql/cargas; git add .; git commit -m "local-staging.bak"; git push;
+	
+db-q: ## q="use xxx; select * from users"
+	clear;
+	docker exec -it cont-mssql sh -c "cd /opt/mssql-tools/bin/; ./sqlcmd -U SA -Q \"$(q)\""
