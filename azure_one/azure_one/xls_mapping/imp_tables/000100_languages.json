@@ -15,6 +15,7 @@
     { "val": "val" },
     { "codesap": "codesap" },
     { "%TAG_CONSTANT%": "imp_uuid"},
-    { "%TAG_CONSTANT%": "tenant_slug"}
+    { "%TAG_CONSTANT%": "tenant_slug"},
+    { "remove": "remove" }
   ]
 }

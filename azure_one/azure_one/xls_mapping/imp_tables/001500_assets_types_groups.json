@@ -1,0 +1,29 @@
+{
+  "source": {
+    "path": "%folder_in%/data-in.xlsx",
+    "sheet_name": "assets_types_groups",
+    "sheet_max_col": 45
+  },
+
+  "target": {
+    "table": "imp_keys_values"
+  },
+
+  "mapping": [
+    {"uuid": "uuid"},
+    {"asset_type_uuid": "fk1_uuid" },
+    {"%assets_attributes_groups%":  "entity_type"},
+    {"val":"val_1"},
+    {"codesap":"codesap"},
+    { "tr_1": "tr_v1_1" },
+    { "tr_2": "tr_v1_2" },
+    { "tr_3": "tr_v1_3" },
+    { "tr_4": "tr_v1_4" },
+    { "tr_5": "tr_v1_5" },
+    { "tr_6": "tr_v1_6" },
+    { "tr_7": "tr_v1_7" },
+    { "tr_8": "tr_v1_8" },
+    { "tr_9": "tr_v1_9" },
+    { "remove": "remove" }
+  ]
+}
