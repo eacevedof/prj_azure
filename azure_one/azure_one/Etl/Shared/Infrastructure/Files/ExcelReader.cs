@@ -5,6 +5,7 @@ using System.IO;
 
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
 using azure_one.Etl.RawLoaders.Domain.Exceptions;
+using azure_one.Etl.Shared.Infrastructure.Log;
 
 namespace azure_one.Etl.Shared.Infrastructure.Files;
 
@@ -57,8 +58,12 @@ public sealed class ExcelReader
                     sheet = GetSheetObjectByName(sheets, _sheetName);
 
                 if (sheet is null)
-                    throw new SheetNotFoundException($"sheet {_sheetName} was not found!");
-
+                {
+                    Lg.pr($"sheet {_sheetName} was not found!");
+                    //throw new SheetNotFoundException($"sheet {_sheetName} was not found!");
+                    return sheetData;
+                }
+                
                 DataRowCollection sheetRows = sheet.Rows;
                 if (sheetRows.Count == 0)
                     return sheetData;
