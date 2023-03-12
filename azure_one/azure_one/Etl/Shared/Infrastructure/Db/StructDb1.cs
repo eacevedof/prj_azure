@@ -1,6 +1,7 @@
-﻿using azure_one.Etl.Shared.Infrastructure.Log;
+﻿using System;
+using azure_one.Etl.Shared.Infrastructure.Log;
 using System.Data.SqlClient;
-
+using azure_one.Etl.Shared.Infrastructure.Db.Contexts;
 
 namespace azure_one.Etl.Shared.Infrastructure.Db
 {
@@ -26,7 +27,6 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
                 "Connection Timeout=30"
             };
 
-            //log.LogInformation("C# HTTP trigger function processed a request.");
             string connectionString = string.Join(";", connectionParts);
             //Lg.pr(connectionString, "connectionString");
             
@@ -35,7 +35,31 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
             Lg.pr(connectionString, "connectionString 2");
             return connectionString;
         }
-
+        
+        public string GetConnectionString(ContextDto contextDto)
+        {
+            if (contextDto is null)
+                throw new Exception($"Empty context");
+            
+            string connectionString = GetConnectionStringBuilder(contextDto).ConnectionString;
+            Lg.pr(connectionString, "connectionString by dto");
+            return connectionString;
+        }
+        
+        private SqlConnectionStringBuilder GetConnectionStringBuilder(ContextDto contextDto)
+        {
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            builder.DataSource = contextDto.Server;
+            builder.InitialCatalog = contextDto.Database;
+            builder.UserID = contextDto.Username;
+            builder.Password = contextDto.Password;
+            builder.Pooling = false;
+            builder.Encrypt = false;
+            builder.IntegratedSecurity = false;
+            builder.TrustServerCertificate = true;
+            return builder;
+        }
+        
         private SqlConnectionStringBuilder GetConnectionStringBuilder()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
