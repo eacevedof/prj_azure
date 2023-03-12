@@ -14,5 +14,13 @@
     "database": "local_staging",
     "username": "sa",
     "password": "EafEaf1234"
+  },
+  {
+    "id": "db_test",
+    "server": "127.0.0.1",
+    "port": "1433",
+    "database": "db_test",
+    "username": "sa",
+    "password": "EafEaf1234"
   }
 ]
