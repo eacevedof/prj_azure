@@ -27,6 +27,6 @@ public sealed class LoadXlsForceService: AbsRawService
         ).GetBulkInsertForceQuery();
         
         Lg.pr(sql);
-        Mssql.GetInstance().Execute(sql);
+        Mssql.GetInstanceByReq().Execute(sql);
     }
 }

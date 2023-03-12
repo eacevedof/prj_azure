@@ -34,7 +34,7 @@ namespace azure_three
             try
             {
                 Lg.pr("ETL azure_three started...");                
-                Global.ContextId = ContextsEnum.db_test;
+                Req.ContextId = ContextsEnum.db_test;
                 _createImpTablesController.Invoke();
                 return new OkObjectResult("Imp tables created");
             }

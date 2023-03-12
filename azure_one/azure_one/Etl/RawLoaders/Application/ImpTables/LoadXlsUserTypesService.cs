@@ -27,6 +27,6 @@ public sealed class LoadXlsUserTypesService: AbsRawService
         ).GetBulkInsertQuery();
         
         Lg.pr(sql);
-        Mssql.GetInstance().Execute(sql);
+        Mssql.GetInstanceByReq().Execute(sql);
     }
 }
