@@ -8,8 +8,8 @@ INNER JOIN (
     vc_tr.mt_id as countries_id, 
     vli.lang_from as locale,
     CONVERT(VARCHAR(255),vc_tr.tr_i) as tr
-    FROM view_countries_tr [vc_tr]
-    INNER JOIN view_languages_index [vli]
+    FROM [local_staging].[dbo].[view_countries_tr] [vc_tr]
+    INNER JOIN [local_staging].[dbo].view_languages_index [vli]
     ON [vc_tr].[tr_num] = [vli].[tr_num]
 ) imp
 ON mt.countries_id = imp.countries_id
@@ -31,8 +31,8 @@ FROM (
         vli.lang_from as locale, 
         CONVERT(VARCHAR(255),vc_tr.tr_i) as tr, 
         GETDATE() created_at 
-    FROM view_countries_tr [vc_tr]
-    INNER JOIN view_languages_index [vli]
+    FROM [local_staging].[dbo].view_countries_tr [vc_tr]
+    INNER JOIN [local_staging].[dbo].view_languages_index [vli]
     ON [vc_tr].[tr_num] = [vli].[tr_num]
 ) AS imp
 WHERE 1=1
