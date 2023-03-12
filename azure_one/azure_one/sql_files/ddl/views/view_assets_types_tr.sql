@@ -1,4 +1,4 @@
-CREATE VIEW [dbo].[view_assets_types_tr]
+CREATE VIEW [local_staging].[dbo].[view_assets_types_tr]
 AS
 SELECT imp.uuid, imp.assets_types_id as mt_id, 1 tr_num, imp.tr_1 as tr_i
 FROM [local_staging].[dbo].[imp_assets_types] imp

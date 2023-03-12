@@ -51,6 +51,8 @@ public sealed class CreateImpTablesRepository: AbsRepository
                 Lg.pr($"empty file {pathFile} skipping...");
                 continue;
             }
+
+            sql = GetChangedDatabaseByReq(sql);
             Lg.pr(sql);
             _db.ExecuteRaw(sql);
         }
@@ -81,6 +83,7 @@ public sealed class CreateImpTablesRepository: AbsRepository
                 Lg.pr($"empty file {pathFile} skipping...");
                 continue;
             }
+            sql = GetChangedDatabaseByReq(sql);
             Lg.pr(sql);
             _db.ExecuteRaw(sql);
         }

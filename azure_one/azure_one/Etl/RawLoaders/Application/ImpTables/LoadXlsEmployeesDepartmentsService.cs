@@ -26,7 +26,7 @@ public sealed class LoadXlsEmployeesDepartmentsService: AbsRawService
             )
         ).GetBulkInsertQuery();
         
-        sql = ChangeDatabaseByReq(sql);
+        sql = GetChangedDatabaseByReq(sql);
         Lg.pr(sql);
         Mssql.GetInstanceByReq().Execute(sql);
     }

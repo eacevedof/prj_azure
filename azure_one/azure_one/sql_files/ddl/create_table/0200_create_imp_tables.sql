@@ -1,4 +1,4 @@
-USE [db_test]
+USE [local_staging]
 ;
 
 
