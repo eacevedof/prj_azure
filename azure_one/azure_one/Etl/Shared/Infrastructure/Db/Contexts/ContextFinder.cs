@@ -40,12 +40,12 @@ public sealed class ContextFinder
         return null;
     }
 
-    public static ContextDto GetById(ContextsEnum id)
+    public static ContextDto GetById(ContextsEnum contextId)
     {
         LoadContexts();
         foreach (ContextDto dto in _contexts)
         {
-            if (dto.Id == id.ToString())
+            if (dto.Id == contextId.ToString())
                 return dto;
         }
         return null;

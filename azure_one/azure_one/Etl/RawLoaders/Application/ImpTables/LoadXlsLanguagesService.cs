@@ -1,6 +1,7 @@
 using System;
 using azure_one.Etl.RawLoaders.Domain.Entities;
 using azure_one.Etl.Shared.Infrastructure.Db;
+using azure_one.Etl.Shared.Infrastructure.Db.Contexts;
 using azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
 using azure_one.Etl.Shared.Infrastructure.Files;
 using azure_one.Etl.Shared.Infrastructure.Log;
@@ -25,7 +26,8 @@ public sealed class LoadXlsLanguagesService: AbsRawService
                 excelReader.GetData(excelMapper.Mapping)
             )
         ).GetBulkInsertQuery();
-        
+
+        sql = ChangeDatabaseByReq(sql);
         Lg.pr(sql);
         Mssql.GetInstanceByReq().Execute(sql);
     }
