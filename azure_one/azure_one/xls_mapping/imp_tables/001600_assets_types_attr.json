@@ -1,20 +1,22 @@
 {
   "source": {
     "path": "%folder_in%/data-in.xlsx",
-    "sheet_name": "at_attribs",
+    "sheet_name": "at_attr",
     "sheet_max_col": 15
   },
 
   "target": {
-    "table": "imp_keys_values"
+    "table": "imp_assets_types_attr"
   },
 
   "mapping": [
+    {"asset_type_group_uuid": "asset_type_group_uuid"},
     {"uuid": "uuid"},
-    {"asset_type_uuid": "fk1_uuid" },
-    {"%assets_attributes_groups%":  "entity_type"},
-    {"val":"val_1"},
+    {"val":"val"},
     {"codesap":"codesap"},
+    {"type":"type"},
+    {"multiple":"multiple"},
+    {"required":"required"},
     { "tr_1": "tr_v1_1" },
     { "tr_2": "tr_v1_2" },
     { "tr_3": "tr_v1_3" },
