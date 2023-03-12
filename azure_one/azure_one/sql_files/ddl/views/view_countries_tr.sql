@@ -1,4 +1,6 @@
-CREATE VIEW [local_staging].[dbo].[view_countries_tr]
+USE [local_staging];
+
+CREATE VIEW[dbo].[view_countries_tr]
 AS
 SELECT imp.uuid, imp.countries_id as mt_id, 1 tr_num, imp.tr_1 as tr_i
 FROM [local_staging].[dbo].[imp_countries] imp

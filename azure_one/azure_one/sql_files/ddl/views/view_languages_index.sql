@@ -1,4 +1,6 @@
-CREATE VIEW [local_staging].[dbo].[view_languages_index]
+USE [local_staging]; 
+
+CREATE VIEW[dbo].[view_languages_index]
 AS
 SELECT
 DISTINCT imp.lang_from, imp.tr_num
