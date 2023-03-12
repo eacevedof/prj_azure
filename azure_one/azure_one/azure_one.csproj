@@ -43,20 +43,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="Etl\Shared" />
-    <Folder Include="Etl\CreateImpTables\Domain" />
-    <Folder Include="xls_mapping\" />
-    <Folder Include="sql_files\" />
-  </ItemGroup> 
-  
-  <ItemGroup>
-    <None Remove=".gitignore" />
-    <None Remove="etl\Db\" />
-    <None Remove="Etl\Infrastructure\" />
-    <None Remove="Etl\Domain\" />
-    <None Remove="Etl\Application\" />
-    <None Remove="Etl\Infrastructure\Db\" />
-    
     <None Update="sql_files\pre_load\0001_truncate_imp_tables.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
