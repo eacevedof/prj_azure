@@ -120,6 +120,11 @@ CREATE TABLE [dbo].[imp_countries] (
     CONSTRAINT [PK_countries] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
+
+IF OBJECT_ID(N'dbo.imp_employees', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_employees]
+;
+
 CREATE TABLE [dbo].[imp_employees] (
     [id]                       BIGINT         IDENTITY (1, 1) NOT NULL,
     [tenant_slug]              NVARCHAR (50)  NULL,
@@ -151,6 +156,10 @@ CREATE TABLE [dbo].[imp_employees] (
     CONSTRAINT [PK_imp_employees] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
+IF OBJECT_ID(N'dbo.imp_employees_departments', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_employees_departments]
+;
+
 CREATE TABLE [dbo].[imp_employees_departments] (
     [id]                       BIGINT         IDENTITY (1, 1) NOT NULL,
     [tenant_slug]              NVARCHAR (50)  NULL,
@@ -174,6 +183,11 @@ CREATE TABLE [dbo].[imp_employees_departments] (
     [imp_uuid]                 NVARCHAR (50)  NULL,
     CONSTRAINT [PK_imp_employees_departments] PRIMARY KEY CLUSTERED ([id] ASC)
 );
+
+
+IF OBJECT_ID(N'dbo.imp_employees_positions', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_employees_positions]
+;
 
 CREATE TABLE [dbo].[imp_employees_positions] (
     [id]                     BIGINT         IDENTITY (1, 1) NOT NULL,
@@ -201,6 +215,10 @@ CREATE TABLE [dbo].[imp_employees_positions] (
     CONSTRAINT [PK_employees_positions] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
+IF OBJECT_ID(N'dbo.imp_errors', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_errors]
+;
+
 CREATE TABLE [dbo].[imp_errors] (
     [id]          BIGINT         IDENTITY (1, 1) NOT NULL,
     [tenant_slug] NVARCHAR (50)  NULL,
@@ -210,6 +228,11 @@ CREATE TABLE [dbo].[imp_errors] (
     [created_at]  DATETIME       CONSTRAINT [DEFAULT_imp_errors_created_at] DEFAULT (getdate()) NULL,
     [imp_uuid]    NVARCHAR (50)  NULL
 );
+
+
+IF OBJECT_ID(N'dbo.imp_languages', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_languages]
+;
 
 CREATE TABLE [dbo].[imp_languages] (
     [id]           BIGINT         IDENTITY (1, 1) NOT NULL,
@@ -226,6 +249,11 @@ CREATE TABLE [dbo].[imp_languages] (
     [imp_uuid]     NVARCHAR (50)  NULL,
     CONSTRAINT [PK_languages] PRIMARY KEY CLUSTERED ([id] ASC)
 );
+
+
+IF OBJECT_ID(N'dbo.imp_languages_company_custom', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_languages_company_custom]
+;
 
 CREATE TABLE [dbo].[imp_languages_company_custom] (
     [id]                  BIGINT        IDENTITY (1, 1) NOT NULL,
@@ -245,6 +273,10 @@ CREATE TABLE [dbo].[imp_languages_company_custom] (
     CONSTRAINT [PK_languages_company] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
+IF OBJECT_ID(N'dbo.imp_permissions', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_permissions]
+;
+
 CREATE TABLE [dbo].[imp_permissions] (
     [id]               BIGINT         IDENTITY (1, 1) NOT NULL,
     [tenant_slug]      NVARCHAR (50)  NULL,
@@ -263,6 +295,10 @@ CREATE TABLE [dbo].[imp_permissions] (
     [imp_uuid]         NVARCHAR (50)  NULL,
     CONSTRAINT [PK_imp_permissions] PRIMARY KEY CLUSTERED ([id] ASC)
 );
+
+IF OBJECT_ID(N'dbo.imp_provinces', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_provinces]
+;
 
 CREATE TABLE [dbo].[imp_provinces] (
     [id]             BIGINT         IDENTITY (1, 1) NOT NULL,
@@ -291,6 +327,10 @@ CREATE TABLE [dbo].[imp_provinces] (
     CONSTRAINT [PK_provincies] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
+IF OBJECT_ID(N'dbo.imp_roles', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_roles]
+;
+
 CREATE TABLE [dbo].[imp_roles] (
     [id]          BIGINT         IDENTITY (1, 1) NOT NULL,
     [tenant_slug] NVARCHAR (50)  NULL,
@@ -315,6 +355,11 @@ CREATE TABLE [dbo].[imp_roles] (
     [imp_uuid]    NVARCHAR (50)  NULL,
     CONSTRAINT [PK_imp_roles] PRIMARY KEY CLUSTERED ([id] ASC)
 );
+
+
+IF OBJECT_ID(N'dbo.imp_status_employees', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_status_employees]
+;
 
 CREATE TABLE [dbo].[imp_status_employees] (
     [id]                  BIGINT         IDENTITY (1, 1) NOT NULL,
@@ -341,6 +386,11 @@ CREATE TABLE [dbo].[imp_status_employees] (
     CONSTRAINT [PK_imp_status_employees] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
+
+IF OBJECT_ID(N'dbo.imp_user_types', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_user_types]
+;
+
 CREATE TABLE [dbo].[imp_user_types] (
     [id]            BIGINT         IDENTITY (1, 1) NOT NULL,
     [tenant_slug]   NVARCHAR (50)  NULL,
@@ -365,6 +415,7 @@ CREATE TABLE [dbo].[imp_user_types] (
     [imp_uuid]      NVARCHAR (50)  NULL,
     CONSTRAINT [PK_user_types] PRIMARY KEY CLUSTERED ([id] ASC)
 );
+
 
 DROP TABLE [dbo].[imp_keys_and_values]
 ;
