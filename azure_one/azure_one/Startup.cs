@@ -1,3 +1,5 @@
+using azure_one.Etl.CreateImpTables.Infrastructure;
+using azure_one.Etl.InstallImpTables.Application;
 using azure_one.Etl.RawLoaders.Application.Force;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
@@ -53,6 +55,12 @@ public class Startup: FunctionsStartup
                 )
         );
 
+        builder.Services.AddSingleton<CreateImpTablesController>(
+            s => new CreateImpTablesController(
+                new CreateImpTablesService()
+            )
+        );        
+        
         builder.Services.AddSingleton<LoadForceTableController>(
             s => new LoadForceTableController(
                 new LoadXlsForceService()

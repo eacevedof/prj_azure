@@ -35,20 +35,16 @@ namespace azure_three
             {
                 Lg.pr("ETL azure_three started...");                
                 Req.ContextId = ContextsEnum.db_test;
+                
                 _createImpTablesController.Invoke();
                 return new OkObjectResult("Imp tables created");
             }
             catch (Exception e)
             {
                 log.LogInformation(e.ToString());
-                ImpErrorsRepository.add("azure_one.task",e.ToString());
-                
-                return new OkObjectResult(
-                    "Sorry the ETL process failed. Check logs for more information please"
-                    )
-                    {
-                        StatusCode = 500
-                    };
+                ImpErrorsRepository.add("azure_three.task",e.ToString());
+                string message = "Sorry the ETL process failed. Check logs for more information please";
+                return new OkObjectResult(message) { StatusCode = 500 };
             }
         } //Task
         

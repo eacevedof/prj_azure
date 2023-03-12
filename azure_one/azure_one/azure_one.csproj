@@ -48,7 +48,7 @@
     <None Update="xls_mapping\force\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\ddl\create_table\drop_views.sql">
+    <None Update="sql_files\ddl\create_table\0100_drop_views.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>    
   </ItemGroup>
