@@ -20,8 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Etl\Shared" />
-    <Folder Include="Etl\InstallImpTables\Domain" />
-    <Folder Include="Etl\InstallImpTables\Infrastructure" />
+    <Folder Include="Etl\CreateImpTables\Domain" />
     <Folder Include="xls_mapping\" />
     <Folder Include="sql_files\" />
   </ItemGroup>
