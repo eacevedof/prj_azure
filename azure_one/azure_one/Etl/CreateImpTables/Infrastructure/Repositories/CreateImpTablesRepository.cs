@@ -17,13 +17,22 @@ public sealed class CreateImpTablesRepository: AbsRepository
     public CreateImpTablesRepository(Mssql db) : base(db)
     {
         _pathFilesFolder = FileHelper.GetSqlFilesFolder();
-        _pathFilesFolder += "/ddl/create_table";
+        _pathFilesFolder += "/ddl";
     }
     
     public void Invoke()
     {
         Lg.pr("CreateImpTablesRepository started!");
-        string[] sqlFiles = FileHelper.GetFileNamesInDir(_pathFilesFolder, "*.sql");
+        CleanAndCreateTables();
+        CreateViews();
+        Lg.pr("CreateImpTablesRepository finished!");
+    }
+
+    private void CleanAndCreateTables()
+    {
+        Lg.pr("CleanAndCreateTables started!");
+        string pathFolder = _pathFilesFolder + "/create_table";
+        string[] sqlFiles = FileHelper.GetFileNamesInDir(pathFolder, "*.sql");
         if (sqlFiles.IsEmpty())
         {
             Lg.pr($"no files found in {_pathFilesFolder}");
@@ -45,6 +54,36 @@ public sealed class CreateImpTablesRepository: AbsRepository
             Lg.pr(sql);
             _db.ExecuteRaw(sql);
         }
-        Lg.pr("CreateImpTablesRepository finished!");
+        
+        Lg.pr("CleanAndCreateTables end!");
+    }
+    
+    private void CreateViews()
+    {
+        Lg.pr("CreateViews started!");
+        string pathFolder = _pathFilesFolder + "/views";
+        string[] sqlFiles = FileHelper.GetFileNamesInDir(pathFolder, "*.sql");
+        if (sqlFiles.IsEmpty())
+        {
+            Lg.pr($"no files found in {_pathFilesFolder}");
+            return;
+        }
+        
+        Array.Sort(sqlFiles);
+        Lg.pr(string.Join("\n", sqlFiles));
+        foreach (string pathFile in sqlFiles)
+        {
+            Lg.pr($"handling file: {pathFile}");
+            string sql = FileHelper.GetFileContent(pathFile);
+            sql = Strings.Trim(sql);
+            if (sql.IsEmpty())
+            {
+                Lg.pr($"empty file {pathFile} skipping...");
+                continue;
+            }
+            Lg.pr(sql);
+            _db.ExecuteRaw(sql);
+        }
+        Lg.pr("CreateViews end!");
     }    
 }
