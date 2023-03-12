@@ -1,9 +1,12 @@
 using System;
+using Microsoft.VisualBasic;
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
+
 using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Files;
 using azure_one.Etl.Shared.Infrastructure.Log;
-using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
-using Microsoft.VisualBasic;
+using azure_one.Etl.Shared.Infrastructure.Db.Contexts;
+using azure_one.Etl.Shared.Infrastructure.Global;
 
 namespace azure_one.Etl.SqlRunners.Infrastructure.Repositories;
 
@@ -21,7 +24,7 @@ public class PostLoadRepository
     
     public void Invoke()
     {
-        Lg.pr("SQL files execution started!");
+        Lg.pr("PostLoadRepository started!");
         string[] sqlFiles = FileHelper.GetFileNamesInDir(_pathFilesFolder, "*.sql");
         if (sqlFiles.IsEmpty())
         {
@@ -41,8 +44,18 @@ public class PostLoadRepository
                 Lg.pr($"empty file {pathFile} skipping...");
                 continue;
             }
+
+            sql = GetChangedDatabaseByReq(sql);
             Lg.pr(sql);
             _db.ExecuteRaw(sql);
         }
+        Lg.pr("PostLoadRepository finished!");
+    }
+    
+    private string GetChangedDatabaseByReq(string sql)
+    {
+        ContextDto contextDto = ContextFinder.GetById(Req.ContextId);
+        //sql = sql.Replace("local_laciahub", contextDto.Database);
+        return sql.Replace("local_staging", contextDto.Database);
     }
 }
