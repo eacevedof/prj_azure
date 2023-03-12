@@ -1,7 +1,7 @@
 {
   "source": {
     "path": "%folder_in%/data-in.xlsx",
-    "sheet_name": "at_groups",
+    "sheet_name": "at_attribs",
     "sheet_max_col": 15
   },
 
