@@ -17,19 +17,12 @@ public sealed class CreateImpTablesRepository: AbsRepository
     public CreateImpTablesRepository(Mssql db) : base(db)
     {
         _pathFilesFolder = FileHelper.GetSqlFilesFolder();
-        _pathFilesFolder += "/pre_load";
-    }
-
-    public void TruncateTable(string tableName)
-    {
-        string sql = $"TRUNCATE TABLE [local_staging].[dbo].[{tableName}]";
-        Lg.pr(sql);
-        _db.Execute(sql);
+        _pathFilesFolder += "/ddl/create_table";
     }
     
     public void Invoke()
     {
-        Lg.pr("Preload SQL files execution started!");
+        Lg.pr("CreateImpTablesRepository started!");
         string[] sqlFiles = FileHelper.GetFileNamesInDir(_pathFilesFolder, "*.sql");
         if (sqlFiles.IsEmpty())
         {
@@ -52,5 +45,6 @@ public sealed class CreateImpTablesRepository: AbsRepository
             Lg.pr(sql);
             _db.ExecuteRaw(sql);
         }
+        Lg.pr("CreateImpTablesRepository finished!");
     }    
 }
