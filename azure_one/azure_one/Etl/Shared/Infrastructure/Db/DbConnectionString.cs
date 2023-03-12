@@ -20,7 +20,7 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
                 throw new Exception($"Empty context");
             
             string connectionString = GetConnectionStringBuilder(_contextDto).ConnectionString;
-            Lg.pr(connectionString, "connectionString by dto");
+            Lg.pr(connectionString, "\nconnectionString by dto\n");
             return connectionString;
         }
         
