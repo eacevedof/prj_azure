@@ -45,8 +45,7 @@
   <ItemGroup>
     <None Update="sql_files\pre_load\0001_truncate_imp_tables.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    
+    </None>    
     <None Update="sql_files\post_load\0040_imp_languages.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -122,7 +121,6 @@
     <None Update="sql_files\post_load\0500_departments_has_employees.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-
     <None Update="sql_files\post_load\0300_imp_permissions.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
