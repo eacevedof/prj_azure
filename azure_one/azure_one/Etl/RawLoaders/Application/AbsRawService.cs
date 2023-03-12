@@ -10,6 +10,7 @@ public abstract class AbsRawService
     protected string ChangeDatabaseByReq(string sql)
     {
         ContextDto contextDto = ContextFinder.GetById(Req.ContextId);
+        //sql = sql.Replace("local_laciahub", contextDto.Database);
         return sql.Replace("local_staging", contextDto.Database);
     }
 }
