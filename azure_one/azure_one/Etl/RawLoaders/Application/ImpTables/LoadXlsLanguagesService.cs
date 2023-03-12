@@ -27,7 +27,7 @@ public sealed class LoadXlsLanguagesService: AbsRawService
             )
         ).GetBulkInsertQuery();
 
-        sql = ChangeDatabaseByReq(sql);
+        sql = GetChangedDatabaseByReq(sql);
         Lg.pr(sql);
         Mssql.GetInstanceByReq().Execute(sql);
     }

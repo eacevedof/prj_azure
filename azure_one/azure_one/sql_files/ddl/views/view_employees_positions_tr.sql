@@ -1,4 +1,4 @@
-CREATE VIEW [dbo].[view_employees_positions_tr]
+CREATE VIEW [local_staging].[dbo].[view_employees_positions_tr]
 AS
 SELECT imp.uuid, imp.employees_positions_id as mt_id, 1 tr_num, imp.tr_1 as tr_i
 FROM [local_staging].[dbo].[imp_employees_positions] imp

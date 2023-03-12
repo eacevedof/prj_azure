@@ -7,7 +7,7 @@ public abstract class AbsRawService
 {
     public abstract void Invoke();
 
-    protected string ChangeDatabaseByReq(string sql)
+    protected string GetChangedDatabaseByReq(string sql)
     {
         ContextDto contextDto = ContextFinder.GetById(Req.ContextId);
         //sql = sql.Replace("local_laciahub", contextDto.Database);
