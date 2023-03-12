@@ -1,7 +1,3 @@
--- SELECT * FROM view_user_types_tr
-DROP VIEW [dbo].[view_user_types_tr]
-GO
-
 CREATE VIEW [dbo].[view_user_types_tr]
 AS
 SELECT imp.uuid, imp.user_types_id as mt_id, 1 tr_num, imp.tr_1 as tr_i
@@ -71,5 +67,4 @@ FROM [local_staging].[dbo].[imp_user_types] imp
 WHERE 1=1
 AND imp.nok IS NULL
 AND COALESCE(imp.tr_9,'')!=''
-
-GO
+;

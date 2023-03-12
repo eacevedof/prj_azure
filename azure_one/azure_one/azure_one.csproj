@@ -35,10 +35,10 @@
     <None Update="sql_files\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\ddl\create_table">
+    <None Update="sql_files\ddl\create_table\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\ddl\views">
+    <None Update="sql_files\ddl\views\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
 
@@ -46,6 +46,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="xls_mapping\force\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="sql_files\ddl\create_table\drop_views.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>    
   </ItemGroup>
