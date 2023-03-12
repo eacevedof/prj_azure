@@ -67,5 +67,4 @@ FROM [local_staging].[dbo].[imp_assets_types] imp
 WHERE 1=1
 AND imp.nok IS NULL
 AND COALESCE(imp.tr_9,'')!=''
-
-GO
+;
