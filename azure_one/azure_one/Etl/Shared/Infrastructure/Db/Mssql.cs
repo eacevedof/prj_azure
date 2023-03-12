@@ -2,24 +2,25 @@
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
-//using Sql2 = Microsoft.Data.SqlClient ;
 
+using azure_one.Etl.Shared.Infrastructure.Global;
+using azure_one.Etl.Shared.Infrastructure.Db.Contexts;
 
 namespace azure_one.Etl.Shared.Infrastructure.Db
 {
 	public sealed class Mssql
 	{
-		private readonly StructDb1 _dbConfig1;
+		private readonly string _stringConnection;
 		private readonly SqlConnection _connection;
-		//private readonly Sql2.SqlConnection _sql2connection;
+		
 		private int _rowsAffected;
 		private int _lastInsertId;
 		
 		public Mssql()
 		{
-			_dbConfig1 = new StructDb1();
-			_connection = new SqlConnection(_dbConfig1.GetConnectionString());
-			//_sql2connection = new Sql2.SqlConnection(_dbConfig1.GetConnectionString());
+			ContextDto dto = ContextFinder.GetById(Global.Global.ContextId);
+			_stringConnection = (new DbConnectionString(dto)).ToString();
+			_connection = new SqlConnection(_stringConnection);
 		}
 
 		public static Mssql GetInstance()
@@ -34,7 +35,7 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 			if (query == "") return rowsResult;
 
 			SqlCommand cmdSql = new SqlCommand(query, _connection);
-			if (_connection.State == ConnectionState.Closed) Open();
+			if (_connection.State == ConnectionState.Closed) _connection.Open();
 
 			SqlDataReader sqlReader = cmdSql.ExecuteReader();
 			List<string> columnsNames = GetColumnsNames(sqlReader);
@@ -60,7 +61,7 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 			if (isInsert) query += ";SELECT SCOPE_IDENTITY();";
 			
 			SqlCommand cmdSql = new SqlCommand(query, _connection);
-			if (_connection.State == ConnectionState.Closed) Open();
+			if (_connection.State == ConnectionState.Closed) _connection.Open();
 			
 			using (cmdSql)
 			{
@@ -79,21 +80,9 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 				return;
 			
 			SqlCommand cmdSql = new SqlCommand(query, _connection);
-			if (_connection.State == ConnectionState.Closed) Open();
+			if (_connection.State == ConnectionState.Closed) _connection.Open();
 			
 			using (cmdSql) cmdSql.ExecuteNonQuery();
-		}
-
-		private void Execute2(string query)
-		{/*
-			if (_sql2connection.State == ConnectionState.Closed)
-				_sql2connection.Open();
-			
-			Sql2.SqlCommand cmd = _sql2connection.CreateCommand();
-			cmd.CommandText = query;
-			cmd.ExecuteNonQuery();
-			_sql2connection.Close();
-			*/
 		}
 
 		public int GetRowsAffected()
@@ -105,15 +94,7 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 		{
 			return _lastInsertId;
 		}
-		
-		private void Open()
-		{
-			_connection.Open();
-		}
-		private void Close()
-		{
-			_connection.Close();
-		}
+
 		private List<string> GetColumnsNames(SqlDataReader sqlReader)
 		{
 			List<string> columnNames = new List<string>();

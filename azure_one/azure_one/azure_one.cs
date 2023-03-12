@@ -6,13 +6,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 
+using azure_one.Etl.Shared.Infrastructure.Global;
 using azure_one.Etl.RawLoaders.Infrastructure;
+using azure_one.Etl.Shared.Infrastructure.Db.Contexts;
 using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.Shared.Infrastructure.Repositories;
 using azure_one.Etl.SqlRunners.Infrastructure.Controllers;
 
 //test c# online
 //https://techiedelight.com/compiler/
+//https://dotnetfiddle.net/
 namespace azure_one
 {
     public class azure_one
@@ -40,6 +43,7 @@ namespace azure_one
         {
             try
             {
+                Global.ContextId = ContextsEnum.local_staging;
                 string tenant_slug = req.Query["tenant_slug"];
                 string transaction_id = req.Query["transaction_id"];
                 

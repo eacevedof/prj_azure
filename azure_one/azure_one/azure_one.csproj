@@ -19,11 +19,10 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Etl\Shared" />
     <Folder Include="Etl\InstallImpTables\Domain" />
     <Folder Include="Etl\InstallImpTables\Infrastructure" />
     <Folder Include="xls_mapping\" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="sql_files\" />
   </ItemGroup>
   <ItemGroup>
@@ -33,6 +32,7 @@
     <None Remove="Etl\Domain\" />
     <None Remove="Etl\Application\" />
     <None Remove="Etl\Infrastructure\Db\" />
+    
     <None Update="sql_files\pre_load\0001_truncate_imp_tables.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -149,12 +149,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Etl\Shared" />
-  </ItemGroup>  
-  <ItemGroup>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="config\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>    
     <None Update="sql_files\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
