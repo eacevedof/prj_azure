@@ -55,6 +55,9 @@ CREATE TABLE [dbo].[imp_cities] (
     CONSTRAINT [PK_cities] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
+IF OBJECT_ID(N'dbo.imp_companies', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_companies]
+;
 CREATE TABLE [dbo].[imp_companies] (
     [id]                     BIGINT         IDENTITY (1, 1) NOT NULL,
     [tenant_slug]            NVARCHAR (50)  NULL,
@@ -87,6 +90,10 @@ CREATE TABLE [dbo].[imp_companies] (
     [imp_uuid]               NVARCHAR (50)  NULL,
     CONSTRAINT [PK_companies] PRIMARY KEY CLUSTERED ([id] ASC)
 );
+
+IF OBJECT_ID(N'dbo.imp_countries', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_countries]
+;
 
 CREATE TABLE [dbo].[imp_countries] (
     [id]           BIGINT         IDENTITY (1, 1) NOT NULL,
