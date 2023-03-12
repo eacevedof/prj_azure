@@ -520,6 +520,6 @@ CREATE TABLE [dbo].[imp_assets_types_attr] (
     [created_at]    DATETIME       CONSTRAINT [DEFAULT_imp_assets_types_attr_created_at] DEFAULT (getdate()) NULL,
     [updated_at]    DATETIME       NULL,
     [imp_uuid]      NVARCHAR (50)  NULL,
-    CONSTRAINT [PK_user_types] PRIMARY KEY CLUSTERED ([id] ASC)
+    CONSTRAINT [PK_assets_types_attr_id] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
