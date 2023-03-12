@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using azure_one.Etl.Shared.Infrastructure.Db;
+using System.Collections.Generic;
 using Newtonsoft.Json;
-using azure_one.Etl.Shared.Infrastructure.Files;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
+using azure_one.Etl.Shared.Infrastructure.Files;
 
 namespace azure_one.Etl.Shared.Infrastructure.Db.Contexts;
 
-public sealed class ContextFactory
+public sealed class ContextFinder
 {
     private static readonly List<ContextDto> _contexts = new();
     
