@@ -43,20 +43,22 @@ namespace azure_one
         {
             try
             {
-                Req.ContextId = ContextsEnum.local_staging;
+                Lg.pr("ETL azure_one started...");                
+                Req.ContextId = ContextsEnum.db_test;
+                
                 string tenant_slug = req.Query["tenant_slug"];
                 string transaction_id = req.Query["transaction_id"];
-                
-                Lg.pr("ETL azure_one started...");
+
+                Lg.pr("PreloadFiles...");
                 _runPreLoadFilesController.Invoke();
                 
-                Lg.pr("ETL azure_one started...");
+                Lg.pr("LoadImpTables...");
                 _loadImpTablesController.Invoke();
                 
-                Lg.pr("ETL staging db loaded!");
+                Lg.pr("PostLoadFiles...");
                 _runPostLoadFilesController.Invoke();
                 
-                Lg.pr("ETL sql files executed");
+                Lg.pr("ETL azure_one finished!");
 
                 string successMessage = $"ETL AzureOne ({tenant_slug},{transaction_id}) has finished successfully!.";
                 return new OkObjectResult(successMessage);
