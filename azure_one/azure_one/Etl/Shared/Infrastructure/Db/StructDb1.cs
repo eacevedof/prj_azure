@@ -14,8 +14,6 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
         
         public string GetConnectionString()
         {
-            //string: verbindingstekenreeks
-            // "Data Source=myServerAddress;Initial Catalog=myDatabase;User Id=myUsername;_password=myPassword;";
             string[] connectionParts = new string[]
             {
                 $"_server:tcp:{StructDb1._server},{StructDb1._port}",
