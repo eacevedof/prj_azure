@@ -488,4 +488,38 @@ CREATE TABLE [dbo].[imp_keys_and_values] (
     CONSTRAINT [PK_keys_and_values] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
+IF OBJECT_ID(N'dbo.imp_assets_types_attr', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_assets_types_attr]
+;
+
+CREATE TABLE [dbo].[imp_assets_types_attr] (
+    [id]            BIGINT         IDENTITY (1, 1) NOT NULL,
+    [tenant_slug]                           NVARCHAR (50)  NULL,
+    [asset_type_group_uuid]                 NVARCHAR (50)  NULL,
+    [assets_attributes_groups_id]           NVARCHAR (50)  NULL,
+    [assets_types_id]                       NVARCHAR (50)  NULL,
+    [uuid]                                  NVARCHAR (50)  NULL,
+    [assets_types_attr_id]                  NVARCHAR (50)  NULL,
+    [asset_type_attr_value_type]            NVARCHAR (50)  NULL,
+    [asset_type_attr_selector_multiple]     NVARCHAR (50)  NULL,
+    [asset_type_attr_mandatory]             NVARCHAR (50)  NULL,
+    [val]           NVARCHAR (255) NULL,
+    [codesap]       NVARCHAR (50)  NULL,
+    [tr_1]          NVARCHAR (500) NULL,
+    [tr_2]          NVARCHAR (500) NULL,
+    [tr_3]          NVARCHAR (500) NULL,
+    [tr_4]          NVARCHAR (500) NULL,
+    [tr_5]          NVARCHAR (500) NULL,
+    [tr_6]          NVARCHAR (500) NULL,
+    [tr_7]          NVARCHAR (500) NULL,
+    [tr_8]          NVARCHAR (500) NULL,
+    [tr_9]          NVARCHAR (500) NULL,
+
+    [remove]         NVARCHAR (50)  NULL,
+    [nok]           INT            NULL,
+    [created_at]    DATETIME       CONSTRAINT [DEFAULT_imp_assets_types_attr_created_at] DEFAULT (getdate()) NULL,
+    [updated_at]    DATETIME       NULL,
+    [imp_uuid]      NVARCHAR (50)  NULL,
+    CONSTRAINT [PK_user_types] PRIMARY KEY CLUSTERED ([id] ASC)
+);
 
