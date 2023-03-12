@@ -30,7 +30,7 @@ CREATE TABLE [dbo].[imp_assets_types] (
     [tr_8]                       NVARCHAR (500) NULL,
     [tr_9]                       NVARCHAR (500) NULL,
 
-    [remove]         NVARCHAR (50)  NULL,
+    [remove]                   NVARCHAR (50)  NULL,
     [nok]                        INT            NULL,
     [created_at]                 DATETIME       CONSTRAINT [DEFAULT_imp_assets_types_created_at] DEFAULT (getdate()) NULL,
     [updated_at]                 DATETIME       NULL,
@@ -155,7 +155,7 @@ CREATE TABLE [dbo].[imp_employees] (
     [users_id]                 NVARCHAR (50)  NULL,
     [codesap]                  NVARCHAR (50)  NULL,
 
-    [remove]         NVARCHAR (50)  NULL,
+    [remove]                   NVARCHAR (50)  NULL,
     [nok]                      INT            NULL,
     [created_at]               DATETIME       CONSTRAINT [DEFAULT_imp_employees_created_at] DEFAULT (getdate()) NULL,
     [updated_at]               DATETIME       NULL,
@@ -185,6 +185,8 @@ CREATE TABLE [dbo].[imp_employees_departments] (
     [tr_7]                     NVARCHAR (500) NULL,
     [tr_8]                     NVARCHAR (500) NULL,
     [tr_9]                     NVARCHAR (500) NULL,
+
+    [remove]                   NVARCHAR (50)  NULL,
     [nok]                      INT            NULL,
     [created_at]               DATETIME       CONSTRAINT [DEFAULT_imp_employees_departments_created_at] DEFAULT (getdate()) NULL,
     [updated_at]               DATETIME       NULL,
@@ -224,17 +226,17 @@ CREATE TABLE [dbo].[imp_employees_positions] (
 );
 
 
-IF OBJECT_ID(N'dbo.imp_errors', N'U') IS NOT NULL
-    DROP TABLE [dbo].[imp_errors]
+IF OBJECT_ID(N'dbo.imp_progress', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_progress]
 ;
 
-CREATE TABLE [dbo].[imp_errors] (
+CREATE TABLE [dbo].[imp_progress] (
     [id]          BIGINT         IDENTITY (1, 1) NOT NULL,
     [tenant_slug] NVARCHAR (50)  NULL,
     [level]       NVARCHAR (50)  NULL,
     [title]       NVARCHAR (500) NULL,
     [reason]      NTEXT          NULL,
-    [created_at]  DATETIME       CONSTRAINT [DEFAULT_imp_errors_created_at] DEFAULT (getdate()) NULL,
+    [created_at]  DATETIME       CONSTRAINT [DEFAULT_imp_progress_created_at] DEFAULT (getdate()) NULL,
     [imp_uuid]    NVARCHAR (50)  NULL
 );
 

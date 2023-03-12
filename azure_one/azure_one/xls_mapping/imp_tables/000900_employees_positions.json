@@ -3,7 +3,7 @@
   "source": {
     "path": "%folder_in%/data-in.xlsx",
     "sheet_name": "emp_positions",
-    "sheet_max_col": 11
+    "sheet_max_col": 13
   },
 
   "target": {
@@ -14,6 +14,7 @@
     { "uuid": "uuid" },
     { "val": "val" },
     { "codesap": "codesap" },
+    
     { "tr_1": "tr_1" },
     { "tr_2": "tr_2" },
     { "tr_3": "tr_3" },
