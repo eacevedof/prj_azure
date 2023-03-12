@@ -43,7 +43,7 @@ namespace azure_one
         {
             try
             {
-                Global.ContextId = ContextsEnum.local_staging;
+                Req.ContextId = ContextsEnum.local_staging;
                 string tenant_slug = req.Query["tenant_slug"];
                 string transaction_id = req.Query["transaction_id"];
                 

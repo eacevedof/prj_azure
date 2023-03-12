@@ -27,6 +27,6 @@ public sealed class LoadXlsStatusEmployeesService: AbsRawService
         ).GetBulkInsertQuery();
         
         Lg.pr(sql);
-        Mssql.GetInstance().Execute(sql);
+        Mssql.GetInstanceByReq().Execute(sql);
     }
 }

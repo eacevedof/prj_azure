@@ -18,15 +18,26 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 		
 		public Mssql()
 		{
-			ContextDto dto = ContextFinder.GetById(Global.Global.ContextId);
+			ContextDto dto = ContextFinder.GetById(Req.ContextId);
 			_stringConnection = (new DbConnectionString(dto)).GetStringOrFail();
 			_connection = new SqlConnection(_stringConnection);
 		}
+		
+		public Mssql(ContextDto _contextDto)
+		{
+			_stringConnection = (new DbConnectionString(_contextDto)).GetStringOrFail();
+			_connection = new SqlConnection(_stringConnection);
+		}		
 
-		public static Mssql GetInstance()
+		public static Mssql GetInstanceByReq()
 		{
 			return new Mssql();
 		}
+		
+		public static Mssql GetInstanceByDto(ContextDto contextDto)
+		{
+			return new Mssql(contextDto);
+		}		
 		
 		public List<Dictionary<string, string>> Query(string query)
 		{
