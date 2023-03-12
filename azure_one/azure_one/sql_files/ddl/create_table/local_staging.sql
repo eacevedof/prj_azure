@@ -1,17 +1,8 @@
-USE [master]
+USE [db_test]
 ;
 
-
--- ALTER DATABASE [local_staging] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
-;
-
-DROP DATABASE IF EXISTS [local_staging]
-;
-
-CREATE DATABASE [local_staging]
-;
-
-USE [local_staging]
+IF OBJECT_ID(N'dbo.imp_assets_types', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_assets_types]
 ;
 
 CREATE TABLE [dbo].[imp_assets_types] (
@@ -44,8 +35,7 @@ CREATE TABLE [dbo].[imp_assets_types] (
     [updated_at]                 DATETIME       NULL,
     [imp_uuid]                   NVARCHAR (50)  NULL,
     CONSTRAINT [PK_imp_assets_types] PRIMARY KEY CLUSTERED ([id] ASC)
-)
-;
+);
 
 CREATE TABLE [dbo].[imp_cities] (
     [id]             BIGINT         IDENTITY (1, 1) NOT NULL,
