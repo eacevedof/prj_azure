@@ -1,5 +1,6 @@
 -- TRUNCATE TABLES
 TRUNCATE TABLE [local_staging].[dbo].[imp_errors];
+TRUNCATE TABLE [local_staging].[dbo].[imp_keys_and_values];
 TRUNCATE TABLE [local_staging].[dbo].[imp_languages];
 TRUNCATE TABLE [local_staging].[dbo].[imp_countries];
 TRUNCATE TABLE [local_staging].[dbo].[imp_provinces];
@@ -14,5 +15,3 @@ TRUNCATE TABLE [local_staging].[dbo].[imp_roles];
 TRUNCATE TABLE [local_staging].[dbo].[imp_employees];
 TRUNCATE TABLE [local_staging].[dbo].[imp_permissions];
 TRUNCATE TABLE [local_staging].[dbo].[imp_assets_types];
-TRUNCATE TABLE [local_staging].[dbo].[imp_keys_and_values];
-
