@@ -1,6 +1,7 @@
 USE [db_test]
 ;
 
+
 IF OBJECT_ID(N'dbo.imp_assets_types', N'U') IS NOT NULL
     DROP TABLE [dbo].[imp_assets_types]
 ;
@@ -36,6 +37,11 @@ CREATE TABLE [dbo].[imp_assets_types] (
     [imp_uuid]                   NVARCHAR (50)  NULL,
     CONSTRAINT [PK_imp_assets_types] PRIMARY KEY CLUSTERED ([id] ASC)
 );
+
+
+IF OBJECT_ID(N'dbo.imp_cities', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_cities]
+;
 
 CREATE TABLE [dbo].[imp_cities] (
     [id]             BIGINT         IDENTITY (1, 1) NOT NULL,
@@ -90,6 +96,7 @@ CREATE TABLE [dbo].[imp_companies] (
     [imp_uuid]               NVARCHAR (50)  NULL,
     CONSTRAINT [PK_companies] PRIMARY KEY CLUSTERED ([id] ASC)
 );
+
 
 IF OBJECT_ID(N'dbo.imp_countries', N'U') IS NOT NULL
     DROP TABLE [dbo].[imp_countries]
@@ -156,6 +163,7 @@ CREATE TABLE [dbo].[imp_employees] (
     CONSTRAINT [PK_imp_employees] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
+
 IF OBJECT_ID(N'dbo.imp_employees_departments', N'U') IS NOT NULL
     DROP TABLE [dbo].[imp_employees_departments]
 ;
@@ -215,6 +223,7 @@ CREATE TABLE [dbo].[imp_employees_positions] (
     CONSTRAINT [PK_employees_positions] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
+
 IF OBJECT_ID(N'dbo.imp_errors', N'U') IS NOT NULL
     DROP TABLE [dbo].[imp_errors]
 ;
@@ -273,6 +282,7 @@ CREATE TABLE [dbo].[imp_languages_company_custom] (
     CONSTRAINT [PK_languages_company] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
+
 IF OBJECT_ID(N'dbo.imp_permissions', N'U') IS NOT NULL
     DROP TABLE [dbo].[imp_permissions]
 ;
@@ -295,6 +305,7 @@ CREATE TABLE [dbo].[imp_permissions] (
     [imp_uuid]         NVARCHAR (50)  NULL,
     CONSTRAINT [PK_imp_permissions] PRIMARY KEY CLUSTERED ([id] ASC)
 );
+
 
 IF OBJECT_ID(N'dbo.imp_provinces', N'U') IS NOT NULL
     DROP TABLE [dbo].[imp_provinces]
@@ -326,6 +337,7 @@ CREATE TABLE [dbo].[imp_provinces] (
     [imp_uuid]       NVARCHAR (50)  NULL,
     CONSTRAINT [PK_provincies] PRIMARY KEY CLUSTERED ([id] ASC)
 );
+
 
 IF OBJECT_ID(N'dbo.imp_roles', N'U') IS NOT NULL
     DROP TABLE [dbo].[imp_roles]
@@ -417,7 +429,8 @@ CREATE TABLE [dbo].[imp_user_types] (
 );
 
 
-DROP TABLE [dbo].[imp_keys_and_values]
+IF OBJECT_ID(N'dbo.imp_keys_and_values', N'U') IS NOT NULL
+    DROP TABLE [dbo].[imp_keys_and_values]
 ;
 
 CREATE TABLE [dbo].[imp_keys_and_values] (
