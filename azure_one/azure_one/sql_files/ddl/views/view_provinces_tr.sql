@@ -1,7 +1,3 @@
--- SELECT * FROM view_provinces_tr
-DROP VIEW [dbo].[view_provinces_tr]
-GO
-
 CREATE VIEW [dbo].[view_provinces_tr]
 AS
 SELECT imp.uuid, imp.provinces_id as mt_id, 1 tr_num, imp.tr_1 as tr_i
@@ -72,4 +68,4 @@ WHERE 1=1
 AND imp.nok IS NULL
 AND COALESCE(imp.tr_9,'')!=''
 
-GO
+;

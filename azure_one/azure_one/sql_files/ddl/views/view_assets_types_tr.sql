@@ -1,7 +1,3 @@
--- SELECT * FROM view_assets_types_tr
-DROP VIEW [dbo].[view_assets_types_tr]
-GO
-
 CREATE VIEW [dbo].[view_assets_types_tr]
 AS
 SELECT imp.uuid, imp.assets_types_id as mt_id, 1 tr_num, imp.tr_1 as tr_i
