@@ -1,0 +1,18 @@
+[
+  {
+    "id": "local_staging",
+    "server": "localhost",
+    "port": "1433",
+    "database": "local_staging",
+    "username": "sa",
+    "password": "EafEaf1234"
+  },
+  {
+    "id": "local_staging2",
+    "server": "127.0.0.1",
+    "port": "1433",
+    "database": "local_staging",
+    "username": "sa",
+    "password": "EafEaf1234"
+  }
+]
