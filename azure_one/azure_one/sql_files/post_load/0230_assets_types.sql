@@ -17,6 +17,9 @@ WHERE 1=1
 AND imp.nok IS NULL
 ;
 
+UPDATE [local_staging].[dbo].[imp_assets_types] SET nok=1 WHERE company_id IS NULL
+;
+
 SET IDENTITY_INSERT [local_laciahub].[dbo].[assets_types] ON;
 
 INSERT INTO [local_laciahub].[dbo].[assets_types]
