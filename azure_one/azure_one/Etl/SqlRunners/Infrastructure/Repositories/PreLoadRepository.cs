@@ -17,13 +17,6 @@ public sealed class PreLoadRepository: AbsRepository
         _pathFilesFolder = FileHelper.GetSqlFilesFolder();
         _pathFilesFolder += "/pre_load";
     }
-
-    public void TruncateTable(string tableName)
-    {
-        string sql = $"TRUNCATE TABLE [local_staging].[dbo].[{tableName}]";
-        Lg.pr(sql);
-        _db.Execute(sql);
-    }
     
     public void Invoke()
     {
@@ -47,6 +40,8 @@ public sealed class PreLoadRepository: AbsRepository
                 Lg.pr($"empty file {pathFile} skipping...");
                 continue;
             }
+
+            sql = GetChangedDatabaseByReq(sql);
             Lg.pr(sql);
             _db.ExecuteRaw(sql);
         }
