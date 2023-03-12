@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
 using azure_one.Etl.Shared.Infrastructure.Files;
+using Newtonsoft.Json.Linq;
 
 namespace azure_one.Etl.Shared.Infrastructure.Db.Contexts;
 
@@ -19,10 +20,10 @@ public sealed class ContextFinder
         {
             ContextDto dto = new ();
             dto.Id = context.id ?? -1;
-            dto.Server = context.server ?? "localhost";
-            dto.Database = context.databse ?? "db_unknown";
-            dto.Port = context.port ?? "1433";
-            dto.Username = context.username ?? "sa";
+            dto.Server = context.server ?? "127.0.0.1";
+            dto.Database = context.database ?? "db_unknown";
+            dto.Port = context.port ?? "";
+            dto.Username = context.username ?? "";
             dto.Password = context.password ?? "";
             _contexts.Add(dto);
         }

@@ -19,7 +19,7 @@ namespace azure_one.Etl.Shared.Infrastructure.Db
 		public Mssql()
 		{
 			ContextDto dto = ContextFinder.GetById(Global.Global.ContextId);
-			_stringConnection = (new DbConnectionString(dto)).ToString();
+			_stringConnection = (new DbConnectionString(dto)).GetStringOrFail();
 			_connection = new SqlConnection(_stringConnection);
 		}
 
