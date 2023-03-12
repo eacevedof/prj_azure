@@ -30,11 +30,7 @@ public sealed class ContextFinder
     
     private static dynamic JsonDecode()
     {
-        string pathFile = Path.Combine(
-                Directory.GetCurrentDirectory(), 
-                "Etl/Shared/Infrastructure/Db/Contexts/contexts.json"
-            );
-
+        string pathFile = Path.Combine(Directory.GetCurrentDirectory(), "config/contexts.json");
         if (FileHelper.isFile(pathFile))
         {
             string strJson = FileHelper.GetFileContent(pathFile);
