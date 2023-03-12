@@ -31,9 +31,17 @@
     <None Update="config\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    
     <None Update="sql_files\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="sql_files\ddl\create_table">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="sql_files\ddl\views">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+
     <None Update="xls_mapping\imp_tables\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
