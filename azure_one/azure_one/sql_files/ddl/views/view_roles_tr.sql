@@ -1,4 +1,4 @@
-USE [local_staging]; 
+-- USE [local_staging]; 
 
 CREATE VIEW[dbo].[view_roles_tr]
 AS

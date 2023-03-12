@@ -3,7 +3,7 @@
   "source": {
     "path": "%folder_in%/data-in.xlsx",
     "sheet_name": "companies",
-    "sheet_max_col": 10
+    "sheet_max_col": 12
   },
 
   "target": {

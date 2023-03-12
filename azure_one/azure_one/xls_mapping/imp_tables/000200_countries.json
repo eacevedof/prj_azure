@@ -3,7 +3,7 @@
   "source": {
     "path": "%folder_in%/data-in.xlsx",
     "sheet_name": "countries",
-    "sheet_max_col": 11
+    "sheet_max_col": 13
   },
 
   "target": {

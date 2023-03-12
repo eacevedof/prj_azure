@@ -1,4 +1,4 @@
-USE [local_staging];
+-- USE [local_staging]; CREATE VIEW' must be the first statement in a query batch
 
 CREATE VIEW [dbo].[view_assets_types_tr]
 AS
