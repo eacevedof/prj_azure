@@ -38,22 +38,8 @@ public class Startup: FunctionsStartup
         //controlleres
         builder.Services.AddSingleton<LoadImpTablesController>(
             s => new LoadImpTablesController(
-                new LoadXlsLanguagesService(), 
-                    new LoadXlsCountriesServices(),
-                    new LoadXlsProvincesService(),
-                    new LoadXlsCitiesService(),
-                    new LoadXlsCompaniesService(),
-                    new LoadXlsLanguagesCompanyCustomService(),
-                    new LoadXlsUserTypesService(),
-                    new LoadXlsStatusEmployeesService(),
-                    new LoadXlsEmployeesPositionsService(),
-                    new LoadXlsEmployeesDepartmentsService(),
-                    new LoadXlsRolesService(),
-                    new LoadXlsEmployeesService(),
-                    new LoadXlsPermissionsService(),
-                    new LoadXlsAssetsTypesService(),
-                    new LoadXlsFilesIntoImpTables()
-                )
+                new LoadXlsFilesIntoImpTables()
+            )
         );
 
         builder.Services.AddSingleton<CreateImpTablesController>(
