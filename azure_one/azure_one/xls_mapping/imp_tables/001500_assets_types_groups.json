@@ -12,7 +12,7 @@
   "mapping": [
     {"uuid": "uuid"},
     {"asset_type_uuid": "fk1_uuid" },
-    {"%assets_attributes_groups%":  "entity_type"},
+    {"constant:assets_attributes_groups":  "entity_type"},
     {"val":"val_1"},
     {"codesap":"codesap"},
     { "tr_1": "tr_v1_1" },
