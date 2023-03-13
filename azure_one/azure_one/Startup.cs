@@ -51,7 +51,8 @@ public class Startup: FunctionsStartup
                     new LoadXlsRolesService(),
                     new LoadXlsEmployeesService(),
                     new LoadXlsPermissionsService(),
-                    new LoadXlsAssetsTypesService()
+                    new LoadXlsAssetsTypesService(),
+                    new LoadXlsFilesIntoImpTables()
                 )
         );
 

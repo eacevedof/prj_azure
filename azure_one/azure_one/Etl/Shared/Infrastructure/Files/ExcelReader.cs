@@ -107,8 +107,12 @@ public sealed class ExcelReader
                     sheet = GetSheetObjectByName(sheets, _sheetName);
 
                 if (sheet is null)
-                    throw new SheetNotFoundException($"sheet {_sheetName} was not found!");
-
+                {
+                    Lg.pr($"...skipping sheet {_sheetName} because this was not found!");
+                    return sheetData;
+                }
+                    
+                //throw new SheetNotFoundException($"sheet {_sheetName} was not found!");
                 DataRowCollection sheetRows = sheet.Rows;
                 if (sheetRows.Count == 0)
                     return sheetData;

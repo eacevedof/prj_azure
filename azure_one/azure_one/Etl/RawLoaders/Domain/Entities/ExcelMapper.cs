@@ -48,9 +48,9 @@ public sealed class ExcelMapper
         _source["path"] = $"{pathHome}/{pathExcel}";        
     }
     
-    public static ExcelMapper GetInstance(string jsonFileName)
+    public static ExcelMapper GetInstance(string jsonPathFile)
     {
-        return new ExcelMapper(jsonFileName);
+        return new ExcelMapper(jsonPathFile);
     }
     
     public static ExcelMapper GetForceInstance(string jsonFileName)
