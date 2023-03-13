@@ -1,5 +1,5 @@
 UPDATE [local_staging].[dbo].[imp_keys_and_values] SET remove=NULL WHERE TRIM(COALESCE(remove,''))='';
-UPDATE [local_staging].[dbo].[imp_errors] SET remove=NULL WHERE TRIM(COALESCE(remove,''))='';
+-- UPDATE [local_staging].[dbo].[imp_errors] SET remove=NULL WHERE TRIM(COALESCE(remove,''))='';
 UPDATE [local_staging].[dbo].[imp_keys_and_values] SET remove=NULL WHERE TRIM(COALESCE(remove,''))='';
 UPDATE [local_staging].[dbo].[imp_languages] SET remove=NULL WHERE TRIM(COALESCE(remove,''))='';
 UPDATE [local_staging].[dbo].[imp_countries] SET remove=NULL WHERE TRIM(COALESCE(remove,''))='';
