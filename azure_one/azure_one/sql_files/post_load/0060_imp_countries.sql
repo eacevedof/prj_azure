@@ -23,6 +23,7 @@ INNER JOIN [local_staging].[dbo].[imp_countries] imp
 ON mt.id = imp.countries_id
 WHERE 1=1
 AND imp.nok IS NULL
+AND imp.remove IS NULL
 ;
 
 INSERT INTO [local_laciahub].[dbo].[countries]
@@ -43,6 +44,7 @@ LEFT JOIN [local_laciahub].[dbo].[countries] mt
 ON mt.id = imp.countries_id
 WHERE 1=1
 AND imp.nok IS NULL
+AND imp.remove IS NULL
 AND mt.id IS NULL
 ;
 
