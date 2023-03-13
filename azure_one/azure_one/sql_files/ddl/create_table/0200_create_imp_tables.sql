@@ -505,6 +505,10 @@ CREATE TABLE [dbo].[imp_assets_types_attr] (
     [asset_type_attr_mandatory]             NVARCHAR (50)  NULL,
     [val]           NVARCHAR (255) NULL,
     [codesap]       NVARCHAR (50)  NULL,
+    [type]          NVARCHAR (255) NULL,
+    [multiple]      NVARCHAR (10) NULL,
+    [required]      NVARCHAR (10) NULL,
+        
     [tr_1]          NVARCHAR (500) NULL,
     [tr_2]          NVARCHAR (500) NULL,
     [tr_3]          NVARCHAR (500) NULL,
