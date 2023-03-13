@@ -6,7 +6,7 @@
   },
 
   "target": {
-    "table": "imp_keys_values"
+    "table": "imp_keys_and_values"
   },
 
   "mapping": [
