@@ -10,3 +10,4 @@ DROP VIEW IF EXISTS [dbo].[view_provinces_tr];
 DROP VIEW IF EXISTS [dbo].[view_roles_tr];
 DROP VIEW IF EXISTS [dbo].[view_status_employees_tr];
 DROP VIEW IF EXISTS [dbo].[view_user_types_tr];
+DROP VIEW IF EXISTS [dbo].[view_assets_types_attr_tr];
