@@ -50,6 +50,9 @@
     </None>
     <None Update="sql_files\ddl\create_table\0100_drop_views.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="sql_files\ddl\views\view_assets_types_attr.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>    
   </ItemGroup>
   
