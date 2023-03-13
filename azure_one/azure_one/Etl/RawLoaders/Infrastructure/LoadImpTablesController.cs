@@ -1,4 +1,3 @@
-using azure_one.Etl.RawLoaders.Application;
 using azure_one.Etl.RawLoaders.Application.ImpTables;
 
 namespace azure_one.Etl.RawLoaders.Infrastructure;
@@ -19,6 +18,7 @@ public sealed class LoadImpTablesController
     private readonly LoadXlsEmployeesService _loadXlsEmployeesService;
     private readonly LoadXlsPermissionsService _loadXlsPermissionsService;
     private readonly LoadXlsAssetsTypesService _loadXlsAssetsTypesService;
+    private readonly LoadXlsFilesIntoImpTables _loadXlsFilesIntoImpTables;
     
     public LoadImpTablesController(
         LoadXlsLanguagesService loadXlsLanguagesService,
@@ -34,7 +34,8 @@ public sealed class LoadImpTablesController
         LoadXlsRolesService loadXlsRolesService,
         LoadXlsEmployeesService loadXlsEmployeesService,
         LoadXlsPermissionsService loadXlsPermissionsService,
-        LoadXlsAssetsTypesService loadXlsAssetsTypesService
+        LoadXlsAssetsTypesService loadXlsAssetsTypesService,
+        LoadXlsFilesIntoImpTables loadXlsFilesIntoImpTables
     )
     {
         _loadXlsLanguagesService = loadXlsLanguagesService;
@@ -51,11 +52,14 @@ public sealed class LoadImpTablesController
         _loadXlsEmployeesService = loadXlsEmployeesService;
         _loadXlsPermissionsService = loadXlsPermissionsService;
         _loadXlsAssetsTypesService = loadXlsAssetsTypesService;
+        _loadXlsFilesIntoImpTables = loadXlsFilesIntoImpTables;
     }
 
     public void Invoke()
     {
-
+        _loadXlsFilesIntoImpTables.Invoke();
+        return;
+        
         _loadXlsLanguagesService.Invoke();
         _loadXlsCountriesServices.Invoke();
         _loadXlsProvincesService.Invoke();
@@ -66,7 +70,6 @@ public sealed class LoadImpTablesController
         _loadXlsStatusEmployeesService.Invoke();
         _loadXlsEmployeesPositionsService.Invoke();
         _loadXlsEmployeesDepartmentsService.Invoke();
-        
         _loadXlsRolesService.Invoke();
         _loadXlsEmployeesService.Invoke();
         _loadXlsPermissionsService.Invoke();
