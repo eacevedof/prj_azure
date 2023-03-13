@@ -2,7 +2,7 @@
   "source": {
     "path": "%folder_in%/data-in.xlsx",
     "sheet_name": "at_attr",
-    "sheet_max_col": 15
+    "sheet_max_col": 17
   },
 
   "target": {
