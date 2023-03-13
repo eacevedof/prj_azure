@@ -53,6 +53,9 @@
     </None>
     <None Update="sql_files\ddl\views\view_assets_types_attr_tr.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="sql_files\pre_load\0010_update_remove_fields.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>    
   </ItemGroup>
   
