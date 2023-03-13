@@ -38,7 +38,9 @@ public sealed class BulkInsert
         string sql = "";
         foreach (List<string> batchInsVals in splitted)
         {
+            //insert into xx, yy, zz values
             sql += GetInsertIntoHeader();
+            //(x, y, z)
             sql += string.Join(",", batchInsVals);
             sql += ";";
         }
