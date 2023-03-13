@@ -1,14 +1,28 @@
 UPDATE [local_staging].[dbo].[imp_languages] SET languages_id=NULL;
 
 UPDATE imp
-SET languages_id = mt.id
+SET imp.languages_id = mt.id
 FROM [local_laciahub].[dbo].[languages]  mt
 INNER JOIN [local_staging].[dbo].[imp_languages] imp
 -- ON mt.language_name = imp.val
 ON mt.locale = imp.uuid
 WHERE 1=1
-AND imp.nok IS NULL
+AND imp.remove IS NULL
 ;
+
+-- borrado
+/*
+UPDATE mt
+SET
+    mt.deleted_at = GETDATE()
+FROM [local_laciahub].[dbo].[languages]  mt
+INNER JOIN [local_staging].[dbo].[imp_languages] imp
+ON mt.id = imp.languages_id
+WHERE 1=1
+AND imp.nok IS NULL
+AND imp.remove IS NOT NULL
+;
+*/
 
 UPDATE mt
 SET
@@ -20,6 +34,7 @@ INNER JOIN [local_staging].[dbo].[imp_languages] imp
 ON mt.id = imp.languages_id
 WHERE 1=1
 AND imp.nok IS NULL
+AND imp.remove IS NULL
 ;
 
 -- token no permite nulls
@@ -33,6 +48,7 @@ LEFT JOIN [local_laciahub].[dbo].[languages] mt
 ON mt.locale = imp.uuid
 WHERE 1=1
 AND imp.nok IS NULL
+AND imp.remove IS NULL
 AND imp.languages_id IS NULL
 ;
 
@@ -43,6 +59,7 @@ INNER JOIN [local_staging].[dbo].[imp_languages] imp
 ON mt.locale = imp.uuid
 WHERE 1=1
 AND imp.nok IS NULL
+AND imp.remove IS NULL
 AND imp.languages_id IS NULL
 ;
 
