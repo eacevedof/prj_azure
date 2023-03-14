@@ -1,18 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using azure_one.Etl.Shared.Infrastructure.Db;
 
 namespace azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
-
 
 public sealed class BulkInsert
 {
     private readonly string _targetTable;
     private readonly Dictionary<string, string> _columnMapping;
     private readonly List<Dictionary<string, string>> _dataRows;
-    
-    public const string TAG_CONSTANT = "constant"; 
 
     public BulkInsert(
         string targetTable, 
@@ -40,7 +36,7 @@ public sealed class BulkInsert
         {
             //insert into xx, yy, zz values
             sql += GetInsertIntoHeader();
-            //(x, y, z)
+            //batchInsVals: (x, y, z), (x1, y1, z1)
             sql += string.Join(",", batchInsVals);
             sql += ";";
         }
@@ -85,9 +81,7 @@ public sealed class BulkInsert
         foreach (KeyValuePair<string,string> columnMap in _columnMapping)
         {
             string column = columnMap.Key.Trim();
-            string defValue = GetDefaultValue(column, TAG_CONSTANT);
-
-            string value = row.GetValueOrDefault(column) ?? defValue;
+            string value = row.GetValueOrDefault(column) ?? "";
             value = value.Replace("'", "''");
             values.Add(value);
         }
@@ -95,13 +89,4 @@ public sealed class BulkInsert
         string result = string.Join("','",values);
         return $"('{result}')";
     }
-
-    private string GetDefaultValue(string columnName, string tag)
-    {
-        tag = TAG_CONSTANT + ":";
-        if (!columnName.Contains(tag)) return "";
-        string[] parts = columnName.Split("constant:");
-        return parts[1] ?? "";
-    }
-
 }

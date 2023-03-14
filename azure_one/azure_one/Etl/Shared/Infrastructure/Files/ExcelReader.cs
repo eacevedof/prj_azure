@@ -108,7 +108,7 @@ public sealed class ExcelReader
 
                 if (sheet is null)
                 {
-                    Lg.pr($"...skipping sheet {_sheetName} because this was not found!");
+                    Lg.pr($"...skipping sheet {_sheetName} because it was not found!");
                     return sheetData;
                 }
                     
@@ -130,6 +130,7 @@ public sealed class ExcelReader
                     foreach (KeyValuePair<string,string> fromTo in mapping)
                     {
                         string columnFrom = fromTo.Key;
+                        
                         int colPosition = GetColumPositionByColumnName(columnPositions, columnFrom);
                         rowData.Add(columnFrom, row[colPosition].ToString().Trim());
                     }
@@ -139,6 +140,16 @@ public sealed class ExcelReader
         }// using file.open
         return sheetData;
     }
+
+    private string GetConstant(string columnName)
+    {
+        string tag = ">constant:";
+        if (!columnName.Contains(tag)) return "";
+        string[] parts = columnName.Split("constant:");
+        return parts[1] ?? "";
+    }
+
+
     
     private Dictionary<string, int> GetColumnNames(DataRow titleRow)
     {
