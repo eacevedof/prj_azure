@@ -31,7 +31,6 @@
     <None Update="config\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    
     <None Update="sql_files\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -41,141 +40,26 @@
     <None Update="sql_files\ddl\views\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-
     <None Update="xls_mapping\imp_tables\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="xls_mapping\force\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sql_files\ddl\create_table\0100_drop_views.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\ddl\views\view_assets_types_attr_tr.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0010_update_remove_fields.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>    
   </ItemGroup>
   
   <ItemGroup>
-    <None Update="sql_files\pre_load\0001_truncate_imp_tables.sql">
+    <None Update="xls_mapping\imp_tables\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>    
-    <None Update="sql_files\post_load\0040_imp_languages.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0060_imp_countries.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0010_clean_headers.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0065_imp_countries_tr.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0070_imp_provinces.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0075_imp_provinces_tr.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0080_imp_cities.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0090_imp_companies.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0100_imp_languages_company_custom.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0120_imp_user_types.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0125_imp_user_types_tr.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0150_imp_employees_positions.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0135_imp_status_employees_tr.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0130_imp_status_employees.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0155_imp_employees_positions_tr.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0140_imp_employees_departments.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0145_imp_employees_departments_tr.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0160_imp_roles.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0165_imp_roles_tr.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0180_imp_employees.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0175_imp_users.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0170_imp_employees_fks_update.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0185_employees_settings.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0510_employees_has_positions.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0500_departments_has_employees.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0300_imp_permissions.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0310_role_has_permissions.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0330_model_has_permissions.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0195_model_has_roles.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0210_imp_assets_types.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0220_assets_files_thumbnails.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0230_assets_types.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="sql_files\post_load\0235_imp_assets_types_tr.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    
-    <None Update="xls_mapping\imp_tables\001300_permissions.json">
+    <None Update="sql_files\pre_load\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>    
-    <None Update="xls_mapping\imp_tables\001400_assets_types.json">
+    <None Update="sql_files\post_load\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="xls_mapping\imp_tables\001500_assets_types_groups.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-
-    <None Update="xls_mapping\force\000100_force.json">
+    <None Update="xls_mapping\force\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
 </Project>
