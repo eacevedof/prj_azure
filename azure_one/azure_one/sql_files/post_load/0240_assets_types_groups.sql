@@ -44,17 +44,17 @@ SET
     mt.assets_types_id = imp.fk1_entity_id,
     mt.asset_attribute_group_name = CONVERT(VARCHAR(255), imp.val_1),
     mt.updated_at = GETDATE()
-FROM [local_laciahub].[dbo].[assets_types_groups] mt
-INNER JOIN [local_staging].[dbo].[imp_imp_keys_and_values] imp
-ON mt.id = imp.assets_types_groups_id
+FROM [local_laciahub].[dbo].[assets_attributes_groups] mt
+INNER JOIN [local_staging].[dbo].[imp_keys_and_values] imp
+ON mt.id = imp.entity_id
 WHERE 1=1
 AND imp.nok IS NULL
 AND imp.entity_type = 'assets_attributes_groups'
 ;
 
-SET IDENTITY_INSERT [local_laciahub].[dbo].[assets_types_groups] ON;
+SET IDENTITY_INSERT [local_laciahub].[dbo].[assets_attributes_groups] ON;
 
-INSERT INTO [local_laciahub].[dbo].[assets_types_groups]
+INSERT INTO [local_laciahub].[dbo].[assets_attributes_groups]
 (
     id, assets_types_id, asset_attribute_group_name, created_at
 )
@@ -63,23 +63,23 @@ SELECT
     imp.fk1_entity_id as assets_types_id, 
     CONVERT(VARCHAR(255), imp.val_1) as asset_attribute_group_name,
     GETDATE() created_at
-FROM [local_staging].[dbo].[imp_imp_keys_and_values] imp
-LEFT JOIN [local_laciahub].[dbo].[assets_types_groups] mt
+FROM [local_staging].[dbo].[imp_keys_and_values] imp
+LEFT JOIN [local_laciahub].[dbo].[assets_attributes_groups] mt
 ON mt.id = imp.entity_id
 WHERE 1=1
 AND imp.nok IS NULL
 AND mt.id IS NULL
 ;
 
-SET IDENTITY_INSERT [local_laciahub].[dbo].[assets_types_groups] OFF;
+SET IDENTITY_INSERT [local_laciahub].[dbo].[assets_attributes_groups] OFF;
 
 -- actualizo los ids de los nuevos insertados
 UPDATE imp
 SET 
 imp.entity_id = mt.id,
 imp.updated_at = GETDATE()
-FROM [local_laciahub].[dbo].[assets_types_groups] mt
-INNER JOIN [local_staging].[dbo].[imp_imp_keys_and_values] imp
+FROM [local_laciahub].[dbo].[assets_attributes_groups] mt
+INNER JOIN [local_staging].[dbo].[imp_keys_and_values] imp
 ON mt.id = imp.uuid
 WHERE 1=1
 AND imp.nok IS NULL
