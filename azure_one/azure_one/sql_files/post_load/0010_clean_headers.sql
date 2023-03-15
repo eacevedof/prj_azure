@@ -41,3 +41,6 @@ UPDATE [local_staging].[dbo].[imp_permissions] SET nok=1 WHERE entity_uuid='enti
 UPDATE [local_staging].[dbo].[imp_assets_types] SET nok=1 WHERE uuid='uuid';
 UPDATE [local_staging].[dbo].[imp_assets_types] SET nok=1 WHERE TRIM(COALESCE(uuid,''))='';
 
+UPDATE [local_staging].[dbo].[imp_keys_and_values] SET nok=1 WHERE uuid='uuid';
+UPDATE [local_staging].[dbo].[imp_keys_and_values] SET nok=1 WHERE TRIM(COALESCE(uuid,''))='';
+
