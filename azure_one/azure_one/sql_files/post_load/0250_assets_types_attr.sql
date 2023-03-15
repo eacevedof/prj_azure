@@ -10,7 +10,7 @@ from [dbo].[assets_types_attr]
 select  
 asset_type_group_uuid,
 assets_attributes_groups_id,
-assets_types_uuid,
+-- assets_types_uuid, no hace falta por el id de grupo se obtinee el asset-type-id
 assets_types_id,
 uuid,
 assets_types_attr_id,
@@ -32,12 +32,29 @@ AND imp.nok IS NULL
 AND imp.remove IS NULL
 ;
 
-UPDATE [local_staging].[dbo].[imp_keys_and_values] 
+UPDATE mt
+SET
+    imp.assets_types_id = mt.assets_types_id
+FROM [local_staging].[dbo].[imp_assets_types_attr] imp 
+INNER JOIN [local_laciahub].[dbo].[assets_types_groups]  mt
+ON mt.assets_attributes_groups_id = imp.assets_attributes_groups_id
+WHERE 1=1
+AND imp.nok IS NULL
+AND imp.remove IS NULL
+;
+
+UPDATE [local_staging].[dbo].[imp_assets_types_attr] 
 SET nok=1 
 WHERE 1=1
-AND fk1_entity_id IS NULL 
+AND assets_attributes_groups_id IS NULL 
 AND nok IS NULL
-AND entity_type = 'assets_attributes_groups'
+;
+
+UPDATE [local_staging].[dbo].[imp_assets_types_attr] 
+SET nok=1 
+WHERE 1=1
+AND assets_types_id IS NULL 
+AND nok IS NULL
 ;
 
 UPDATE mt
