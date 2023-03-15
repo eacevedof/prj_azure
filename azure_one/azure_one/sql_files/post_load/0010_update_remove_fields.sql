@@ -16,3 +16,4 @@ UPDATE [local_staging].[dbo].[imp_employees] SET remove=NULL WHERE TRIM(COALESCE
 UPDATE [local_staging].[dbo].[imp_permissions] SET remove=NULL WHERE TRIM(COALESCE(remove,''))='';
 UPDATE [local_staging].[dbo].[imp_assets_types] SET remove=NULL WHERE TRIM(COALESCE(remove,''))='';
 UPDATE [local_staging].[dbo].[imp_assets_types_attr] SET remove=NULL WHERE TRIM(COALESCE(remove,''))='';
+

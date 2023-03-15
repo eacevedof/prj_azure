@@ -10,6 +10,7 @@ INNER JOIN [local_staging].[dbo].[imp_employees] imp
 ON mt.employee_email = imp.employee_email
 WHERE 1=1
 AND imp.nok IS NULL
+AND imp.remove IS NULL
 ;
 
 -- crear empleados
@@ -39,6 +40,7 @@ LEFT JOIN [local_laciahub].[dbo].[employees] mt
 ON mt.employee_email = imp.employee_email
 WHERE 1=1
 AND imp.nok IS NULL
+AND imp.remove IS NULL
 AND mt.id IS NULL
 ;
 
@@ -51,5 +53,6 @@ INNER JOIN [local_staging].[dbo].[imp_employees] imp
 ON mt.employee_email = imp.employee_email
 WHERE 1=1
 AND imp.nok IS NULL
-AND imp.employees_id IS NULL;
+AND imp.remove IS NULL
+AND imp.employees_id IS NULL
 ;

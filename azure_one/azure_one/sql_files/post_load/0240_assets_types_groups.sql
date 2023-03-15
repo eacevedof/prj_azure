@@ -26,9 +26,12 @@ AND imp.nok IS NULL
 AND imp.entity_type = 'assets_attributes_groups'
 ;
 
-UPDATE [local_staging].[dbo].[imp_keys_and_values] SET nok=1 
-WHERE fk1_entity_id IS NULL 
+UPDATE [local_staging].[dbo].[imp_keys_and_values] 
+SET nok=1 
+WHERE 1=1
+AND fk1_entity_id IS NULL 
 AND nok IS NULL
+AND entity_type = 'assets_attributes_groups'
 ;
 
 UPDATE imp

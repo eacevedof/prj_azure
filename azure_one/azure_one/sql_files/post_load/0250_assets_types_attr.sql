@@ -10,6 +10,7 @@ from [dbo].[assets_types_attr]
 select  
 asset_type_group_uuid,
 assets_attributes_groups_id,
+assets_types_uuid,
 assets_types_id,
 uuid,
 assets_types_attr_id,
@@ -22,12 +23,42 @@ from [dbo].[imp_assets_types_attr]
 */
 UPDATE mt
 SET
+    imp.assets_attributes_groups_id = mt.id
+FROM [local_staging].[dbo].[imp_assets_types_attr] imp 
+INNER JOIN [local_laciahub].[dbo].[assets_types_groups]  mt
+ON mt.asset_type_group_uuid = imp.id
+WHERE 1=1
+AND imp.nok IS NULL
+AND imp.remove IS NULL
+;
+
+UPDATE [local_staging].[dbo].[imp_keys_and_values] 
+SET nok=1 
+WHERE 1=1
+AND fk1_entity_id IS NULL 
+AND nok IS NULL
+AND entity_type = 'assets_attributes_groups'
+;
+
+UPDATE mt
+SET
+    imp.assets_attributes_groups_id = mt.id
+FROM [local_staging].[dbo].[imp_assets_types_attr] imp 
+INNER JOIN [local_laciahub].[dbo].[assets_types_groups]  mt
+ON mt.asset_type_group_uuid = imp.id
+WHERE 1=1
+AND imp.nok IS NULL
+AND imp.remove IS NULL
+;
+
+UPDATE mt
+SET
     mt.employee_name = CONVERT(VARCHAR(45), imp.employee_name),
     mt.employee_surname_1 = CONVERT(VARCHAR(45), imp.employee_surname_1),
     mt.employee_surname_2 = CONVERT(VARCHAR(45), imp.employee_surname_2),
     -- mt.employee_phone = CONVERT(VARCHAR(255), imp.employee_phone),
     mt.updated_at = GETDATE()
-FROM [local_laciahub].[dbo].[employees]  mt
+FROM [local_laciahub].[dbo].[assets_types_attr]  mt
 INNER JOIN [local_staging].[dbo].[imp_assets_types_attr] imp
 ON mt.employee_email = imp.employee_email
 WHERE 1=1
@@ -35,7 +66,7 @@ AND imp.nok IS NULL
 ;
 
 -- crear empleados
-INSERT INTO [local_laciahub].[dbo].[employees]
+INSERT INTO [local_laciahub].[dbo].[assets_types_attr]
 (
     users_id, companies_id, employee_token, employee_code, employee_photo, employee_name, 
     employee_surname_1, employee_surname_2, 
@@ -57,7 +88,7 @@ SELECT
     1 email_notification,
     GETDATE() created_at
 FROM [local_staging].[dbo].[imp_assets_types_attr] imp
-LEFT JOIN [local_laciahub].[dbo].[employees] mt
+LEFT JOIN [local_laciahub].[dbo].[assets_types_attr] mt
 ON mt.employee_email = imp.employee_email
 WHERE 1=1
 AND imp.nok IS NULL
@@ -66,12 +97,12 @@ AND mt.id IS NULL
 
 
 UPDATE imp
-SET imp.employees_id = mt.id,
+SET imp.assets_types_attr_id = mt.id,
 imp.updated_at = GETDATE()
-FROM [local_laciahub].[dbo].[employees]  mt
+FROM [local_laciahub].[dbo].[assets_types_attr]  mt
 INNER JOIN [local_staging].[dbo].[imp_assets_types_attr] imp
 ON mt.employee_email = imp.employee_email
 WHERE 1=1
 AND imp.nok IS NULL
-AND imp.employees_id IS NULL;
+AND imp.assets_types_attr_id IS NULL;
 ;
