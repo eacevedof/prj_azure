@@ -130,9 +130,16 @@ public sealed class ExcelReader
                     foreach (KeyValuePair<string,string> fromTo in mapping)
                     {
                         string columnFrom = fromTo.Key;
-                        
+                        string columnValue = GetConstant(columnFrom);
+                        if (columnValue is not null)
+                        {
+                            rowData.Add(columnFrom, columnValue.Trim());
+                            continue;
+                        }
+
                         int colPosition = GetColumPositionByColumnName(columnPositions, columnFrom);
-                        rowData.Add(columnFrom, row[colPosition].ToString().Trim());
+                        columnValue = row[colPosition].ToString().Trim();
+                        rowData.Add(columnFrom,columnValue);
                     }
                     sheetData.Add(rowData);
                 }
@@ -144,13 +151,11 @@ public sealed class ExcelReader
     private string GetConstant(string columnName)
     {
         string tag = ">constant:";
-        if (!columnName.Contains(tag)) return "";
-        string[] parts = columnName.Split("constant:");
+        if (!columnName.Contains(tag)) return null;
+        string[] parts = columnName.Split(tag);
         return parts[1] ?? "";
     }
 
-
-    
     private Dictionary<string, int> GetColumnNames(DataRow titleRow)
     {
         Dictionary<string, int> colNames = new();
