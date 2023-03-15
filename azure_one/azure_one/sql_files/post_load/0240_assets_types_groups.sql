@@ -36,15 +36,15 @@ AND imp.nok IS NULL
 AND imp.entity_type = 'assets_attributes_groups'
 ;
 
-UPDATE [local_staging].[dbo].[imp_assets_types_groups] SET nok=1 WHERE fk1_entity_id IS NULL
+UPDATE [local_staging].[dbo].[imp_keys_and_values] SET nok=1 WHERE fk1_entity_id IS NULL
 ;
 
 UPDATE mt
 SET
     mt.assets_types_id = imp.fk1_entity_id,
-    mt.asset_attribute_group_name = imp.val_1,
+    mt.asset_attribute_group_name = CONVERT(VARCHAR(255), imp.val_1),
     mt.updated_at = GETDATE()
-FROM [local_laciahub].[dbo].[assets_types_groups]  mt
+FROM [local_laciahub].[dbo].[assets_types_groups] mt
 INNER JOIN [local_staging].[dbo].[imp_imp_keys_and_values] imp
 ON mt.id = imp.assets_types_groups_id
 WHERE 1=1
@@ -83,5 +83,5 @@ INNER JOIN [local_staging].[dbo].[imp_imp_keys_and_values] imp
 ON mt.id = imp.uuid
 WHERE 1=1
 AND imp.nok IS NULL
-AND imp.entity_id IS NULL;
+AND imp.entity_id IS NULL
 ;
