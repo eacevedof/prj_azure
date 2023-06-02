@@ -104,12 +104,12 @@ public sealed class ReadQuery
         return reserved.Contains(word.ToLower());
     }
 
-    private void CleanReserved(ref string mxFields)
+    private void CleanReserved(object mxFields)
     {
         if (mxFields is string)
         {
             if (IsReserved(mxFields))
-                mxFields = $"`{mxFields}`";
+                mxFields = $"[{mxFields}]";
             return;
         }
 
@@ -119,7 +119,7 @@ public sealed class ReadQuery
             {
                 var field = mxFields[i];
                 if (IsReserved(field))
-                    mxFields[i] = $"`{field}`";
+                    mxFields[i] = $"[{field}]";
             }
         }
     }
