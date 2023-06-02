@@ -49,5 +49,79 @@ public sealed class ReadQuery
         return (new(table));
     }
     
+    private string GetJoins()
+    {
+        if (!arJoins.Any())
+            return "";
+        return string.Join("\n", arJoins);
+    }
+
+    private string GetHaving()
+    {
+        if (!arHaving.Any())
+            return "";
+        return "HAVING " + string.Join(", ", arHaving);
+    }
+
+    private string GetGroupBy()
+    {
+        if (!arGroupBy.Any())
+            return "";
+        return "GROUP BY " + string.Join(",", arGroupBy);
+    }
+
+    private string GetOrderBy()
+    {
+        if (!arOrderBy.Any())
+            return "";
+        return "ORDER BY " + string.Join(",", arOrderBy.Select(kvp => $"{kvp.Key} {kvp.Value}"));
+    }
+
+    private string GetEnd()
+    {
+        if (!arEnd.Any())
+            return "";
+        return " " + string.Join("\n", arEnd);
+    }
+
+    private string GetLimit()
+    {
+        if (!arLimit.Any())
+            return "";
+        if (arLimit["regfrom"] == 0)
+            return " LIMIT " + arLimit["perpage"];
+        var limit = string.Join(", ", arLimit.Values);
+        return " LIMIT " + limit;
+    }
+
+    private bool IsNumeric(string fieldName)
+    {
+        return arNumeric.Contains(fieldName);
+    }
+
+    private bool IsReserved(string word)
+    {
+        return reserved.Contains(word.ToLower());
+    }
+
+    private void CleanReserved(ref string mxFields)
+    {
+        if (mxFields is string)
+        {
+            if (IsReserved(mxFields))
+                mxFields = $"`{mxFields}`";
+            return;
+        }
+
+        if (mxFields is List<string>)
+        {
+            for (var i = 0; i < mxFields.Count; i++)
+            {
+                var field = mxFields[i];
+                if (IsReserved(field))
+                    mxFields[i] = $"`{field}`";
+            }
+        }
+    }
 
 }
