@@ -4,16 +4,16 @@ using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
 
 namespace azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
 
-public sealed class FromFileQuery
+public sealed class ReadQuery
 {
     private readonly string _pathFileSql;
 
-    public FromFileQuery(string pathFileSql)
+    public ReadQuery(string pathFileSql)
     {
         _pathFileSql = pathFileSql;
     }
 
-    public static FromFileQuery fromPrimitive(string pathFileSql)
+    public static ReadQuery fromPrimitive(string pathFileSql)
     {
         return (new(pathFileSql));
     }
@@ -22,13 +22,13 @@ public sealed class FromFileQuery
     {
         if (_pathFileSql.IsEmpty())
         {
-            Lg.pr("no sql path file","FromFileQuery");
+            Lg.pr("no sql path file","ReadQuery");
             return;
         }
         string sql = GetQueryContent() ?? "";
         if (sql.IsEmpty())
         {
-            Lg.pr("no sql data", "FromFileQuery");
+            Lg.pr("no sql data", "ReadQuery");
             return;
         }
         Lg.pr(sql, _pathFileSql);
