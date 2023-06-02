@@ -39,11 +39,15 @@ public sealed class ReadQuery
     public const string READ = "r";
     public const string WRITE = "w";
 
-    public static ReadQuery fromPrimitive()
+    public ReadQuery(string table)
     {
-        return (new());
+        this.table = table;
+    }
+
+    public static ReadQuery fromTable(string table)
+    {
+        return (new(table));
     }
     
 
-    
 }
