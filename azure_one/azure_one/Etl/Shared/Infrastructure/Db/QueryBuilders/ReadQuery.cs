@@ -13,7 +13,7 @@ public sealed class ReadQuery
     private string table = "";
     private bool isDistinct = false;
     private bool calcFoundRows = false;
-    private List<string> argFields = new List<string>();
+    private List<string> arGetFields = new List<string>();
     private List<string> arJoins = new List<string>();
     private List<string> arAnds = new List<string>();
     private List<string> arGroupBy = new List<string>();
@@ -124,4 +124,55 @@ public sealed class ReadQuery
         }
     }
 
+     public ReadQuery Select(string table = null, string[] fields = null, string[] arpks = null)
+    {
+        sql = "/*error select*/";
+        sqlCount = "/*error selectcount*/";
+
+        if (table == null)
+            table = this.table;
+
+        if (table == null)
+            throw new Exception("missing table in select");
+
+        fields = fields ?? arGetFields;
+
+        if (fields.Length == 0)
+            throw new Exception("missing fields in select");
+
+        string comment = this.comment != null ? $"/*{this.comment}*/" : "/*select*/";
+        arpks = arpks ?? arPKs;
+
+        select.Add($"{comment} SELECT");
+        if (isDistinct)
+            select.Add("DISTINCT");
+
+        CleanReserved(fields);
+
+        select.Add(string.Join(",", fields));
+        select.Add($"FROM {table}");
+
+        select.Add(GetJoins());
+
+        var arconds = GetPkConds(arpks);
+        var araux = arconds.Concat(arAnds);
+        if (araux.Any())
+            select.Add($"WHERE {string.Join(" AND ", araux)}");
+
+        select.Add(GetGroupBy());
+        select.Add(GetHaving());
+        select.Add(GetOrderBy());
+        select.Add(GetEnd());
+        select.Add(GetLimit());
+
+        RemoveEmptyItem(select);
+
+        sql = string.Join(" ", select);
+        sqlcount = "";
+
+        if (calcfoundrows)
+            sqlcount = GetSqlCount();
+
+        return this;
+    }
 }
