@@ -175,4 +175,88 @@ public sealed class ReadQuery
 
         return this;
     }
+
+    public ReadQuery SetTable(string table)
+    {
+        this.table = table;
+        return this;
+    }
+
+    public ReadQuery SetComment(string comment)
+    {
+        this.comment = comment;
+        return this;
+    }
+
+    public ReadQuery SetInsertFv(Dictionary<string, string> arfieldval)
+    {
+        var arinsertfv = new Dictionary<string, string>();
+        if (arfieldval != null)
+            arinsertfv = arfieldval;
+        return this;
+    }
+
+    public ReadQuery AddInsertFv(string fieldname, string strval, bool dosanit = true)
+    {
+        arinsertfv[fieldname] = dosanit ? GetSanitized(strval) : strval;
+        return this;
+    }
+
+    public ReadQuery SetPksFv(Dictionary<string, string> arfieldval)
+    {
+        arPKs = new Dictionary<string, string>();
+        if (arfieldval != null)
+            arPKs = arfieldval;
+        return this;
+    }
+
+    public ReadQuery AddPkFv(string fieldname, string strval, bool dosanit = true)
+    {
+        arPKs[fieldname] = dosanit ? GetSanitized(strval) : strval;
+        return this;
+    }
+
+    public ReadQuery SetUpdateFv(Dictionary<string, string> arfieldval)
+    {
+        arupdatefv = new Dictionary<string, string>();
+        if (arfieldval != null)
+            arupdatefv = arfieldval;
+        return this;
+    }
+
+    public ReadQuery AddUpdateFv(string fieldname, string strval, bool dosanit = true)
+    {
+        arupdatefv[fieldname] = dosanit ? GetSanitized(strval) : strval;
+        return this;
+    }
+
+    public ReadQuery SetGetFields(List<string> fields)
+    {
+        argetfields = new List<string>();
+        if (fields != null)
+            argetfields = fields;
+        return this;
+    }
+
+    public ReadQuery AddGetField(string fieldname)
+    {
+        argetfields.Add(fieldname);
+        return this;
+    }
+
+    public ReadQuery SetJoins(List<string> arjoins)
+    {
+        this.arJoins = new List<string>();
+        if (arjoins != null)
+            this.arJoins = arjoins;
+        return this;
+    }
+
+    public ReadQuery SetOrderBy(Dictionary<string, string> arorderby)
+    {
+        this.arOrderBy = new Dictionary<string, string>();
+        if (arorderby != null)
+            this.arOrderBy = arorderby;
+        return this;
+    }    
 }
