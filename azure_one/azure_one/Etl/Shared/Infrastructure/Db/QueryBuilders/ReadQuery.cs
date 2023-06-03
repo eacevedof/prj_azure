@@ -108,39 +108,37 @@ public sealed class ReadQuery
     {
         if (mxFields is string)
         {
-            if (IsReserved(mxFields))
+            if (IsReserved(mxFields.ToString()))
                 mxFields = $"[{mxFields}]";
             return;
         }
 
         if (mxFields is List<string>)
         {
-            for (var i = 0; i < mxFields.Count; i++)
+            List<string> temp = mxFields as List<string>;
+            for (var i = 0; i < temp.Count; i++)
             {
-                var field = mxFields[i];
+                var field = temp[i];
                 if (IsReserved(field))
-                    mxFields[i] = $"[{field}]";
+                    temp[i] = $"[{field}]";
             }
+            mxFields = temp;
         }
     }
 
-     public ReadQuery Select(string table = null, string[] fields = null, string[] arpks = null)
+     public ReadQuery Select()
     {
         sql = "/*error select*/";
         sqlCount = "/*error selectcount*/";
 
-        if (table == null)
-            table = this.table;
-
-        if (table == null)
+        string table = this.table;
+        if (table is null)
             throw new Exception("missing table in select");
 
-        fields = fields ?? arGetFields;
-
-        if (fields.Length == 0)
+        if (arGetFields.Count == 0)
             throw new Exception("missing fields in select");
 
-        string comment = this.comment != null ? $"/*{this.comment}*/" : "/*select*/";
+        string comment = this.comment is null ? "/*select*/" : $"/*{this.comment}*/";
         arpks = arpks ?? arPKs;
 
         select.Add($"{comment} SELECT");
