@@ -310,5 +310,12 @@ public sealed class ReadQuery
         if (arorderby != null)
             this.arOrderBy = arorderby;
         return this;
-    }    
+    }
+
+    public string GetSanitized(string strval)
+    {
+        if (strval is null) return null;
+        strval = strval.Replace("'", "''");
+        return strval;
+    }
 }
