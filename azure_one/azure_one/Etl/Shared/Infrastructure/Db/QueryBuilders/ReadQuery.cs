@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
-
 namespace azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
 
 public sealed class ReadQuery
@@ -145,7 +143,7 @@ public sealed class ReadQuery
         if (isDistinct)
             select.Add("DISTINCT");
 
-        CleanReserved(fields);
+        CleanReserved(arGetFields);
 
         select.Add(string.Join(",", fields));
         select.Add($"FROM {table}");
@@ -173,6 +171,62 @@ public sealed class ReadQuery
 
         return this;
     }
+
+    private List<string> GetPkConds(Dictionary<string, string> arpks)
+    {
+        List<string> arconds = new List<string>();
+        arpks = arpks.Values.Distinct().ToDictionary(x => x, x => x);
+
+        foreach (var kvp in arpks)
+        {
+            string field = kvp.Key;
+            string strval = kvp.Value;
+
+            CleanReserved(ref field);
+
+            if (strval == null)
+            {
+                arconds.Add($"{field} IS NULL");
+            }
+            else if (IsTagged(strval))
+            {
+                arconds.Add($"{field}={GetUntagged(strval)}");
+            }
+            else if (IsNumeric(field))
+            {
+                arconds.Add($"{field}={strval}");
+            }
+            else
+            {
+                arconds.Add($"{field}='{strval}'");
+            }
+        }
+
+        return arconds;
+    }
+
+    private bool IsTagged(string value)
+    {
+        // value = value.Trim(); // Optional trimming if needed
+        string tagini = value.Substring(0, 2);
+        string tagend = value.Substring(value.Length - 2);
+        int ilen = value.Length;
+
+        if (ilen > 4 && tagini == "%%" && tagend == "%%")
+        {
+            string field = value.Substring(2, ilen - 4);
+            return !string.IsNullOrWhiteSpace(field);
+        }
+
+        return false;
+    }
+
+    private string GetUntagged(string tagged)
+    {
+        int ilen = tagged.Length;
+        return tagged.Substring(2, ilen - 4);
+    }
+
 
     public ReadQuery SetTable(string table)
     {
