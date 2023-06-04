@@ -5,11 +5,14 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.WebJobs.Extensions.Http;
+using Newtonsoft.Json;
 
 using azure_one.Etl.Shared.Infrastructure.Global;
 using azure_one.Etl.Shared.Infrastructure.Db.Contexts;
 
 using azure_one.Etl.Shared.Infrastructure.Log;
+
+using azure_one.Etl.HaveALook.Domain;
 using azure_one.Etl.HaveALook.Infrastructure.Controllers;
 
 
@@ -42,9 +45,10 @@ namespace azure_have_a_look
                 Req.Request.Add("pagesize", perPage);
                 
                 Lg.pr("Azure Have a Look started...");
-                _checkPaginationController.Invoke();
-                string successMessage = $"AzureHaveALook has finished successfully!.";
-                return new OkObjectResult(successMessage);
+                var provincesDto = _checkPaginationController.Invoke();
+                string jsonString = JsonConvert.SerializeObject(provincesDto);
+                
+                return new OkObjectResult(jsonString);
             }
             catch (Exception e)
             {

@@ -1,4 +1,5 @@
 using azure_one.Etl.HaveALook.Application;
+using azure_one.Etl.HaveALook.Domain;
 
 namespace azure_one.Etl.HaveALook.Infrastructure.Controllers;
 
@@ -11,8 +12,8 @@ public sealed class CheckPaginationController
         _checkPaginationService = checkPaginationService;
     }
 
-    public  Invoke()
+    public ProvincesDto Invoke()
     {
-        _checkPaginationService.Invoke();
+        return _checkPaginationService.Invoke();
     }
 }
