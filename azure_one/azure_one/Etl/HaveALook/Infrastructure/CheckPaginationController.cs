@@ -1,4 +1,4 @@
-using azure_one.Etl.InstallImpTables.Application;
+using azure_one.Etl.HaveALook.Application;
 
 namespace azure_one.Etl.HaveALook.Infrastructure;
 

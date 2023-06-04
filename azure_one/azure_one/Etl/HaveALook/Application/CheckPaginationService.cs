@@ -7,16 +7,16 @@ namespace azure_one.Etl.HaveALook.Application;
 
 public sealed class CheckPaginationService
 {
-    private readonly CreateImpTablesRepository _createImpTablesRepository;
+    private readonly GetAnyListRepository _getAnyListRepository;
 
     public CheckPaginationService()
     {
         ContextDto contextDto = ContextFinder.GetById(Req.ContextId);
-        _createImpTablesRepository = new CreateImpTablesRepository(Mssql.GetInstanceByDto(contextDto));
+        _getAnyListRepository = new GetAnyListRepository(Mssql.GetInstanceByDto(contextDto));
     }
     
     public void Invoke()
     {
-        _createImpTablesRepository.Invoke();
+        _getAnyListRepository.Invoke("");
     }
 }
