@@ -21,15 +21,19 @@ public sealed class GetAnyListRepository: AbsRepository
         Lg.pr("GetAnyListRepository started!");
         string sqlPaginate = $"SELECT * FROM {table}";
 
-        ReadQuery readQuery = ReadQuery.fromTable("imp_provinces");
+        ReadQuery readQuery = ReadQuery.fromTable("[imp_provinces] p");
 
         readQuery.SetComment("primera query");
-        readQuery.AddGetField("id")
-            .AddGetField("tenant_slug")
-            .AddGetField("countries_uuid")
-            .AddGetField("countries_id")
-            .AddGetField("val")
-            .AddGetField("codesap")
+
+        readQuery.AddGetField("p.id")
+            .AddGetField("p.tenant_slug")
+            .AddGetField("p.countries_uuid")
+            .AddGetField("p.countries_id")
+            .AddGetField("p.val")
+            .AddGetField("p.codesap AS p_codesap")
+            .AddGetField("c.codesap AS c_codesap")
+            .AddGetField("c.val AS country")
+            .AddJoin(@"INNER JOIN [imp_countries] c ON p.countries_id = c.countries_id")
         ;
 
         string sql = readQuery.Select().GetSql();
