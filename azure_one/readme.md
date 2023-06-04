@@ -9,6 +9,9 @@
 - [c# sandbox](https://techiedelight.com/compiler/)
 - [Como Arrancar con Azure Function](https://youtu.be/QWK_XIn9vT4)
 
+- ### vscode
+  - `"program": "${workspaceFolder}/azure_one/bin/Debug/net6.0/azure_one.dll"`
+
 ```
 -- todo
 - tablas con uuids y sap-code

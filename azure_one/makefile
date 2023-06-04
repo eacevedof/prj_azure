@@ -26,3 +26,9 @@ db-backup: ## t= path-where-you/want/to-copy/to
 db-q: ## q="use xxx; select * from users"
 	clear;
 	docker exec -it cont-mssql sh -c "cd /opt/mssql-tools/bin/; ./sqlcmd -U SA -Q \"$(q)\""
+
+azure-up:
+	clear;
+	dotnet build ./azure_one/azure_one.csproj --property:GenerateFullPaths=true --consoleloggerparameters:NoSummary;
+	dotnet publish ./azure_one/azure_one.csproj --property:GenerateFullPaths=true --consoleloggerparameters:NoSummary;
+	dotnet watch run --project ./azure_one/;
