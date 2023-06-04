@@ -18,7 +18,9 @@ public sealed class GetAnyListRepository: AbsRepository
     public void Invoke(string table)
     {
         Lg.pr("GetAnyListRepository started!");
-        List<Dictionary<string, string>> result = _db.Query($"SELECT * FROM {table}");
+        string sqlPaginate = $"SELECT * FROM {table}";
+
+        List<Dictionary<string, string>> result = _db.Query(sqlPaginate);
         foreach(var dict in result) 
         {
             string id = dict["id"];
