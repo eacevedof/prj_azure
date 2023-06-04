@@ -142,7 +142,7 @@ public sealed class ReadQuery
 
     public ReadQuery AddJoin(string join)
     {
-        _arGetFields.Add(join);
+        _arJoins.Add(join);
         return this;
     }
 
