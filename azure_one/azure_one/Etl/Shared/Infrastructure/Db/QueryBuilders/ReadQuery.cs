@@ -142,12 +142,7 @@ public sealed class ReadQuery
         
         if (_isDistinct) _select.Add("DISTINCT");
 
-        foreach(var field in _arGetFields) 
-        {
-            if (!string.IsNullOrWhiteSpace(field))
-                _select.Add(field);
-        }
-
+        _select.Add(string.Join(",", _arGetFields));
         _select.Add($"FROM [{_table}]");
 
         _sql = string.Join(" ", _select);
