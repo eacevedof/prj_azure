@@ -12,7 +12,9 @@ public sealed class ReadQuery
     private bool _isDistinct = false;
     private bool calcFoundRows = false;
     private List<string> _arGetFields = new List<string>();
-    private List<string> arJoins = new List<string>();
+    private List<string> _arJoins = new List<string>();
+
+
     private List<string> arAnds = new List<string>();
     private List<string> arGroupBy = new List<string>();
     private List<string> arHaving = new List<string>();
@@ -133,6 +135,12 @@ public sealed class ReadQuery
 
 
     public ReadQuery AddGetField(string fieldname)
+    {
+        _arGetFields.Add(fieldname);
+        return this;
+    }
+
+    public ReadQuery AddJoin(string fieldname)
     {
         _arGetFields.Add(fieldname);
         return this;
