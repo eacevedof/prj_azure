@@ -72,6 +72,15 @@ public sealed class ReadQueryPaginator
         _rows = _mssql.Query(_sql);
     }
 
+    private void _loadPages()
+    {
+        if (_pageSize > _totalRows) {
+            _fullPages = 1;
+            return;
+        }
+
+    }
+
     public int GetTotalPages()
     {
         return _totalPages;
