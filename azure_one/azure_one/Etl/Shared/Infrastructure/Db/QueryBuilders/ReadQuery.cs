@@ -61,29 +61,29 @@ public sealed class ReadQuery
 
     private string _GetWhere()
     {
-        string where = "\nWHERE 1=1";
+        string where = "\nWHERE 1=1 ";
         if (!_arWhere.Any())
             return where;
 
-        return $"{where} AND " + string.Join("\nAND", _arWhere);
+        return $"{where} AND " + string.Join("\nAND ", _arWhere);
     }
 
     private string _GetGroupBy()
     {
         if (!_arGroupBy.Any()) return "";
-        return "GROUP BY " + string.Join(", ", _arGroupBy);
+        return "\nGROUP BY " + string.Join(", ", _arGroupBy);
     }
 
     private string _GetHaving()
     {
         if (!_arHaving.Any()) return "";
-        return "HAVING " + string.Join(", ", _arHaving);
+        return "\nHAVING " + string.Join(", ", _arHaving);
     }
 
     private string _GetOrderBy()
     {
         if (!_arOrderBy.Any()) return "";
-        return "ORDER BY " + string.Join(", ", _arOrderBy.Select(kvp => $"{kvp.Key} {kvp.Value}"));
+        return "\nORDER BY " + string.Join(", ", _arOrderBy.Select(kvp => $"{kvp.Key} {kvp.Value}"));
     }
 
     private string _GetLimit()
