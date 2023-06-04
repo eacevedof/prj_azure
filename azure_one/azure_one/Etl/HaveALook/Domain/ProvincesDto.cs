@@ -21,6 +21,7 @@ public sealed class ProvincesDto
     )
     {
         dataInPage = _dataInPage;
+        totalPages = _totalPages;
         nextPage = _nextPage;
         currentPage = _currentPage;
         totalItems = _totalItems;
