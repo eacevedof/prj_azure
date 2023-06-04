@@ -20,7 +20,7 @@ public sealed class ReadQueryPaginator
     private int _totalPages = 0;
 
     private int _fullPages = 0;
-    private int _itemsInNotFullPage = 0;
+    private int _itemsInLastPage = 0;
 
     private string _sql = "";
     private string _sqlCount = "";
@@ -85,7 +85,12 @@ public sealed class ReadQueryPaginator
             _offsetPageSize = _totalRows;
             return;
         }
-        
+
+        _fullPages = _totalRows / _pageSize;
+        _itemsInLastPage = _totalRows % _pageSize;
+        _totalPages = _fullPages;
+        if (_itemsInLastPage > 0)
+            _totalPages = _fullPages + 1; 
     }
 
     public int GetTotalPages()
