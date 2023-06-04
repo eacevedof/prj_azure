@@ -13,13 +13,13 @@ namespace azure_have_a_look
 {
     public class azure_have_a_look
     {
-        private readonly CheckPaginationController _paginationController;
+        private readonly CheckPaginationController _checkPaginationController;
         
         public azure_have_a_look(
-            CheckPaginationController paginationController
+            CheckPaginationController checkPaginationController
         )
         {
-            _paginationController = paginationController;
+            _checkPaginationController = checkPaginationController;
         }
         
         [FunctionName("azure_have_a_look")]
@@ -34,7 +34,7 @@ namespace azure_have_a_look
                 string perPage = req.Query["per_page"];
                 
                 Lg.pr("ETL azure_have_a_look started...");
-                _paginationController.Invoke();
+                _checkPaginationController.Invoke();
                 string successMessage = $"AzureHaveALook ({table},{perPage}) has finished successfully!.";
                 return new OkObjectResult(successMessage);
             }
