@@ -5,6 +5,8 @@ using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.Shared.Infrastructure.Repositories;
 
+using azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
+
 namespace azure_one.Etl.HaveALook.Infrastructure.Repositories;
 
 public sealed class GetAnyListRepository: AbsRepository
@@ -18,6 +20,9 @@ public sealed class GetAnyListRepository: AbsRepository
     {
         Lg.pr("GetAnyListRepository started!");
         string sqlPaginate = $"SELECT * FROM {table}";
+
+        ReadQuery readQuery = ReadQuery.fromTable("imp_languages_company_custom");
+        readQuery.
 
         List<Dictionary<string, string>> result = _db.Query(sqlPaginate);
         foreach(var dict in result) 

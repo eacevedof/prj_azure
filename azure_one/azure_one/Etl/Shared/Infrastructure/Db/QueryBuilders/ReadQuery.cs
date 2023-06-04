@@ -1,6 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
 
@@ -124,5 +123,10 @@ public sealed class ReadQuery
         }
     }
 
-    
+    public ReadQuery AddGetField(string fieldname)
+    {
+        arGetFields.Add(fieldname);
+        return this;
+    }
+
 }
