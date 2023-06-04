@@ -177,7 +177,7 @@ public sealed class ReadQuery
         _sql = "/*error select*/";
         _sqlCount = "/*error select count*/";
         if (string.IsNullOrEmpty(_table))
-             throw new Exception("missing fields in select");
+             throw new Exception("missing table in select");
 
         // forma SELECT DISTINCT ...
         string comment = string.IsNullOrEmpty(_comment) ? "/*select*/" :  $"/*{_comment}*/";
