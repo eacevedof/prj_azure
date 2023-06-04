@@ -18,6 +18,9 @@ public sealed class CheckPaginationService
     
     public void Invoke()
     {
-        _getAnyListRepository.Invoke("");
+        int page = int.Parse(Req.Request["page"]);
+        int pageSize = int.Parse(Req.Request["pagesize"]);
+        
+        _getAnyListRepository.Invoke(page, pageSize);
     }
 }

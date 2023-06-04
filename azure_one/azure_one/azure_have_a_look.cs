@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 
+using azure_one.Etl.Shared.Infrastructure.Global;
 using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.HaveALook.Infrastructure.Controllers;
+
 
 namespace azure_have_a_look
 {
@@ -30,12 +32,14 @@ namespace azure_have_a_look
         {
             try
             {
-                string table = req.Query["table"];
+                string page = req.Query["page"];
                 string perPage = req.Query["per_page"];
+                Req.Request.Add("page", page);
+                Req.Request.Add("pageSize", perPage);
                 
                 Lg.pr("Azure Have a Look started...");
                 _checkPaginationController.Invoke();
-                string successMessage = $"AzureHaveALook ({table},{perPage}) has finished successfully!.";
+                string successMessage = $"AzureHaveALook has finished successfully!.";
                 return new OkObjectResult(successMessage);
             }
             catch (Exception e)
