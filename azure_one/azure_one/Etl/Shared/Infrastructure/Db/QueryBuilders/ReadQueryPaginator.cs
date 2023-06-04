@@ -66,6 +66,7 @@ public sealed class ReadQueryPaginator
     {
         List<Dictionary<string, string>> resultTotal = _mssql.Query(_sqlCount);
         if (resultTotal.Count == 0) return;
+
         var dict = resultTotal[0];
         
         _totalRows = int.Parse(dict["total"]);

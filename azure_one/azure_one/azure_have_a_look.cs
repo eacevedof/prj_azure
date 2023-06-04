@@ -7,6 +7,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 
 using azure_one.Etl.Shared.Infrastructure.Global;
+using azure_one.Etl.Shared.Infrastructure.Db.Contexts;
+
 using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.HaveALook.Infrastructure.Controllers;
 
@@ -35,6 +37,7 @@ namespace azure_have_a_look
                 string page = req.Query["page"];
                 string perPage = req.Query["per_page"];
 
+                Req.ContextId = ContextsEnum.db_test;
                 Req.Request.Add("page", page);
                 Req.Request.Add("pagesize", perPage);
                 
