@@ -101,27 +101,27 @@ public sealed class ReadQuery
             throw new Exception("for pagination is order by field required");
 
         if (arOffset["regfrom"] == 0)
-            return " OFFSET 0 FETCH " + arOffset["perpage"] + " ROWS ONLY";
+            return "\n OFFSET 0 FETCH " + arOffset["perpage"] + " ROWS ONLY";
 
-        var limit = string.Join(", ", arOffset.Values);
-        return " LIMIT " + limit;
+        string strFrom = arOffset["reqfrom"].ToString();
+        return $"\n OFFSET {strFrom} FETCH " + arOffset["perpage"] + " ROWS ONLY";
     }
 
-    private bool IsNumeric(string fieldName)
+    private bool _IsNumeric(string fieldName)
     {
         return arNumeric.Contains(fieldName);
     }
 
-    private bool IsReserved(string word)
+    private bool _IsReserved(string word)
     {
         return _reserved.Contains(word.ToLower());
     }
 
-    private void CleanReserved(object mxFields)
+    private void _CleanReserved(object mxFields)
     {
         if (mxFields is string)
         {
-            if (IsReserved(mxFields.ToString()))
+            if (_IsReserved(mxFields.ToString()))
                 mxFields = $"[{mxFields}]";
             return;
         }
@@ -132,7 +132,7 @@ public sealed class ReadQuery
             for (var i = 0; i < temp.Count; i++)
             {
                 var field = temp[i];
-                if (IsReserved(field))
+                if (_IsReserved(field))
                     temp[i] = $"[{field}]";
             }
             mxFields = temp;
@@ -198,8 +198,15 @@ public sealed class ReadQuery
         _select.Add(_GetHaving());
 
         _sqlCount = string.Join(" ", _select);
+        _sqlCount = @$"
+        SELECT COUNT(*) rows
+        FROM (
+            {_sqlCount}
+        ) t
+        ";
 
         _select.Add(_GetOrderBy());
+        _select.Add(_GetLimit());
         _sql = string.Join(" ", _select);
         return this;
     }
@@ -207,6 +214,11 @@ public sealed class ReadQuery
     public string GetSql()
     {
         return _sql;
+    }
+
+    public string GetSqlCount()
+    {
+        return _sqlCount;
     }
 
 }
