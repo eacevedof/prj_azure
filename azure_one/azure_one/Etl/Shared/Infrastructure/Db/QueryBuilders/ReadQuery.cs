@@ -96,11 +96,12 @@ public sealed class ReadQuery
 
     private string _GetLimit()
     {
-        if (!arOffset.Any())
-            return "";
+        if (!arOffset.Any()) return "";
+        if (!arOrderBy.Any())
+            throw new Exception("for pagination is order by field required");
 
         if (arOffset["regfrom"] == 0)
-            return " LIMIT " + arOffset["perpage"];
+            return " OFFSET 0 FETCH " + arOffset["perpage"] + " ROWS ONLY";
 
         var limit = string.Join(", ", arOffset.Values);
         return " LIMIT " + limit;
@@ -170,6 +171,11 @@ public sealed class ReadQuery
         return this;
     }
 
+    public ReadQuery AddHaving(string having)
+    {
+        _arHaving.Add(having);
+        return this;
+    }
 
 
     public ReadQuery Select()
@@ -190,8 +196,10 @@ public sealed class ReadQuery
         _select.Add(_GetWhere());
         _select.Add(_GetGroupBy());
         _select.Add(_GetHaving());
-        _select.Add(_GetOrderBy());
 
+        _sqlCount = string.Join(" ", _select);
+
+        _select.Add(_GetOrderBy());
         _sql = string.Join(" ", _select);
         return this;
     }
