@@ -39,7 +39,7 @@ public sealed class GetAnyListRepository: AbsRepository
             .AddGroupBy("p.tenant_slug")
             .AddGroupBy("p.countries_id")
             .AddHaving("LENGTH(p.countries_id) > 2")
-            .AddOrderBy("p.countries_uuid", "DESC")
+            .AddOrderBy("p.countries_uuid", ReadQuery.ORDER_DESC)
         ;
 
         string sql = readQuery.Select().GetSql();

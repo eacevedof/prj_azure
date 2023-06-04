@@ -35,6 +35,9 @@ public sealed class ReadQuery
     private const string _READ = "r";
     //public const string WRITE = "w";
 
+    public const string ORDER_ASC = "ASC";
+    public const string ORDER_DESC = "DESC";
+
     public ReadQuery(string table)
     {
         _table = table;
@@ -44,7 +47,6 @@ public sealed class ReadQuery
     {
         return (new(table));
     }
-
 
     private string _GetFields()
     {
@@ -101,10 +103,10 @@ public sealed class ReadQuery
             throw new Exception("for pagination is order by field required");
 
         if (_arOffset["regfrom"] == 0)
-            return "\n OFFSET 0 FETCH " + _arOffset["perpage"] + " ROWS ONLY";
+            return "\n OFFSET 0 FETCH " + _arOffset["pagesize"] + " ROWS ONLY";
 
         string strFrom = _arOffset["reqfrom"].ToString();
-        return $"\n OFFSET {strFrom} FETCH " + _arOffset["perpage"] + " ROWS ONLY";
+        return $"\n OFFSET {strFrom} FETCH " + _arOffset["pagesize"] + " ROWS ONLY";
     }
 
     private bool _IsNumeric(string fieldName)
@@ -146,6 +148,11 @@ public sealed class ReadQuery
         return this;
     }
 
+    public ReadQuery Distinct()
+    {
+        _isDistinct = true;
+        return this;
+    }
 
     public ReadQuery AddGetField(string fieldname)
     {
@@ -177,12 +184,18 @@ public sealed class ReadQuery
         return this;
     }
 
-    public ReadQuery AddOrderBy(string field, string order="ASC")
+    public ReadQuery AddOrderBy(string field, string order=ORDER_ASC)
     {
         _arOrderBy.Add(field, order);
         return this;
     }
 
+    public ReadQuery AddOffset(int start=0, int pageSize = 25)
+    {
+        _arOffset.Add("regfrom", start);
+        _arOffset.Add("pagesize", pageSize);
+        return this;
+    }
 
     public ReadQuery Select()
     {
