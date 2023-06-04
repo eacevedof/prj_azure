@@ -214,7 +214,7 @@ public sealed class ReadQuery
 
         _sqlCount = string.Join(" ", _select);
         _sqlCount = @$"
-        SELECT COUNT(*) rows
+        SELECT COUNT(*) total
         FROM (
             {_sqlCount}
         ) t

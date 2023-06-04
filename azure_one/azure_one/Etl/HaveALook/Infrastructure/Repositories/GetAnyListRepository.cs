@@ -38,7 +38,7 @@ public sealed class GetAnyListRepository: AbsRepository
             .AddGroupBy("p.countries_uuid")
             .AddGroupBy("p.tenant_slug")
             .AddGroupBy("p.countries_id")
-            .AddHaving("LENGTH(p.countries_id) > 2")
+            .AddHaving("LEN(p.countries_id) > 2")
             .AddOrderBy("p.countries_uuid", ReadQuery.ORDER_DESC)
             .setOffset(8, 13)
         ;
