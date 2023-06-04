@@ -51,9 +51,9 @@ public sealed class ReadQuery
     
     private string _GetJoins()
     {
-        if (!arJoins.Any())
+        if (!_arJoins.Any())
             return "";
-        return string.Join("\n", arJoins);
+        return string.Join("\n", _arJoins);
     }
 
     private string _GetHaving()
@@ -140,9 +140,9 @@ public sealed class ReadQuery
         return this;
     }
 
-    public ReadQuery AddJoin(string fieldname)
+    public ReadQuery AddJoin(string join)
     {
-        _arGetFields.Add(fieldname);
+        _arGetFields.Add(join);
         return this;
     }
 
@@ -160,6 +160,8 @@ public sealed class ReadQuery
 
         _select.Add(string.Join(",", _arGetFields));
         _select.Add($"FROM [{_table}]");
+        _select.Add(_GetJoins());
+
 
         _sql = string.Join(" ", _select);
         return this;
