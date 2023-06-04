@@ -9,9 +9,9 @@ public sealed class ReadQuery
     
     private string _comment = "";
     private string _table = "";
-    private bool isDistinct = false;
+    private bool _isDistinct = false;
     private bool calcFoundRows = false;
-    private List<string> arGetFields = new List<string>();
+    private List<string> _arGetFields = new List<string>();
     private List<string> arJoins = new List<string>();
     private List<string> arAnds = new List<string>();
     private List<string> arGroupBy = new List<string>();
@@ -126,7 +126,7 @@ public sealed class ReadQuery
 
     public ReadQuery AddGetField(string fieldname)
     {
-        arGetFields.Add(fieldname);
+        _arGetFields.Add(fieldname);
         return this;
     }
 
@@ -138,6 +138,16 @@ public sealed class ReadQuery
              throw new Exception("missing fields in select");
         
         string comment = string.IsNullOrEmpty(_comment) ? "/*select*/" :  $"/*{_comment}*/";
+        _select.Add($"{comment} SELECT");
+        
+        if (_isDistinct) _select.Add("DISTINCT");
+
+        foreach(var field in _arGetFields) 
+        {
+            if (!string.IsNullOrWhiteSpace(field))
+                _select.Add(field);
+        }
+
         
 
         _sql += "";
