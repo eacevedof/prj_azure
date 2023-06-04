@@ -7,7 +7,10 @@ using azure_one.Etl.Shared.Infrastructure.Repositories;
 
 using azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
 
+using azure_one.Etl.HaveALook.Domain;
+
 namespace azure_one.Etl.HaveALook.Infrastructure.Repositories;
+
 
 public sealed class GetAnyListRepository: AbsRepository
 {
@@ -17,7 +20,7 @@ public sealed class GetAnyListRepository: AbsRepository
     }
     
 
-    public void Invoke(int page, int pageSize)
+    public ProvincesDto Invoke(int page, int pageSize)
     {
         ReadQuery readQuery = ReadQuery.fromTable("imp_countries c");
         readQuery

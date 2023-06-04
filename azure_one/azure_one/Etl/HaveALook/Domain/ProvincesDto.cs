@@ -1,4 +1,3 @@
-using azure_one.Etl.HaveALook.Application;
 using System.Collections.Generic;
 
 namespace azure_one.Etl.HaveALook.Domain;
@@ -25,6 +24,23 @@ public sealed class ProvincesDto
         nextPage = _nextPage;
         currentPage = _currentPage;
         totalItems = _totalItems;
+    }
+
+    public static ProvincesDto fromPrimitives(
+      List<Dictionary<string, string>> _dataInPage,
+      int _totalPages,
+      int _nextPage,
+      int _currentPage,
+      int _totalItems      
+    )
+    {
+        return new ProvincesDto(
+          _dataInPage,
+          _totalPages,
+          _nextPage,
+          _currentPage,
+          _totalItems
+        );
     }
 
 }

@@ -3,6 +3,7 @@ using azure_one.Etl.Shared.Infrastructure.Global;
 using azure_one.Etl.Shared.Infrastructure.Db.Contexts;
 
 using azure_one.Etl.HaveALook.Infrastructure.Repositories;
+using azure_one.Etl.HaveALook.Domain;
 
 namespace azure_one.Etl.HaveALook.Application;
 
@@ -16,7 +17,7 @@ public sealed class CheckPaginationService
         _getAnyListRepository = new GetAnyListRepository(Mssql.GetInstanceByDto(contextDto));
     }
     
-    public void Invoke()
+    public ProvincesDto Invoke()
     {
         int page = int.Parse(Req.Request["page"]);
         int pageSize = int.Parse(Req.Request["pagesize"]);
