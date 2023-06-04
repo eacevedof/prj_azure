@@ -21,9 +21,16 @@ public sealed class GetAnyListRepository: AbsRepository
         Lg.pr("GetAnyListRepository started!");
         string sqlPaginate = $"SELECT * FROM {table}";
 
-        ReadQuery readQuery = ReadQuery.fromTable("imp_languages_company_custom");
-        readQuery.
+        ReadQuery readQuery = ReadQuery.fromTable("imp_provinces");
+        readQuery.AddGetField("id")
+            .AddGetField("tenant_slug")
+            .AddGetField("countries_uuid")
+            .AddGetField("countries_id")
+            .AddGetField("val")
+            .AddGetField("codesap")
+        ;
 
+        string sql = readQuery.Select().GetSql();
         List<Dictionary<string, string>> result = _db.Query(sqlPaginate);
         foreach(var dict in result) 
         {

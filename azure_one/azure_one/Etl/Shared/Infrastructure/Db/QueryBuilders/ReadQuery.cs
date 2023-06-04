@@ -26,7 +26,7 @@ public sealed class ReadQuery
     private Dictionary<string, string> arPKs = new Dictionary<string, string>();
     private List<string> select = new List<string>();
 
-    private string sql = "";
+    private string _sql = "";
     private string sqlCount = "";
 
     private object oDB = null;
@@ -127,6 +127,19 @@ public sealed class ReadQuery
     {
         arGetFields.Add(fieldname);
         return this;
+    }
+
+    public ReadQuery Select()
+    {
+        string sql = "/*error select*/";
+
+        _sql += sql;
+        return this;
+    }
+
+    public string GetSql()
+    {
+        return _sql;
     }
 
 }
