@@ -58,7 +58,7 @@ public sealed class ReadQueryPaginator
         _loadOffsetStart();
 
         _readQuery.setOffset(_offsetStart, _offsetPageSize);
-        _sql = _readQuery.GetSql();
+        _sql = _readQuery.Select().GetSql();
         Lg.pr(_sql, "_sql");
 
         _loadRows();

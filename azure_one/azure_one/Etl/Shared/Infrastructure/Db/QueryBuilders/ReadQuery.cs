@@ -93,15 +93,13 @@ public sealed class ReadQuery
         if (!_arOrderBy.Any())
             throw new Exception("for pagination is order by field required");
 
-        if (!_arOffset.ContainsKey("reqfrom")) _arOffset.Add("reqfrom", 0);
+        if (!_arOffset.ContainsKey("regfrom")) _arOffset.Add("regfrom", 0);
         if (!_arOffset.ContainsKey("pagesize")) _arOffset.Add("pagesize", 50);
 
-        string pageSize = _arOffset["pagesize"].ToString();
-        if (_arOffset["regfrom"] == 0)
-            return $"\n OFFSET 0 ROWS \nFETCH NEXT {pageSize} ROWS ONLY";
+        int start = _arOffset["regfrom"];
+        int pageSize = _arOffset["pagesize"];
 
-        string strFrom = _arOffset["reqfrom"].ToString();
-        return $"\n OFFSET {strFrom} ROWS \nFETCH NEXT {pageSize} ROWS ONLY";
+        return $"\nOFFSET {start} ROWS\nFETCH NEXT {pageSize} ROWS ONLY";
     }
 
     private bool _IsNumeric(string fieldName)
@@ -187,9 +185,8 @@ public sealed class ReadQuery
 
     public ReadQuery setOffset(int start=0, int pageSize = 25)
     {
-        _arOffset = new Dictionary<string, int>();
-        _arOffset.Add("regfrom", start);
-        _arOffset.Add("pagesize", pageSize);
+        _arOffset["regfrom"] = start;
+        _arOffset["pagesize"] = pageSize;
         return this;
     }
 
