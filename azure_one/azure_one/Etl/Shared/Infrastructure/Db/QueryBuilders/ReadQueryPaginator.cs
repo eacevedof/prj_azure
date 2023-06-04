@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 using azure_one.Etl.Shared.Infrastructure.Db;
+using azure_one.Etl.Shared.Infrastructure.Log;
 
 namespace azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
 
@@ -48,6 +49,7 @@ public sealed class ReadQueryPaginator
         _readQuery.Select();
 
         _sqlCount = _readQuery.GetSqlCount();
+        Lg.pr(_sqlCount, "_sqlCount");
         
         _loadTotalRows();
         if (_totalRows == 0) return this;
@@ -57,6 +59,8 @@ public sealed class ReadQueryPaginator
 
         _readQuery.setOffset(_offsetStart, _offsetPageSize);
         _sql = _readQuery.GetSql();
+        Lg.pr(_sql, "_sql");
+
         _loadRows();
 
         return this;
