@@ -189,6 +189,9 @@ public sealed class ReadQuery
         _select.Add(_GetJoins());
         _select.Add(_GetWhere());
         _select.Add(_GetGroupBy());
+        _select.Add(_GetHaving());
+        _select.Add(_GetOrderBy());
+
         _sql = string.Join(" ", _select);
         return this;
     }
