@@ -205,7 +205,7 @@ public sealed class ReadQuery
         if (_isDistinct) _select.Add("DISTINCT");
 
         _select.Add(_GetFields());
-        _select.Add($"FROM [{_table}]");
+        _select.Add($"FROM {_table}");
         _select.Add(_GetJoins());
         _select.Add(_GetWhere());
         _select.Add(_GetGroupBy());
