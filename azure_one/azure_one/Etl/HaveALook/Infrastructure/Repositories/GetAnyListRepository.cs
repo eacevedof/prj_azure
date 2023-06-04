@@ -5,7 +5,7 @@ using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.Shared.Infrastructure.Repositories;
 
-namespace azure_one.Etl.CreateImpTables.Infrastructure.Repositories;
+namespace azure_one.Etl.HaveALook.Infrastructure.Repositories;
 
 public sealed class GetAnyListRepository: AbsRepository
 {

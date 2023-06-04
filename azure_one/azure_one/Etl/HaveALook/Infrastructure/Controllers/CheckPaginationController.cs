@@ -1,6 +1,6 @@
 using azure_one.Etl.HaveALook.Application;
 
-namespace azure_one.Etl.HaveALook.Infrastructure;
+namespace azure_one.Etl.HaveALook.Infrastructure.Controllers;
 
 public sealed class CheckPaginationController
 {
