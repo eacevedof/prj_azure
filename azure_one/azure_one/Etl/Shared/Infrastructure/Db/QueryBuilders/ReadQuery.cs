@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
+
 namespace azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
 
 public sealed class ReadQuery
