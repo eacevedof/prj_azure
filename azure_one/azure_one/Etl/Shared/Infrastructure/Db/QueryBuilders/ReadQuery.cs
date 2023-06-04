@@ -44,7 +44,16 @@ public sealed class ReadQuery
     {
         return (new(table));
     }
-    
+
+
+    private string _GetFields()
+    {
+        if (!_arGetFields.Any())
+            return "*";
+        return string.Join(", ", _arGetFields);
+    }
+
+
     private string _GetJoins()
     {
         if (!_arJoins.Any())
@@ -65,7 +74,7 @@ public sealed class ReadQuery
     {
         if (!_arGroupBy.Any())
             return "";
-        return "GROUP BY " + string.Join(",", _arGroupBy);
+        return "GROUP BY " + string.Join(", ", _arGroupBy);
     }
 
     private string _GetHaving()
@@ -79,7 +88,7 @@ public sealed class ReadQuery
     {
         if (!arOrderBy.Any())
             return "";
-        return "ORDER BY " + string.Join(",", arOrderBy.Select(kvp => $"{kvp.Key} {kvp.Value}"));
+        return "ORDER BY " + string.Join(", ", arOrderBy.Select(kvp => $"{kvp.Key} {kvp.Value}"));
     }
 
     private string _GetEnd()
@@ -171,7 +180,7 @@ public sealed class ReadQuery
         
         if (_isDistinct) _select.Add("DISTINCT");
 
-        _select.Add(string.Join(",", _arGetFields));
+        _select.Add(_GetFields());
         _select.Add($"FROM [{_table}]");
         _select.Add(_GetJoins());
         _select.Add(_GetWhere());
