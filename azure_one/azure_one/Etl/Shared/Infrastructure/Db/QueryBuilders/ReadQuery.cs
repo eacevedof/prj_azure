@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -6,8 +7,8 @@ namespace azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
 public sealed class ReadQuery
 {
     
-    private string comment = "";
-    private string table = "";
+    private string _comment = "";
+    private string _table = "";
     private bool isDistinct = false;
     private bool calcFoundRows = false;
     private List<string> arGetFields = new List<string>();
@@ -24,10 +25,10 @@ public sealed class ReadQuery
 
     private Dictionary<string, string> arUpdateFv = new Dictionary<string, string>();
     private Dictionary<string, string> arPKs = new Dictionary<string, string>();
-    private List<string> select = new List<string>();
+    private List<string> _select = new List<string>();
 
     private string _sql = "";
-    private string sqlCount = "";
+    private string _sqlCount = "";
 
     private object oDB = null;
 
@@ -38,7 +39,7 @@ public sealed class ReadQuery
 
     public ReadQuery(string table)
     {
-        this.table = table;
+        _table = table;
     }
 
     public static ReadQuery fromTable(string table)
@@ -131,9 +132,15 @@ public sealed class ReadQuery
 
     public ReadQuery Select()
     {
-        string sql = "/*error select*/";
+        _sql = "/*error select*/";
+        _sqlCount = "/*error select count*/";
+        if (string.IsNullOrEmpty(_table))
+             throw new Exception("missing fields in select");
+        
+        string comment = string.IsNullOrEmpty(_comment) ? "/*select*/" :  $"/*{_comment}*/";
+        
 
-        _sql += sql;
+        _sql += "";
         return this;
     }
 
