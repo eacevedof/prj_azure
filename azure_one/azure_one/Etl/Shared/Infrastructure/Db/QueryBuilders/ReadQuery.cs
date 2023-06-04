@@ -89,8 +89,12 @@ public sealed class ReadQuery
     private string _GetLimit()
     {
         if (!_arOffset.Any()) return "";
+
         if (!_arOrderBy.Any())
             throw new Exception("for pagination is order by field required");
+
+        if (!_arOffset.ContainsKey("reqfrom")) _arOffset.Add("reqfrom", 0);
+        if (!_arOffset.ContainsKey("pagesize")) _arOffset.Add("pagesize", 50);
 
         if (_arOffset["regfrom"] == 0)
             return "\n OFFSET 0 FETCH " + _arOffset["pagesize"] + " ROWS ONLY";
