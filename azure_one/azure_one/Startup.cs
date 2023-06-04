@@ -71,7 +71,7 @@ public class Startup: FunctionsStartup
         );
 
         builder.Services.AddSingleton<CheckPaginationController>(
-            s => new CheckPaginationController(new CheckPaginationService(new GetAnyListRepository(new Mssql())))
+            s => new CheckPaginationController(new CheckPaginationService())
         );
             
         //fix: No data is available for encoding 1252. For information on defining a custom encoding
