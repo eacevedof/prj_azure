@@ -92,7 +92,7 @@ public sealed class ReadQueryPaginator
             return;
         }
 
-        _offsetPageSize = _totalRows;
+        _offsetPageSize = _pageSize;
         _fullPages = _totalRows / _pageSize;
         _itemsInLastPage = _totalRows % _pageSize;
 
