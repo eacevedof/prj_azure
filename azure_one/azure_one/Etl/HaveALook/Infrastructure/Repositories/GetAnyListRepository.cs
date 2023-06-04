@@ -40,9 +40,12 @@ public sealed class GetAnyListRepository: AbsRepository
             .AddGroupBy("p.countries_id")
             .AddHaving("LENGTH(p.countries_id) > 2")
             .AddOrderBy("p.countries_uuid", ReadQuery.ORDER_DESC)
+            .setOffset(8, 13)
         ;
 
         string sql = readQuery.Select().GetSql();
+        string sqlCount = readQuery.GetSqlCount();
+
         List<Dictionary<string, string>> result = _db.Query(sqlPaginate);
         foreach(var dict in result) 
         {
