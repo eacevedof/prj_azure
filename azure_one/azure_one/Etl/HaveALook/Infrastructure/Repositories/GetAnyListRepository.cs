@@ -32,14 +32,14 @@ public sealed class GetAnyListRepository: AbsRepository
             .AddGetField("MAX(p.val) province")
             //.AddGetField("p.codesap AS p_codesap")
             //.AddGetField("c.codesap AS c_codesap")
-            .AddGetField("c.val AS country")
+            .AddGetField("MAX(c.val) AS country")
             .AddJoin(@"INNER JOIN [imp_countries] c ON p.countries_id = c.countries_id")
             .AddWhere("p.id > 3").AddWhere("c.id > 5")
             .AddGroupBy("p.countries_uuid")
             .AddGroupBy("p.tenant_slug")
             .AddGroupBy("p.countries_id")
-
-            
+            .AddHaving("LENGTH(p.countries_id) > 2")
+            .AddOrderBy("p.countries_uuid", "DESC")
         ;
 
         string sql = readQuery.Select().GetSql();

@@ -17,11 +17,11 @@ public sealed class ReadQuery
     private List<string> _arWhere = new List<string>();
     private List<string> _arGroupBy = new List<string>();
     private List<string> _arHaving = new List<string>();
-    private Dictionary<string, string> arOrderBy = new Dictionary<string, string>();
-    private Dictionary<string, int> arOffset = new Dictionary<string, int>();
-    private List<string> arEnd = new List<string>();
+    private Dictionary<string, string> _arOrderBy = new Dictionary<string, string>();
+    private Dictionary<string, int> _arOffset = new Dictionary<string, int>();
+    private List<string> _arEnd = new List<string>();
 
-    private List<string> arNumeric = new List<string>();
+    private List<string> _arNumeric = new List<string>();
 
     private List<string> _select = new List<string>();
 
@@ -84,32 +84,32 @@ public sealed class ReadQuery
 
     private string _GetOrderBy()
     {
-        if (!arOrderBy.Any()) return "";
-        return "ORDER BY " + string.Join(", ", arOrderBy.Select(kvp => $"{kvp.Key} {kvp.Value}"));
+        if (!_arOrderBy.Any()) return "";
+        return "ORDER BY " + string.Join(", ", _arOrderBy.Select(kvp => $"{kvp.Key} {kvp.Value}"));
     }
 
     private string _GetEnd()
     {
-        if (!arEnd.Any()) return "";
-        return " " + string.Join("\n", arEnd);
+        if (!_arEnd.Any()) return "";
+        return " " + string.Join("\n", _arEnd);
     }
 
     private string _GetLimit()
     {
-        if (!arOffset.Any()) return "";
-        if (!arOrderBy.Any())
+        if (!_arOffset.Any()) return "";
+        if (!_arOrderBy.Any())
             throw new Exception("for pagination is order by field required");
 
-        if (arOffset["regfrom"] == 0)
-            return "\n OFFSET 0 FETCH " + arOffset["perpage"] + " ROWS ONLY";
+        if (_arOffset["regfrom"] == 0)
+            return "\n OFFSET 0 FETCH " + _arOffset["perpage"] + " ROWS ONLY";
 
-        string strFrom = arOffset["reqfrom"].ToString();
-        return $"\n OFFSET {strFrom} FETCH " + arOffset["perpage"] + " ROWS ONLY";
+        string strFrom = _arOffset["reqfrom"].ToString();
+        return $"\n OFFSET {strFrom} FETCH " + _arOffset["perpage"] + " ROWS ONLY";
     }
 
     private bool _IsNumeric(string fieldName)
     {
-        return arNumeric.Contains(fieldName);
+        return _arNumeric.Contains(fieldName);
     }
 
     private bool _IsReserved(string word)
@@ -174,6 +174,12 @@ public sealed class ReadQuery
     public ReadQuery AddHaving(string having)
     {
         _arHaving.Add(having);
+        return this;
+    }
+
+    public ReadQuery AddOrderBy(string field, string order="ASC")
+    {
+        _arOrderBy.Add(field, order);
         return this;
     }
 
