@@ -43,6 +43,14 @@ public sealed class GetAnyListRepository: AbsRepository
         int totalPages = paginator.GetTotalPages();
         
         Lg.pr($"total pages {totalPages}");
+        return ProvincesDto.fromPrimitives(
+            rows,
+            paginator.GetTotalPages(),
+            paginator.GetNextPage(),
+            paginator.GetCurrentPage(),
+            paginator.GetTotalCount()
+        );
+        
     }
 
     public void Invoke_(string table)

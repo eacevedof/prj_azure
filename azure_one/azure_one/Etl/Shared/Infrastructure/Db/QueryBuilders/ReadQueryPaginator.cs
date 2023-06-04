@@ -83,6 +83,7 @@ public sealed class ReadQueryPaginator
             _fullPages = 1;
             _totalPages = 1;
             _offsetStart = 0;
+            _page = 1;
             _offsetPageSize = _totalRows;
             return;
         }
@@ -94,6 +95,9 @@ public sealed class ReadQueryPaginator
         _totalPages = _fullPages;
         if (_itemsInLastPage > 0)
             _totalPages = _fullPages + 1;
+        
+        if (_page > _totalPages)
+            _page = _totalPages;
     }
 
     private void _loadOffsetStart()
@@ -118,4 +122,13 @@ public sealed class ReadQueryPaginator
         return _rows;
     }
 
+    public int GetTotalCount()
+    {
+        return _totalRows;
+    }
+
+    public int GetCurrentPage()
+    {
+        return _page;
+    }    
 }
