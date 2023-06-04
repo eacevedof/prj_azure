@@ -14,7 +14,7 @@ public sealed class ReadQuery
     private List<string> _arGetFields = new List<string>();
     private List<string> _arJoins = new List<string>();
 
-    private List<string> _arAnds = new List<string>();
+    private List<string> _arWhere = new List<string>();
     private List<string> _arGroupBy = new List<string>();
     private List<string> _arHaving = new List<string>();
     private Dictionary<string, string> arOrderBy = new Dictionary<string, string>();
@@ -55,7 +55,7 @@ public sealed class ReadQuery
     private string _GetWhere()
     {
         string where = "\nWHERE 1=1";
-        if (!_arAnds.Any())
+        if (!_arWhere.Any())
             return where;
 
         return $"{where} " + string.Join("\n", _arJoins);
@@ -153,9 +153,9 @@ public sealed class ReadQuery
         return this;
     }
 
-    public ReadQuery AddAnd(string where)
+    public ReadQuery AddWhere(string where)
     {
-        _arAnds.Add(where);
+        _arWhere.Add(where);
         return this;
     }
 
