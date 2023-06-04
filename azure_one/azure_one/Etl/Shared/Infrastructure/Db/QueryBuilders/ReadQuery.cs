@@ -14,14 +14,15 @@ public sealed class ReadQuery
     private List<string> _arGetFields = new List<string>();
     private List<string> _arJoins = new List<string>();
 
-    private List<string> arAnds = new List<string>();
-    private List<string> arGroupBy = new List<string>();
-    private List<string> arHaving = new List<string>();
+    private List<string> _arAnds = new List<string>();
+    private List<string> _arGroupBy = new List<string>();
+    private List<string> _arHaving = new List<string>();
     private Dictionary<string, string> arOrderBy = new Dictionary<string, string>();
     private Dictionary<string, int> arOffset = new Dictionary<string, int>();
     private List<string> arEnd = new List<string>();
 
     private List<string> arNumeric = new List<string>();
+
     private List<string> _select = new List<string>();
 
     private string _sql = "";
@@ -29,7 +30,7 @@ public sealed class ReadQuery
 
     private object oDB = null;
 
-    private List<string> reserved = new List<string> { "get", "order", "password" };
+    private List<string> _reserved = new List<string> { "get", "order", "password" };
 
     private const string _READ = "r";
     //public const string WRITE = "w";
@@ -51,18 +52,27 @@ public sealed class ReadQuery
         return string.Join("\n", _arJoins);
     }
 
-    private string _GetHaving()
+    private string _GetWhere()
     {
-        if (!arHaving.Any())
-            return "";
-        return "HAVING " + string.Join(", ", arHaving);
+        string where = "\nWHERE 1=1";
+        if (!_arAnds.Any())
+            return where;
+
+        return $"{where} " + string.Join("\n", _arJoins);
     }
 
     private string _GetGroupBy()
     {
-        if (!arGroupBy.Any())
+        if (!_arGroupBy.Any())
             return "";
-        return "GROUP BY " + string.Join(",", arGroupBy);
+        return "GROUP BY " + string.Join(",", _arGroupBy);
+    }
+
+    private string _GetHaving()
+    {
+        if (!_arHaving.Any())
+            return "";
+        return "HAVING " + string.Join(", ", _arHaving);
     }
 
     private string _GetOrderBy()
@@ -83,8 +93,10 @@ public sealed class ReadQuery
     {
         if (!arOffset.Any())
             return "";
+
         if (arOffset["regfrom"] == 0)
             return " LIMIT " + arOffset["perpage"];
+
         var limit = string.Join(", ", arOffset.Values);
         return " LIMIT " + limit;
     }
@@ -96,7 +108,7 @@ public sealed class ReadQuery
 
     private bool IsReserved(string word)
     {
-        return reserved.Contains(word.ToLower());
+        return _reserved.Contains(word.ToLower());
     }
 
     private void CleanReserved(object mxFields)
@@ -141,6 +153,12 @@ public sealed class ReadQuery
         return this;
     }
 
+    public ReadQuery AddAnd(string where)
+    {
+        _arAnds.Add(where);
+        return this;
+    }
+
     public ReadQuery Select()
     {
         _sql = "/*error select*/";
@@ -156,7 +174,7 @@ public sealed class ReadQuery
         _select.Add(string.Join(",", _arGetFields));
         _select.Add($"FROM [{_table}]");
         _select.Add(_GetJoins());
-
+        _select.Add(_GetWhere());
 
         _sql = string.Join(" ", _select);
         return this;
