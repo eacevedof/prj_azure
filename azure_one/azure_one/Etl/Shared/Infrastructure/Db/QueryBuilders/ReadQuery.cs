@@ -148,9 +148,9 @@ public sealed class ReadQuery
                 _select.Add(field);
         }
 
-        
+        _select.Add($"FROM [{_table}]");
 
-        _sql += "";
+        _sql = string.Join(" ", _select);
         return this;
     }
 
