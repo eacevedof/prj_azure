@@ -72,29 +72,25 @@ public sealed class ReadQuery
 
     private string _GetGroupBy()
     {
-        if (!_arGroupBy.Any())
-            return "";
+        if (!_arGroupBy.Any()) return "";
         return "GROUP BY " + string.Join(", ", _arGroupBy);
     }
 
     private string _GetHaving()
     {
-        if (!_arHaving.Any())
-            return "";
+        if (!_arHaving.Any()) return "";
         return "HAVING " + string.Join(", ", _arHaving);
     }
 
     private string _GetOrderBy()
     {
-        if (!arOrderBy.Any())
-            return "";
+        if (!arOrderBy.Any()) return "";
         return "ORDER BY " + string.Join(", ", arOrderBy.Select(kvp => $"{kvp.Key} {kvp.Value}"));
     }
 
     private string _GetEnd()
     {
-        if (!arEnd.Any())
-            return "";
+        if (!arEnd.Any()) return "";
         return " " + string.Join("\n", arEnd);
     }
 
@@ -168,23 +164,31 @@ public sealed class ReadQuery
         return this;
     }
 
+    public ReadQuery AddGroupBy(string groupBy)
+    {
+        _arGroupBy.Add(groupBy);
+        return this;
+    }
+
+
+
     public ReadQuery Select()
     {
         _sql = "/*error select*/";
         _sqlCount = "/*error select count*/";
         if (string.IsNullOrEmpty(_table))
              throw new Exception("missing fields in select");
-        
+
+        // forma SELECT DISTINCT ...
         string comment = string.IsNullOrEmpty(_comment) ? "/*select*/" :  $"/*{_comment}*/";
         _select.Add($"{comment} SELECT");
-        
         if (_isDistinct) _select.Add("DISTINCT");
 
         _select.Add(_GetFields());
         _select.Add($"FROM [{_table}]");
         _select.Add(_GetJoins());
         _select.Add(_GetWhere());
-
+        _select.Add(_GetGroupBy());
         _sql = string.Join(" ", _select);
         return this;
     }
