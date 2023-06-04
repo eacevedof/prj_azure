@@ -78,13 +78,14 @@ public sealed class ReadQueryPaginator
 
     private void _loadPages()
     {
-        if (_pageSize > _totalRows) {
+        if (_pageSize >= _totalRows) {
             _fullPages = 1;
+            _totalPages = 1;
             _offsetStart = 0;
             _offsetPageSize = _totalRows;
             return;
         }
-
+        
     }
 
     public int GetTotalPages()
