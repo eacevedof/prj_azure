@@ -18,6 +18,9 @@ public sealed class ReadQueryPaginator
     private int _offsetStart = 0;
     private int _totalPages = 0;
 
+    private int _fullPages = 0;
+    private int _itemsInNotFullPage = 0;
+
     private string _sql = "";
     private string _sqlCount = "";
    
