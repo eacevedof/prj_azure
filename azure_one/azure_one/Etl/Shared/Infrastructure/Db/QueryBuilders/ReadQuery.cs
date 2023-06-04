@@ -190,8 +190,9 @@ public sealed class ReadQuery
         return this;
     }
 
-    public ReadQuery AddOffset(int start=0, int pageSize = 25)
+    public ReadQuery setOffset(int start=0, int pageSize = 25)
     {
+        _arOffset = new Dictionary<string, int>();
         _arOffset.Add("regfrom", start);
         _arOffset.Add("pagesize", pageSize);
         return this;
