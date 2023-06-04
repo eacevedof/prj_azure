@@ -110,7 +110,7 @@ public sealed class ReadQueryPaginator
         return _totalPages;
     }
 
-    public List<Dictionary<string, string>> getRows()
+    public List<Dictionary<string, string>> GetRows()
     {
         return _rows;
     }

@@ -16,7 +16,33 @@ public sealed class GetAnyListRepository: AbsRepository
     {
     }
     
-    public void Invoke(string table)
+
+    public void Invoke(int page, int pageSize)
+    {
+        ReadQuery readQuery = ReadQuery.fromTable("imp_countries c");
+        readQuery
+            .AddGetField("c.id c_id")
+            .AddGetField("p_id p_id")
+            .AddGetField("c_uuid c_uuid")
+            .AddGetField("c.val country")
+            .AddGetField("p.provinces_id, p.val province")
+            .AddJoin("INNER JOIN imp_provinces p ON c.countries_id = p.countries_id")
+            .AddWhere("c.val LIKE '%A%'")
+            .AddWhere("LEN(p.val) > 1")
+            .AddOrderBy("c.val")
+        ;
+        ReadQueryPaginator paginator = ReadQueryPaginator.fromPrimitives(
+            readQuery, 
+            page, 
+            pageSize
+        ).Calculate();
+        var rows = paginator.GetRows();
+        int totalPages = paginator.GetTotalPages();
+        
+        Lg.pr($"total pages {totalPages}");
+    }
+
+    public void Invoke_(string table)
     {
         Lg.pr("GetAnyListRepository started!");
         string sqlPaginate = $"SELECT * FROM {table}";
@@ -56,6 +82,8 @@ public sealed class GetAnyListRepository: AbsRepository
         }
         Lg.pr("GetAnyListRepository finished!");
     }
+
+
 
 
 }
