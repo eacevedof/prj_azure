@@ -34,6 +34,8 @@ public sealed class GetAnyListRepository: AbsRepository
             .AddGetField("c.codesap AS c_codesap")
             .AddGetField("c.val AS country")
             .AddJoin(@"INNER JOIN [imp_countries] c ON p.countries_id = c.countries_id")
+            .AddWhere("p.id > 3").AddWhere("c.id > 5")
+            
         ;
 
         string sql = readQuery.Select().GetSql();
