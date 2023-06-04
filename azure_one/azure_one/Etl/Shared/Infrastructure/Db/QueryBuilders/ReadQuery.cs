@@ -14,19 +14,14 @@ public sealed class ReadQuery
     private List<string> _arGetFields = new List<string>();
     private List<string> _arJoins = new List<string>();
 
-
     private List<string> arAnds = new List<string>();
     private List<string> arGroupBy = new List<string>();
     private List<string> arHaving = new List<string>();
     private Dictionary<string, string> arOrderBy = new Dictionary<string, string>();
-    private Dictionary<string, int> arLimit = new Dictionary<string, int>();
+    private Dictionary<string, int> arOffset = new Dictionary<string, int>();
     private List<string> arEnd = new List<string>();
 
     private List<string> arNumeric = new List<string>();
-    private Dictionary<string, string> arInsertFv = new Dictionary<string, string>();
-
-    private Dictionary<string, string> arUpdateFv = new Dictionary<string, string>();
-    private Dictionary<string, string> arPKs = new Dictionary<string, string>();
     private List<string> _select = new List<string>();
 
     private string _sql = "";
@@ -36,8 +31,8 @@ public sealed class ReadQuery
 
     private List<string> reserved = new List<string> { "get", "order", "password" };
 
-    public const string READ = "r";
-    public const string WRITE = "w";
+    private const string _READ = "r";
+    //public const string WRITE = "w";
 
     public ReadQuery(string table)
     {
@@ -86,11 +81,11 @@ public sealed class ReadQuery
 
     private string _GetLimit()
     {
-        if (!arLimit.Any())
+        if (!arOffset.Any())
             return "";
-        if (arLimit["regfrom"] == 0)
-            return " LIMIT " + arLimit["perpage"];
-        var limit = string.Join(", ", arLimit.Values);
+        if (arOffset["regfrom"] == 0)
+            return " LIMIT " + arOffset["perpage"];
+        var limit = string.Join(", ", arOffset.Values);
         return " LIMIT " + limit;
     }
 
