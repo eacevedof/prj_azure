@@ -4,7 +4,16 @@
     <TargetFramework>net6.0</TargetFramework>
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <!-- 
+      supuestamente esto ayuda a evitar
+      The library 'libhostpolicy.dylib' required to execute the application was not found
+      pero no es así :(
 
+    <GenerateRuntimeConfigDevFile>true</GenerateRuntimeConfigDevFile>
+    <RuntimeIdentifiers>win-x64;unix</RuntimeIdentifiers>
+    -->
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
     <PackageReference Include="ExcelDataReader" Version="3.7.0-develop00365" />
