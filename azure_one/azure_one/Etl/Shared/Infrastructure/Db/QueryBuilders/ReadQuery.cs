@@ -96,11 +96,12 @@ public sealed class ReadQuery
         if (!_arOffset.ContainsKey("reqfrom")) _arOffset.Add("reqfrom", 0);
         if (!_arOffset.ContainsKey("pagesize")) _arOffset.Add("pagesize", 50);
 
+        string pageSize = _arOffset["pagesize"].ToString();
         if (_arOffset["regfrom"] == 0)
-            return "\n OFFSET 0 FETCH " + _arOffset["pagesize"] + " ROWS ONLY";
+            return $"\n OFFSET 0 ROWS \nFETCH NEXT {pageSize} ROWS ONLY";
 
         string strFrom = _arOffset["reqfrom"].ToString();
-        return $"\n OFFSET {strFrom} FETCH " + _arOffset["pagesize"] + " ROWS ONLY";
+        return $"\n OFFSET {strFrom} ROWS \nFETCH NEXT {pageSize} ROWS ONLY";
     }
 
     private bool _IsNumeric(string fieldName)
@@ -205,7 +206,7 @@ public sealed class ReadQuery
         if (_isDistinct) _select.Add("DISTINCT");
 
         _select.Add(_GetFields());
-        _select.Add($"FROM {_table}");
+        _select.Add($"\nFROM {_table}\n");
         _select.Add(_GetJoins());
         _select.Add(_GetWhere());
         _select.Add(_GetGroupBy());
