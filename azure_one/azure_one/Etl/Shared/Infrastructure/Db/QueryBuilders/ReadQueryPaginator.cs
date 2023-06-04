@@ -54,7 +54,7 @@ public sealed class ReadQueryPaginator
         if (_totalRows == 0) return this;
 
         _loadPages();
-        _loadOffset();
+        _loadOffsetStart();
 
         _readQuery.setOffset(_offsetStart, _offsetPageSize);
         _sql = _readQuery.GetSql();
@@ -90,12 +90,13 @@ public sealed class ReadQueryPaginator
         _offsetPageSize = _totalRows;
         _fullPages = _totalRows / _pageSize;
         _itemsInLastPage = _totalRows % _pageSize;
+
         _totalPages = _fullPages;
         if (_itemsInLastPage > 0)
             _totalPages = _fullPages + 1;
     }
 
-    private void _loadOffset()
+    private void _loadOffsetStart()
     {
         _offsetStart = (_page - 1) * _offsetPageSize;
     }
