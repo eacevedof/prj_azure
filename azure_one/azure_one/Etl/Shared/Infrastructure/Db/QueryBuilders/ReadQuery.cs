@@ -58,7 +58,7 @@ public sealed class ReadQuery
         if (!_arWhere.Any())
             return where;
 
-        return $"{where} " + string.Join("\n", _arJoins);
+        return $"{where} " + string.Join("\n", _arWhere);
     }
 
     private string _GetGroupBy()
