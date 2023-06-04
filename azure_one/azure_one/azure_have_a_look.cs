@@ -10,17 +10,19 @@ using azure_one.Etl.RawLoaders.Infrastructure;
 using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.Shared.Infrastructure.Repositories;
 
+ using azure_one.Etl.HaveALook.Infrastructure;
+
 namespace azure_have_a_look
 {
     public class azure_have_a_look
     {
-        private readonly LoadForceTableController _loadForceTableController;
+        private readonly CheckPaginationController _paginationController;
         
         public azure_have_a_look(
-            LoadForceTableController loadForceTableController
+            CheckPaginationController paginationController
         )
         {
-            _loadForceTableController = loadForceTableController;
+            _paginationController = paginationController;
         }
         
         [FunctionName("azure_have_a_look")]
@@ -35,17 +37,15 @@ namespace azure_have_a_look
                 string perPage = req.Query["per_page"];
                 
                 Lg.pr("ETL azure_have_a_look started...");
-                _loadForceTableController.Invoke();
+                _paginationController.Invoke();
                 string successMessage = $"AzureHaveALook ({table},{perPage}) has finished successfully!.";
                 return new OkObjectResult(successMessage);
             }
             catch (Exception e)
             {
                 log.LogInformation(e.ToString());
-                ImpErrorsRepository.add("azure_one.task",e.ToString());
-                
                 return new OkObjectResult(
-                    "Sorry the ETL process failed. Check logs for more information please"
+                    "Sorry Have a Look Pagination failed. Check logs for more information please"
                     )
                     {
                         StatusCode = 500
