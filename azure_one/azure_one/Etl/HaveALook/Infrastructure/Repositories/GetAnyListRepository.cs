@@ -25,16 +25,20 @@ public sealed class GetAnyListRepository: AbsRepository
 
         readQuery.SetComment("primera query");
 
-        readQuery.AddGetField("p.id")
+        readQuery
             .AddGetField("p.tenant_slug")
             .AddGetField("p.countries_uuid")
             .AddGetField("p.countries_id")
-            .AddGetField("p.val")
-            .AddGetField("p.codesap AS p_codesap")
-            .AddGetField("c.codesap AS c_codesap")
+            .AddGetField("MAX(p.val) province")
+            //.AddGetField("p.codesap AS p_codesap")
+            //.AddGetField("c.codesap AS c_codesap")
             .AddGetField("c.val AS country")
             .AddJoin(@"INNER JOIN [imp_countries] c ON p.countries_id = c.countries_id")
             .AddWhere("p.id > 3").AddWhere("c.id > 5")
+            .AddGroupBy("p.countries_uuid")
+            .AddGroupBy("p.tenant_slug")
+            .AddGroupBy("p.countries_id")
+
             
         ;
 
