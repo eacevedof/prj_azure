@@ -46,8 +46,10 @@ public sealed class GetAnyListRepository: AbsRepository
         string sql = readQuery.Select().GetSql();
         string sqlCount = readQuery.GetSqlCount();
 
-        List<Dictionary<string, string>> result = _db.Query(sqlPaginate);
-        foreach(var dict in result) 
+        List<Dictionary<string, string>> result = _db.Query(sql);
+        List<Dictionary<string, string>> count = _db.Query(sqlCount);
+
+        foreach (var dict in result) 
         {
             string id = dict["id"];
             Lg.pr($"id: {id}");
