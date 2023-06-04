@@ -12,7 +12,7 @@ gitpush: ## git push m=any message
 	git add .; git commit -m "$(m)"; git push;
 
 curl-test: ## curl get http://localhost:7071/api/azure_one
-	curl http://localhost:7071/api/azure_one
+	curl http://localhost:7071/api/azure_have_a_look
 
 ssh-db: ## ssh db
 	docker exec -it --user root cont-mssql bash

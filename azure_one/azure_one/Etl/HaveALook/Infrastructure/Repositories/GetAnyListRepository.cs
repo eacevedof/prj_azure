@@ -9,7 +9,6 @@ namespace azure_one.Etl.HaveALook.Infrastructure.Repositories;
 
 public sealed class GetAnyListRepository: AbsRepository
 {
-    private readonly string _pathFilesFolder;
 
     public GetAnyListRepository(Mssql db) : base(db)
     {
