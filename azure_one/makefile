@@ -11,7 +11,7 @@ gitpush: ## git push m=any message
 	clear;
 	git add .; git commit -m "$(m)"; git push;
 
-run: ## curl get http://localhost:7071/api/azure_one
+curl-test: ## curl get http://localhost:7071/api/azure_one
 	curl http://localhost:7071/api/azure_one
 
 ssh-db: ## ssh db
