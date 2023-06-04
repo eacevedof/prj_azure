@@ -47,42 +47,42 @@ public sealed class ReadQuery
         return (new(table));
     }
     
-    private string GetJoins()
+    private string _GetJoins()
     {
         if (!arJoins.Any())
             return "";
         return string.Join("\n", arJoins);
     }
 
-    private string GetHaving()
+    private string _GetHaving()
     {
         if (!arHaving.Any())
             return "";
         return "HAVING " + string.Join(", ", arHaving);
     }
 
-    private string GetGroupBy()
+    private string _GetGroupBy()
     {
         if (!arGroupBy.Any())
             return "";
         return "GROUP BY " + string.Join(",", arGroupBy);
     }
 
-    private string GetOrderBy()
+    private string _GetOrderBy()
     {
         if (!arOrderBy.Any())
             return "";
         return "ORDER BY " + string.Join(",", arOrderBy.Select(kvp => $"{kvp.Key} {kvp.Value}"));
     }
 
-    private string GetEnd()
+    private string _GetEnd()
     {
         if (!arEnd.Any())
             return "";
         return " " + string.Join("\n", arEnd);
     }
 
-    private string GetLimit()
+    private string _GetLimit()
     {
         if (!arLimit.Any())
             return "";
