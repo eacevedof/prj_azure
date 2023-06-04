@@ -124,6 +124,14 @@ public sealed class ReadQuery
         }
     }
 
+
+    public ReadQuery SetComment(string comment)
+    {
+        _comment = comment;
+        return this;
+    }
+
+
     public ReadQuery AddGetField(string fieldname)
     {
         _arGetFields.Add(fieldname);

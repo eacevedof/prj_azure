@@ -33,7 +33,7 @@ namespace azure_have_a_look
                 string table = req.Query["table"];
                 string perPage = req.Query["per_page"];
                 
-                Lg.pr("ETL azure_have_a_look started...");
+                Lg.pr("Azure Have a Look started...");
                 _checkPaginationController.Invoke();
                 string successMessage = $"AzureHaveALook ({table},{perPage}) has finished successfully!.";
                 return new OkObjectResult(successMessage);

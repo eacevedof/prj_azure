@@ -22,6 +22,8 @@ public sealed class GetAnyListRepository: AbsRepository
         string sqlPaginate = $"SELECT * FROM {table}";
 
         ReadQuery readQuery = ReadQuery.fromTable("imp_provinces");
+
+        readQuery.SetComment("primera query");
         readQuery.AddGetField("id")
             .AddGetField("tenant_slug")
             .AddGetField("countries_uuid")
