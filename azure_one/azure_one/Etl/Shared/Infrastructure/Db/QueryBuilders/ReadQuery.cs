@@ -10,19 +10,15 @@ public sealed class ReadQuery
     private string _comment = "";
     private string _table = "";
     private bool _isDistinct = false;
-    private bool calcFoundRows = false;
     private List<string> _arGetFields = new List<string>();
     private List<string> _arJoins = new List<string>();
-
     private List<string> _arWhere = new List<string>();
     private List<string> _arGroupBy = new List<string>();
     private List<string> _arHaving = new List<string>();
     private Dictionary<string, string> _arOrderBy = new Dictionary<string, string>();
     private Dictionary<string, int> _arOffset = new Dictionary<string, int>();
-    private List<string> _arEnd = new List<string>();
 
     private List<string> _arNumeric = new List<string>();
-
     private List<string> _select = new List<string>();
 
     private string _sql = "";
@@ -88,12 +84,6 @@ public sealed class ReadQuery
     {
         if (!_arOrderBy.Any()) return "";
         return "ORDER BY " + string.Join(", ", _arOrderBy.Select(kvp => $"{kvp.Key} {kvp.Value}"));
-    }
-
-    private string _GetEnd()
-    {
-        if (!_arEnd.Any()) return "";
-        return " " + string.Join("\n", _arEnd);
     }
 
     private string _GetLimit()
