@@ -12,7 +12,7 @@ public sealed class ReadQueryPaginator
     private Mssql _mssql = null;
     private ReadQuery _readQuery = null;
     private int _page = 1;
-    private int _pageSize = 1;
+    private int _pageSize = 50;
 
     private int _totalRows = 0;
     private int _offsetStart = 0;
@@ -32,11 +32,8 @@ public sealed class ReadQueryPaginator
         _readQuery = readQuery;
         
         _page = page;
-        if (_page < 1) throw new Exception("wrong offset page");
-        
-        _pageSize = pageSize;
-        if (_pageSize < 1) 
-            throw new Exception("wrong page size");
+        if (_page < 1) _page = 1;
+        if (pageSize > 0) _pageSize = pageSize;
 
         _mssql = Mssql.GetInstanceByReq();
     }
