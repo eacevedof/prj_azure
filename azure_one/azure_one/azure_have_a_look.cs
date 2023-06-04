@@ -12,20 +12,20 @@ using azure_one.Etl.Shared.Infrastructure.Repositories;
 
 //test c# online
 //https://techiedelight.com/compiler/
-namespace azure_test
+namespace azure_have_a_look
 {
-    public class azure_test
+    public class azure_have_a_look
     {
         private readonly LoadForceTableController _loadForceTableController;
         
-        public azure_test(
+        public azure_have_a_look(
             LoadForceTableController loadForceTableController
         )
         {
             _loadForceTableController = loadForceTableController;
         }
         
-        [FunctionName("azure_test")]
+        [FunctionName("azure_have_a_look")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log
@@ -36,7 +36,7 @@ namespace azure_test
                 string tenant_slug = req.Query["tenant_slug"];
                 string transaction_id = req.Query["transaction_id"];
                 
-                Lg.pr("ETL azure_test started...");
+                Lg.pr("ETL azure_have_a_look started...");
                 _loadForceTableController.Invoke();
                 string successMessage = $"ETL AzureTwo ({tenant_slug},{transaction_id}) has finished successfully!.";
                 return new OkObjectResult(successMessage);
@@ -55,7 +55,7 @@ namespace azure_test
             }
         } //Task
         
-    }// class azure_test
+    }// class azure_have_a_look
     
-}// namespace azure_test
+}// namespace azure_have_a_look
 
