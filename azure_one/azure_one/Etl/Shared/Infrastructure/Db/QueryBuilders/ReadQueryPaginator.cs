@@ -37,7 +37,12 @@ public sealed class ReadQueryPaginator
 
     public int GetTotalPages()
     {
-        return 
+        return _totalPages;
+    }
+
+    public int GetNextPage()
+    {
+        return _page + 1;
     }
 
 }
