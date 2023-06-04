@@ -192,6 +192,7 @@ public sealed class ReadQuery
 
     public ReadQuery Select()
     {
+        _select = new List<string>();
         _sql = "/*error select*/";
         _sqlCount = "/*error select count*/";
         if (string.IsNullOrEmpty(_table))
