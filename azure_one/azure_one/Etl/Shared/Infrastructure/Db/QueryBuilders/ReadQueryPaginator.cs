@@ -18,6 +18,10 @@ public sealed class ReadQueryPaginator
     private int _offsetStart = 0;
     private int _totalPages = 0;
 
+    private string _sql = "";
+    private string _sqlCount = "";
+   
+    private List<Dictionary<string, string>> _rows = new List<Dictionary<string, string>>();
 
     public ReadQueryPaginator(ReadQuery readQuery, int page, int pageSize)
     {
@@ -40,10 +44,30 @@ public sealed class ReadQueryPaginator
 
     public ReadQueryPaginator Calculate()
     {
+        _sqlCount = _readQuery.GetSqlCount();
         
+        _loadTotalRows();
+        if (_totalRows == 0) return this;
+
+        _sql = _readQuery.GetSql();
+        _loadRows();
+
         return this;
     }
 
+    private void _loadTotalRows()
+    {
+        List<Dictionary<string, string>> resultTotal = _mssql.Query(_sqlCount);
+        if (resultTotal.Count == 0) return;
+        var dict = resultTotal[0];
+        
+        _totalRows = int.Parse(dict["total"]);
+    }
+
+    private void _loadRows()
+    {
+        _rows = _mssql.Query(_sql);
+    }
 
     public int GetTotalPages()
     {
