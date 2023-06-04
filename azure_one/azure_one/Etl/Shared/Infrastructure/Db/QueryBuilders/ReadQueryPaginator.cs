@@ -90,7 +90,9 @@ public sealed class ReadQueryPaginator
         _itemsInLastPage = _totalRows % _pageSize;
         _totalPages = _fullPages;
         if (_itemsInLastPage > 0)
-            _totalPages = _fullPages + 1; 
+            _totalPages = _fullPages + 1;
+
+        if ()
     }
 
     public int GetTotalPages()
@@ -100,7 +102,9 @@ public sealed class ReadQueryPaginator
 
     public int GetNextPage()
     {
-        return _page + 1;
+        if (_page < _totalPages)
+            return _page + 1;
+        return _totalPages;
     }
 
 }
