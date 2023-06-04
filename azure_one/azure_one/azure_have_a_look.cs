@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 
 using azure_one.Etl.Shared.Infrastructure.Log;
-using azure_one.Etl.HaveALook.Infrastructure;
+using azure_one.Etl.HaveALook.Infrastructure.Controllers;
 
 namespace azure_have_a_look
 {
