@@ -41,8 +41,8 @@ namespace azure_have_a_look
                 string perPage = req.Query["per_page"];
 
                 Req.ContextId = ContextsEnum.db_test;
-                Req.Request.Add("page", page);
-                Req.Request.Add("pagesize", perPage);
+                Req.Request["page"] = page;
+                Req.Request["pagesize"] = perPage;
                 
                 Lg.pr("Azure Have a Look started...");
                 var provincesDto = _checkPaginationController.Invoke();
