@@ -31,4 +31,7 @@ run:
 	clear;
 	dotnet build ./azure_one/azure_one.csproj --property:GenerateFullPaths=true --consoleloggerparameters:NoSummary;
 	dotnet publish ./azure_one/azure_one.csproj --property:GenerateFullPaths=true --consoleloggerparameters:NoSummary;
-	dotnet watch run --project ./azure_one/;
+	# dotnet watch run --project ./azure_one/;
+	# para el siguiente comando se necesita: brew tap azure/functions; brew install azure-functions-core-tools@4
+	func ./azure_one/azure_one;
+
