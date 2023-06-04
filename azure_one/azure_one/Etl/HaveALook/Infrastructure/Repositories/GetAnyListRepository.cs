@@ -22,8 +22,8 @@ public sealed class GetAnyListRepository: AbsRepository
         ReadQuery readQuery = ReadQuery.fromTable("imp_countries c");
         readQuery
             .AddGetField("c.id c_id")
-            .AddGetField("p_id p_id")
-            .AddGetField("c_uuid c_uuid")
+            .AddGetField("p.id p_id")
+            .AddGetField("c.uuid c_uuid")
             .AddGetField("c.val country")
             .AddGetField("p.provinces_id, p.val province")
             .AddJoin("INNER JOIN imp_provinces p ON c.countries_id = p.countries_id")

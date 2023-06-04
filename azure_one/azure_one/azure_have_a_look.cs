@@ -34,8 +34,9 @@ namespace azure_have_a_look
             {
                 string page = req.Query["page"];
                 string perPage = req.Query["per_page"];
+
                 Req.Request.Add("page", page);
-                Req.Request.Add("pageSize", perPage);
+                Req.Request.Add("pagesize", perPage);
                 
                 Lg.pr("Azure Have a Look started...");
                 _checkPaginationController.Invoke();

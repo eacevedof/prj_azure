@@ -45,6 +45,8 @@ public sealed class ReadQueryPaginator
 
     public ReadQueryPaginator Calculate()
     {
+        _readQuery.Select();
+
         _sqlCount = _readQuery.GetSqlCount();
         
         _loadTotalRows();
