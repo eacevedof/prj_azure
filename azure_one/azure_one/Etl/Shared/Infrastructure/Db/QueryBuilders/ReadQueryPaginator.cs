@@ -54,8 +54,9 @@ public sealed class ReadQueryPaginator
         if (_totalRows == 0) return this;
 
         _loadPages();
+        _loadOffset();
 
-
+        _readQuery.setOffset(_offsetStart, _offsetPageSize);
         _sql = _readQuery.GetSql();
         _loadRows();
 
@@ -86,13 +87,17 @@ public sealed class ReadQueryPaginator
             return;
         }
 
+        _offsetPageSize = _totalRows;
         _fullPages = _totalRows / _pageSize;
         _itemsInLastPage = _totalRows % _pageSize;
         _totalPages = _fullPages;
         if (_itemsInLastPage > 0)
             _totalPages = _fullPages + 1;
+    }
 
-        if ()
+    private void _loadOffset()
+    {
+        _offsetStart = (_page - 1) * _offsetPageSize;
     }
 
     public int GetTotalPages()
@@ -105,6 +110,11 @@ public sealed class ReadQueryPaginator
         if (_page < _totalPages)
             return _page + 1;
         return _totalPages;
+    }
+
+    public List<Dictionary<string, string>> getRows()
+    {
+        return _rows;
     }
 
 }
