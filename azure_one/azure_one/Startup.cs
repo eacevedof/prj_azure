@@ -1,12 +1,14 @@
-using azure_one.Etl.CreateImpTables.Infrastructure;
-using azure_one.Etl.InstallImpTables.Application;
-using azure_one.Etl.RawLoaders.Application.Force;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using azure_one.Etl.Shared.Infrastructure.Db;
 
+using azure_one.Etl.CreateImpTables.Infrastructure;
+
+using azure_one.Etl.InstallImpTables.Application;
+
+using azure_one.Etl.RawLoaders.Application.Force;
 using azure_one.Etl.RawLoaders.Application.ImpTables;
 using azure_one.Etl.RawLoaders.Infrastructure;
 
@@ -67,7 +69,7 @@ public class Startup: FunctionsStartup
         builder.Services.AddSingleton<RunPostLoadFilesController>(
             s => new RunPostLoadFilesController(new PostLoadImpTablesService(new PostLoadRepository(new Mssql())))
         );
-        
+
         builder.Services.AddSingleton<CheckPaginationController>(
             s => new CheckPaginationController(new CheckPaginationService(new GetAnyListRepository(new Mssql())))
         );
