@@ -1,7 +1,8 @@
-using azure_one.Etl.HaveALook.Infrastructure.Repositories;
 using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Global;
 using azure_one.Etl.Shared.Infrastructure.Db.Contexts;
+
+using azure_one.Etl.HaveALook.Infrastructure.Repositories;
 
 namespace azure_one.Etl.HaveALook.Application;
 
