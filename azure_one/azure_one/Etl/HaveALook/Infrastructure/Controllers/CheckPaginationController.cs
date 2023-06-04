@@ -11,7 +11,7 @@ public sealed class CheckPaginationController
         _checkPaginationService = checkPaginationService;
     }
 
-    public void Invoke()
+    public  Invoke()
     {
         _checkPaginationService.Invoke();
     }

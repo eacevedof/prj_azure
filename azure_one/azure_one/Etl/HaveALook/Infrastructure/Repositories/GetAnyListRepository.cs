@@ -39,12 +39,9 @@ public sealed class GetAnyListRepository: AbsRepository
             page, 
             pageSize
         ).Calculate();
-        var rows = paginator.GetRows();
-        int totalPages = paginator.GetTotalPages();
-        
-        Lg.pr($"total pages {totalPages}");
+
         return ProvincesDto.fromPrimitives(
-            rows,
+            paginator.GetRows(),
             paginator.GetTotalPages(),
             paginator.GetNextPage(),
             paginator.GetCurrentPage(),
