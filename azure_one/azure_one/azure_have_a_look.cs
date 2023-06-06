@@ -11,22 +11,21 @@ using azure_one.Etl.Shared.Infrastructure.Global;
 using azure_one.Etl.Shared.Infrastructure.Db.Contexts;
 
 using azure_one.Etl.Shared.Infrastructure.Log;
-
-using azure_one.Etl.HaveALook.Domain;
-using azure_one.Etl.HaveALook.Infrastructure.Controllers;
-
+using azure_one.Etl.HaveALook.Application;
 
 namespace azure_have_a_look
 {
+
     public class azure_have_a_look
     {
-        private readonly CheckPaginationController _checkPaginationController;
+
+        private readonly CheckPaginationService _checkPaginationService;
         
         public azure_have_a_look(
-            CheckPaginationController checkPaginationController
+            CheckPaginationService checkPaginationService
         )
         {
-            _checkPaginationController = checkPaginationController;
+            _checkPaginationService = checkPaginationService;
         }
         
         [FunctionName("azure_have_a_look")]
@@ -45,10 +44,10 @@ namespace azure_have_a_look
                 Req.Request["pagesize"] = perPage;
                 
                 Lg.pr("Azure Have a Look started...");
-                var provincesDto = _checkPaginationController.Invoke();
+                var provincesDto = _checkPaginationService.Invoke();
                 string jsonString = JsonConvert.SerializeObject(provincesDto);
                 
-                return new OkObjectResult(jsonString);
+                return new OkObjectResult(provincesDto);
             }
             catch (Exception e)
             {

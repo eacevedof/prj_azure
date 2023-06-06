@@ -70,8 +70,8 @@ public class Startup: FunctionsStartup
             s => new RunPostLoadFilesController(new PostLoadImpTablesService(new PostLoadRepository(new Mssql())))
         );
 
-        builder.Services.AddSingleton<CheckPaginationController>(
-            s => new CheckPaginationController(new CheckPaginationService())
+        builder.Services.AddSingleton<CheckPaginationService>(
+            s => new CheckPaginationService()
         );
             
         //fix: No data is available for encoding 1252. For information on defining a custom encoding
