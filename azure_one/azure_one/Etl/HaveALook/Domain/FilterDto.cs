@@ -28,7 +28,7 @@ public sealed class FilterDto
       string search,
       int page,
       int pageSize,
-      string _orderBy,
+      string orderBy,
       string columnName
     )
     {
@@ -36,7 +36,17 @@ public sealed class FilterDto
           search,
           page,
           pageSize,
-          _orderBy
+          orderBy,
+          columnName
         );
+    }
+
+    public string search()
+    {
+      return _search;
+    }
+    public string orderBy()
+    {
+      return orderBy;
     }
 }
