@@ -4,39 +4,37 @@ namespace azure_one.Etl.HaveALook.Domain;
 
 public sealed class FilterDto
 {   
-    public readonly string search;
-    public readonly int page;
-    public readonly int pageSize;
-    public readonly string orderBy;
-    public readonly string columnName;
+    public readonly string _search;
+    public readonly int _page;
+    public readonly int _pageSize;
+    public readonly string _orderBy;
+    public readonly string _columnName;
 
     public FilterDto(
-      List<Dictionary<string, string>> _dataInPage,
-      int _totalPages,
-      int _nextPage,
-      int _currentPage,
-      int _totalItems
-
+      int search,
+      int page,
+      int pageSize,
+      int orderBy
     )
     {
-        totalPages = _totalPages;
-        nextPage = _nextPage;
-        currentPage = _currentPage;
-        totalItems = _totalItems;
+        this._search = search;
+        this._page = page;
+        this._pageSize = pageSize;
+        this._orderBy = orderBy;
     }
 
     public static FilterDto fromPrimitives(
-      int _totalPages,
-      int _nextPage,
-      int _currentPage,
-      int _totalItems      
+      int _search,
+      int _page,
+      int _pageSize,
+      int _orderBy      
     )
     {
         return new FilterDto(
-          _totalPages,
-          _nextPage,
-          _currentPage,
-          _totalItems
+          _search,
+          _page,
+          _pageSize,
+          _orderBy
         );
     }
 }
