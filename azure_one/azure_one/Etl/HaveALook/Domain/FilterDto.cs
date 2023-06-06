@@ -4,10 +4,11 @@ namespace azure_one.Etl.HaveALook.Domain;
 
 public sealed class FilterDto
 {   
-    public readonly int totalPages;
-    public readonly int nextPage;
-    public readonly int currentPage;
-    public readonly int totalItems;
+    public readonly string search;
+    public readonly int page;
+    public readonly int pageSize;
+    public readonly string orderBy;
+    public readonly string columnName;
 
     public FilterDto(
       List<Dictionary<string, string>> _dataInPage,
