@@ -4,7 +4,6 @@ namespace azure_one.Etl.HaveALook.Domain;
 
 public sealed class FilterDto
 {   
-    public readonly List<Dictionary<string, string>> dataInPage;
     public readonly int totalPages;
     public readonly int nextPage;
     public readonly int currentPage;
@@ -19,7 +18,6 @@ public sealed class FilterDto
 
     )
     {
-        dataInPage = _dataInPage;
         totalPages = _totalPages;
         nextPage = _nextPage;
         currentPage = _currentPage;
@@ -27,7 +25,6 @@ public sealed class FilterDto
     }
 
     public static FilterDto fromPrimitives(
-      List<Dictionary<string, string>> _dataInPage,
       int _totalPages,
       int _nextPage,
       int _currentPage,
@@ -35,7 +32,6 @@ public sealed class FilterDto
     )
     {
         return new FilterDto(
-          _dataInPage,
           _totalPages,
           _nextPage,
           _currentPage,
