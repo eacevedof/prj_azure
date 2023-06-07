@@ -135,4 +135,8 @@ public sealed class ReadQueryPaginator
     {
         return _page;
     }    
+    public int GetPageSize()
+    {
+        return _pageSize;
+    }    
 }
