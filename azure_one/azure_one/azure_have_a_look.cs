@@ -5,7 +5,6 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Newtonsoft.Json;
 
 using azure_one.Etl.Shared.Infrastructure.Global;
 using azure_one.Etl.Shared.Infrastructure.Db.Contexts;
