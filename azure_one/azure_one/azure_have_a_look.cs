@@ -37,6 +37,8 @@ namespace azure_have_a_look
         {
             try
             {
+                Lg.pr("Azure Have a Look started...");
+                
                 int page = int.Parse(req.Query["page"]);
                 int perPage = int.Parse(req.Query["per_page"]);
                 string search = req.Query["search"];
@@ -44,7 +46,7 @@ namespace azure_have_a_look
                 string orderColumn = req.Query["order_column"];
 
                 Req.ContextId = ContextsEnum.db_test;                
-                Lg.pr("Azure Have a Look started...");
+                
                 
                 FilterDto filterDto = FilterDto.fromPrimitives(search, page, perPage, orderBy, orderColumn);
                 var provincesDto = _checkPaginationService.Invoke(filterDto);                
