@@ -39,14 +39,15 @@ namespace azure_have_a_look
             {
                 int page = int.Parse(req.Query["page"]);
                 int perPage = int.Parse(req.Query["per_page"]);
+                string search = req.Query["search"];
+                string orderBy = req.Query["order_by"];
+                string orderColumn = req.Query["order_column"];
 
                 Req.ContextId = ContextsEnum.db_test;                
                 Lg.pr("Azure Have a Look started...");
                 
-                FilterDto filterDto = FilterDto.fromPrimitives("", page, perPage, "ASC", "id");
-                var provincesDto = _checkPaginationService.Invoke(filterDto);
-                string jsonString = JsonConvert.SerializeObject(provincesDto);
-                
+                FilterDto filterDto = FilterDto.fromPrimitives(search, page, perPage, orderBy, orderColumn);
+                var provincesDto = _checkPaginationService.Invoke(filterDto);                
                 return new OkObjectResult(provincesDto);
             }
             catch (Exception e)
