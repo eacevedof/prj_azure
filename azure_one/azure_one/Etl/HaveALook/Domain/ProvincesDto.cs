@@ -10,6 +10,7 @@ public sealed class ProvincesDto
     public readonly int nextPage;    
     public readonly int totalItems;
     public readonly int pageSize;
+    public readonly int totalItemsInPage;
 
     public ProvincesDto(
       List<Dictionary<string, string>> _dataInPage,
@@ -17,7 +18,8 @@ public sealed class ProvincesDto
       int _nextPage,
       int _currentPage,
       int _totalItems,
-      int _pageSize
+      int _pageSize,
+      int _totalItemsInPage,
     )
     {
         dataInPage = _dataInPage;
@@ -26,6 +28,7 @@ public sealed class ProvincesDto
         currentPage = _currentPage;
         totalItems = _totalItems;
         pageSize = _pageSize;
+        totalItemsInPage = _totalItemsInPage;
     }
 
     public static ProvincesDto fromPrimitives(
@@ -34,7 +37,8 @@ public sealed class ProvincesDto
       int _nextPage,
       int _currentPage,
       int _totalItems,
-      int _pageSize
+      int _pageSize,
+      int _totalItemsInPage
     )
     {
         return new ProvincesDto(
@@ -43,7 +47,8 @@ public sealed class ProvincesDto
           _nextPage,
           _currentPage,
           _totalItems,
-          _pageSize
+          _pageSize,
+          _totalItemsInPage
         );
     }
 }
