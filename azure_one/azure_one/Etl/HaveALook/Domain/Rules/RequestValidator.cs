@@ -6,9 +6,9 @@ namespace azure_one.Etl.HaveALook.Domain.Rules;
 
 public sealed class RequestValidator
 {   
-    public void Invoke(HttpRequest httpRequest)
+    public void Invoke(IQueryCollection httpQuery)
     {
-        IQueryCollection query = httpRequest.Query;
+        IQueryCollection query = httpQuery;
         if (!query.ContainsKey("page"))
             throw new Exception("missing page");
 

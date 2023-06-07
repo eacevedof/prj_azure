@@ -12,6 +12,7 @@ using azure_one.Etl.Shared.Infrastructure.Db.Contexts;
 using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.HaveALook.Application;
 using azure_one.Etl.HaveALook.Domain;
+using azure_one.Etl.HaveALook.Domain.Rules;
 
 namespace azure_have_a_look
 {
@@ -37,10 +38,14 @@ namespace azure_have_a_look
             try
             {
                 Lg.pr("Azure Have a Look started...");
+                RequestValidator requestValidator = new();
+
+                IQueryCollection httpQuery = req.Query;
+                requestValidator.Invoke(httpQuery);
 
                 int page = int.Parse(req.Query["page"]);
                 int perPage = int.Parse(req.Query["per_page"]);
-                string search = req.Query["search"];
+                string search = req. req.Query["search"];
                 string orderBy = req.Query["order_by"];
                 string orderColumn = req.Query["order_column"];
 
