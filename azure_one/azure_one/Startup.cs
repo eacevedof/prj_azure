@@ -18,7 +18,6 @@ using azure_one.Etl.SqlRunners.Infrastructure.Controllers;
 
 using azure_one.Etl.HaveALook.Application;
 using azure_one.Etl.HaveALook.Infrastructure.Repositories;
-using azure_one.Etl.HaveALook.Infrastructure.Controllers;
 
 
 [assembly:FunctionsStartup(typeof(azure_one.Startup))]

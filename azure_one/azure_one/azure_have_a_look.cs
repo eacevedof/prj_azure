@@ -12,6 +12,7 @@ using azure_one.Etl.Shared.Infrastructure.Db.Contexts;
 
 using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.HaveALook.Application;
+using azure_one.Etl.HaveALook.Domain;
 
 namespace azure_have_a_look
 {
@@ -36,15 +37,17 @@ namespace azure_have_a_look
         {
             try
             {
-                string page = req.Query["page"];
-                string perPage = req.Query["per_page"];
+                int page = int.Parse(req.Query["page"]);
+                int perPage = int.Parse(req.Query["per_page"]);
 
                 Req.ContextId = ContextsEnum.db_test;
                 Req.Request["page"] = page;
                 Req.Request["pagesize"] = perPage;
                 
                 Lg.pr("Azure Have a Look started...");
-                var provincesDto = _checkPaginationService.Invoke();
+                
+                FilterDto filterDto = FilterDto.fromPrimitives("", page, perPage, "ASC", "id");
+                var provincesDto = _checkPaginationService.Invoke(filterDto);
                 string jsonString = JsonConvert.SerializeObject(provincesDto);
                 
                 return new OkObjectResult(provincesDto);

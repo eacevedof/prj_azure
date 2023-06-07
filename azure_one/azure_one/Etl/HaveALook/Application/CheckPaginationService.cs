@@ -17,11 +17,11 @@ public sealed class CheckPaginationService
         _getAnyListRepository = new GetAnyListRepository(Mssql.GetInstanceByDto(contextDto));
     }
     
-    public ProvincesDto Invoke()
+    public ProvincesDto Invoke(FilterDto filterDto)
     {
-        int page = int.Parse(Req.Request["page"]);
-        int pageSize = int.Parse(Req.Request["pagesize"]);
+        //int page = int.Parse(Req.Request["page"]);
+        //int pageSize = int.Parse(Req.Request["pagesize"]);
         
-        return _getAnyListRepository.Invoke(page, pageSize);
+        return _getAnyListRepository.Invoke(filterDto.page(), filterDto.pageSize());
     }
 }
