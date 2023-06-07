@@ -43,11 +43,11 @@ namespace azure_have_a_look
                 IQueryCollection httpQuery = req.Query;
                 requestValidator.Invoke(httpQuery);
 
-                int page = int.Parse(req.Query["page"]);
-                int perPage = int.Parse(req.Query["per_page"]);
-                string search = req. req.Query["search"];
-                string orderBy = req.Query["order_by"];
-                string orderColumn = req.Query["order_column"];
+                int page = int.Parse(httpQuery["page"]);
+                int perPage = int.Parse(httpQuery["per_page"]);
+                string search = httpQuery.ContainsKey("search") ? httpQuery["search"] : "";
+                string orderBy = httpQuery.ContainsKey("order_by") ? httpQuery["order_by"] : "DESC";
+                string orderColumn = httpQuery.ContainsKey("order_column") ? httpQuery["order_column"] : "id";
 
                 Req.ContextId = ContextsEnum.db_test;                
                                 
