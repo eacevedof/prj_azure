@@ -47,7 +47,7 @@ public sealed class GetAnyListRepository: AbsRepository
             paginator.GetCurrentPage(),
             paginator.GetTotalCount(),
             paginator.GetPageSize(),
-            paginator.GetTotalItemsInPage(),
+            paginator.GetTotalItemsInPage()
         );
         
     }

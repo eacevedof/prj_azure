@@ -19,7 +19,7 @@ public sealed class ProvincesDto
       int _currentPage,
       int _totalItems,
       int _pageSize,
-      int _totalItemsInPage,
+      int _totalItemsInPage
     )
     {
         dataInPage = _dataInPage;
