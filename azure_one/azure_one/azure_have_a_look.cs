@@ -40,10 +40,7 @@ namespace azure_have_a_look
                 int page = int.Parse(req.Query["page"]);
                 int perPage = int.Parse(req.Query["per_page"]);
 
-                Req.ContextId = ContextsEnum.db_test;
-                Req.Request["page"] = page;
-                Req.Request["pagesize"] = perPage;
-                
+                Req.ContextId = ContextsEnum.db_test;                
                 Lg.pr("Azure Have a Look started...");
                 
                 FilterDto filterDto = FilterDto.fromPrimitives("", page, perPage, "ASC", "id");
