@@ -1,6 +1,8 @@
 
 namespace azure_one.Etl.HaveALook.Domain;
 
+using System;
+
 public sealed class FilterDto
 {   
     private readonly string _search;
@@ -17,6 +19,8 @@ public sealed class FilterDto
       string columnName
     )
     {
+        if (orderBy!="ASC" && orderBy!="DESC")
+          throw new Exception("wrong orderBy value. Neither ASC nor DESC provided");      
         this._search = search;
         this._page = page;
         this._pageSize = pageSize;
@@ -45,8 +49,20 @@ public sealed class FilterDto
     {
       return _search;
     }
+    public int page()
+    {
+      return _page;
+    }
+    public int pageSize()
+    {
+      return _pageSize;
+    }
+    public string columnName()
+    {
+      return _columnName;
+    }
     public string orderBy()
     {
-      return orderBy;
+      return _orderBy;
     }
 }
