@@ -1,7 +1,7 @@
 
-namespace azure_one.Etl.HaveALook.Domain;
-
 using System;
+
+namespace azure_one.Etl.HaveALook.Domain;
 
 public sealed class FilterDto
 {   
