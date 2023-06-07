@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-using azure_one.Etl.Shared.Infrastructure.Db;
 using azure_one.Etl.Shared.Infrastructure.Log;
 
 namespace azure_one.Etl.Shared.Infrastructure.Db.QueryBuilders;
@@ -138,5 +137,9 @@ public sealed class ReadQueryPaginator
     public int GetPageSize()
     {
         return _pageSize;
+    }    
+    public int GetTotalItemsInPage()
+    {
+        return _rows.Count;
     }    
 }
