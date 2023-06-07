@@ -20,7 +20,7 @@ public sealed class GetAnyListRepository: AbsRepository
     }
     
 
-    public ProvincesDto Invoke(int page, int pageSize)
+    public ProvincesDto Invoke(FilterDto filterDto)
     {
         ReadQuery readQuery = ReadQuery.fromTable("imp_countries c");
         readQuery
@@ -36,8 +36,8 @@ public sealed class GetAnyListRepository: AbsRepository
         ;
         ReadQueryPaginator paginator = ReadQueryPaginator.fromPrimitives(
             readQuery, 
-            page, 
-            pageSize
+            filterDto.page(), 
+            filterDto.pageSize()
         ).Calculate();
 
         return ProvincesDto.fromPrimitives(
