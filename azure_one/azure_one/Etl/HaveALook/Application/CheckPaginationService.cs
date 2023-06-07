@@ -19,6 +19,6 @@ public sealed class CheckPaginationService
     
     public ProvincesDto Invoke(FilterDto filterDto)
     {       
-        return _getAnyListRepository.Invoke(filterDto.page(), filterDto.pageSize());
+        return _getAnyListRepository.Invoke(filterDto);
     }
 }
