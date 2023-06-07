@@ -22,6 +22,10 @@ public sealed class GetAnyListRepository: AbsRepository
 
     public ProvincesDto Invoke(FilterDto filterDto)
     {
+        string search = GetMssqlSanitized(filterDto.search());
+        string column = GetMssqlSanitized(filterDto.columnName());
+        string orderBy = filterDto.orderBy();
+
         ReadQuery readQuery = ReadQuery.fromTable("imp_countries c");
         readQuery
             .AddGetField("c.id c_id")
@@ -30,9 +34,9 @@ public sealed class GetAnyListRepository: AbsRepository
             .AddGetField("c.val country")
             .AddGetField("p.provinces_id, p.val province")
             .AddJoin("INNER JOIN imp_provinces p ON c.countries_id = p.countries_id")
-            .AddWhere("c.val LIKE '%A%'")
-            .AddWhere("LEN(p.val) > 1")
-            .AddOrderBy("c.val")
+
+            .AddWhere($"(c.val LIKE '%{search}%' OR p.val LIKE '%{search}%')")
+            .AddOrderBy($"c.{column}", orderBy)
         ;
         ReadQueryPaginator paginator = ReadQueryPaginator.fromPrimitives(
             readQuery, 
