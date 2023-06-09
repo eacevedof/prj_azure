@@ -64,7 +64,7 @@ public sealed class RequestValidator
         if (orderColumn.IsNullOrWhiteSpace())
             return;
 
-        string[] values = {"id", "p", "k", "y"};
+        string[] values = {"id", "uuid", "val"};
         if (!InArray(orderColumn, values))
             HaveALookException.FailIfOrderColumnIsNotValid(values);
             
