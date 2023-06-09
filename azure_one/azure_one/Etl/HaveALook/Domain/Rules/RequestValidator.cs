@@ -60,12 +60,13 @@ public sealed class RequestValidator
         if (!query.ContainsKey("order_column"))
             return;
 
-        string orderBy = query["order_column"];
-        if (orderBy.IsNullOrWhiteSpace())
+        string orderColumn = query["order_column"];
+        if (orderColumn.IsNullOrWhiteSpace())
             return;
 
         string[] values = {"id", "p", "k", "y"};
-        if (!InArray("order_column", values))
+        if (!InArray(orderColumn, values))
+            HaveALookException.FailIfOrderColumnIsNotValid(values);
             
     }
 

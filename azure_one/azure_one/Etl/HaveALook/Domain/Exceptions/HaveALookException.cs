@@ -65,7 +65,7 @@ public class HaveALookException : AbstractHaveALookException
             );
     }
 
-    public static void FailIfColumnIsNotValid(string[] columns)
+    public static void FailIfOrderColumnIsNotValid(string[] columns)
     {
         string strColumns = string.Join(", ", columns);
         throw new HaveALookException(
