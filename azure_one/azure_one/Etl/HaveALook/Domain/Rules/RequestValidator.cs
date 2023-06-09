@@ -62,8 +62,7 @@ public sealed class RequestValidator
         if (orderBy.IsNullOrWhiteSpace())
             return;
 
-        if (orderBy != "ASC" && orderBy != "DESC")
-            HaveALookException.FailIfOrderByIsNotAscOrDesc();
+        
     }
 
     private bool inArray(string value, string[] values)
