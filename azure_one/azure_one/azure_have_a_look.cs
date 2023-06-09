@@ -12,6 +12,7 @@ using azure_one.Etl.Shared.Infrastructure.Db.Contexts;
 using azure_one.Etl.Shared.Infrastructure.Log;
 using azure_one.Etl.HaveALook.Application;
 using azure_one.Etl.HaveALook.Domain;
+using azure_one.Etl.HaveALook.Domain.Exceptions;
 using azure_one.Etl.HaveALook.Domain.Rules;
 
 namespace azure_have_a_look

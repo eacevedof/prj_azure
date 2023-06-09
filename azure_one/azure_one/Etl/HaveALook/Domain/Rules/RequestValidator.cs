@@ -1,6 +1,7 @@
 
 using System;
 using Microsoft.AspNetCore.Http;
+using azure_one.Etl.HaveALook.Domain.Exceptions;
 
 namespace azure_one.Etl.HaveALook.Domain.Rules;
 
