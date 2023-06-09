@@ -12,17 +12,17 @@ public class HaveALookException : AbstractHaveALookException
     public static void FailIfMissingPage()
     {
         throw new HaveALookException(
-            "missing page", 
-            AbstractHaveALookException.BAD_REQUEST_CODE
-        );
+                "missing page", 
+                AbstractHaveALookException.BAD_REQUEST_CODE
+            );
     }
 
     public static void FailIfPageIsNotInteger()
     {
         throw new HaveALookException(
-            "page must be a integer", 
-            AbstractHaveALookException.BAD_REQUEST_CODE
-        );
+                "page must be a integer", 
+                AbstractHaveALookException.BAD_REQUEST_CODE
+            );
     }
 
     public static void FailIfMissingPerPage()
@@ -36,17 +36,17 @@ public class HaveALookException : AbstractHaveALookException
     public static void FailIfPerPageIsNotInteger()
     {
         throw new HaveALookException(
-            "per_page must be a integer", 
-            AbstractHaveALookException.BAD_REQUEST_CODE
-        );
+                "per_page must be a integer", 
+                AbstractHaveALookException.BAD_REQUEST_CODE
+            );
     }
 
     public static void FailIfPageIsLowerThanOne()
     {
         throw new HaveALookException(
-            "page can not be lower than 1", 
-            AbstractHaveALookException.BAD_REQUEST_CODE
-        );
+                "page can not be lower than 1", 
+                AbstractHaveALookException.BAD_REQUEST_CODE
+            );
     }
 
     public static void FailIfPerPageIsLowerThanOne()
@@ -60,9 +60,9 @@ public class HaveALookException : AbstractHaveALookException
     public static void FailIfOrderByIsNotAscOrDesc()
     {
         throw new HaveALookException(
-            "order_by must be ASC or DESC", 
-            AbstractHaveALookException.BAD_REQUEST_CODE
-        );
+                "order_by must be ASC or DESC", 
+                AbstractHaveALookException.BAD_REQUEST_CODE
+            );
     }
 
     public static void FailIfColumnIsNotValid(string[] columns)
