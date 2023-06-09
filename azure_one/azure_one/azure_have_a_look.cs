@@ -50,10 +50,9 @@ namespace azure_have_a_look
                 string orderBy = httpQuery.ContainsKey("order_by") ? httpQuery["order_by"] : "DESC";
                 string orderColumn = httpQuery.ContainsKey("order_column") ? httpQuery["order_column"] : "id";
 
-                Req.ContextId = ContextsEnum.db_test;                
-                                
+                Req.ContextId = ContextsEnum.db_test;
                 FilterDto filterDto = FilterDto.fromPrimitives(search, page, perPage, orderBy, orderColumn);
-                ProvincesDto provincesDto = _checkPaginationService.Invoke(filterDto);                
+                ProvincesDto provincesDto = _checkPaginationService.Invoke(filterDto);
                 return new OkObjectResult(provincesDto);
             }
             catch (AbstractHaveALookException e)
