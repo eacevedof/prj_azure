@@ -8,8 +8,13 @@ public class HaveALookException : AbstractHaveALookException
     {
     }
 
-    public static void Ex()
+    public static void FailIfMissingPage()
     {
-        throw new HaveALookException("xx");
+        throw new HaveALookException("missing page");
+    }
+
+    public static void FailIfPageIsNotInteger()
+    {
+        throw new HaveALookException("Page must be a integer");
     }
 }

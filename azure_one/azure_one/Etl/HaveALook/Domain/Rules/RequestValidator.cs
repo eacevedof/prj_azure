@@ -11,11 +11,11 @@ public sealed class RequestValidator
     {
         IQueryCollection query = httpQuery;
         if (!query.ContainsKey("page"))
-            throw new Exception("missing page");
+            HaveALookException.FailIfMissingPage();
 
         string value = query["page"];
         if (!IsInteger(value))
-            throw new Exception("page must be integer");
+            HaveALookException.FailIfPageIsNotInteger();
         
         if (!query.ContainsKey("per_page"))
             throw new Exception("missing per_page");
