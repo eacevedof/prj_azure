@@ -23,6 +23,8 @@ public sealed class RequestValidator
         value = query["per_page"];
         if (!IsInteger(value))
             HaveALookException.FailIfPerPageIsNotInteger();
+
+
         
         
         /*
