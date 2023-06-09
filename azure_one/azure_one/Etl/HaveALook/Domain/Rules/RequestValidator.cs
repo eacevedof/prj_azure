@@ -18,11 +18,11 @@ public sealed class RequestValidator
             HaveALookException.FailIfPageIsNotInteger();
         
         if (!query.ContainsKey("per_page"))
-            throw new Exception("missing per_page");
+            HaveALookException.FailIfMissingPerPage();
 
         value = query["per_page"];
         if (!IsInteger(value))
-            throw new Exception("per_page must be integer");
+            HaveALookException.FailIfPerPageIsNotInteger();
         
         
         /*
