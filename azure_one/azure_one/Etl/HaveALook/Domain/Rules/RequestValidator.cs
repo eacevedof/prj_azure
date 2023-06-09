@@ -64,10 +64,12 @@ public sealed class RequestValidator
         if (orderBy.IsNullOrWhiteSpace())
             return;
 
-        
+        string[] values = {"id", "p", "k", "y"};
+        if (!InArray("order_column", values))
+            
     }
 
-    private bool inArray(string value, string[] values)
+    private bool InArray(string value, string[] values)
     {
         return values.Contains(value);
     }
