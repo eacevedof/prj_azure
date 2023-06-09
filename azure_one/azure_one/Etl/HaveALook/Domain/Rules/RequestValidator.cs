@@ -3,6 +3,7 @@ using System;
 using Microsoft.AspNetCore.Http;
 using azure_one.Etl.HaveALook.Domain.Exceptions;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
+using System.Linq;
 
 namespace azure_one.Etl.HaveALook.Domain.Rules;
 
@@ -48,7 +49,26 @@ public sealed class RequestValidator
         if (orderBy.IsNullOrWhiteSpace())
             return;
 
+        if (orderBy != "ASC" && orderBy != "DESC")
+            HaveALookException.FailIfOrderByIsNotAscOrDesc();
+    }
 
+    private void FailIfOrderColumnIsNotValid()
+    {
+        if (!query.ContainsKey("order_column"))
+            return;
+
+        string orderBy = query["order_column"];
+        if (orderBy.IsNullOrWhiteSpace())
+            return;
+
+        if (orderBy != "ASC" && orderBy != "DESC")
+            HaveALookException.FailIfOrderByIsNotAscOrDesc();
+    }
+
+    private bool inArray(string value, string[] values)
+    {
+        return values.Contains(value);
     }
 
 
