@@ -24,16 +24,14 @@ public sealed class RequestValidator
         if (!IsInteger(value))
             HaveALookException.FailIfPerPageIsNotInteger();
 
+        int ivalue = int.Parse(query["page"]);
+        if (ivalue < 1)
+            HaveALookException.FailIfPageIsLowerThanOne();
 
-        
-        
-        /*
-      int page = int.Parse(req.Query["page"]);
-                int perPage = int.Parse(req.Query["per_page"]);
-                string search = req.Query["search"];
-                string orderBy = req.Query["order_by"];
-                string orderColumn = req.Query["order_column"];        
-        */
+        ivalue = int.Parse(query["per_page"]);
+        if (ivalue < 1)
+            HaveALookException.FailIfPerPageIsLowerThanOne();
+
     }
 
     private bool IsInteger(string value)
