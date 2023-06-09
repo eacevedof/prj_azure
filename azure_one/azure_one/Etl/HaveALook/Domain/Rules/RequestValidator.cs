@@ -36,7 +36,9 @@ public sealed class RequestValidator
         if (ivalue < 1)
             HaveALookException.FailIfPerPageIsLowerThanOne();
 
-        FailIfNotValidOrderBy();   
+        FailIfNotValidOrderBy();
+
+        FailIfOrderColumnIsNotValid();
      
     }
 
@@ -69,7 +71,6 @@ public sealed class RequestValidator
     {
         return values.Contains(value);
     }
-
 
     private bool IsInteger(string value)
     {
