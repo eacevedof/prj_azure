@@ -56,6 +56,10 @@ namespace azure_have_a_look
                 ProvincesDto provincesDto = _checkPaginationService.Invoke(filterDto);                
                 return new OkObjectResult(provincesDto);
             }
+            catch (AbstractHaveALookException e)
+            {
+                return new OkObjectResult(e.Message) { StatusCode = e.GetCode()};
+            }
             catch (Exception e)
             {
                 log.LogInformation(e.ToString());

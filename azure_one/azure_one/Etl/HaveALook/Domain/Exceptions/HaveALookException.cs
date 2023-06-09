@@ -4,7 +4,8 @@ namespace azure_one.Etl.HaveALook.Domain.Exceptions;
 
 public class HaveALookException : AbstractHaveALookException
 {
-    public HaveALookException(string message) : base(message)
+
+    public HaveALookException(string message, int code = 0) : base(message, code)
     {
     }
 
@@ -26,5 +27,7 @@ public class HaveALookException : AbstractHaveALookException
     public static void FailIfPerPageIsNotInteger()
     {
         throw new HaveALookException("per_page must be a integer");
-    }    
+    }
+
+
 }
