@@ -39,4 +39,9 @@ public class HaveALookException : AbstractHaveALookException
         throw new HaveALookException("per_page can not be lower than 1", AbstractHaveALookException.BAD_REQUEST_CODE);
     }
 
+    public static void FailIfOrderByIsNotAscOrDesc()
+    {
+        throw new HaveALookException("order_by must be ASC or DESC", AbstractHaveALookException.BAD_REQUEST_CODE);
+    }
+
 }

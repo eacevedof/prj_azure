@@ -2,14 +2,17 @@
 using System;
 using Microsoft.AspNetCore.Http;
 using azure_one.Etl.HaveALook.Domain.Exceptions;
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
 
 namespace azure_one.Etl.HaveALook.Domain.Rules;
 
 public sealed class RequestValidator
-{   
+{
+    private IQueryCollection query;
+
     public void Invoke(IQueryCollection httpQuery)
     {
-        IQueryCollection query = httpQuery;
+        query = httpQuery;
         if (!query.ContainsKey("page"))
             HaveALookException.FailIfMissingPage();
 
@@ -32,7 +35,22 @@ public sealed class RequestValidator
         if (ivalue < 1)
             HaveALookException.FailIfPerPageIsLowerThanOne();
 
+        FailIfNotValidOrderBy();   
+     
     }
+
+    private void FailIfNotValidOrderBy()
+    {
+        if (!query.ContainsKey("order_by"))
+            return;
+
+        string orderBy = query["order_by"];
+        if (orderBy.IsNullOrWhiteSpace())
+            return;
+
+
+    }
+
 
     private bool IsInteger(string value)
     {
