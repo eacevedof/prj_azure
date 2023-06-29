@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 namespace azure_one.Etl.HaveALook.Domain;
 
+
 public sealed class ProvincesDto
 {   
     public readonly List<Dictionary<string, string>> dataInPage;
