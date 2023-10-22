@@ -13,9 +13,9 @@ namespace Fn.Users.Services
         }
 
 
-        public UsersIndexDto Invoke(GetUsersBySearchDto GetUsersBySearchDto)
+        public UsersListDto Invoke(GetUsersBySearchDto GetUsersBySearchDto)
         {
-            return new UsersIndexDto();
+            return new UsersListDto();
         }
     }
 }

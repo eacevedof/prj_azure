@@ -28,28 +28,25 @@ namespace Fn.Users.Controllers
         }
 
         /*
-         users-index: [GET,POST] http://localhost:7071/api/users-index
+         users-search: [GET,POST] http://localhost:7071/api/users-search
         */
-        [FunctionName("users-index")]
+        [FunctionName("users-search")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log
         )
         {
             try
             {
-       
-                string tenant_slug = req.Query["tenant_slug"];
-
-
-
-                string successMessage = $"ETL AzureOne ({tenant_slug}) has finished successfully!.";
-                return new OkObjectResult(successMessage);
+                string search = req.Query["search"];
+                var usersListDto = _getUsersService.Invoke(new GetUsersBySearchDto());
+                return new OkObjectResult(usersListDto);
             }
             catch (Exception e)
             {
+                log.LogError(e.StackTrace);
                 return new OkObjectResult(
-                    "Sorry the ETL process failed. Check logs for more information please"
+                    "Some unexpected error occurred. Please. Contact support if this error continue"
                     )
                     {
                         StatusCode = 500

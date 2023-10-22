@@ -1,7 +1,7 @@
 
 namespace Fn.Users.Views
 {
-    public sealed class UsersIndexDto
+    public sealed class UsersListDto
     {
         private int _id;
         private string _name;
