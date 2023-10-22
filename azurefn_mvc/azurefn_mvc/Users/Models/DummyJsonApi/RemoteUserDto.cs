@@ -1,5 +1,5 @@
 
-namespace Fn.Users.Models.Dummyjson
+namespace Fn.Users.Models.DummyJsonApi
 {
     public sealed class RemoteUserDto
     {

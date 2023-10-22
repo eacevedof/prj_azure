@@ -19,7 +19,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <None Remove="Users\Models\Dummyjson\" />
+    <None Remove="Users\Models\DummyJsonApi\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
@@ -32,6 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Users\Models\Dummyjson\" />
+    <Folder Include="Users\Models\DummyJsonApi\" />
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@ using System.Net;
 using System.Text.Json;
 using System.Collections.Generic;
 
-using Fn.Users.Models.Dummyjson;
+using Fn.Users.Models.DummyJsonApi;
 
 namespace Fn.Users.Models
 {
