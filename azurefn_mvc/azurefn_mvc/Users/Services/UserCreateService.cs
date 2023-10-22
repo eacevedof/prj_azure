@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-
 using Fn.Users.Models;
-using Fn.Users.Views;
 
 namespace Fn.Users.Services
 {
@@ -16,9 +13,9 @@ namespace Fn.Users.Services
 
         public UsersEntity Invoke(UserCreateDto userCreateDto)
         {
-            var userToCreate = UsersEntity.FromUserCreate(userCreateDto);
+            var userToCreateEntity = UsersEntity.FromUserCreate(userCreateDto);
             UsersEntity userCreatedEntity = _usersRepository.CreateUser(
-                userToCreate
+                userToCreateEntity
             );
             return userCreatedEntity;
         }
