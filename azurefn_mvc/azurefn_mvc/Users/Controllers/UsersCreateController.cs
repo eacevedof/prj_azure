@@ -1,14 +1,14 @@
 ﻿using System;
+using System.IO;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Newtonsoft.Json;
 
 using Fn.Users.Services;
-using System.IO;
 
 namespace Fn.Users.Controllers
 {
@@ -65,9 +65,9 @@ namespace Fn.Users.Controllers
                     };
             }
 
-        } //async Task
+        } //method Run
         
-    }// class Fn
+    }// class UsersCreateController
     
-}// namespace Fn
+}// namespace Fn.Users.Controllers
 

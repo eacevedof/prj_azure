@@ -6,13 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 
-
 using Fn.Users.Services;
-
-
-//resources
-//https://techiedelight.com/compiler/
-//https://dotnetfiddle.net/
 
 namespace Fn.Users.Controllers
 {
@@ -56,9 +50,9 @@ namespace Fn.Users.Controllers
                     };
             }
 
-        } //async Task
-        
-    }// class Fn
-    
-}// namespace Fn
+        } //method Run
+
+    }// class GetUsersController
+
+}// namespace Fn.Users.Controllers
 
