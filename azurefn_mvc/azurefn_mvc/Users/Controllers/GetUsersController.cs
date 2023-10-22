@@ -28,7 +28,7 @@ namespace Fn.Users.Controllers
         }
 
         /*
-         users-search: [GET,POST] http://localhost:7071/api/users-search
+         users-search: [GET] http://localhost:7071/api/users-search
         */
         [FunctionName("users-search")]
         public async Task<IActionResult> Run(
@@ -39,8 +39,10 @@ namespace Fn.Users.Controllers
             try
             {
                 string searchText = req.Query["search"];
+
                 var searchDto = GetUsersBySearchDto.FromPrimitives(searchText);
                 var usersListDto = _getUsersService.Invoke(searchDto);
+
                 return new OkObjectResult(usersListDto);
             }
             catch (Exception e)
