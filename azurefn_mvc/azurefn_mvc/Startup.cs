@@ -23,10 +23,7 @@ public class Startup: FunctionsStartup
     {
         //aqui se configura la inyeccion de dependecias
         builder.Services.AddHttpClient();
-        
-        //repositories
-        //builder.Services.AddSingleton<UsersRepository>(s => new UsersRepository());
-        
+
         //services
         builder.Services.AddSingleton<GetUsersService>(s => new GetUsersService(new UsersRepository()));
        
