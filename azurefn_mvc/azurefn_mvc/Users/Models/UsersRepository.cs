@@ -2,7 +2,7 @@ using System;
 using System.Net;
 using System.Collections.Generic;
 using System.Text.Json;
-
+using System.Reflection;
 
 namespace Fn.Users.Models
 {
@@ -16,12 +16,19 @@ namespace Fn.Users.Models
             //List<Object> list = JsonSerializer.Deserialize<List<Object>>(json);
 
             RemoteUsersDto remoteUsersDto = JsonSerializer.Deserialize<RemoteUsersDto>(json);
-            List<RemoteUserDto> remoteUsers = JsonSerializer.Deserialize<List<RemoteUserDto>>(remoteUsersDto.users.ToString());
-            //var x = deserializedObject.users;
-            // Accessing the list of users
-            //List<User> users = deserializedObject.users;
+            //List<RemoteUserDto> remoteUsers = JsonSerializer.Deserialize<List<RemoteUserDto>>(remoteUsersDto.users.ToString());
 
-            return new List<Dictionary<string, string>>();
+            var usersFound = new List<Dictionary<string, string>>();
+            foreach (var o in remoteUsersDto.users)
+            {
+                var dic = new Dictionary<string, string>();
+                dic["id"] = _GetAttributeValue(o, "id");
+                dic["name"] = _GetAttributeValue(o, "firstName") + " " + _GetAttributeValue(o, "lastName");
+                dic["email"] = _GetAttributeValue(o, "email");
+                usersFound.Add(dic);
+            }
+
+            return usersFound;
         }
 
         private string _GetUsersJsonFromEndpoint()
@@ -36,5 +43,22 @@ namespace Fn.Users.Models
             return json;
         }
 
+        private string _GetAttributeValue(Object obj, string attribute)
+        {
+            Type type = obj.GetType();
+
+            PropertyInfo[] properties = type.GetProperties();
+
+            // Iterating through each property and printing its name and value
+            foreach (PropertyInfo property in properties)
+            {
+                string propertyName = property.Name;
+                if (propertyName != attribute)
+                    continue;
+                object propertyValue = property.GetValue(obj);
+                return propertyValue.ToString();
+            }
+            return "";
+        }
     }
 }
