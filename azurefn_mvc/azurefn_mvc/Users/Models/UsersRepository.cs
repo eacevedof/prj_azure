@@ -13,6 +13,7 @@ namespace Fn.Users.Models
 
         public List<UsersEntity> GetUsersBySearchText(string searchText)
         {
+            searchText = searchText.Trim().ToLower();
             var json = _GetUsersJsonFromEndpoint();
             RemoteUsersDto remoteUsersDto = JsonSerializer.Deserialize<RemoteUsersDto>(json);
             List<RemoteUserDto> remoteUsers = JsonSerializer.Deserialize<List<RemoteUserDto>>(remoteUsersDto.users.ToString());
@@ -21,10 +22,10 @@ namespace Fn.Users.Models
             foreach (var remoteUserDto in remoteUsers)
             {
                 if (
-                    remoteUserDto.id.ToString().Contains(searchText) ||
-                    remoteUserDto.firstName.Contains(searchText) ||
-                    remoteUserDto.lastName.Contains(searchText) ||
-                    remoteUserDto.email.Contains(searchText) 
+                    remoteUserDto.id.ToString().ToLower().Contains(searchText) ||
+                    remoteUserDto.firstName.ToLower().Contains(searchText) ||
+                    remoteUserDto.lastName.ToLower().Contains(searchText) ||
+                    remoteUserDto.email.ToLower().Contains(searchText) 
                 )
                     usersFound.Add(UsersEntity.FromPrimitives(
                         remoteUserDto.id,
