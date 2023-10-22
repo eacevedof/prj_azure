@@ -4,23 +4,22 @@ namespace Fn.Users.Services
 
     public sealed class GetUsersBySearchDto
     {
-        private int _id;
-        private string _name;
-        private string _email;
+        private string _search;
 
-        public int Id
+        public GetUsersBySearchDto(string search)
         {
-            get { return _id; }
+            _search = search;
         }
 
-        public string Name
+        public static GetUsersBySearchDto FromPrimitives(string searchText)
         {
-            get { return _name; }
+            return new GetUsersBySearchDto(searchText);
         }
 
-        public string Email
+        public string Search
         {
-            get { return _email; }
+            get { return _search; }
         }
+
     }
 }
