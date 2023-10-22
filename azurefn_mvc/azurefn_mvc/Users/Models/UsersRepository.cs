@@ -8,7 +8,7 @@ namespace Fn.Users.Models
 {
     public sealed class UsersRepository
     {
-        private string USERS_ENDPOINT = "https://dummyjson.com/users";
+        private string USERS_ENDPOINT = "https://dummyjson.com/users?limit=15";
 
         public List<Dictionary<string,string>> GetUsersBySearchText(string searchText)
         {
