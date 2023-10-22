@@ -2,7 +2,7 @@
 namespace Fn.Users.Services
 {
 
-    public sealed class UsersIndexSearchDto
+    public sealed class GetUsersBySearchDto
     {
         private int _id;
         private string _name;
