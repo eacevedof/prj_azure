@@ -19,15 +19,19 @@ namespace Fn.Users.Models
             //List<RemoteUserDto> remoteUsers = JsonSerializer.Deserialize<List<RemoteUserDto>>(remoteUsersDto.users.ToString());
 
             var usersFound = new List<Dictionary<string, string>>();
+            List<RemoteUserDto> remoteUsers = JsonSerializer.Deserialize<List<RemoteUserDto>>(remoteUsersDto.users.ToString());
+            /*
             foreach (var o in remoteUsersDto.users)
             {
+                var x = o.ToString();
+                List<RemoteUserDto> remoteUsers = JsonSerializer.Deserialize<List<RemoteUserDto>>(o.ToString());
                 var dic = new Dictionary<string, string>();
                 dic["id"] = _GetAttributeValue(o, "id");
                 dic["name"] = _GetAttributeValue(o, "firstName") + " " + _GetAttributeValue(o, "lastName");
                 dic["email"] = _GetAttributeValue(o, "email");
                 usersFound.Add(dic);
             }
-
+            */
             return usersFound;
         }
 
@@ -46,10 +50,8 @@ namespace Fn.Users.Models
         private string _GetAttributeValue(Object obj, string attribute)
         {
             Type type = obj.GetType();
-
             PropertyInfo[] properties = type.GetProperties();
 
-            // Iterating through each property and printing its name and value
             foreach (PropertyInfo property in properties)
             {
                 string propertyName = property.Name;
