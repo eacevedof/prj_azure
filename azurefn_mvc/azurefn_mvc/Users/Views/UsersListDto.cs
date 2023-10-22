@@ -7,7 +7,7 @@ namespace Fn.Users.Views
 {
     public sealed class UsersListDto
     {
-        private List<object> _list;
+        private List<object> _list = new();
 
         public UsersListDto(List<UsersEntity> usersEntities)
         {
