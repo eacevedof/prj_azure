@@ -16,7 +16,7 @@ namespace Fn.Users.Models
             //List<Object> list = JsonSerializer.Deserialize<List<Object>>(json);
 
             RemoteUsersDto remoteUsersDto = JsonSerializer.Deserialize<RemoteUsersDto>(json);
-            List<RemoteUserDto> remoteUsers = JsonSerializer.Deserialize<List<RemoteUserDto>>(remoteUsersDto.users);
+            List<RemoteUserDto> remoteUsers = JsonSerializer.Deserialize<List<RemoteUserDto>>(remoteUsersDto.users.ToString());
             //var x = deserializedObject.users;
             // Accessing the list of users
             //List<User> users = deserializedObject.users;
