@@ -2,7 +2,6 @@ using Fn.Users.Services;
 
 namespace Fn.Users.Models
 {
-
     public sealed class UsersEntity
     {
         private int _id;

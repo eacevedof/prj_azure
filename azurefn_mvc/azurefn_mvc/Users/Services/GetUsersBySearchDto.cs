@@ -1,7 +1,6 @@
 
 namespace Fn.Users.Services
 {
-
     public sealed class GetUsersBySearchDto
     {
         private string _search;
