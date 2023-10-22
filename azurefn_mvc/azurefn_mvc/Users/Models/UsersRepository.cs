@@ -11,20 +11,20 @@ namespace Fn.Users.Models
     {
         private string USERS_ENDPOINT = "https://dummyjson.com/users?limit=5";
 
-        public List<Dictionary<string,string>> GetUsersBySearchText(string searchText)
+        public List<UsersEntity> GetUsersBySearchText(string searchText)
         {
             var json = _GetUsersJsonFromEndpoint();
             RemoteUsersDto remoteUsersDto = JsonSerializer.Deserialize<RemoteUsersDto>(json);
             List<RemoteUserDto> remoteUsers = JsonSerializer.Deserialize<List<RemoteUserDto>>(remoteUsersDto.users.ToString());
 
-            var usersFound = new List<Dictionary<string, string>>();            
+            var usersFound = new List<UsersEntity>();            
             foreach (var remoteUserDto in remoteUsers)
             {
-                var dic = new Dictionary<string, string>();
-                dic["id"] = remoteUserDto.id.ToString();
-                dic["name"] = $"{remoteUserDto.firstName} {remoteUserDto.lastName}";
-                dic["email"] = remoteUserDto.email;
-                usersFound.Add(dic);
+                var userEntity = new UsersEntity();
+                userEntity.Id = remoteUserDto.id;
+                userEntity.Name = $"{remoteUserDto.firstName} {remoteUserDto.lastName}";
+                userEntity.Email = remoteUserDto.email;
+                usersFound.Add(userEntity);
             }
             return usersFound;
         }

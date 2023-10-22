@@ -16,6 +16,7 @@ namespace Fn.Users.Services
         public UsersListDto Invoke(GetUsersBySearchDto getUsersBySearchDto)
         {
             var usersList = _usersRepository.GetUsersBySearchText(getUsersBySearchDto.Search);
+
             return new UsersListDto();
         }
     }
