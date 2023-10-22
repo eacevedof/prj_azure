@@ -38,8 +38,9 @@ namespace Fn.Users.Controllers
         {
             try
             {
-                string search = req.Query["search"];
-                var usersListDto = _getUsersService.Invoke(new GetUsersBySearchDto());
+                string searchText = req.Query["search"];
+                var searchDto = GetUsersBySearchDto.FromPrimitives(searchText);
+                var usersListDto = _getUsersService.Invoke(searchDto);
                 return new OkObjectResult(usersListDto);
             }
             catch (Exception e)
