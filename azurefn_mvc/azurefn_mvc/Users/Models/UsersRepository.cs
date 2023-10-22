@@ -12,20 +12,20 @@ namespace Fn.Users.Models
 
         public List<Dictionary<string,string>> GetUsersBySearchText(string searchText)
         {
-            var json = _GetUsersFromEndpoint();
+            var json = _GetUsersJsonFromEndpoint();
             List<Dictionary<string, string>> list = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(json);
             return list;
         }
 
-        private string _GetUsersFromEndpoint()
+        private string _GetUsersJsonFromEndpoint()
         {
-            string content = "";
-            using (WebClient client = new WebClient())
+            string json = "";
+            using (WebClient client = new())
             {
-                content = client.DownloadString(USERS_ENDPOINT);
-                Console.WriteLine(content);
+                json = client.DownloadString(USERS_ENDPOINT);
+                Console.WriteLine(json);
             }
-            return content;
+            return json;
         }
 
     }

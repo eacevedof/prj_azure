@@ -28,7 +28,7 @@ public class Startup: FunctionsStartup
         //builder.Services.AddSingleton<UsersRepository>(s => new UsersRepository());
         
         //services
-        //builder.Services.AddSingleton<GetUsersService>(s => new GetUsersService(new UsersRepository()));
+        builder.Services.AddSingleton<GetUsersService>(s => new GetUsersService(new UsersRepository()));
        
         //controllers
         builder.Services.AddSingleton<GetUsersController>(
