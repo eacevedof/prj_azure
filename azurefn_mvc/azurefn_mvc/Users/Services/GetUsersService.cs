@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Fn.Users.Models;
 using Fn.Users.Views;
 
@@ -12,12 +14,12 @@ namespace Fn.Users.Services
             _usersRepository = usersRepository;
         }
 
-
         public UsersListDto Invoke(GetUsersBySearchDto getUsersBySearchDto)
         {
-            var usersList = _usersRepository.GetUsersBySearchText(getUsersBySearchDto.Search);
-
-            return new UsersListDto();
+            List<UsersEntity> usersList = _usersRepository.GetUsersBySearchText(
+                getUsersBySearchDto.Search
+            );
+            return UsersListDto.FromPrimitives(usersList);
         }
     }
 }

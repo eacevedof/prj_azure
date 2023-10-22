@@ -1,25 +1,37 @@
+using System;
+using System.Collections.Generic;
+
+using Fn.Users.Models;
 
 namespace Fn.Users.Views
 {
     public sealed class UsersListDto
     {
-        private int _id;
-        private string _name;
-        private string _email;
+        private List<object> _list;
 
-        public int Id
+        public UsersListDto(List<UsersEntity> usersEntities)
         {
-            get { return _id; }
+            foreach(UsersEntity userEntity in usersEntities)
+            {
+                Object obj = new
+                {
+                    identifier = userEntity.Id,
+                    full_name = userEntity.Name,
+                    personal_email = userEntity.Email
+                };
+                _list.Add(obj);
+            }
         }
 
-        public string Name
+        public static UsersListDto FromPrimitives(List<UsersEntity> userEntities)
         {
-            get { return _name; }
+            return new UsersListDto(userEntities);
         }
 
-        public string Email
+        public List<object> List
         {
-            get { return _email; }
+            get { return _list; }
         }
+
     }
 }
