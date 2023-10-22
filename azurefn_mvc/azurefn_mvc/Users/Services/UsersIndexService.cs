@@ -1,3 +1,4 @@
+using Fn.Users.Services;
 
 namespace Fn.Users.Services
 {
@@ -5,7 +6,6 @@ namespace Fn.Users.Services
     {
         public void Invoke(UsersIndexSearchDto usersIndexSearchDto)
         {
-
         }
     }
 }
