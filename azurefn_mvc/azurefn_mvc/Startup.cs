@@ -1,6 +1,11 @@
-using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+
+using Fn.Users.Models;
+using Fn.Users.Services;
+using Fn.Users.Controllers;
 
 [assembly:FunctionsStartup(typeof(azurefn_mvc.Startup))]
 namespace azurefn_mvc;
@@ -20,40 +25,19 @@ public class Startup: FunctionsStartup
         builder.Services.AddHttpClient();
         
         //repositories
-        builder.Services.AddSingleton<PreLoadRepository>(s => new PreLoadRepository(new Mssql()));
+        builder.Services.AddSingleton<UsersRepository>(s => new UsersRepository());
         
         //services
-        builder.Services.AddSingleton<PreLoadImpTablesService>(s => new PreLoadImpTablesService(new PreLoadRepository(new Mssql())));
+        builder.Services.AddSingleton<UsersIndexService>(s => new UsersIndexService());
        
-        //controlleres
-        builder.Services.AddSingleton<LoadImpTablesController>(
-            s => new LoadImpTablesController(
-                new LoadXlsFilesIntoImpTables()
+        //controllers
+        builder.Services.AddSingleton<UsersIndexController>(
+            s => new UsersIndexController(
+       
             )
         );
 
-        builder.Services.AddSingleton<CreateImpTablesController>(
-            s => new CreateImpTablesController(
-                new CreateImpTablesService()
-            )
-        );        
-        
-        builder.Services.AddSingleton<LoadForceTableController>(
-            s => new LoadForceTableController(
-                new LoadXlsForceService()
-            )
-        );
-        
-        builder.Services.AddSingleton<RunPreLoadFilesController>(
-            s => new RunPreLoadFilesController(new PreLoadImpTablesService(new PreLoadRepository(new Mssql())))
-        );        
-        builder.Services.AddSingleton<RunPostLoadFilesController>(
-            s => new RunPostLoadFilesController(new PostLoadImpTablesService(new PostLoadRepository(new Mssql())))
-        );
 
-        builder.Services.AddSingleton<CheckPaginationService>(
-            s => new CheckPaginationService()
-        );
             
         //fix: No data is available for encoding 1252. For information on defining a custom encoding
         System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);

@@ -22,7 +22,9 @@ namespace Fn.Users.Controllers
 
         }
 
-        //endpoint kind of: http://localhost:5500/api/v1/users-index
+        /*
+         users-index: [GET,POST] http://localhost:7071/api/users-index
+        */
         [FunctionName("users-index")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
