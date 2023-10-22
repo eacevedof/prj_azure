@@ -28,7 +28,7 @@ namespace Fn.Users.Views
             return new UsersListDto(userEntities);
         }
 
-        public List<object> List
+        public List<object> Users
         {
             get { return _list; }
         }
