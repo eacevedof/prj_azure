@@ -13,8 +13,15 @@ namespace Fn.Users.Models
         public List<Dictionary<string,string>> GetUsersBySearchText(string searchText)
         {
             var json = _GetUsersJsonFromEndpoint();
-            List<Dictionary<string, string>> list = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(json);
-            return list;
+            //List<Object> list = JsonSerializer.Deserialize<List<Object>>(json);
+
+            RemoteUsersDto remoteUsersDto = JsonSerializer.Deserialize<RemoteUsersDto>(json);
+            List<RemoteUserDto> remoteUsers = JsonSerializer.Deserialize<List<RemoteUserDto>>(remoteUsersDto.users);
+            //var x = deserializedObject.users;
+            // Accessing the list of users
+            //List<User> users = deserializedObject.users;
+
+            return new List<Dictionary<string, string>>();
         }
 
         private string _GetUsersJsonFromEndpoint()
@@ -23,6 +30,7 @@ namespace Fn.Users.Models
             using (WebClient client = new())
             {
                 json = client.DownloadString(USERS_ENDPOINT);
+
                 Console.WriteLine(json);
             }
             return json;
