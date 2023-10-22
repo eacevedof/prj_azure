@@ -7,30 +7,27 @@ namespace Fn.Users.Views
 {
     public sealed class UserCreatedDto
     {
-        private List<object> _list = new();
+        private Object _user;
 
-        public UserCreatedDto(List<UsersEntity> usersEntities)
+        public UserCreatedDto(UsersEntity userEntity)
         {
-            foreach(UsersEntity userEntity in usersEntities)
+            Object obj = new
             {
-                Object obj = new
-                {
-                    identifier = userEntity.Id,
-                    full_name = userEntity.Name,
-                    personal_email = userEntity.Email
-                };
-                _list.Add(obj);
-            }
+                identifier = userEntity.Id,
+                full_name = userEntity.Name,
+                personal_email = userEntity.Email
+            };
+            
         }
 
-        public static UserCreatedDto FromPrimitives(List<UsersEntity> userEntities)
+        public static UserCreatedDto FromPrimitives(UsersEntity userEntity)
         {
-            return new UserCreatedDto(userEntities);
+            return new UserCreatedDto(userEntity);
         }
 
-        public List<object> List
+        public Object User
         {
-            get { return _list; }
+            get { return _user; }
         }
 
     }

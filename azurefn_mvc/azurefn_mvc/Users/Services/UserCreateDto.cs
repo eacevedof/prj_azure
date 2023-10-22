@@ -1,23 +1,43 @@
 
+using Fn.Users.Models;
+
 namespace Fn.Users.Services
 {
     public sealed class UserCreateDto
     {
-        private string _search;
+        private int _id;
+        private string _name;
+        private string _email;
 
-        public UserCreateDto(string search)
+        public UserCreateDto(int id, string name, string email)
         {
-            _search = search;
+            _id = id;
+            _name = name;
+            _email = email;
         }
 
-        public static UserCreateDto FromPrimitives(string searchText)
+        public static UserCreateDto FromPrimitives(string name, string email)
         {
-            return new UserCreateDto(searchText);
+            return new UserCreateDto(
+                -1,
+                name,
+                email
+            );
         }
 
-        public string Search
+        public int Id
         {
-            get { return _search; }
+            get { return _id; }
+        }
+
+        public string Name
+        {
+            get { return _name; }
+        }
+
+        public string Email
+        {
+            get { return _email; }
         }
     }
 }

@@ -32,12 +32,13 @@ namespace Fn.Users.Controllers
         {
             try
             {
-                string searchText = req.Query["search"];
+                string fullName = req.Query["fullName"];
+                string email = req.Query["email"];
 
-                var searchDto = GetUsersBySearchDto.FromPrimitives(searchText);
-                var usersListDto = _userCreateService.Invoke(searchDto);
+                var userCreateDto = UserCreateDto.FromPrimitives(fullName, email);
+                var userCreatedDto = _userCreateService.Invoke(userCreateDto);
 
-                return new OkObjectResult(usersListDto);
+                return new OkObjectResult(userCreatedDto);
             }
             catch (Exception e)
             {

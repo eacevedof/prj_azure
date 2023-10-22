@@ -14,12 +14,13 @@ namespace Fn.Users.Services
             _usersRepository = usersRepository;
         }
 
-        public UsersListDto Invoke(GetUsersBySearchDto getUsersBySearchDto)
+        public UsersEntity Invoke(UserCreateDto userCreateDto)
         {
-            List<UsersEntity> usersList = _usersRepository.GetUsersBySearchText(
-                getUsersBySearchDto.Search
+            var userToCreate = UsersEntity.FromUserCreate(userCreateDto);
+            UsersEntity userCreatedEntity = _usersRepository.CreateUser(
+                userToCreate
             );
-            return UsersListDto.FromPrimitives(usersList);
+            return userCreatedEntity;
         }
     }
 }

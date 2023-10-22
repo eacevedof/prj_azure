@@ -20,11 +20,17 @@ namespace Fn.Users.Models
             var usersFound = new List<UsersEntity>();            
             foreach (var remoteUserDto in remoteUsers)
             {
-                var userEntity = new UsersEntity();
-                userEntity.Id = remoteUserDto.id;
-                userEntity.Name = $"{remoteUserDto.firstName} {remoteUserDto.lastName}";
-                userEntity.Email = remoteUserDto.email;
-                usersFound.Add(userEntity);
+                if (
+                    remoteUserDto.id.ToString().Contains(searchText) ||
+                    remoteUserDto.firstName.Contains(searchText) ||
+                    remoteUserDto.lastName.Contains(searchText) ||
+                    remoteUserDto.email.Contains(searchText) 
+                )
+                    usersFound.Add(UsersEntity.FromPrimitives(
+                        remoteUserDto.id,
+                        $"{remoteUserDto.firstName} {remoteUserDto.lastName}",
+                        remoteUserDto.email
+                    ));
             }
             return usersFound;
         }
@@ -38,6 +44,18 @@ namespace Fn.Users.Models
             }
             Console.WriteLine(json);
             return json;
+        }
+
+        public UsersEntity CreateUser(UsersEntity userEntity)
+        {
+            userEntity.Id = _GetNewId();
+            return userEntity;
+        }
+
+        private int _GetNewId()
+        {
+            Random random = new Random();
+            return random.Next(1, 100000);
         }
     }
 }
