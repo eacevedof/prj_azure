@@ -39,6 +39,14 @@ public class Startup: FunctionsStartup
             )
         );
 
+        builder.Services.AddSingleton<UsersCreateController>(
+            s => new UsersCreateController(
+                new UserCreateService(
+                    new UsersRepository()
+                )
+            )
+        );
+
         //fix: No data is available for encoding 1252. For information on defining a custom encoding
         System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
     }
