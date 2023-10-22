@@ -49,8 +49,13 @@ namespace Fn.Users.Models
 
         public UsersEntity CreateUser(UsersEntity userEntity)
         {
-            userEntity.Id = _GetNewId();
-            return userEntity;
+            //this is just an example of how to create a new user.
+            //It is supposed to persist in some data infrastrcuture
+            return UsersEntity.FromPrimitives(
+                _GetNewId(),
+                userEntity.Name,
+                userEntity.Email
+            );
         }
 
         private int _GetNewId()
