@@ -1,14 +1,15 @@
 using System;
 using System.Net;
-using System.Collections.Generic;
 using System.Text.Json;
-using System.Reflection;
+using System.Collections.Generic;
+
+using Fn.Users.Models.Dummyjson;
 
 namespace Fn.Users.Models
 {
     public sealed class UsersRepository
     {
-        private string USERS_ENDPOINT = "https://dummyjson.com/users?limit=3";
+        private string USERS_ENDPOINT = "https://dummyjson.com/users?limit=5";
 
         public List<Dictionary<string,string>> GetUsersBySearchText(string searchText)
         {
@@ -25,7 +26,6 @@ namespace Fn.Users.Models
                 dic["email"] = remoteUserDto.email;
                 usersFound.Add(dic);
             }
-            
             return usersFound;
         }
 
@@ -35,26 +35,9 @@ namespace Fn.Users.Models
             using (WebClient client = new())
             {
                 json = client.DownloadString(USERS_ENDPOINT);
-
-                Console.WriteLine(json);
             }
+            Console.WriteLine(json);
             return json;
-        }
-
-        private string _GetAttributeValue(Object obj, string attribute)
-        {
-            Type type = obj.GetType();
-            PropertyInfo[] properties = type.GetProperties();
-
-            foreach (PropertyInfo property in properties)
-            {
-                string propertyName = property.Name;
-                if (propertyName != attribute)
-                    continue;
-                object propertyValue = property.GetValue(obj);
-                return propertyValue.ToString();
-            }
-            return "";
         }
     }
 }
