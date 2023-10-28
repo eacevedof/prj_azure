@@ -37,10 +37,10 @@ namespace Fn.Users.Controllers
                 string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
                 dynamic request = JsonConvert.DeserializeObject(requestBody);
 
-                string fullName = request?.fullName;
+                string fullName = request?.fullName ?? "";
                 fullName = fullName.Trim();
 
-                string email = request?.email;
+                string email = request?.email ?? "";
                 email = email.Trim();
 
                 if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email))
