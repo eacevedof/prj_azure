@@ -1,0 +1,9 @@
+﻿{
+  "profiles": {
+    "azurefn_mssql": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 5050",
+      "launchBrowser": false
+    }
+  }
+}
