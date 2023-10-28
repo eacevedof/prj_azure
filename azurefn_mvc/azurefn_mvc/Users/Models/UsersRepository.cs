@@ -13,6 +13,7 @@ namespace Fn.Users.Models
 
         public List<UsersEntity> GetUsersBySearchText(string searchText)
         {
+            if (searchText is null) searchText = "";
             searchText = searchText.Trim().ToLower();
             var json = _GetUsersJsonFromEndpoint();
             RemoteUsersDto remoteUsersDto = JsonSerializer.Deserialize<RemoteUsersDto>(json);
