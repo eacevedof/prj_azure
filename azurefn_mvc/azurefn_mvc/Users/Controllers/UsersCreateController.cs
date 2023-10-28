@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 
+using Fn.Users.Exceptions;
 using Fn.Users.Services;
 
 namespace Fn.Users.Controllers
@@ -43,16 +44,20 @@ namespace Fn.Users.Controllers
                 string email = request?.email ?? "";
                 email = email.Trim();
 
-                if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email))
-                    return new OkObjectResult("Missing fullName or email")
-                    {
-                        StatusCode = 400
-                    };
+                if (email == "" || fullName == "")
+                    UsersException.ThrowEmptyValue($"email and/or fullName is empty");
 
                 var userCreateDto = UserCreateDto.FromPrimitives(fullName, email);
                 var userCreatedDto = _userCreateService.Invoke(userCreateDto);
 
                 return new OkObjectResult(userCreatedDto);
+            }
+            catch (UsersException e)
+            {
+                return new OkObjectResult(e.Message)
+                {
+                    StatusCode = e.StatusCode
+                };
             }
             catch (Exception e)
             {
