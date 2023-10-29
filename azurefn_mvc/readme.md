@@ -8,3 +8,4 @@
 
 ### post data
 - [Azure Functions in Vscode](https://www.youtube.com/watch?v=mZ6N3gC4KpI&list=PL9Bm8IOGYHA3YmrVUiCKmbg_Nw-Qf26wE&index=2)
+- https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=macos%2Cin-process%2Cnode-v4%2Cpython-v2%2Chttp-trigger%2Ccontainer-apps&pivots=programming-language-csharp
