@@ -11,11 +11,8 @@ gitpush: ## git push m=any message
 	clear;
 	git add .; git commit -m "$(m)"; git push;
 
-curl-azure_have_a_look: ## curl get http://localhost:7071/api/azure_have_a_look
-	curl http://localhost:7071/api/azure_have_a_look
-
-curl-azurefn_mvc: ## curl get http://localhost:7071/api/azurefn_mvc
-	curl http://localhost:7071/api/azurefn_mvc
+curl-azurefn_mssql: ## curl get http://localhost:7071/api/azurefn_mssql
+	curl http://localhost:7071/api/azurefn_mssql
 
 ssh-db: ## ssh db
 	docker exec -it --user root cont-mssql bash
@@ -32,8 +29,8 @@ db-q: ## q="use xxx; select * from users"
 
 run:
 	clear;
-	dotnet build ./azurefn_mvc/azurefn_mvc.csproj --property:GenerateFullPaths=true --consoleloggerparameters:NoSummary;
-	dotnet publish ./azurefn_mvc/azurefn_mvc.csproj --property:GenerateFullPaths=true --consoleloggerparameters:NoSummary;
-	dotnet watch run --project azurefn_mvc/bin/Debug/net6.0/azurefn_mvc.dll;
+	dotnet build ./azurefn_mssql/azurefn_mssql.csproj --property:GenerateFullPaths=true --consoleloggerparameters:NoSummary;
+	dotnet publish ./azurefn_mssql/azurefn_mssql.csproj --property:GenerateFullPaths=true --consoleloggerparameters:NoSummary;
+	dotnet watch run --project azurefn_mssql/bin/Debug/net6.0/azurefn_mssql.dll;
 	# para el siguiente comando se necesita: brew tap azure/functions; brew install azure-functions-core-tools@4
-	# cd ./azurefn_mvc; func start;
+	# cd ./azurefn_mssql; func start;
