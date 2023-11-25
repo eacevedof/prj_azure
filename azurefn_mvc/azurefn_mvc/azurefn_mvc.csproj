@@ -21,6 +21,9 @@
   <ItemGroup>
     <None Remove="Users\Models\DummyJsonApi\" />
     <None Remove="Users\Exceptions\" />
+    <None Remove="Infrastructure\" />
+    <None Remove="Infrastructure\Db\Contexts\" />
+    <None Remove="Infrastructure\Db\Mssql\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
@@ -35,5 +38,8 @@
   <ItemGroup>
     <Folder Include="Users\Models\DummyJsonApi\" />
     <Folder Include="Users\Exceptions\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Infrastructure\Db\Contexts\" />
+    <Folder Include="Infrastructure\Db\Mssql\" />
   </ItemGroup>
 </Project>
